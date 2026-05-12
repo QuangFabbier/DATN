@@ -1,74 +1,182 @@
-﻿[
+[
   {
     "id": 1,
-    "name": "Laptop Dell Inspiron 15",
+    "name": "Laptop Dell Inspiron 15 3530",
     "category": "Laptop",
     "price": 15990000,
     "image": "https://placehold.co/600x400/e8f1ff/1f3a5f?text=Dell+Inspiron+15",
-    "description": "Laptop học tập và văn phòng với màn hình 15.6 inch, hiệu năng ổn định.",
+    "description": "Laptop 15.6 inch phù hợp học tập, văn phòng và làm việc cơ bản hằng ngày.",
     "stock": 12
   },
   {
     "id": 2,
+    "name": "Laptop ASUS Vivobook 14",
+    "category": "Laptop",
+    "price": 14490000,
+    "image": "https://placehold.co/600x400/f1f5ff/2f4ea1?text=ASUS+Vivobook+14",
+    "description": "Thiết kế gọn nhẹ, hiệu năng ổn định cho sinh viên và nhân viên văn phòng.",
+    "stock": 9
+  },
+  {
+    "id": 3,
+    "name": "MacBook Air M2 13 inch",
+    "category": "Laptop",
+    "price": 26990000,
+    "image": "https://placehold.co/600x400/f3f4f6/1f2937?text=MacBook+Air+M2",
+    "description": "MacBook mỏng nhẹ, pin tốt, phù hợp làm việc sáng tạo và di chuyển nhiều.",
+    "stock": 6
+  },
+  {
+    "id": 4,
     "name": "iPhone 15 128GB",
     "category": "Điện thoại",
     "price": 19990000,
     "image": "https://placehold.co/600x400/f5f5f5/222222?text=iPhone+15",
-    "description": "Điện thoại thông minh thiết kế hiện đại, camera tốt và hiệu năng mạnh.",
+    "description": "Điện thoại cao cấp với camera đẹp, hiệu năng mạnh và trải nghiệm mượt mà.",
     "stock": 8
   },
   {
-    "id": 3,
-    "name": "Tai nghe Sony WH-CH520",
-    "category": "Phụ kiện",
-    "price": 1190000,
-    "image": "https://placehold.co/600x400/fff4e6/8a4b00?text=Sony+Headphone",
-    "description": "Tai nghe Bluetooth nhẹ, pin lâu, phù hợp nghe nhạc và học online.",
-    "stock": 25
-  },
-  {
-    "id": 4,
-    "name": "Bàn phím cơ Keychron K2",
-    "category": "Phụ kiện",
-    "price": 2190000,
-    "image": "https://placehold.co/600x400/eaf7ea/245c32?text=Keychron+K2",
-    "description": "Bàn phím cơ không dây layout gọn, phù hợp lập trình và làm việc.",
-    "stock": 15
-  },
-  {
     "id": 5,
-    "name": "Chuột Logitech MX Master 3S",
-    "category": "Phụ kiện",
-    "price": 2390000,
-    "image": "https://placehold.co/600x400/f0ecff/3f2b73?text=MX+Master+3S",
-    "description": "Chuột không dây cao cấp, thao tác chính xác, hỗ trợ làm việc đa thiết bị.",
-    "stock": 18
+    "name": "Samsung Galaxy S24",
+    "category": "Điện thoại",
+    "price": 18490000,
+    "image": "https://placehold.co/600x400/f2f7ff/153b78?text=Galaxy+S24",
+    "description": "Màn hình đẹp, chụp ảnh tốt, phù hợp nhu cầu giải trí và làm việc di động.",
+    "stock": 11
   },
   {
     "id": 6,
-    "name": "Màn hình LG 24 inch Full HD",
-    "category": "Màn hình",
-    "price": 2990000,
-    "image": "https://placehold.co/600x400/eaf6ff/0f4c81?text=LG+Monitor",
-    "description": "Màn hình 24 inch độ phân giải Full HD, phù hợp học tập và văn phòng.",
-    "stock": 10
+    "name": "Xiaomi Redmi Note 13",
+    "category": "Điện thoại",
+    "price": 6490000,
+    "image": "https://placehold.co/600x400/fff4e8/9a4a00?text=Redmi+Note+13",
+    "description": "Điện thoại tầm trung pin khỏe, màn hình lớn và cấu hình tốt trong tầm giá.",
+    "stock": 14
   },
   {
     "id": 7,
     "name": "Samsung Galaxy Tab S9 FE",
     "category": "Máy tính bảng",
     "price": 9990000,
-    "image": "https://placehold.co/600x400/f7f0ea/6c3f1d?text=Galaxy+Tab",
-    "description": "Máy tính bảng màn hình lớn, hỗ trợ ghi chú, học tập và giải trí.",
+    "image": "https://placehold.co/600x400/f7f0ea/6c3f1d?text=Galaxy+Tab+S9+FE",
+    "description": "Máy tính bảng hỗ trợ học tập, ghi chú và giải trí với màn hình lớn.",
     "stock": 7
   },
   {
     "id": 8,
+    "name": "iPad Air 10.9 inch",
+    "category": "Máy tính bảng",
+    "price": 16990000,
+    "image": "https://placehold.co/600x400/f4f7fb/355070?text=iPad+Air",
+    "description": "iPad cân bằng tốt giữa hiệu năng và tính di động, phù hợp nhiều tác vụ.",
+    "stock": 5
+  },
+  {
+    "id": 9,
+    "name": "Màn hình LG 24 inch Full HD",
+    "category": "Màn hình",
+    "price": 2990000,
+    "image": "https://placehold.co/600x400/eaf6ff/0f4c81?text=LG+24+Inch",
+    "description": "Màn hình Full HD 24 inch phù hợp góc học tập, văn phòng và giải trí cơ bản.",
+    "stock": 10
+  },
+  {
+    "id": 10,
+    "name": "Màn hình Dell P2422H",
+    "category": "Màn hình",
+    "price": 4290000,
+    "image": "https://placehold.co/600x400/ecfdf5/14532d?text=Dell+P2422H",
+    "description": "Màn hình viền mỏng, màu sắc ổn định, phù hợp setup làm việc đa nhiệm.",
+    "stock": 8
+  },
+  {
+    "id": 11,
+    "name": "Tai nghe Sony WH-CH520",
+    "category": "Âm thanh",
+    "price": 1190000,
+    "image": "https://placehold.co/600x400/fff4e6/8a4b00?text=Sony+WH-CH520",
+    "description": "Tai nghe Bluetooth nhẹ, pin lâu, phù hợp học online và nghe nhạc hằng ngày.",
+    "stock": 25
+  },
+  {
+    "id": 12,
     "name": "Loa Bluetooth JBL Flip 6",
     "category": "Âm thanh",
     "price": 2590000,
     "image": "https://placehold.co/600x400/fff0f0/8a1f1f?text=JBL+Flip+6",
-    "description": "Loa Bluetooth nhỏ gọn, chống nước, âm thanh mạnh mẽ.",
+    "description": "Loa di động chống nước, âm thanh mạnh, phù hợp mang đi du lịch hoặc picnic.",
     "stock": 20
+  },
+  {
+    "id": 13,
+    "name": "AirPods 3",
+    "category": "Âm thanh",
+    "price": 4190000,
+    "image": "https://placehold.co/600x400/f9fafb/374151?text=AirPods+3",
+    "description": "Tai nghe true wireless nhỏ gọn, tiện lợi cho di chuyển và gọi điện hằng ngày.",
+    "stock": 13
+  },
+  {
+    "id": 14,
+    "name": "Bàn phím cơ Keychron K2",
+    "category": "Phụ kiện",
+    "price": 2190000,
+    "image": "https://placehold.co/600x400/eaf7ea/245c32?text=Keychron+K2",
+    "description": "Bàn phím cơ layout gọn, cảm giác gõ tốt, phù hợp lập trình và làm việc lâu dài.",
+    "stock": 15
+  },
+  {
+    "id": 15,
+    "name": "Chuột Logitech MX Master 3S",
+    "category": "Phụ kiện",
+    "price": 2390000,
+    "image": "https://placehold.co/600x400/f0ecff/3f2b73?text=MX+Master+3S",
+    "description": "Chuột không dây cao cấp, thao tác chính xác, dùng tốt cho designer và dân văn phòng.",
+    "stock": 18
+  },
+  {
+    "id": 16,
+    "name": "Webcam Logitech C920",
+    "category": "Phụ kiện",
+    "price": 1790000,
+    "image": "https://placehold.co/600x400/ecfeff/155e75?text=Logitech+C920",
+    "description": "Webcam Full HD phù hợp học online, họp video và livestream cơ bản.",
+    "stock": 10
+  },
+  {
+    "id": 17,
+    "name": "Ổ cứng SSD Samsung T7 1TB",
+    "category": "Phụ kiện",
+    "price": 2690000,
+    "image": "https://placehold.co/600x400/f8fafc/334155?text=Samsung+T7+1TB",
+    "description": "SSD di động tốc độ cao, tiện sao lưu dữ liệu và làm việc linh hoạt.",
+    "stock": 16
+  },
+  {
+    "id": 18,
+    "name": "Sạc dự phòng Anker 20000mAh",
+    "category": "Phụ kiện",
+    "price": 1190000,
+    "image": "https://placehold.co/600x400/fff7ed/9a3412?text=Anker+20000mAh",
+    "description": "Pin sạc dự phòng dung lượng lớn, phù hợp cho điện thoại và tablet khi di chuyển.",
+    "stock": 21
+  },
+  {
+    "id": 19,
+    "name": "Ghế công thái học Ergonomic Pro",
+    "category": "Nội thất",
+    "price": 3890000,
+    "image": "https://placehold.co/600x400/f0fdf4/166534?text=Ergonomic+Chair",
+    "description": "Ghế công thái học hỗ trợ lưng tốt, phù hợp setup làm việc tại nhà.",
+    "stock": 4
+  },
+  {
+    "id": 20,
+    "name": "Đèn bàn LED chống cận",
+    "category": "Nội thất",
+    "price": 690000,
+    "image": "https://placehold.co/600x400/fefce8/854d0e?text=LED+Desk+Lamp",
+    "description": "Đèn bàn ánh sáng dịu, phù hợp học tập ban đêm và làm việc lâu trước màn hình.",
+    "stock": 0
   }
 ]

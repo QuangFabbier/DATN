@@ -5,7 +5,6 @@ import AuthProvider from './context/AuthProvider'
 import CartProvider from './context/CartProvider'
 import FavoritesProvider from './context/FavoritesProvider'
 import SearchProvider from './context/SearchProvider'
-import AIConsultant from './pages/AIConsultant'
 import Cart from './pages/Cart'
 import Favorites from './pages/Favorites'
 import Home from './pages/Home'
@@ -34,7 +33,6 @@ function App() {
                   <Route path="orders" element={<Orders />} />
                   <Route path="login" element={<Login />} />
                   <Route path="register" element={<Register />} />
-                  <Route path="ai-consultant" element={<AIConsultant />} />
                   <Route path="*" element={<NotFound />} />
                 </Route>
               </Routes>

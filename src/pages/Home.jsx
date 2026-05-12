@@ -1,12 +1,27 @@
 ﻿import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { AI_WIDGET_OPEN_EVENT } from '../components/AIConsultantWidget'
 import ProductCard from '../components/ProductCard'
 import { useSearch } from '../hooks/useSearch'
 import { getProducts } from '../services/productService'
 
+function getRandomFeaturedProducts(products, limit = 4) {
+  const shuffledProducts = [...products]
+
+  for (let index = shuffledProducts.length - 1; index > 0; index -= 1) {
+    const randomIndex = Math.floor(Math.random() * (index + 1))
+    const currentProduct = shuffledProducts[index]
+
+    shuffledProducts[index] = shuffledProducts[randomIndex]
+    shuffledProducts[randomIndex] = currentProduct
+  }
+
+  return shuffledProducts.slice(0, limit)
+}
+
 function Home() {
   const { searchKeyword } = useSearch()
-  const [products, setProducts] = useState([])
+  const [featuredProducts, setFeaturedProducts] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
 
@@ -16,7 +31,7 @@ function Home() {
         setLoading(true)
         setError('')
         const data = await getProducts()
-        setProducts(data)
+        setFeaturedProducts(getRandomFeaturedProducts(data))
       } catch {
         setError('Không thể tải sản phẩm nổi bật.')
       } finally {
@@ -27,13 +42,16 @@ function Home() {
     fetchProducts()
   }, [])
 
-  const featuredProducts = products.slice(0, 4)
   const keyword = searchKeyword.trim().toLowerCase()
 
   // Header search lọc nhóm sản phẩm nổi bật ngay trên trang Home.
   const filteredProducts = keyword
     ? featuredProducts.filter((product) => product.name.toLowerCase().includes(keyword))
     : featuredProducts
+
+  function handleOpenAIWidget() {
+    window.dispatchEvent(new Event(AI_WIDGET_OPEN_EVENT))
+  }
 
   return (
     <section className="page-section">
@@ -48,16 +66,18 @@ function Home() {
             <Link to="/products" className="button">
               Xem sản phẩm
             </Link>
-            <Link to="/ai-consultant" className="button button-outline">
+            <button type="button" className="button button-outline" onClick={handleOpenAIWidget}>
               Tư vấn AI
-            </Link>
+            </button>
           </div>
         </div>
       </div>
 
       <div className="section-heading">
         <h2>Sản phẩm nổi bật</h2>
-        <Link to="/products">Xem tất cả</Link>
+        <Link to="/products" className="section-action-link">
+          Xem tất cả
+        </Link>
       </div>
 
       {loading && <div className="empty-state">Đang tải sản phẩm...</div>}
