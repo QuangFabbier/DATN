@@ -1,0 +1,45 @@
+﻿:root {
+  font-family: "Segoe UI", Arial, sans-serif;
+  color: #0f172a;
+  background: #f8fafc;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  font-size: clamp(32px, 5vw, 48px);
+  line-height: 1.1;
+  margin-bottom: 16px;
+}
+
+h2 {
+  font-size: 26px;
+}
+
+a {
+  color: #2563eb;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}

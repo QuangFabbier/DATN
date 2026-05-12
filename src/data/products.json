@@ -1,0 +1,74 @@
+﻿[
+  {
+    "id": 1,
+    "name": "Laptop Dell Inspiron 15",
+    "category": "Laptop",
+    "price": 15990000,
+    "image": "https://placehold.co/600x400/e8f1ff/1f3a5f?text=Dell+Inspiron+15",
+    "description": "Laptop học tập và văn phòng với màn hình 15.6 inch, hiệu năng ổn định.",
+    "stock": 12
+  },
+  {
+    "id": 2,
+    "name": "iPhone 15 128GB",
+    "category": "Điện thoại",
+    "price": 19990000,
+    "image": "https://placehold.co/600x400/f5f5f5/222222?text=iPhone+15",
+    "description": "Điện thoại thông minh thiết kế hiện đại, camera tốt và hiệu năng mạnh.",
+    "stock": 8
+  },
+  {
+    "id": 3,
+    "name": "Tai nghe Sony WH-CH520",
+    "category": "Phụ kiện",
+    "price": 1190000,
+    "image": "https://placehold.co/600x400/fff4e6/8a4b00?text=Sony+Headphone",
+    "description": "Tai nghe Bluetooth nhẹ, pin lâu, phù hợp nghe nhạc và học online.",
+    "stock": 25
+  },
+  {
+    "id": 4,
+    "name": "Bàn phím cơ Keychron K2",
+    "category": "Phụ kiện",
+    "price": 2190000,
+    "image": "https://placehold.co/600x400/eaf7ea/245c32?text=Keychron+K2",
+    "description": "Bàn phím cơ không dây layout gọn, phù hợp lập trình và làm việc.",
+    "stock": 15
+  },
+  {
+    "id": 5,
+    "name": "Chuột Logitech MX Master 3S",
+    "category": "Phụ kiện",
+    "price": 2390000,
+    "image": "https://placehold.co/600x400/f0ecff/3f2b73?text=MX+Master+3S",
+    "description": "Chuột không dây cao cấp, thao tác chính xác, hỗ trợ làm việc đa thiết bị.",
+    "stock": 18
+  },
+  {
+    "id": 6,
+    "name": "Màn hình LG 24 inch Full HD",
+    "category": "Màn hình",
+    "price": 2990000,
+    "image": "https://placehold.co/600x400/eaf6ff/0f4c81?text=LG+Monitor",
+    "description": "Màn hình 24 inch độ phân giải Full HD, phù hợp học tập và văn phòng.",
+    "stock": 10
+  },
+  {
+    "id": 7,
+    "name": "Samsung Galaxy Tab S9 FE",
+    "category": "Máy tính bảng",
+    "price": 9990000,
+    "image": "https://placehold.co/600x400/f7f0ea/6c3f1d?text=Galaxy+Tab",
+    "description": "Máy tính bảng màn hình lớn, hỗ trợ ghi chú, học tập và giải trí.",
+    "stock": 7
+  },
+  {
+    "id": 8,
+    "name": "Loa Bluetooth JBL Flip 6",
+    "category": "Âm thanh",
+    "price": 2590000,
+    "image": "https://placehold.co/600x400/fff0f0/8a1f1f?text=JBL+Flip+6",
+    "description": "Loa Bluetooth nhỏ gọn, chống nước, âm thanh mạnh mẽ.",
+    "stock": 20
+  }
+]
