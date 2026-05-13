@@ -1,4 +1,4 @@
-﻿# DATN Shop - Website Thuong Mai Dien Tu ReactJS + NodeJS
+﻿# Nexora - Website Thuong Mai Dien Tu ReactJS + NodeJS
 
 Du an nay la website thuong mai dien tu phuc vu do an tot nghiep. Frontend duoc xay dung bang ReactJS, backend duoc xay dung bang NodeJS + ExpressJS va MongoDB. Project dang o giai doan nen tang full-stack: da co giao dien chinh, auth, API san pham va ket noi frontend voi backend.
 
@@ -152,7 +152,7 @@ File: `src/components/MainLayout.jsx`
 
 Header hien co:
 
-- Logo `DATN Shop`.
+- Logo `Nexora`.
 - Thanh search o giua.
 - Nut Yeu thich.
 - Nut Gio hang.

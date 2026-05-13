@@ -36,6 +36,7 @@ function Products() {
 
   const categories = ['Tất cả', ...new Set(products.map((product) => product.category))]
   const keyword = searchKeyword.trim().toLowerCase()
+  const pageTitle = selectedCategory === 'Tất cả' ? 'Sản phẩm' : selectedCategory
 
   // Lọc theo tên sản phẩm từ ô search trên Header.
   const searchedProducts = keyword
@@ -53,7 +54,7 @@ function Products() {
       <div className="section-heading">
         <div>
           <p className="eyebrow">Danh sách sản phẩm</p>
-          <h1>Sản phẩm</h1>
+          <h1>{pageTitle}</h1>
         </div>
         <span>{filteredProducts.length} sản phẩm</span>
       </div>

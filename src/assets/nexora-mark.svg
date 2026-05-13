@@ -1,0 +1,24 @@
+<svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="nexora-blue" x1="44" y1="42" x2="202" y2="210" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1E6CFF" />
+      <stop offset="0.52" stop-color="#0E9AE6" />
+      <stop offset="1" stop-color="#07112F" />
+    </linearGradient>
+    <linearGradient id="nexora-navy" x1="80" y1="36" x2="176" y2="220" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0C1D4A" />
+      <stop offset="1" stop-color="#030A22" />
+    </linearGradient>
+  </defs>
+  <path d="M90 76C90 55.0132 107.013 38 128 38C148.987 38 166 55.0132 166 76V92" stroke="url(#nexora-navy)" stroke-width="16" stroke-linecap="round" />
+  <path d="M70 98C70 87.5066 78.5066 79 89 79H167C177.493 79 186 87.5066 186 98V174C186 192.778 170.778 208 152 208H104C85.2223 208 70 192.778 70 174V98Z" fill="url(#nexora-navy)" />
+  <path d="M70 100C70 88.9543 78.9543 80 90 80H166C177.046 80 186 88.9543 186 100V132.5L163 149.5L139.5 130.5L174 104H92V178L114 156L166 198" stroke="url(#nexora-blue)" stroke-width="18" stroke-linejoin="round" stroke-linecap="round" />
+  <path d="M114 153V206" stroke="url(#nexora-blue)" stroke-width="18" stroke-linecap="round" />
+  <path d="M114 153L166 198" stroke="white" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M92 176H48" stroke="url(#nexora-blue)" stroke-width="10" stroke-linecap="round" />
+  <path d="M92 146H60" stroke="url(#nexora-blue)" stroke-width="10" stroke-linecap="round" />
+  <path d="M92 116H72" stroke="url(#nexora-blue)" stroke-width="10" stroke-linecap="round" />
+  <circle cx="40" cy="176" r="8" stroke="url(#nexora-blue)" stroke-width="8" />
+  <circle cx="52" cy="146" r="8" stroke="url(#nexora-blue)" stroke-width="8" />
+  <circle cx="68" cy="116" r="8" stroke="url(#nexora-blue)" stroke-width="8" />
+</svg>

@@ -5,7 +5,7 @@ import reactRefresh from 'eslint-plugin-react-refresh'
 import { defineConfig, globalIgnores } from 'eslint/config'
 
 export default defineConfig([
-  globalIgnores(['dist', 'backend/node_modules']),
+  globalIgnores(['dist', 'backend/node_modules', 'fontawesome-free-7.2.0-web']),
   {
     files: ['src/**/*.{js,jsx}'],
     extends: [

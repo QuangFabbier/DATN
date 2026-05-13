@@ -1,17 +1,27 @@
-﻿import mockProducts from '../data/products.json'
+﻿import {
+  createProductRecord,
+  deleteProductRecord,
+  readProductById,
+  readProducts,
+  updateProductRecord,
+} from './productStorage'
 
 export async function getProducts() {
-  return mockProducts
+  return readProducts()
 }
 
 export async function getProductById(id) {
-  const product = mockProducts.find((item) => String(item.id) === String(id))
+  return readProductById(id)
+}
 
-  if (!product) {
-    const error = new Error('Không tìm thấy sản phẩm')
-    error.response = { status: 404 }
-    throw error
-  }
+export async function createProduct(productData) {
+  return createProductRecord(productData)
+}
 
-  return product
+export async function updateProduct(productId, productData) {
+  return updateProductRecord(productId, productData)
+}
+
+export async function deleteProduct(productId) {
+  return deleteProductRecord(productId)
 }
