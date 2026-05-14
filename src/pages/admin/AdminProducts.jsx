@@ -1,7 +1,12 @@
 import { useEffect, useMemo, useState } from 'react'
+import EmptyState from '../../components/EmptyState'
+import { AdminProductsSkeleton } from '../../components/Skeleton'
+import { ButtonSpinner } from '../../components/Spinner'
+import { useToast } from '../../hooks/useToast'
 import { createProduct, deleteProduct, getProducts, updateProduct } from '../../services/productService'
 import { PRODUCT_PLACEHOLDER_IMAGE } from '../../services/productStorage'
 import { formatCurrency } from '../../utils/formatCurrency'
+import { withMinimumDelay } from '../../utils/timing'
 
 const initialFormData = {
   name: '',
@@ -13,10 +18,10 @@ const initialFormData = {
 }
 
 function AdminProducts() {
+  const { showToast } = useToast()
   const [products, setProducts] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
-  const [message, setMessage] = useState('')
   const [searchKeyword, setSearchKeyword] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('Tất cả')
   const [selectedStatus, setSelectedStatus] = useState('Tất cả')
@@ -26,13 +31,15 @@ function AdminProducts() {
   const [editingProductId, setEditingProductId] = useState('')
   const [isFormOpen, setIsFormOpen] = useState(false)
   const [selectedProduct, setSelectedProduct] = useState(null)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [deletingProductId, setDeletingProductId] = useState('')
 
   useEffect(() => {
     async function fetchProducts() {
       try {
         setLoading(true)
         setError('')
-        const data = await getProducts()
+        const data = await withMinimumDelay(getProducts(), 220)
         setProducts(data)
       } catch {
         setError('Không thể tải danh sách sản phẩm quản trị.')
@@ -56,9 +63,7 @@ function AdminProducts() {
       .filter((product) =>
         normalizedKeyword ? product.name.toLowerCase().includes(normalizedKeyword) : true,
       )
-      .filter((product) =>
-        selectedCategory === 'Tất cả' ? true : product.category === selectedCategory,
-      )
+      .filter((product) => (selectedCategory === 'Tất cả' ? true : product.category === selectedCategory))
       .filter((product) => {
         if (selectedStatus === 'Tất cả') {
           return true
@@ -93,6 +98,7 @@ function AdminProducts() {
     setFormErrors({})
     setEditingProductId('')
     setIsFormOpen(false)
+    setIsSubmitting(false)
   }
 
   function handleFormChange(event) {
@@ -100,7 +106,6 @@ function AdminProducts() {
 
     setFormData((currentData) => ({ ...currentData, [name]: value }))
     setFormErrors((currentErrors) => ({ ...currentErrors, [name]: '' }))
-    setMessage('')
     setError('')
   }
 
@@ -130,20 +135,19 @@ function AdminProducts() {
     }
 
     setFormErrors(nextErrors)
-
     return Object.keys(nextErrors).length === 0
   }
 
   async function handleSubmit(event) {
     event.preventDefault()
 
-    if (!validateForm()) {
+    if (!validateForm() || isSubmitting) {
       return
     }
 
     try {
       setError('')
-      setMessage('')
+      setIsSubmitting(true)
 
       const payload = {
         name: formData.name.trim(),
@@ -155,18 +159,32 @@ function AdminProducts() {
       }
 
       if (editingProductId) {
-        const result = await updateProduct(editingProductId, payload)
+        const result = await withMinimumDelay(updateProduct(editingProductId, payload), 280)
         setProducts(result.products)
-        setMessage('Cập nhật sản phẩm thành công.')
+        showToast({
+          type: 'success',
+          title: 'Cập nhật sản phẩm thành công',
+          message: `${payload.name} đã được cập nhật trong storefront.`,
+        })
       } else {
-        const result = await createProduct(payload)
+        const result = await withMinimumDelay(createProduct(payload), 280)
         setProducts(result.products)
-        setMessage('Thêm sản phẩm thành công.')
+        showToast({
+          type: 'success',
+          title: 'Thêm sản phẩm thành công',
+          message: `${payload.name} đã được thêm vào danh sách sản phẩm.`,
+        })
       }
 
       resetForm()
     } catch (submitError) {
       setError(submitError.message || 'Không thể lưu sản phẩm.')
+      showToast({
+        type: 'error',
+        title: 'Không thể lưu sản phẩm',
+        message: submitError.message || 'Vui lòng thử lại.',
+      })
+      setIsSubmitting(false)
     }
   }
 
@@ -175,7 +193,6 @@ function AdminProducts() {
     setEditingProductId('')
     setFormData(initialFormData)
     setFormErrors({})
-    setMessage('')
     setError('')
   }
 
@@ -183,7 +200,6 @@ function AdminProducts() {
     setEditingProductId(product.id)
     setIsFormOpen(true)
     setFormErrors({})
-    setMessage('')
     setError('')
     setFormData({
       name: product.name || '',
@@ -204,11 +220,15 @@ function AdminProducts() {
 
     try {
       setError('')
-      setMessage('')
-      const result = await deleteProduct(product.id)
+      setDeletingProductId(product.id)
+      const result = await withMinimumDelay(deleteProduct(product.id), 240)
 
       setProducts(result.products)
-      setMessage('Xóa sản phẩm thành công.')
+      showToast({
+        type: 'success',
+        title: 'Xóa sản phẩm thành công',
+        message: `${product.name} đã được xóa khỏi hệ thống.`,
+      })
 
       if (editingProductId === product.id) {
         resetForm()
@@ -219,11 +239,18 @@ function AdminProducts() {
       }
     } catch (deleteError) {
       setError(deleteError.message || 'Không thể xóa sản phẩm.')
+      showToast({
+        type: 'error',
+        title: 'Không thể xóa sản phẩm',
+        message: deleteError.message || 'Vui lòng thử lại.',
+      })
+    } finally {
+      setDeletingProductId('')
     }
   }
 
   if (loading) {
-    return <div className="empty-state">Đang tải trang quản lý sản phẩm...</div>
+    return <AdminProductsSkeleton />
   }
 
   return (
@@ -238,8 +265,7 @@ function AdminProducts() {
         </button>
       </div>
 
-      {message && <p className="auth-message">{message}</p>}
-      {error && <p className="auth-error">{error}</p>}
+      {error ? <p className="auth-error">{error}</p> : null}
 
       <div className="admin-toolbar">
         <input
@@ -326,8 +352,15 @@ function AdminProducts() {
           </div>
 
           <div className="admin-form-actions">
-            <button type="submit" className="button">
-              {editingProductId ? 'Lưu' : 'Thêm sản phẩm'}
+            <button type="submit" className="button" disabled={isSubmitting}>
+              {isSubmitting ? (
+                <>
+                  <ButtonSpinner size="sm" />
+                  <span>{editingProductId ? 'Đang lưu...' : 'Đang thêm...'}</span>
+                </>
+              ) : (
+                <span>{editingProductId ? 'Lưu' : 'Thêm sản phẩm'}</span>
+              )}
             </button>
             <button type="button" className="button button-light" onClick={resetForm}>
               Hủy
@@ -337,12 +370,16 @@ function AdminProducts() {
       ) : null}
 
       {products.length === 0 ? (
-        <div className="empty-state">
-          <p>Chưa có sản phẩm nào trong hệ thống.</p>
-          <button type="button" className="button" onClick={handleOpenCreateForm}>
-            Thêm sản phẩm
-          </button>
-        </div>
+        <EmptyState
+          title="Chưa có sản phẩm nào"
+          description="Dữ liệu localStorage hiện chưa có sản phẩm. Hãy thêm mới để storefront có thể hiển thị ngay."
+          icon="fa-box-open"
+          action={
+            <button type="button" className="button" onClick={handleOpenCreateForm}>
+              Thêm sản phẩm
+            </button>
+          }
+        />
       ) : (
         <div className="admin-table-card">
           <div className="admin-table-meta">
@@ -350,9 +387,11 @@ function AdminProducts() {
           </div>
 
           {filteredProducts.length === 0 ? (
-            <div className="empty-state">
-              <p>Không có sản phẩm phù hợp với bộ lọc hiện tại.</p>
-            </div>
+            <EmptyState
+              title="Không có sản phẩm phù hợp"
+              description="Bộ lọc hiện tại chưa cho ra kết quả nào. Hãy đổi từ khóa hoặc trạng thái để tiếp tục."
+              icon="fa-filter-circle-xmark"
+            />
           ) : (
             <div className="admin-table-wrapper">
               <table className="admin-table">
@@ -384,9 +423,7 @@ function AdminProducts() {
                       <td>{formatCurrency(product.price)}</td>
                       <td>{product.stock}</td>
                       <td>
-                        <span
-                          className={`admin-status-badge ${product.stock > 0 ? 'in-stock' : 'out-of-stock'}`}
-                        >
+                        <span className={`admin-status-badge ${product.stock > 0 ? 'in-stock' : 'out-of-stock'}`}>
                           {product.stock > 0 ? 'Còn hàng' : 'Hết hàng'}
                         </span>
                       </td>
@@ -410,8 +447,16 @@ function AdminProducts() {
                             type="button"
                             className="button admin-danger-button"
                             onClick={() => handleDeleteProduct(product)}
+                            disabled={deletingProductId === product.id}
                           >
-                            Xóa
+                            {deletingProductId === product.id ? (
+                              <>
+                                <ButtonSpinner size="sm" />
+                                <span>Đang xóa...</span>
+                              </>
+                            ) : (
+                              'Xóa'
+                            )}
                           </button>
                         </div>
                       </td>
@@ -432,11 +477,7 @@ function AdminProducts() {
                 <p className="eyebrow">Chi tiết nhanh</p>
                 <h3>{selectedProduct.name}</h3>
               </div>
-              <button
-                type="button"
-                className="button button-light"
-                onClick={() => setSelectedProduct(null)}
-              >
+              <button type="button" className="button button-light" onClick={() => setSelectedProduct(null)}>
                 Đóng
               </button>
             </div>

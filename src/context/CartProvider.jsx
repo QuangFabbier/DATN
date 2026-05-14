@@ -3,6 +3,7 @@ import { CartContext } from './CartContext'
 import { getProductStock, normalizeProduct } from '../utils/product'
 
 const CART_STORAGE_KEY = 'cartItems'
+export const CART_ITEM_ADDED_EVENT = 'nexora-cart-item-added'
 
 function getStoredCartItems() {
   const storedCartItems = localStorage.getItem(CART_STORAGE_KEY)
@@ -108,6 +109,14 @@ function CartProvider({ children }) {
 
       return [...currentItems, { ...normalizedProduct, quantity: clampedQuantity }]
     })
+
+    if (added && typeof window !== 'undefined') {
+      window.dispatchEvent(
+        new CustomEvent(CART_ITEM_ADDED_EVENT, {
+          detail: { productId: normalizedProduct.id },
+        }),
+      )
+    }
 
     return added
   }

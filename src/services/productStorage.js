@@ -1,5 +1,5 @@
 import mockProducts from '../data/products.json'
-import { getProductId, normalizeProduct } from '../utils/product'
+import { getProductId, getProductImages, normalizeProduct } from '../utils/product'
 
 export const PRODUCT_STORAGE_KEY = 'datn_products'
 export const PRODUCT_PLACEHOLDER_IMAGE =
@@ -40,6 +40,11 @@ function sanitizeProductRecord(product, index = 0) {
   const name = String(product?.name || '').trim()
   const category = String(product?.category || '').trim()
   const image = String(product?.image || '').trim() || PRODUCT_PLACEHOLDER_IMAGE
+  const images = getProductImages({
+    ...product,
+    image,
+    images: Array.isArray(product?.images) ? product.images : undefined,
+  })
   const description = String(product?.description || '').trim()
   const price = Math.max(0, Number(normalizedProduct.price) || 0)
   const stock = Math.max(0, Number(normalizedProduct.stock) || 0)
@@ -50,6 +55,7 @@ function sanitizeProductRecord(product, index = 0) {
     name,
     category,
     image,
+    images,
     description,
     price,
     stock,

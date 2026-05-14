@@ -1,7 +1,10 @@
-﻿:root {
-  font-family: "Segoe UI", Arial, sans-serif;
-  color: #0f172a;
-  background: #f8fafc;
+:root {
+  font-family: var(--font-sans);
+  color: var(--color-text);
+  background:
+    radial-gradient(circle at top left, rgba(59, 130, 246, 0.08), transparent 22%),
+    radial-gradient(circle at bottom right, rgba(255, 90, 61, 0.08), transparent 24%),
+    var(--color-bg);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -12,34 +15,47 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   min-width: 320px;
+  min-height: 100vh;
+  background: inherit;
+  color: var(--color-text);
 }
 
 h1,
 h2,
 h3,
+h4,
 p {
   margin-top: 0;
 }
 
 h1 {
-  font-size: clamp(32px, 5vw, 48px);
-  line-height: 1.1;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
+  font-size: clamp(36px, 4vw, 52px);
+  line-height: 1.06;
 }
 
 h2 {
-  font-size: 26px;
+  font-size: clamp(24px, 2.4vw, 32px);
 }
 
 a {
-  color: #2563eb;
+  color: inherit;
 }
 
 button,
 input,
+select,
 textarea {
   font: inherit;
+}
+
+img {
+  max-width: 100%;
 }
