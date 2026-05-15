@@ -409,41 +409,44 @@ function Orders() {
           )}
         </form>
 
-        <aside className="order-summary sticky-summary">
-          <div className="summary-header">
+        <aside className="order-summary sticky-summary checkout-summary-panel">
+          <div className="summary-header checkout-summary-header">
             <h2>Đơn hàng hiện tại</h2>
-            <span>{paymentMethod === 'qr' ? 'Thanh toán QR' : 'Thanh toán khi nhận hàng'}</span>
+            <span className="checkout-summary-meta">{cartItems.length} sản phẩm</span>
           </div>
 
-          <ul className="summary-list">
+          <ul className="summary-list checkout-summary-list">
             {cartItems.map((item) => (
-              <li key={item.id}>
-                <span>
+              <li key={item.id} className="checkout-summary-item">
+                <span className="checkout-summary-item-name">
                   {item.name} x {item.quantity}
                 </span>
-                <strong>{formatCurrency(item.price * item.quantity)}</strong>
+                <strong className="checkout-summary-item-price">{formatCurrency(item.price * item.quantity)}</strong>
               </li>
             ))}
           </ul>
 
-          <div className="summary-breakdown">
-            <p>
+          <div className="summary-breakdown checkout-summary-breakdown">
+            <p className="checkout-summary-row">
               <span>Tạm tính (giá gốc)</span>
               <strong>{formatCurrency(cartTotalOriginal)}</strong>
             </p>
             {cartSavings > 0 ? (
-              <p className="summary-savings">
+              <p className="summary-savings checkout-summary-row">
                 <span>Giảm giá</span>
                 <strong>-{formatCurrency(cartSavings)}</strong>
               </p>
             ) : null}
-            <p>
+            <p className="checkout-summary-row">
               <span>Phí vận chuyển</span>
               <strong>{formatCurrency(shippingFee)}</strong>
             </p>
           </div>
 
-          <p className="summary-total">Tổng: {formatCurrency(total)}</p>
+          <p className="summary-total checkout-summary-total">
+            <span>Tổng thanh toán</span>
+            <strong>{formatCurrency(total)}</strong>
+          </p>
         </aside>
       </div>
     </section>
