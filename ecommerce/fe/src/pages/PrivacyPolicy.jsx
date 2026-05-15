@@ -73,7 +73,7 @@ function PrivacyPolicy() {
           <li>Hotline: 0982241317</li>
           <li>Email: nguyenminhquang0325@gmail.com</li>
           <li>Địa chỉ: 52B ngõ 4 Hoàng Quốc Việt, Nghĩa Đô, Hà Nội</li>
-          <li>Địa chỉ liên hệ bổ sung: 55 Nghiêm Quý Ngãi, Hầm Rồng, tỉnh Thanh Hóa</li>
+          <li>Địa chỉ liên hệ bổ sung: 55 Nghiêm Quý Ngãi, Hàm Rồng, tỉnh Thanh Hóa</li>
         </ul>
 
         <h2>6. Phương thức để khách hàng tiếp cận và chỉnh sửa dữ liệu cá nhân</h2>

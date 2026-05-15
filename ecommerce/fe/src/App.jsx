@@ -26,6 +26,8 @@ import PrivacyPolicy from './pages/PrivacyPolicy'
 import Register from './pages/Register'
 import WarrantyPolicy from './pages/WarrantyPolicy'
 import ReturnPolicy from './pages/ReturnPolicy'
+import TermsOfUse from './pages/TermsOfUse'
+import ShippingInspectionPolicy from './pages/ShippingInspectionPolicy'
 import AccountAIPreferences from './pages/account/AccountAIPreferences'
 import AccountAddresses from './pages/account/AccountAddresses'
 import AccountAppearance from './pages/account/AccountAppearance'
@@ -58,6 +60,8 @@ function App() {
                         <Route path="privacy-policy" element={<PrivacyPolicy />} />
                         <Route path="warranty-policy" element={<WarrantyPolicy />} />
                         <Route path="return-policy" element={<ReturnPolicy />} />
+                        <Route path="terms-of-use" element={<TermsOfUse />} />
+                        <Route path="shipping-inspection-policy" element={<ShippingInspectionPolicy />} />
                         <Route path="account" element={<AccountLayout />}>
                           <Route index element={<Navigate to="profile" replace />} />
                           <Route path="settings" element={<Navigate to="/account/profile" replace />} />
