@@ -12,6 +12,7 @@ import { useCart } from '../hooks/useCart'
 import { useFavorites } from '../hooks/useFavorites'
 import { useSearch } from '../hooks/useSearch'
 import { useTheme } from '../hooks/useTheme'
+import { getProfile } from '../services/accountStorage'
 import { getProducts } from '../services/productService'
 import { formatCurrency } from '../utils/formatCurrency'
 
@@ -38,6 +39,9 @@ function MainLayout() {
   const [isCartIconAnimated, setIsCartIconAnimated] = useState(false)
   const [isFavoriteIconAnimated, setIsFavoriteIconAnimated] = useState(false)
   const isAdminRoute = location.pathname.startsWith('/admin')
+  const profile = useMemo(() => getProfile(user), [user])
+  const accountAvatar = profile.avatar
+  const accountName = profile.displayName || profile.fullName || user?.name || 'Tài khoản'
 
   useEffect(() => {
     async function fetchCategories() {
@@ -245,9 +249,9 @@ function MainLayout() {
                 onClick={() => setIsAccountMenuOpen((currentState) => !currentState)}
               >
                 <span className="account-avatar" aria-hidden="true">
-                  {user?.name?.[0]?.toUpperCase() || 'N'}
+                  {accountAvatar ? <img src={accountAvatar} alt={accountName} /> : user?.name?.[0]?.toUpperCase() || 'N'}
                 </span>
-                <span className="account-name">{isAuthenticated ? user?.name : 'Tài khoản'}</span>
+                <span className="account-name">{isAuthenticated ? accountName : 'Tài khoản'}</span>
                 <i className="fa-solid fa-chevron-down account-chevron" aria-hidden="true" />
               </button>
 

@@ -12,13 +12,14 @@ import {
   getProfile,
   saveProfile,
 } from "../../services/accountStorage";
+import { updateMyAvatar } from "../../services/authService";
 import { wait } from "../../utils/timing";
 
 const vietnamesePhoneRegex = /^(0|\+84)(3|5|7|8|9)\d{8}$/;
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 function AccountProfile() {
-  const { user } = useAuth();
+  const { user, token, isAuthenticated } = useAuth();
   const isInitialRenderReady = useInitialRender();
   const { showToast } = useToast();
   const [profile, setProfile] = useState(() => getProfile(user));
@@ -87,16 +88,37 @@ function AccountProfile() {
     }
 
     setIsSaving(true);
-    await wait(640);
 
-    saveProfile(profile);
-    setIsSaving(false);
+    try {
+      await wait(640);
 
-    showToast({
-      type: "success",
-      title: "Đã cập nhật hồ sơ",
-      message: "Thông tin cá nhân đã được lưu trong localStorage.",
-    });
+      if (isAuthenticated && token) {
+        await updateMyAvatar(token, profile.avatar);
+      }
+
+      saveProfile(profile);
+
+      setIsSaving(false);
+
+      showToast({
+        type: "success",
+        title: "Đã cập nhật hồ sơ",
+        message: "Thông tin cá nhân đã được lưu.",
+      });
+
+      window.setTimeout(() => {
+        window.location.reload();
+      }, 300);
+    } catch (saveError) {
+      setIsSaving(false);
+
+      showToast({
+        type: "error",
+        title: "Không thể lưu hồ sơ",
+        message:
+          saveError?.response?.data?.message || "Đã có lỗi xảy ra khi lưu thông tin.",
+      });
+    }
   }
 
   if (!isInitialRenderReady) {

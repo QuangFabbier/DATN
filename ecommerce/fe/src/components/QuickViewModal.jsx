@@ -6,7 +6,7 @@ import { useCart } from '../hooks/useCart'
 import { useFavorites } from '../hooks/useFavorites'
 import { useCompare } from '../hooks/useCompare'
 import { useToast } from '../hooks/useToast'
-import { buildProductPricing, getProductImages, getProductStock } from '../utils/product'
+import { buildProductPricing, getProductId, getProductImages, getProductStock } from '../utils/product'
 import { formatCurrency } from '../utils/formatCurrency'
 import { wait } from '../utils/timing'
 
@@ -17,11 +17,12 @@ function QuickViewModal({ onClose, product }) {
   const { showToast } = useToast()
   const [isAddingToCart, setIsAddingToCart] = useState(false)
   const [isTogglingFavorite, setIsTogglingFavorite] = useState(false)
+  const productId = getProductId(product)
   const stock = getProductStock(product)
   const isOutOfStock = stock === 0
   const productImages = getProductImages(product)
-  const isProductFavorite = isFavorite(product.id)
-  const isProductCompared = isCompared(product.id)
+  const isProductFavorite = isFavorite(productId)
+  const isProductCompared = isCompared(productId)
   const { discountPercent, originalPrice } = buildProductPricing(product)
 
   async function handleAddToCart() {
@@ -168,7 +169,7 @@ function QuickViewModal({ onClose, product }) {
               </button>
             </div>
 
-            <Link to={`/products/${product.id}`} className="section-action-link">
+            <Link to={`/products/${productId}`} className="section-action-link">
               Xem trang chi tiết
             </Link>
           </div>

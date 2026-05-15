@@ -9,20 +9,23 @@
   - có shopping flow rõ ràng
   - có khu vực Admin CRUD sản phẩm
   - có khu vực Admin quản lý đơn hàng
-  - giữ product/order source bằng `localStorage` để storefront, account và admin dùng chung
+  - migrate dần từng phase sang backend thật nhưng không phá flow frontend hiện có
 - Trạng thái hiện tại:
   - storefront đã được nâng UX/UI theo hướng modern ecommerce
   - shopping flow vẫn là frontend-only cho cart / favorites / orders
   - admin có:
-    - CRUD sản phẩm frontend-only
+    - CRUD sản phẩm vẫn frontend-first (source chính đang là localStorage ở FE)
     - quản lý đơn hàng frontend-only
-  - backend auth vẫn còn trong project, nhưng backend products không phải nguồn chính để render storefront
+  - backend auth đã hoạt động và đã mở rộng thêm avatar API
+  - backend products đã có CRUD MongoDB đầy đủ (phase 1), FE sẽ migrate dần sau
   - đã có dark mode, compare, quick view, mini cart, toast, skeleton, progress bar, mobile nav
   - đã có account center đầy đủ ở `/account/*`
   - đã có nhóm trang policy riêng:
     - `/privacy-policy`
     - `/warranty-policy`
     - `/return-policy`
+    - `/terms-of-use`
+    - `/shipping-inspection-policy`
   - checkout `/orders` hiện đã tách thành 2 màn nội bộ:
     - `Thông tin`
     - `Thanh toán`
@@ -33,7 +36,76 @@
     - tạo order record trong `localStorage` key `nexora_orders`
     - status mặc định `pending`
     - Admin Orders và Account Orders đọc realtime cùng source này
-- Cập nhật gần nhất trong summary này: `2026-05-14`
+- Cập nhật gần nhất trong summary này: `2026-05-15`
+
+### 1.1 Cập Nhật Mới (2026-05-15)
+
+- Đã tái cấu trúc repository để root chỉ còn 1 thư mục:
+  - `ecommerce/`
+  - bên trong tách rõ:
+    - `fe/` (frontend)
+    - `be/` (backend)
+- Đã cập nhật workspace scripts tại `ecommerce/package.json`:
+  - `npm run dev:fe` -> chạy FE từ `fe`
+  - `npm run dev:be` -> chạy BE từ `be`
+  - `npm run build`, `npm run lint` -> chạy cho FE trong cấu trúc mới
+- Đã thêm tài liệu setup sau khi pull/clone:
+  - [SETUP_AFTER_PULL.md](./SETUP_AFTER_PULL.md)
+- Đã chỉnh UI trang checkout `/orders` (khối "Đơn hàng hiện tại"):
+  - fix lỗi dính/chèn layout giữa header, danh sách sản phẩm, breakdown và tổng thanh toán
+  - bỏ hiển thị badge phương thức thanh toán trong summary panel (tránh gây hiểu nhầm)
+  - tăng khoảng cách và đồng bộ typography để gần với style chung của project
+  - fix lỗi đường kẻ ngang chèn lên item đầu tiên
+- Đã verify kỹ thuật sau các thay đổi:
+  - `npm run lint` pass
+  - `npm run build` pass
+
+### 1.2 Cập Nhật Backend Mới (2026-05-15)
+
+- Đã hoàn thành phase 1 backend cho Product CRUD với MongoDB:
+  - `GET /api/products`
+  - `GET /api/products/:id`
+  - `POST /api/products`
+  - `PUT /api/products/:id`
+  - `DELETE /api/products/:id`
+- Đã chuẩn hóa backend architecture theo hướng MVC:
+  - `config/db.js`
+  - `models/Product.js`
+  - `controllers/productController.js`
+  - `routes/productRoutes.js`
+  - `middleware/errorMiddleware.js`
+  - `utils/asyncHandler.js`
+- Đã có seeder products đọc từ FE source:
+  - `be/seeders/seedProducts.js` đọc `fe/src/data/products.json`
+  - clear collection trước khi insert
+- Đã mở rộng auth backend để lưu avatar user trong MongoDB:
+  - `PUT /api/auth/me/avatar`
+  - `GET /api/auth/me/avatar`
+  - `DELETE /api/auth/me/avatar`
+  - `GET /api/auth/me` trả thêm `hasAvatar`, `avatarUrl`, `avatarUpdatedAt`
+- Logic avatar thay ảnh theo kiểu replace:
+  - upload ảnh mới sẽ ghi đè dữ liệu ảnh cũ trong document user
+  - không giữ nhiều bản avatar cho cùng user
+
+### 1.3 Cập Nhật Frontend-Backend Integration (2026-05-15)
+
+- Đã chuyển `fe/src/services/productService.js` sang gọi backend API thật:
+  - `GET /api/products`
+  - `GET /api/products/:id`
+  - `POST /api/products`
+  - `PUT /api/products/:id`
+  - `DELETE /api/products/:id`
+- Đã migrate Admin Products khỏi localStorage flow:
+  - load/create/update/delete đều chạy qua MongoDB backend
+  - sau thao tác CRUD, UI cập nhật realtime không cần F5
+  - giữ nguyên skeleton/spinner/toast/empty-state hiện tại
+- Đã chuẩn hóa thêm logic `product._id`/`product.id` ở các màn dễ lỗi:
+  - `AdminProducts`
+  - `Products`
+  - `ProductDetail`
+  - `QuickViewModal`
+  - `Favorites`
+  - `AccountWishlist`
 
 ---
 
@@ -53,14 +125,18 @@
 - Node.js
 - Express
 - MongoDB
+- Mongoose
+- Dotenv
+- Cors
+- Nodemon
 
 ### 2.3 Nguyên tắc triển khai hiện tại
 
 - Không dùng Redux
 - Không dùng UI framework lớn
-- Không sửa backend trong các task storefront gần đây
+- Không rewrite toàn bộ frontend khi migrate backend
 - Ưu tiên frontend demo self-contained, dễ đọc, dễ thuyết trình
-- Ưu tiên `localStorage` cho các flow chưa cần backend thật
+- Ưu tiên migrate backend theo phase nhỏ, có thể rollback/fallback
 
 ---
 
@@ -68,7 +144,7 @@
 
 ### 3.1 Nguồn seed ban đầu
 
-- File seed: [src/data/products.json](./src/data/products.json)
+- File seed FE: [fe/src/data/products.json](./fe/src/data/products.json)
 - Dữ liệu seed hiện có: `20 sản phẩm`
 - Các danh mục đang có:
   - `Laptop`
@@ -83,20 +159,24 @@
 ### 3.2 Nguồn dữ liệu runtime thực tế
 
 - Key localStorage chính cho sản phẩm: `datn_products`
-- Tầng xử lý chính: [src/services/productStorage.js](./src/services/productStorage.js)
+- Tầng xử lý chính FE: [fe/src/services/productStorage.js](./fe/src/services/productStorage.js)
+- Backend phase 1 đã sẵn sàng ở:
+  - `be/models/Product.js`
+  - `be/controllers/productController.js`
+  - `be/routes/productRoutes.js`
 
 Flow:
 
 1. App load
 2. `productStorage` kiểm tra `localStorage`
-3. Nếu chưa có `datn_products`, seed từ `src/data/products.json`
+3. Nếu chưa có `datn_products`, seed từ `fe/src/data/products.json`
 4. Sau đó toàn app đọc sản phẩm từ `localStorage`
 5. Admin create/update/delete ghi trực tiếp vào key này
 6. Storefront và admin luôn dùng cùng một source
 
 ### 3.3 Chuẩn hóa dữ liệu sản phẩm
 
-- Utility liên quan: [src/utils/product.js](./src/utils/product.js)
+- Utility liên quan: [fe/src/utils/product.js](./fe/src/utils/product.js)
 - Logic chuẩn hóa chính:
   - `id` ưu tiên `product._id || product.id`
   - normalize `price`
@@ -111,13 +191,14 @@ Flow:
 
 - Thêm/sửa/xóa ở Admin phản ánh ra storefront ngay
 - Xóa sạch `localStorage` rồi reload sẽ seed lại từ `products.json`
-- Không cần backend products để demo frontend hiện tại
+- FE hiện vẫn chạy ổn dù backend products chưa được FE consume full
+- Có thể migrate dần từng màn sang `/api/products` mà không phá UX hiện tại
 
 ---
 
 ## 4. Route Map Hiện Tại
 
-Khai báo route nằm ở: [src/App.jsx](./src/App.jsx)
+Khai báo route nằm ở: [fe/src/App.jsx](./fe/src/App.jsx)
 
 ### 4.1 Public/storefront routes
 
@@ -164,7 +245,7 @@ Khai báo route nằm ở: [src/App.jsx](./src/App.jsx)
 
 ## 5. Main Layout, Header, Footer
 
-File chính: [src/components/MainLayout.jsx](./src/components/MainLayout.jsx)
+File chính: [fe/src/components/MainLayout.jsx](./fe/src/components/MainLayout.jsx)
 
 ### 5.1 Header hiện tại
 
@@ -253,7 +334,7 @@ File chính: [src/components/MainLayout.jsx](./src/components/MainLayout.jsx)
 
 ### 6.1 AuthProvider
 
-File: [src/context/AuthProvider.jsx](./src/context/AuthProvider.jsx)
+File: [fe/src/context/AuthProvider.jsx](./fe/src/context/AuthProvider.jsx)
 
 Vai trò:
 
@@ -263,7 +344,7 @@ Vai trò:
 
 ### 6.2 SearchProvider
 
-File: [src/context/SearchProvider.jsx](./src/context/SearchProvider.jsx)
+File: [fe/src/context/SearchProvider.jsx](./fe/src/context/SearchProvider.jsx)
 
 Vai trò:
 
@@ -271,7 +352,7 @@ Vai trò:
 
 ### 6.3 CartProvider
 
-File: [src/context/CartProvider.jsx](./src/context/CartProvider.jsx)
+File: [fe/src/context/CartProvider.jsx](./fe/src/context/CartProvider.jsx)
 
 Key localStorage:
 
@@ -298,7 +379,7 @@ Behavior:
 
 ### 6.4 FavoritesProvider
 
-File: [src/context/FavoritesProvider.jsx](./src/context/FavoritesProvider.jsx)
+File: [fe/src/context/FavoritesProvider.jsx](./fe/src/context/FavoritesProvider.jsx)
 
 Key localStorage:
 
@@ -321,7 +402,7 @@ Behavior:
 
 ### 6.5 ThemeProvider
 
-File: [src/context/ThemeProvider.jsx](./src/context/ThemeProvider.jsx)
+File: [fe/src/context/ThemeProvider.jsx](./fe/src/context/ThemeProvider.jsx)
 
 Key localStorage:
 
@@ -338,7 +419,7 @@ Vai trò:
 
 ### 6.6 ToastProvider
 
-File: [src/context/ToastProvider.jsx](./src/context/ToastProvider.jsx)
+File: [fe/src/context/ToastProvider.jsx](./fe/src/context/ToastProvider.jsx)
 
 Vai trò:
 
@@ -351,7 +432,7 @@ Vai trò:
 
 ### 6.7 CompareProvider
 
-File: [src/context/CompareProvider.jsx](./src/context/CompareProvider.jsx)
+File: [fe/src/context/CompareProvider.jsx](./fe/src/context/CompareProvider.jsx)
 
 Key localStorage:
 
@@ -369,7 +450,7 @@ Vai trò:
 
 ### 7.1 Product service
 
-File: [src/services/productService.js](./src/services/productService.js)
+File: [fe/src/services/productService.js](./fe/src/services/productService.js)
 
 Interface hiện có:
 
@@ -382,11 +463,12 @@ Interface hiện có:
 Thực tế:
 
 - tất cả đều gọi `productStorage`
-- không phụ thuộc backend products
+- chưa gọi trực tiếp backend products ở runtime chính
+- backend products API đã sẵn sàng để migrate từng bước
 
 ### 7.2 Product storage
 
-File: [src/services/productStorage.js](./src/services/productStorage.js)
+File: [fe/src/services/productStorage.js](./fe/src/services/productStorage.js)
 
 Các điểm chính:
 
@@ -408,16 +490,23 @@ Các điểm chính:
 
 ### 7.3 Auth service
 
-File: [src/services/authService.js](./src/services/authService.js)
+File: [fe/src/services/authService.js](./fe/src/services/authService.js)
 
 Base URL:
 
 - đọc từ `import.meta.env.VITE_API_URL`
 - fallback: `http://localhost:5000/api`
 
+Interface hiện có:
+
+- `register(userData)`
+- `login(credentials)`
+- `getMe(token)`
+- `updateMyAvatar(token, avatarDataUrl)`
+
 ### 7.4 Account/Order storage
 
-- [src/services/accountStorage.js](./src/services/accountStorage.js)
+- [fe/src/services/accountStorage.js](./fe/src/services/accountStorage.js)
   - lưu dữ liệu account center:
     - `nexora_profile`
     - `nexora_addresses`
@@ -425,7 +514,7 @@ Base URL:
     - `nexora_ai_preferences`
     - `nexora_appearance`
     - `nexora_security`
-- [src/services/orderStorage.js](./src/services/orderStorage.js)
+- [fe/src/services/orderStorage.js](./fe/src/services/orderStorage.js)
   - key chính: `nexora_orders`
   - chuẩn hóa cấu trúc đơn hàng:
     - `id`, `code`, `customerInfo`, `items`
@@ -439,16 +528,39 @@ Base URL:
 
 ### 7.5 Utility đáng chú ý
 
-- [src/utils/product.js](./src/utils/product.js)
+- [fe/src/utils/product.js](./fe/src/utils/product.js)
   - `getProductId`
   - `getProductStock`
   - `getProductImages`
   - `normalizeProduct`
   - `buildProductPricing`
-- [src/utils/formatCurrency.js](./src/utils/formatCurrency.js)
-- [src/utils/timing.js](./src/utils/timing.js)
+- [fe/src/utils/formatCurrency.js](./fe/src/utils/formatCurrency.js)
+- [fe/src/utils/timing.js](./fe/src/utils/timing.js)
   - `wait`
   - `withMinimumDelay`
+
+### 7.6 Backend API trạng thái hiện tại
+
+Auth API:
+
+- `POST /api/auth/register`
+- `POST /api/auth/login`
+- `GET /api/auth/me`
+- `PUT /api/auth/me/avatar`
+- `GET /api/auth/me/avatar`
+- `DELETE /api/auth/me/avatar`
+
+Products API (phase 1 done):
+
+- `GET /api/products`
+- `GET /api/products/:id`
+- `POST /api/products`
+- `PUT /api/products/:id`
+- `DELETE /api/products/:id`
+
+Seeder:
+
+- `npm --prefix be run seed:products`
 
 ---
 
@@ -456,39 +568,39 @@ Base URL:
 
 ### 8.1 Feedback / Navigation
 
-- [src/components/ProgressBar.jsx](./src/components/ProgressBar.jsx)
-- [src/components/Breadcrumbs.jsx](./src/components/Breadcrumbs.jsx)
-- [src/components/BackToTopButton.jsx](./src/components/BackToTopButton.jsx)
-- [src/components/CheckoutSteps.jsx](./src/components/CheckoutSteps.jsx)
-- [src/components/EmptyState.jsx](./src/components/EmptyState.jsx)
+- [fe/src/components/ProgressBar.jsx](./fe/src/components/ProgressBar.jsx)
+- [fe/src/components/Breadcrumbs.jsx](./fe/src/components/Breadcrumbs.jsx)
+- [fe/src/components/BackToTopButton.jsx](./fe/src/components/BackToTopButton.jsx)
+- [fe/src/components/CheckoutSteps.jsx](./fe/src/components/CheckoutSteps.jsx)
+- [fe/src/components/EmptyState.jsx](./fe/src/components/EmptyState.jsx)
 
 ### 8.2 Product interaction
 
-- [src/components/ProductCard.jsx](./src/components/ProductCard.jsx)
-- [src/components/ProductGallery.jsx](./src/components/ProductGallery.jsx)
-- [src/components/QuickViewModal.jsx](./src/components/QuickViewModal.jsx)
-- [src/components/CompareTray.jsx](./src/components/CompareTray.jsx)
+- [fe/src/components/ProductCard.jsx](./fe/src/components/ProductCard.jsx)
+- [fe/src/components/ProductGallery.jsx](./fe/src/components/ProductGallery.jsx)
+- [fe/src/components/QuickViewModal.jsx](./fe/src/components/QuickViewModal.jsx)
+- [fe/src/components/CompareTray.jsx](./fe/src/components/CompareTray.jsx)
 
 ### 8.3 Loading
 
-- [src/components/Skeleton.jsx](./src/components/Skeleton.jsx)
-- [src/components/Spinner.jsx](./src/components/Spinner.jsx)
+- [fe/src/components/Skeleton.jsx](./fe/src/components/Skeleton.jsx)
+- [fe/src/components/Spinner.jsx](./fe/src/components/Spinner.jsx)
 
 ### 8.4 AI widget
 
-- [src/components/AIConsultantWidget.jsx](./src/components/AIConsultantWidget.jsx)
+- [fe/src/components/AIConsultantWidget.jsx](./fe/src/components/AIConsultantWidget.jsx)
 
 ### 8.5 Account components
 
-- [src/components/account/AccountLayout.jsx](./src/components/account/AccountLayout.jsx)
-- [src/components/account/SettingsSection.jsx](./src/components/account/SettingsSection.jsx)
-- [src/components/account/SettingsCard.jsx](./src/components/account/SettingsCard.jsx)
-- [src/components/account/SettingsInput.jsx](./src/components/account/SettingsInput.jsx)
-- [src/components/account/SettingsToggle.jsx](./src/components/account/SettingsToggle.jsx)
-- [src/components/account/AvatarUploader.jsx](./src/components/account/AvatarUploader.jsx)
-- [src/components/account/AddressCard.jsx](./src/components/account/AddressCard.jsx)
-- [src/components/account/OrderCard.jsx](./src/components/account/OrderCard.jsx)
-- [src/components/account/PreferenceSelector.jsx](./src/components/account/PreferenceSelector.jsx)
+- [fe/src/components/account/AccountLayout.jsx](./fe/src/components/account/AccountLayout.jsx)
+- [fe/src/components/account/SettingsSection.jsx](./fe/src/components/account/SettingsSection.jsx)
+- [fe/src/components/account/SettingsCard.jsx](./fe/src/components/account/SettingsCard.jsx)
+- [fe/src/components/account/SettingsInput.jsx](./fe/src/components/account/SettingsInput.jsx)
+- [fe/src/components/account/SettingsToggle.jsx](./fe/src/components/account/SettingsToggle.jsx)
+- [fe/src/components/account/AvatarUploader.jsx](./fe/src/components/account/AvatarUploader.jsx)
+- [fe/src/components/account/AddressCard.jsx](./fe/src/components/account/AddressCard.jsx)
+- [fe/src/components/account/OrderCard.jsx](./fe/src/components/account/OrderCard.jsx)
+- [fe/src/components/account/PreferenceSelector.jsx](./fe/src/components/account/PreferenceSelector.jsx)
 
 ---
 
@@ -496,7 +608,7 @@ Base URL:
 
 ### 9.1 Home
 
-File: [src/pages/Home.jsx](./src/pages/Home.jsx)
+File: [fe/src/pages/Home.jsx](./fe/src/pages/Home.jsx)
 
 Hiện có:
 
@@ -518,7 +630,7 @@ Hiện có:
 
 ### 9.2 Products
 
-File: [src/pages/Products.jsx](./src/pages/Products.jsx)
+File: [fe/src/pages/Products.jsx](./fe/src/pages/Products.jsx)
 
 Hiện có:
 
@@ -540,7 +652,7 @@ Hiện có:
 
 ### 9.3 ProductCard
 
-File: [src/components/ProductCard.jsx](./src/components/ProductCard.jsx)
+File: [fe/src/components/ProductCard.jsx](./fe/src/components/ProductCard.jsx)
 
 Hiện có:
 
@@ -560,7 +672,7 @@ Hiện có:
 
 ### 9.4 ProductDetail
 
-File: [src/pages/ProductDetail.jsx](./src/pages/ProductDetail.jsx)
+File: [fe/src/pages/ProductDetail.jsx](./fe/src/pages/ProductDetail.jsx)
 
 Hiện có:
 
@@ -584,7 +696,7 @@ Hiện có:
 
 ### 9.5 Quick View
 
-File: [src/components/QuickViewModal.jsx](./src/components/QuickViewModal.jsx)
+File: [fe/src/components/QuickViewModal.jsx](./fe/src/components/QuickViewModal.jsx)
 
 Hiện có:
 
@@ -605,7 +717,7 @@ Hiện có:
 
 ### 9.6 Compare
 
-File: [src/components/CompareTray.jsx](./src/components/CompareTray.jsx)
+File: [fe/src/components/CompareTray.jsx](./fe/src/components/CompareTray.jsx)
 
 Hiện có:
 
@@ -620,7 +732,7 @@ Hiện có:
 
 ### 9.7 Cart
 
-File: [src/pages/Cart.jsx](./src/pages/Cart.jsx)
+File: [fe/src/pages/Cart.jsx](./fe/src/pages/Cart.jsx)
 
 Hiện có:
 
@@ -637,7 +749,7 @@ Hiện có:
 
 ### 9.8 Favorites
 
-File: [src/pages/Favorites.jsx](./src/pages/Favorites.jsx)
+File: [fe/src/pages/Favorites.jsx](./fe/src/pages/Favorites.jsx)
 
 Hiện có:
 
@@ -649,7 +761,7 @@ Hiện có:
 
 ### 9.9 Orders
 
-File: [src/pages/Orders.jsx](./src/pages/Orders.jsx)
+File: [fe/src/pages/Orders.jsx](./fe/src/pages/Orders.jsx)
 
 Đây là checkout frontend-first, có lưu order vào `localStorage`.
 
@@ -700,33 +812,41 @@ Hiện có:
 
 ### 9.10 Auth pages
 
-- [src/pages/Login.jsx](./src/pages/Login.jsx)
-- [src/pages/Register.jsx](./src/pages/Register.jsx)
+- [fe/src/pages/Login.jsx](./fe/src/pages/Login.jsx)
+- [fe/src/pages/Register.jsx](./fe/src/pages/Register.jsx)
 
 Giữ logic auth cũ, chưa refactor mạnh về UX ngoài việc tương thích layout mới.
 
 ### 9.11 NotFound
 
-File: [src/pages/NotFound.jsx](./src/pages/NotFound.jsx)
+File: [fe/src/pages/NotFound.jsx](./fe/src/pages/NotFound.jsx)
 
 - đã dùng `EmptyState` thay vì block 404 đơn giản
 
 ### 9.12 Account center pages
 
-- [src/pages/account/AccountProfile.jsx](./src/pages/account/AccountProfile.jsx)
-- [src/pages/account/AccountSecurity.jsx](./src/pages/account/AccountSecurity.jsx)
-- [src/pages/account/AccountAddresses.jsx](./src/pages/account/AccountAddresses.jsx)
-- [src/pages/account/AccountOrders.jsx](./src/pages/account/AccountOrders.jsx)
-- [src/pages/account/AccountWishlist.jsx](./src/pages/account/AccountWishlist.jsx)
-- [src/pages/account/AccountNotifications.jsx](./src/pages/account/AccountNotifications.jsx)
-- [src/pages/account/AccountAppearance.jsx](./src/pages/account/AccountAppearance.jsx)
-- [src/pages/account/AccountAIPreferences.jsx](./src/pages/account/AccountAIPreferences.jsx)
+- [fe/src/pages/account/AccountProfile.jsx](./fe/src/pages/account/AccountProfile.jsx)
+- [fe/src/pages/account/AccountSecurity.jsx](./fe/src/pages/account/AccountSecurity.jsx)
+- [fe/src/pages/account/AccountAddresses.jsx](./fe/src/pages/account/AccountAddresses.jsx)
+- [fe/src/pages/account/AccountOrders.jsx](./fe/src/pages/account/AccountOrders.jsx)
+- [fe/src/pages/account/AccountWishlist.jsx](./fe/src/pages/account/AccountWishlist.jsx)
+- [fe/src/pages/account/AccountNotifications.jsx](./fe/src/pages/account/AccountNotifications.jsx)
+- [fe/src/pages/account/AccountAppearance.jsx](./fe/src/pages/account/AccountAppearance.jsx)
+- [fe/src/pages/account/AccountAIPreferences.jsx](./fe/src/pages/account/AccountAIPreferences.jsx)
+
+Ghi chú mới:
+
+- Account profile đã gọi backend avatar API khi user bấm `Lưu thay đổi`.
+- Header account (góc phải trên) và account hero cùng lấy avatar từ profile hiện tại.
+- Sau khi lưu profile/avatar sẽ reload 1 lần để refresh hiển thị avatar đồng bộ.
 
 ### 9.13 Policy pages
 
-- [src/pages/PrivacyPolicy.jsx](./src/pages/PrivacyPolicy.jsx)
-- [src/pages/WarrantyPolicy.jsx](./src/pages/WarrantyPolicy.jsx)
-- [src/pages/ReturnPolicy.jsx](./src/pages/ReturnPolicy.jsx)
+- [fe/src/pages/PrivacyPolicy.jsx](./fe/src/pages/PrivacyPolicy.jsx)
+- [fe/src/pages/WarrantyPolicy.jsx](./fe/src/pages/WarrantyPolicy.jsx)
+- [fe/src/pages/ReturnPolicy.jsx](./fe/src/pages/ReturnPolicy.jsx)
+- [fe/src/pages/TermsOfUse.jsx](./fe/src/pages/TermsOfUse.jsx)
+- [fe/src/pages/ShippingInspectionPolicy.jsx](./fe/src/pages/ShippingInspectionPolicy.jsx)
 
 ---
 
@@ -734,7 +854,7 @@ File: [src/pages/NotFound.jsx](./src/pages/NotFound.jsx)
 
 ### 10.1 AdminLayout
 
-File: [src/components/admin/AdminLayout.jsx](./src/components/admin/AdminLayout.jsx)
+File: [fe/src/components/admin/AdminLayout.jsx](./fe/src/components/admin/AdminLayout.jsx)
 
 Hiện có:
 
@@ -746,7 +866,7 @@ Hiện có:
 
 ### 10.2 AdminDashboard
 
-File: [src/pages/admin/AdminDashboard.jsx](./src/pages/admin/AdminDashboard.jsx)
+File: [fe/src/pages/admin/AdminDashboard.jsx](./fe/src/pages/admin/AdminDashboard.jsx)
 
 Hiện có:
 
@@ -765,7 +885,7 @@ Hiện có:
 
 ### 10.3 AdminProducts
 
-File: [src/pages/admin/AdminProducts.jsx](./src/pages/admin/AdminProducts.jsx)
+File: [fe/src/pages/admin/AdminProducts.jsx](./fe/src/pages/admin/AdminProducts.jsx)
 
 Hiện có:
 
@@ -788,7 +908,7 @@ Hiện có:
 
 ### 10.4 AdminOrders
 
-File: [src/pages/admin/AdminOrders.jsx](./src/pages/admin/AdminOrders.jsx)
+File: [fe/src/pages/admin/AdminOrders.jsx](./fe/src/pages/admin/AdminOrders.jsx)
 
 Hiện có:
 
@@ -844,7 +964,7 @@ Hiện có:
 
 ### 11.3 Dark mode
 
-- dùng CSS variables trong [src/App.css](./src/App.css) và [src/index.css](./src/index.css)
+- dùng CSS variables trong [fe/src/App.css](./fe/src/App.css) và [fe/src/index.css](./fe/src/index.css)
 - current theme lưu trong `localStorage` (`light` / `dark` / `system`)
 - toggle nằm trong account dropdown
 - có thêm appearance settings ở account:
@@ -858,10 +978,11 @@ Hiện có:
 - Không phá flow dùng `datn_products` làm single source cho storefront và admin
 - Không phá flow `nexora_orders` cho checkout/account/admin orders
 - Không chuyển qua Redux
-- Không sửa backend nếu task chỉ là frontend
+- Với task frontend, cần kiểm tra tương thích với API backend mới (`/api/products`, `/api/auth/me/avatar`)
 - Nếu thêm tính năng product mới, nên đi qua:
   - `productStorage`
   - `utils/product.js`
+  - kế hoạch migrate API theo từng màn (ưu tiên admin products trước)
 - Nếu thêm tính năng order mới, nên đi qua:
   - `orderStorage`
   - transition status hợp lệ trong `orderStorage`
@@ -873,45 +994,90 @@ Hiện có:
 ## 13. File Map Frontend Đáng Quan Tâm
 
 - App shell / routes:
-  - [src/App.jsx](./src/App.jsx)
-  - [src/components/MainLayout.jsx](./src/components/MainLayout.jsx)
+  - [fe/src/App.jsx](./fe/src/App.jsx)
+  - [fe/src/components/MainLayout.jsx](./fe/src/components/MainLayout.jsx)
 - Shared UI:
-  - [src/App.css](./src/App.css)
-  - [src/index.css](./src/index.css)
+  - [fe/src/App.css](./fe/src/App.css)
+  - [fe/src/index.css](./fe/src/index.css)
 - Contexts:
-  - [src/context/CartProvider.jsx](./src/context/CartProvider.jsx)
-  - [src/context/FavoritesProvider.jsx](./src/context/FavoritesProvider.jsx)
-  - [src/context/ThemeProvider.jsx](./src/context/ThemeProvider.jsx)
-  - [src/context/ToastProvider.jsx](./src/context/ToastProvider.jsx)
-  - [src/context/CompareProvider.jsx](./src/context/CompareProvider.jsx)
+  - [fe/src/context/CartProvider.jsx](./fe/src/context/CartProvider.jsx)
+  - [fe/src/context/FavoritesProvider.jsx](./fe/src/context/FavoritesProvider.jsx)
+  - [fe/src/context/ThemeProvider.jsx](./fe/src/context/ThemeProvider.jsx)
+  - [fe/src/context/ToastProvider.jsx](./fe/src/context/ToastProvider.jsx)
+  - [fe/src/context/CompareProvider.jsx](./fe/src/context/CompareProvider.jsx)
 - Product source:
-  - [src/services/productStorage.js](./src/services/productStorage.js)
-  - [src/services/productService.js](./src/services/productService.js)
-  - [src/utils/product.js](./src/utils/product.js)
+  - [fe/src/services/productStorage.js](./fe/src/services/productStorage.js)
+  - [fe/src/services/productService.js](./fe/src/services/productService.js)
+  - [fe/src/utils/product.js](./fe/src/utils/product.js)
 - Account/Order source:
-  - [src/services/accountStorage.js](./src/services/accountStorage.js)
-  - [src/services/orderStorage.js](./src/services/orderStorage.js)
+  - [fe/src/services/accountStorage.js](./fe/src/services/accountStorage.js)
+  - [fe/src/services/orderStorage.js](./fe/src/services/orderStorage.js)
 - Storefront pages:
-  - [src/pages/Home.jsx](./src/pages/Home.jsx)
-  - [src/pages/Products.jsx](./src/pages/Products.jsx)
-  - [src/pages/ProductDetail.jsx](./src/pages/ProductDetail.jsx)
-  - [src/pages/Cart.jsx](./src/pages/Cart.jsx)
-  - [src/pages/Favorites.jsx](./src/pages/Favorites.jsx)
-  - [src/pages/Orders.jsx](./src/pages/Orders.jsx)
-  - [src/pages/PrivacyPolicy.jsx](./src/pages/PrivacyPolicy.jsx)
-  - [src/pages/WarrantyPolicy.jsx](./src/pages/WarrantyPolicy.jsx)
-  - [src/pages/ReturnPolicy.jsx](./src/pages/ReturnPolicy.jsx)
+  - [fe/src/pages/Home.jsx](./fe/src/pages/Home.jsx)
+  - [fe/src/pages/Products.jsx](./fe/src/pages/Products.jsx)
+  - [fe/src/pages/ProductDetail.jsx](./fe/src/pages/ProductDetail.jsx)
+  - [fe/src/pages/Cart.jsx](./fe/src/pages/Cart.jsx)
+  - [fe/src/pages/Favorites.jsx](./fe/src/pages/Favorites.jsx)
+  - [fe/src/pages/Orders.jsx](./fe/src/pages/Orders.jsx)
+  - [fe/src/pages/PrivacyPolicy.jsx](./fe/src/pages/PrivacyPolicy.jsx)
+  - [fe/src/pages/WarrantyPolicy.jsx](./fe/src/pages/WarrantyPolicy.jsx)
+  - [fe/src/pages/ReturnPolicy.jsx](./fe/src/pages/ReturnPolicy.jsx)
 - Account:
-  - [src/components/account/AccountLayout.jsx](./src/components/account/AccountLayout.jsx)
-  - [src/pages/account/AccountProfile.jsx](./src/pages/account/AccountProfile.jsx)
-  - [src/pages/account/AccountSecurity.jsx](./src/pages/account/AccountSecurity.jsx)
-  - [src/pages/account/AccountAddresses.jsx](./src/pages/account/AccountAddresses.jsx)
-  - [src/pages/account/AccountOrders.jsx](./src/pages/account/AccountOrders.jsx)
-  - [src/pages/account/AccountWishlist.jsx](./src/pages/account/AccountWishlist.jsx)
-  - [src/pages/account/AccountNotifications.jsx](./src/pages/account/AccountNotifications.jsx)
-  - [src/pages/account/AccountAppearance.jsx](./src/pages/account/AccountAppearance.jsx)
-  - [src/pages/account/AccountAIPreferences.jsx](./src/pages/account/AccountAIPreferences.jsx)
+  - [fe/src/components/account/AccountLayout.jsx](./fe/src/components/account/AccountLayout.jsx)
+  - [fe/src/pages/account/AccountProfile.jsx](./fe/src/pages/account/AccountProfile.jsx)
+  - [fe/src/pages/account/AccountSecurity.jsx](./fe/src/pages/account/AccountSecurity.jsx)
+  - [fe/src/pages/account/AccountAddresses.jsx](./fe/src/pages/account/AccountAddresses.jsx)
+  - [fe/src/pages/account/AccountOrders.jsx](./fe/src/pages/account/AccountOrders.jsx)
+  - [fe/src/pages/account/AccountWishlist.jsx](./fe/src/pages/account/AccountWishlist.jsx)
+  - [fe/src/pages/account/AccountNotifications.jsx](./fe/src/pages/account/AccountNotifications.jsx)
+  - [fe/src/pages/account/AccountAppearance.jsx](./fe/src/pages/account/AccountAppearance.jsx)
+  - [fe/src/pages/account/AccountAIPreferences.jsx](./fe/src/pages/account/AccountAIPreferences.jsx)
 - Admin:
-  - [src/pages/admin/AdminDashboard.jsx](./src/pages/admin/AdminDashboard.jsx)
-  - [src/pages/admin/AdminProducts.jsx](./src/pages/admin/AdminProducts.jsx)
-  - [src/pages/admin/AdminOrders.jsx](./src/pages/admin/AdminOrders.jsx)
+  - [fe/src/pages/admin/AdminDashboard.jsx](./fe/src/pages/admin/AdminDashboard.jsx)
+  - [fe/src/pages/admin/AdminProducts.jsx](./fe/src/pages/admin/AdminProducts.jsx)
+  - [fe/src/pages/admin/AdminOrders.jsx](./fe/src/pages/admin/AdminOrders.jsx)
+- Backend:
+  - `be/server.js`
+  - `be/config/db.js`
+  - `be/models/Product.js`
+  - `be/models/User.js`
+  - `be/controllers/productController.js`
+  - `be/controllers/authController.js`
+  - `be/routes/productRoutes.js`
+  - `be/routes/authRoutes.js`
+  - `be/middleware/errorMiddleware.js`
+  - `be/seeders/seedProducts.js`
+
+---
+
+## 14. Handoff Giai Đoạn Tiếp Theo (Sau 2026-05-15)
+
+Đã hoàn thành:
+
+- Product CRUD backend MongoDB (phase 1).
+- Product seeder đọc từ `fe/src/data/products.json`.
+- Auth avatar API lưu ảnh vào MongoDB (replace ảnh cũ khi upload ảnh mới).
+
+Mục tiêu tiếp theo:
+
+1. Đồng bộ account profile text fields (fullName/displayName/phone/...) lên backend (hiện avatar đã lên backend).
+2. Chuẩn hóa API Orders (create/get/list/update status) để thay `orderStorage`.
+3. Giữ `paymentMethod` enum tương thích FE hiện tại:
+   - `qr`
+   - `cod`
+4. Thêm mapping trạng thái đơn tương thích flow hiện tại:
+   - `pending`
+   - `confirmed`
+   - `shipping`
+   - `completed`
+   - `cancelled`
+5. Thiết kế migration strategy:
+   - phase 1: FE gọi API nhưng fallback localStorage khi lỗi
+   - phase 2: bỏ fallback localStorage khi BE ổn định
+
+Ghi chú cấu trúc chạy local sau pull:
+
+- làm việc trong `ecommerce/`
+- frontend ở `ecommerce/fe`
+- backend ở `ecommerce/be`
+- xem thêm [SETUP_AFTER_PULL.md](./SETUP_AFTER_PULL.md)
