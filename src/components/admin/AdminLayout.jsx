@@ -1,13 +1,17 @@
 import { NavLink, Outlet } from 'react-router-dom'
+import Breadcrumbs from '../Breadcrumbs'
 
 const adminMenuItems = [
   { path: '/admin', label: 'Tổng quan', end: true },
   { path: '/admin/products', label: 'Quản lý sản phẩm' },
+  { path: '/admin/orders', label: 'Quản lý đơn hàng' },
 ]
 
 function AdminLayout() {
   return (
     <section className="page-section">
+      <Breadcrumbs items={[{ label: 'Trang chủ', to: '/' }, { label: 'Admin' }]} />
+
       <div className="section-heading">
         <div>
           <p className="eyebrow">Khu vực quản trị</p>
@@ -23,9 +27,7 @@ function AdminLayout() {
                 key={item.path}
                 to={item.path}
                 end={item.end}
-                className={({ isActive }) =>
-                  isActive ? 'admin-sidebar-link active' : 'admin-sidebar-link'
-                }
+                className={({ isActive }) => (isActive ? 'admin-sidebar-link active' : 'admin-sidebar-link')}
               >
                 {item.label}
               </NavLink>

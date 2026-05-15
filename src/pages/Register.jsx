@@ -1,37 +1,41 @@
-﻿import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { register as registerRequest } from '../services/authService'
+﻿import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { register as registerRequest } from "../services/authService";
 
 function Register() {
-  const navigate = useNavigate()
-  const [formData, setFormData] = useState({ name: '', email: '', password: '' })
-  const [error, setError] = useState('')
-  const [success, setSuccess] = useState('')
-  const [loading, setLoading] = useState(false)
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+  const [loading, setLoading] = useState(false);
 
   function handleChange(event) {
-    const { name, value } = event.target
-    setFormData((currentData) => ({ ...currentData, [name]: value }))
+    const { name, value } = event.target;
+    setFormData((currentData) => ({ ...currentData, [name]: value }));
   }
 
   async function handleSubmit(event) {
-    event.preventDefault()
-    setError('')
-    setSuccess('')
-    setLoading(true)
+    event.preventDefault();
+    setError("");
+    setSuccess("");
+    setLoading(true);
 
     try {
-      await registerRequest(formData)
-      const successMessage = 'Đăng ký thành công. Vui lòng đăng nhập.'
+      await registerRequest(formData);
+      const successMessage = "Đăng ký thành công. Vui lòng đăng nhập.";
 
-      setSuccess(successMessage)
+      setSuccess(successMessage);
       setTimeout(() => {
-        navigate('/login', { state: { successMessage } })
-      }, 800)
+        navigate("/login", { state: { successMessage } });
+      }, 800);
     } catch (err) {
-      setError(err.response?.data?.message || 'Đăng ký thất bại')
+      setError(err.response?.data?.message || "Đăng ký thất bại");
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
   }
 
@@ -75,14 +79,14 @@ function Register() {
           />
         </label>
         <button type="submit" className="button" disabled={loading}>
-          {loading ? 'Đang tạo tài khoản...' : 'Tạo tài khoản'}
+          {loading ? "Đang tạo tài khoản..." : "Tạo tài khoản"}
         </button>
         <p>
           Đã có tài khoản? <Link to="/login">Đăng nhập</Link>
         </p>
       </form>
     </section>
-  )
+  );
 }
 
-export default Register
+export default Register;

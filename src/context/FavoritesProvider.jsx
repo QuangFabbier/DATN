@@ -3,6 +3,7 @@ import { FavoritesContext } from './FavoritesContext'
 import { normalizeProduct } from '../utils/product'
 
 const FAVORITES_STORAGE_KEY = 'favoriteItems'
+export const FAVORITE_TOGGLED_EVENT = 'nexora-favorite-toggled'
 
 function getStoredFavoriteItems() {
   const storedFavoriteItems = localStorage.getItem(FAVORITES_STORAGE_KEY)
@@ -56,6 +57,17 @@ function FavoritesProvider({ children }) {
       added = true
       return [...currentItems, normalizedProduct]
     })
+
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(
+        new CustomEvent(FAVORITE_TOGGLED_EVENT, {
+          detail: {
+            added,
+            productId: normalizedProduct.id,
+          },
+        }),
+      )
+    }
 
     return added
   }
