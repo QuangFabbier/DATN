@@ -1,40 +1,67 @@
-﻿import mongoose from 'mongoose'
+import mongoose from 'mongoose'
 
-const productSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-    trim: true,
+const specSchema = new mongoose.Schema(
+  {
+    label: {
+      type: String,
+      trim: true,
+      default: '',
+    },
+    value: {
+      type: String,
+      trim: true,
+      default: '',
+    },
   },
-  category: {
-    type: String,
-    required: true,
-    trim: true,
+  { _id: false },
+)
+
+const productSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: [true, 'Product name is required'],
+      trim: true,
+    },
+    category: {
+      type: String,
+      required: [true, 'Product category is required'],
+      trim: true,
+    },
+    description: {
+      type: String,
+      trim: true,
+      default: '',
+    },
+    price: {
+      type: Number,
+      required: [true, 'Product price is required'],
+      min: [0, 'Price must be greater than or equal to 0'],
+    },
+    stock: {
+      type: Number,
+      required: [true, 'Product stock is required'],
+      min: [0, 'Stock must be greater than or equal to 0'],
+      default: 0,
+    },
+    image: {
+      type: String,
+      trim: true,
+      default: '',
+    },
+    images: {
+      type: [String],
+      default: [],
+    },
+    specs: {
+      type: [specSchema],
+      default: [],
+    },
   },
-  price: {
-    type: Number,
-    required: true,
-    min: 0,
+  {
+    timestamps: true,
   },
-  image: {
-    type: String,
-    required: true,
-  },
-  description: {
-    type: String,
-    required: true,
-  },
-  stock: {
-    type: Number,
-    required: true,
-    min: 0,
-    default: 0,
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
-})
+)
 
 const Product = mongoose.model('Product', productSchema)
 

@@ -6,7 +6,8 @@
   "main": "server.js",
   "scripts": {
     "dev": "nodemon --legacy-watch server.js",
-    "start": "node server.js"
+    "start": "node server.js",
+    "seed:products": "node seeders/seedProducts.js"
   },
   "keywords": [],
   "author": "",
