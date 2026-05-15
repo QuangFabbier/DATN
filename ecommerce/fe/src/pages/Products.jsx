@@ -5,6 +5,7 @@ import ProductCard from '../components/ProductCard'
 import { ProductGridSkeleton } from '../components/Skeleton'
 import { useSearch } from '../hooks/useSearch'
 import { getProducts } from '../services/productService'
+import { getProductId } from '../utils/product'
 import { withMinimumDelay } from '../utils/timing'
 
 function Products() {
@@ -70,7 +71,12 @@ function Products() {
   const suggestedProducts = useMemo(
     () =>
       products
-        .filter((product) => !filteredProducts.some((filteredProduct) => filteredProduct.id === product.id))
+        .filter(
+          (product) =>
+            !filteredProducts.some(
+              (filteredProduct) => getProductId(filteredProduct) === getProductId(product),
+            ),
+        )
         .slice(0, 4),
     [filteredProducts, products],
   )
@@ -200,7 +206,7 @@ function Products() {
 
               <div className="product-grid">
                 {suggestedProducts.map((product) => (
-                  <ProductCard key={product.id} product={product} />
+                  <ProductCard key={getProductId(product)} product={product} />
                 ))}
               </div>
             </div>

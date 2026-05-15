@@ -1,3 +1,6 @@
+export const PRODUCT_PLACEHOLDER_IMAGE =
+  'https://placehold.co/600x400/e2e8f0/475569?text=No+Image'
+
 export function getProductId(product) {
   if (!product || typeof product !== 'object') {
     return ''
@@ -20,7 +23,7 @@ function buildProductGalleryImage(product, index) {
 
 export function getProductImages(product) {
   if (!product || typeof product !== 'object') {
-    return []
+    return [PRODUCT_PLACEHOLDER_IMAGE]
   }
 
   const explicitImages = Array.isArray(product.images)
@@ -34,7 +37,7 @@ export function getProductImages(product) {
   const primaryImage = String(product.image || '').trim()
 
   if (!primaryImage) {
-    return []
+    return [PRODUCT_PLACEHOLDER_IMAGE]
   }
 
   return [primaryImage, buildProductGalleryImage(product, 1), buildProductGalleryImage(product, 2)]
@@ -58,12 +61,14 @@ export function normalizeProduct(product) {
   const productId = getProductId(product)
   const stock = getProductStock(product)
   const price = Number(product.price)
+  const normalizedImages = getProductImages(product)
+  const primaryImage = normalizedImages[0] || PRODUCT_PLACEHOLDER_IMAGE
 
   return {
     ...product,
     id: productId || product.id,
-    image: getProductImages(product)[0] || product.image,
-    images: getProductImages(product),
+    image: primaryImage,
+    images: normalizedImages,
     stock,
     price: Number.isFinite(price) ? price : 0,
   }

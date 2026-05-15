@@ -44,7 +44,7 @@ function ProductDetail() {
         setProduct(normalizeProduct(data))
         setQuantity(1)
       } catch (requestError) {
-        setError(requestError.response?.status === 404 ? 'Không tìm thấy sản phẩm' : 'Không thể tải chi tiết sản phẩm')
+        setError(requestError.status === 404 ? 'Không tìm thấy sản phẩm' : 'Không thể tải chi tiết sản phẩm')
       } finally {
         setLoading(false)
       }
@@ -166,7 +166,7 @@ function ProductDetail() {
         <Breadcrumbs items={breadcrumbs} />
         <EmptyState
           title={error || 'Không tìm thấy sản phẩm'}
-          description="Sản phẩm có thể đã bị xóa khỏi localStorage hoặc đường dẫn không còn hợp lệ."
+          description="Sản phẩm có thể đã bị xóa khỏi hệ thống hoặc đường dẫn không còn hợp lệ."
           icon="fa-circle-exclamation"
           tone="warning"
           action={

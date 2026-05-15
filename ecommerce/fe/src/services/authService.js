@@ -22,3 +22,17 @@ export async function getMe(token) {
 
   return response.data
 }
+
+export async function updateMyAvatar(token, avatarDataUrl = '') {
+  const response = await axios.put(
+    `${API_URL}/me/avatar`,
+    { avatar: String(avatarDataUrl || '') },
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    },
+  )
+
+  return response.data
+}

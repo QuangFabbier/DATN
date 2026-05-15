@@ -4,8 +4,8 @@ import { AdminProductsSkeleton } from '../../components/Skeleton'
 import { ButtonSpinner } from '../../components/Spinner'
 import { useToast } from '../../hooks/useToast'
 import { createProduct, deleteProduct, getProducts, updateProduct } from '../../services/productService'
-import { PRODUCT_PLACEHOLDER_IMAGE } from '../../services/productStorage'
 import { formatCurrency } from '../../utils/formatCurrency'
+import { getProductId, PRODUCT_PLACEHOLDER_IMAGE } from '../../utils/product'
 import { withMinimumDelay } from '../../utils/timing'
 
 const initialFormData = {
@@ -41,8 +41,8 @@ function AdminProducts() {
         setError('')
         const data = await withMinimumDelay(getProducts(), 220)
         setProducts(data)
-      } catch {
-        setError('Không thể tải danh sách sản phẩm quản trị.')
+      } catch (requestError) {
+        setError(requestError.message || 'Không thể tải danh sách sản phẩm quản trị.')
       } finally {
         setLoading(false)
       }
@@ -159,16 +159,25 @@ function AdminProducts() {
       }
 
       if (editingProductId) {
-        const result = await withMinimumDelay(updateProduct(editingProductId, payload), 280)
-        setProducts(result.products)
+        const updatedProduct = await withMinimumDelay(updateProduct(editingProductId, payload), 280)
+        setProducts((currentProducts) =>
+          currentProducts.map((product) =>
+            getProductId(product) === editingProductId ? updatedProduct : product,
+          ),
+        )
+        setSelectedProduct((currentProduct) =>
+          currentProduct && getProductId(currentProduct) === editingProductId
+            ? updatedProduct
+            : currentProduct,
+        )
         showToast({
           type: 'success',
           title: 'Cập nhật sản phẩm thành công',
           message: `${payload.name} đã được cập nhật trong storefront.`,
         })
       } else {
-        const result = await withMinimumDelay(createProduct(payload), 280)
-        setProducts(result.products)
+        const createdProduct = await withMinimumDelay(createProduct(payload), 280)
+        setProducts((currentProducts) => [createdProduct, ...currentProducts])
         showToast({
           type: 'success',
           title: 'Thêm sản phẩm thành công',
@@ -197,7 +206,7 @@ function AdminProducts() {
   }
 
   function handleEditProduct(product) {
-    setEditingProductId(product.id)
+    setEditingProductId(getProductId(product))
     setIsFormOpen(true)
     setFormErrors({})
     setError('')
@@ -220,21 +229,24 @@ function AdminProducts() {
 
     try {
       setError('')
-      setDeletingProductId(product.id)
-      const result = await withMinimumDelay(deleteProduct(product.id), 240)
+      const productId = getProductId(product)
+      setDeletingProductId(productId)
+      await withMinimumDelay(deleteProduct(productId), 240)
 
-      setProducts(result.products)
+      setProducts((currentProducts) =>
+        currentProducts.filter((currentProduct) => getProductId(currentProduct) !== productId),
+      )
       showToast({
         type: 'success',
         title: 'Xóa sản phẩm thành công',
         message: `${product.name} đã được xóa khỏi hệ thống.`,
       })
 
-      if (editingProductId === product.id) {
+      if (editingProductId === productId) {
         resetForm()
       }
 
-      if (selectedProduct?.id === product.id) {
+      if (selectedProduct && getProductId(selectedProduct) === productId) {
         setSelectedProduct(null)
       }
     } catch (deleteError) {
@@ -372,7 +384,7 @@ function AdminProducts() {
       {products.length === 0 ? (
         <EmptyState
           title="Chưa có sản phẩm nào"
-          description="Dữ liệu localStorage hiện chưa có sản phẩm. Hãy thêm mới để storefront có thể hiển thị ngay."
+          description="MongoDB hiện chưa có sản phẩm. Hãy thêm mới để storefront có thể hiển thị ngay."
           icon="fa-box-open"
           action={
             <button type="button" className="button" onClick={handleOpenCreateForm}>
@@ -408,7 +420,7 @@ function AdminProducts() {
                 </thead>
                 <tbody>
                   {filteredProducts.map((product) => (
-                    <tr key={product.id}>
+                    <tr key={getProductId(product)}>
                       <td>
                         <img
                           src={product.image || PRODUCT_PLACEHOLDER_IMAGE}
@@ -447,9 +459,9 @@ function AdminProducts() {
                             type="button"
                             className="button admin-danger-button"
                             onClick={() => handleDeleteProduct(product)}
-                            disabled={deletingProductId === product.id}
+                            disabled={deletingProductId === getProductId(product)}
                           >
-                            {deletingProductId === product.id ? (
+                            {deletingProductId === getProductId(product) ? (
                               <>
                                 <ButtonSpinner size="sm" />
                                 <span>Đang xóa...</span>

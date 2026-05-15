@@ -6,7 +6,7 @@ import { useFavorites } from '../hooks/useFavorites'
 import { useInitialRender } from '../hooks/useInitialRender'
 import { useToast } from '../hooks/useToast'
 import { formatCurrency } from '../utils/formatCurrency'
-import { getProductStock } from '../utils/product'
+import { getProductId, getProductStock } from '../utils/product'
 
 function Favorites() {
   const { addToCart } = useCart()
@@ -15,10 +15,11 @@ function Favorites() {
   const { showToast } = useToast()
 
   function handleMoveToCart(product) {
+    const productId = getProductId(product)
     const added = addToCart(product, 1)
 
     if (added) {
-      removeFavorite(product.id)
+      removeFavorite(productId)
       showToast({
         type: 'success',
         title: 'Đã chuyển vào giỏ hàng',
@@ -65,7 +66,7 @@ function Favorites() {
       ) : (
         <div className="cart-list">
           {favoriteItems.map((product) => (
-            <article key={product.id} className="cart-item">
+            <article key={getProductId(product)} className="cart-item">
               <img src={product.image} alt={product.name} />
               <div className="cart-item-content">
                 <h3>{product.name}</h3>
@@ -77,7 +78,7 @@ function Favorites() {
                 ) : null}
               </div>
               <div className="cart-item-actions">
-                <Link to={`/products/${product.id}`} className="button button-outline">
+                <Link to={`/products/${getProductId(product)}`} className="button button-outline">
                   Xem chi tiết
                 </Link>
                 <button
@@ -92,7 +93,7 @@ function Favorites() {
                   type="button"
                   className="text-button"
                   onClick={() => {
-                    removeFavorite(product.id)
+                    removeFavorite(getProductId(product))
                     showToast({
                       type: 'info',
                       title: 'Đã xóa khỏi yêu thích',

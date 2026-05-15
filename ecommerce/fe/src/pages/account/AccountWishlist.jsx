@@ -10,7 +10,7 @@ import { useFavorites } from '../../hooks/useFavorites'
 import { useInitialRender } from '../../hooks/useInitialRender'
 import { useToast } from '../../hooks/useToast'
 import { formatCurrency } from '../../utils/formatCurrency'
-import { getProductStock } from '../../utils/product'
+import { getProductId, getProductStock } from '../../utils/product'
 
 function AccountWishlist() {
   const isInitialRenderReady = useInitialRender()
@@ -79,12 +79,13 @@ function AccountWishlist() {
       ) : (
         <div className="account-wishlist-grid">
           {favoriteItems.map((product) => {
+            const productId = getProductId(product)
             const stock = getProductStock(product)
             const isOutOfStock = stock === 0
-            const isProductCompared = isCompared(product.id)
+            const isProductCompared = isCompared(productId)
 
             return (
-              <article key={product.id} className="account-wishlist-card">
+              <article key={productId} className="account-wishlist-card">
                 <img src={product.image} alt={product.name} className="account-wishlist-image" />
                 <div>
                   <h3>{product.name}</h3>
@@ -125,7 +126,7 @@ function AccountWishlist() {
                     type="button"
                     className="text-button"
                     onClick={() => {
-                      removeFavorite(product.id)
+                      removeFavorite(getProductId(product))
                       showToast({
                         type: 'info',
                         title: 'Đã xóa khỏi wishlist',
