@@ -1,5 +1,29 @@
 ﻿import mongoose from 'mongoose'
 
+const avatarSchema = new mongoose.Schema(
+  {
+    data: {
+      type: Buffer,
+      select: false,
+    },
+    contentType: {
+      type: String,
+      default: '',
+      trim: true,
+    },
+    size: {
+      type: Number,
+      default: 0,
+      min: 0,
+    },
+    updatedAt: {
+      type: Date,
+      default: null,
+    },
+  },
+  { _id: false },
+)
+
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -21,6 +45,10 @@ const userSchema = new mongoose.Schema({
   createdAt: {
     type: Date,
     default: Date.now,
+  },
+  avatar: {
+    type: avatarSchema,
+    default: () => ({}),
   },
 })
 
