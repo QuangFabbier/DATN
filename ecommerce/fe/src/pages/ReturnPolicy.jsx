@@ -132,7 +132,7 @@ function ReturnPolicy() {
           <li>Hotline: 0982241317</li>
           <li>Địa chỉ: 52B ngõ 4 Hoàng Quốc Việt, Nghĩa Đô, Hà Nội</li>
           <li>
-            Địa chỉ liên hệ bổ sung: 55 Nghiêm Quý Ngãi, Hầm Rồng, tỉnh Thanh
+            Địa chỉ liên hệ bổ sung: 55 Nghiêm Quý Ngãi, Hàm Rồng, tỉnh Thanh
             Hóa
           </li>
         </ul>

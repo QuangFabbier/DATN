@@ -103,7 +103,7 @@ function WarrantyPolicy() {
         <h2>4. Địa chỉ tiếp nhận bảo hành</h2>
         <ul>
           <li>Hà Nội: 52B ngõ 4 Hoàng Quốc Việt, Nghĩa Đô, Hà Nội</li>
-          <li>Thanh Hóa: 55 Nghiêm Quý Ngãi, Hầm Rồng, tỉnh Thanh Hóa</li>
+          <li>Thanh Hóa: 55 Nghiêm Quý Ngãi, Hàm Rồng, tỉnh Thanh Hóa</li>
         </ul>
         <p>
           Hotline: 0982241317

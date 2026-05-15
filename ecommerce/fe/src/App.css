@@ -420,6 +420,7 @@ button:disabled {
   background: var(--color-bg-panel);
   color: var(--color-text);
   text-decoration: none;
+  font-weight: 600;
   box-shadow: var(--color-shadow-soft);
   cursor: pointer;
 }
@@ -645,6 +646,7 @@ button:disabled {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  font-weight: 600;
 }
 
 .account-dropdown {
@@ -665,7 +667,7 @@ button:disabled {
   background: transparent;
   color: var(--color-text);
   font: inherit;
-  font-weight: 600;
+  font-weight: 800;
   text-decoration: none;
   text-align: left;
   cursor: pointer;
@@ -697,6 +699,7 @@ button:disabled {
   color: var(--color-text-soft);
   text-decoration: none;
   background: transparent;
+  font-weight: 600;
 }
 
 .nav-link-button {
@@ -1807,6 +1810,71 @@ button:disabled {
   color: var(--color-success);
 }
 
+.checkout-summary-panel {
+  gap: 18px;
+}
+
+.checkout-summary-header {
+  padding-bottom: 8px;
+  margin-bottom: 6px;
+}
+
+.checkout-summary-header h2 {
+  margin: 0;
+  font-size: clamp(1.6rem, 2vw, 2rem);
+}
+
+.checkout-summary-meta {
+  color: var(--color-text-muted);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.checkout-summary-list {
+  gap: 10px;
+}
+
+.checkout-summary-item {
+  align-items: flex-start;
+  padding: 12px 14px;
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--color-bg-panel) 70%, transparent);
+}
+
+.checkout-summary-item-name {
+  color: var(--color-text);
+  line-height: 1.4;
+}
+
+.checkout-summary-item-price {
+  white-space: nowrap;
+}
+
+.checkout-summary-breakdown {
+  gap: 12px;
+}
+
+.checkout-summary-row {
+  font-size: 1rem;
+}
+
+.checkout-summary-total {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 10px;
+  padding: 16px;
+  border: 1px solid color-mix(in srgb, var(--color-primary) 28%, var(--color-border));
+  border-radius: 16px;
+  background: color-mix(in srgb, var(--color-primary) 8%, transparent);
+}
+
+.checkout-summary-total strong {
+  font-size: 1.18rem;
+}
+
 .form-card label,
 .consultant-card label,
 .admin-form-grid label {
@@ -2643,7 +2711,7 @@ button:disabled {
   margin: 0 auto;
   color: var(--color-text-muted);
   font-size: clamp(13px, 1.2vw, 16px);
-  font-weight: 400;
+  font-weight: 600;
   letter-spacing: 0.01em;
   display: flex;
   justify-content: center;
@@ -2699,24 +2767,36 @@ button:disabled {
 
 .footer-contact-link,
 .footer-address {
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr);
+  align-items: start;
   gap: 12px;
   text-decoration: none;
   color: var(--color-text);
   line-height: 1.6;
+  font-weight: 600;
 }
 
 .footer-contact-link i,
 .footer-address i {
   color: var(--color-primary);
+  width: 18px;
+  margin-top: 3px;
+  text-align: center;
 }
 
 .footer-policy-link {
   color: var(--color-text);
   text-decoration: none;
   line-height: 1.6;
+  font-weight: 600;
+}
+
+.footer-service-item p,
+.footer-description,
+.footer-contact-link span,
+.footer-address p {
+  font-weight: 600;
 }
 
 .footer-policy-link:hover {
@@ -3318,6 +3398,15 @@ button:disabled {
   .account-trigger {
     flex: 1 1 calc(50% - 8px);
     justify-content: center;
+  }
+
+  .checkout-summary-item {
+    align-items: center;
+  }
+
+  .checkout-summary-total {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
 
