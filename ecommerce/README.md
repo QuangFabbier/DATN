@@ -8,8 +8,9 @@ Project gom 2 phan:
 
 ```txt
 ecommerce-ai-project/
-  src/        Frontend ReactJS
-  backend/   Backend ExpressJS + MongoDB
+  ecommerce/
+    fe/  Frontend ReactJS + Vite
+    be/  Backend ExpressJS + MongoDB
 ```
 
 Chuc nang da co:
@@ -57,7 +58,14 @@ Backend:
 ## 3. Cau Truc Thu Muc
 
 ```txt
-backend/
+fe/
+  src/
+  public/
+  index.html
+  package.json
+  vite.config.js
+
+be/
   config/
     db.js
   controllers/
@@ -77,54 +85,29 @@ backend/
   package.json
   seedProducts.js
   server.js
+```
 
-src/
-  assets/
-  components/
-    MainLayout.jsx
-    ProductCard.jsx
-  context/
-    AuthContext.js
-    AuthProvider.jsx
-    CartContext.js
-    CartProvider.jsx
-    FavoritesContext.js
-    FavoritesProvider.jsx
-    SearchContext.js
-    SearchProvider.jsx
-  hooks/
-    useAuth.js
-    useCart.js
-    useFavorites.js
-    useProducts.js
-    useSearch.js
-  pages/
-    Home.jsx
-    Products.jsx
-    ProductDetail.jsx
-    Cart.jsx
-    Favorites.jsx
-    Orders.jsx
-    Login.jsx
-    Register.jsx
-    AIConsultant.jsx
-    NotFound.jsx
-  services/
-    authService.js
-    productService.js
-  utils/
-    formatCurrency.js
-  App.jsx
-  App.css
-  index.css
-  main.jsx
+## 3.1 Lenh chay nhanh tu root
+
+```bash
+# Tu root repository
+cd ecommerce
+
+# Cai dependencies cho FE va BE (chay 1 lan dau)
+npm --prefix fe install
+npm --prefix be install
+
+npm run dev:fe     # Chay frontend
+npm run dev:be     # Chay backend
+npm run lint       # Lint frontend
+npm run build      # Build frontend
 ```
 
 ## 4. Frontend
 
 ### 4.1 Routing
 
-Routes duoc cau hinh trong `src/App.jsx`:
+Routes duoc cau hinh trong `fe/src/App.jsx`:
 
 ```txt
 /                  Home
@@ -148,7 +131,7 @@ App dang duoc boc boi cac Provider:
 
 ### 4.2 Header Va Layout
 
-File: `src/components/MainLayout.jsx`
+File: `fe/src/components/MainLayout.jsx`
 
 Header hien co:
 
@@ -169,7 +152,7 @@ Search tren Header:
 
 ### 4.3 Trang Home
 
-File: `src/pages/Home.jsx`
+File: `fe/src/pages/Home.jsx`
 
 - Goi backend API de lay san pham.
 - Lay 4 san pham dau tien lam san pham noi bat.
@@ -178,7 +161,7 @@ File: `src/pages/Home.jsx`
 
 ### 4.4 Trang Products
 
-File: `src/pages/Products.jsx`
+File: `fe/src/pages/Products.jsx`
 
 - Goi `GET http://localhost:5000/api/products` bang `useEffect`.
 - Hien loading khi dang tai du lieu.
@@ -297,7 +280,7 @@ File: `src/pages/AIConsultant.jsx`
 
 ### 5.1 Server
 
-File: `backend/server.js`
+File: `be/server.js`
 
 Server dang:
 
@@ -317,7 +300,7 @@ Port mac dinh: `5000`.
 
 ### 5.2 Database Config
 
-File: `backend/config/db.js`
+File: `be/config/db.js`
 
 - Doc `MONGO_URI` tu `.env`.
 - Goi `mongoose.connect(process.env.MONGO_URI)`.
@@ -328,7 +311,7 @@ Khong dua noi dung `.env` that len GitHub.
 
 ### 5.3 Auth Backend
 
-Model User: `backend/models/User.js`
+Model User: `be/models/User.js`
 
 Fields:
 
@@ -339,7 +322,7 @@ password: String
 createdAt: Date
 ```
 
-Controller: `backend/controllers/authController.js`
+Controller: `be/controllers/authController.js`
 
 Register:
 
@@ -360,14 +343,14 @@ Login:
 - Tao JWT token.
 - Tra token va user info.
 
-Middleware: `backend/middleware/authMiddleware.js`
+Middleware: `be/middleware/authMiddleware.js`
 
 - Doc token tu `Authorization: Bearer <token>`.
 - Verify JWT.
 - Tim user.
 - Gan user vao `req.user`.
 
-Routes: `backend/routes/authRoutes.js`
+Routes: `be/routes/authRoutes.js`
 
 ```txt
 POST /api/auth/register
@@ -377,7 +360,7 @@ GET  /api/auth/me
 
 ### 5.4 Product Backend
 
-Model Product: `backend/models/Product.js`
+Model Product: `be/models/Product.js`
 
 Fields:
 
@@ -391,7 +374,7 @@ stock: Number
 createdAt: Date
 ```
 
-Controller: `backend/controllers/productController.js`
+Controller: `be/controllers/productController.js`
 
 Dang co:
 
@@ -400,7 +383,7 @@ getProducts
 getProductById
 ```
 
-Routes: `backend/routes/productRoutes.js`
+Routes: `be/routes/productRoutes.js`
 
 ```txt
 GET /api/products
@@ -425,7 +408,7 @@ Response:
 
 ## 6. Seed San Pham
 
-File: `backend/seedProducts.js`
+File: `be/seedProducts.js`
 
 Script nay:
 
@@ -444,7 +427,7 @@ Nhom san pham mau:
 Chay seed:
 
 ```bash
-cd backend
+cd be
 node seedProducts.js
 ```
 
@@ -452,7 +435,7 @@ Luu y: chay nhieu lan se them trung du lieu vi script hien chua xoa collection h
 
 ## 7. Bien Moi Truong
 
-File mau: `backend/.env.example`
+File mau: `be/.env.example`
 
 ```env
 PORT=5000
@@ -460,7 +443,7 @@ MONGO_URI=your_mongodb_connection_string
 JWT_SECRET=your_jwt_secret_key
 ```
 
-File that: `backend/.env`
+File that: `be/.env`
 
 Khong commit `.env` that vi co thong tin nhay cam.
 
@@ -492,33 +475,31 @@ GET http://localhost:5000/api/test
 Cai dependencies frontend:
 
 ```bash
-npm install
+npm --prefix fe install
 ```
 
 Cai dependencies backend:
 
 ```bash
-cd backend
-npm install
+npm --prefix be install
 ```
 
 Chay backend:
 
 ```bash
-cd backend
-npm run dev
+npm run dev:be
 ```
 
 Chay frontend:
 
 ```bash
-npm run dev
+npm run dev:fe
 ```
 
 Seed san pham:
 
 ```bash
-cd backend
+cd be
 node seedProducts.js
 ```
 
