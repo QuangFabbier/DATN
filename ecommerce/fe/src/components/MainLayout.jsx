@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   Link,
   NavLink,
@@ -18,6 +18,7 @@ import { useCart } from "../hooks/useCart";
 import { useFavorites } from "../hooks/useFavorites";
 import { useSearch } from "../hooks/useSearch";
 import { useTheme } from "../hooks/useTheme";
+import { getProfile } from "../services/accountStorage";
 import { getProducts } from "../services/productService";
 import { formatCurrency } from "../utils/formatCurrency";
 
@@ -44,6 +45,11 @@ function MainLayout() {
   const [isCartIconAnimated, setIsCartIconAnimated] = useState(false);
   const [isFavoriteIconAnimated, setIsFavoriteIconAnimated] = useState(false);
   const isAdminRoute = location.pathname.startsWith("/admin");
+  const hasAdminAccess = isAuthenticated && user?.role === "admin";
+  const accountProfile = useMemo(() => getProfile(user), [user]);
+  const accountDisplayName =
+    accountProfile.displayName || accountProfile.fullName || user?.name || "Tài khoản";
+  const accountInitial = accountDisplayName?.[0]?.toUpperCase() || "N";
 
   useEffect(() => {
     async function fetchCategories() {
@@ -141,16 +147,18 @@ function MainLayout() {
           </form>
 
           <div className="header-actions">
-            <NavLink
-              to="/admin"
-              className="header-link admin-header-link"
-              onClick={() => {
-                setIsAccountMenuOpen(false);
-                setIsCartMenuOpen(false);
-              }}
-            >
-              Admin
-            </NavLink>
+            {hasAdminAccess ? (
+              <NavLink
+                to="/admin"
+                className="header-link admin-header-link"
+                onClick={() => {
+                  setIsAccountMenuOpen(false);
+                  setIsCartMenuOpen(false);
+                }}
+              >
+                Admin
+              </NavLink>
+            ) : null}
 
             <NavLink
               to="/favorites"
@@ -267,11 +275,13 @@ function MainLayout() {
                   }
                 >
                   <span className="account-avatar" aria-hidden="true">
-                    {user?.name?.[0]?.toUpperCase() || "N"}
+                    {accountProfile.avatar ? (
+                      <img src={accountProfile.avatar} alt={accountDisplayName} />
+                    ) : (
+                      accountInitial
+                    )}
                   </span>
-                  <span className="account-name">
-                    {user?.name || "Tài khoản"}
-                  </span>
+                  <span className="account-name">{accountDisplayName}</span>
                   <i
                     className="fa-solid fa-chevron-down account-chevron"
                     aria-hidden="true"
@@ -696,7 +706,7 @@ function MainLayout() {
       ) : null}
 
       {!isAdminRoute ? <BackToTopButton /> : null}
-      <AIConsultantWidget />
+      {!isAdminRoute ? <AIConsultantWidget /> : null}
     </div>
   );
 }

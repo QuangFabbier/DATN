@@ -25,7 +25,7 @@ function AccountProfile() {
   const [profile, setProfile] = useState(() => getProfile(user));
   const [errors, setErrors] = useState({});
   const [isSaving, setIsSaving] = useState(false);
-  const addresses = useMemo(() => getAddresses(), []);
+  const addresses = useMemo(() => getAddresses(user), [user]);
 
   const defaultAddressOptions = useMemo(() => {
     return addresses.map((address) => ({
@@ -96,7 +96,7 @@ function AccountProfile() {
         await updateMyAvatar(token, profile.avatar);
       }
 
-      saveProfile(profile);
+      saveProfile(profile, user);
 
       setIsSaving(false);
 

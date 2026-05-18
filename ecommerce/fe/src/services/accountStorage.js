@@ -57,6 +57,93 @@ function writeStorageJSON(key, value) {
   window.localStorage.setItem(key, JSON.stringify(value))
 }
 
+function getCurrentUserFromStorage() {
+  if (!canUseStorage()) {
+    return null
+  }
+
+  const storedUser = window.localStorage.getItem('user')
+
+  if (!storedUser) {
+    return null
+  }
+
+  try {
+    const parsedUser = JSON.parse(storedUser)
+    return parsedUser && typeof parsedUser === 'object' ? parsedUser : null
+  } catch {
+    return null
+  }
+}
+
+function normalizeScopeSegment(rawValue) {
+  return String(rawValue || '')
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9_-]/g, '_')
+}
+
+function resolveStorageScope(user = null) {
+  const resolvedUser = user && typeof user === 'object' ? user : getCurrentUserFromStorage()
+
+  const rawUserId = resolvedUser?.id || resolvedUser?._id
+  const normalizedUserId = normalizeScopeSegment(rawUserId)
+
+  if (normalizedUserId) {
+    return {
+      key: `user_${normalizedUserId}`,
+      isGuest: false,
+    }
+  }
+
+  const normalizedEmail = normalizeScopeSegment(resolvedUser?.email)
+  if (normalizedEmail) {
+    return {
+      key: `email_${normalizedEmail}`,
+      isGuest: false,
+    }
+  }
+
+  return {
+    key: 'guest',
+    isGuest: true,
+  }
+}
+
+function getScopedStorageKey(baseKey, user = null) {
+  const { key } = resolveStorageScope(user)
+  return `${baseKey}::${key}`
+}
+
+function readScopedStorageJSON(baseKey, fallbackValue, user = null) {
+  const scope = resolveStorageScope(user)
+  const scopedStorageKey = getScopedStorageKey(baseKey, user)
+  const scopedValue = readStorageJSON(scopedStorageKey, null)
+
+  if (scopedValue !== null) {
+    return scopedValue
+  }
+
+  // Guest vẫn đọc key cũ để không mất dữ liệu local đã có từ trước.
+  if (scope.isGuest) {
+    return readStorageJSON(baseKey, fallbackValue)
+  }
+
+  return fallbackValue
+}
+
+function writeScopedStorageJSON(baseKey, value, user = null) {
+  const scope = resolveStorageScope(user)
+  const scopedStorageKey = getScopedStorageKey(baseKey, user)
+
+  writeStorageJSON(scopedStorageKey, value)
+
+  // Guest vẫn ghi key cũ để tương thích ngược với dữ liệu/flow hiện tại.
+  if (scope.isGuest) {
+    writeStorageJSON(baseKey, value)
+  }
+}
+
 function createEntityId(prefix) {
   if (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function') {
     return `${prefix}-${crypto.randomUUID()}`
@@ -81,7 +168,7 @@ function getDefaultProfile(user = null) {
 
 export function getProfile(user = null) {
   const defaultProfile = getDefaultProfile(user)
-  const storedProfile = readStorageJSON(PROFILE_STORAGE_KEY, null)
+  const storedProfile = readScopedStorageJSON(PROFILE_STORAGE_KEY, null, user)
 
   if (!storedProfile || typeof storedProfile !== 'object') {
     return defaultProfile
@@ -93,7 +180,7 @@ export function getProfile(user = null) {
   }
 }
 
-export function saveProfile(profileData) {
+export function saveProfile(profileData, user = null) {
   const normalizedProfile = {
     fullName: String(profileData?.fullName || '').trim(),
     displayName: String(profileData?.displayName || '').trim(),
@@ -106,7 +193,7 @@ export function saveProfile(profileData) {
     avatar: String(profileData?.avatar || '').trim(),
   }
 
-  writeStorageJSON(PROFILE_STORAGE_KEY, normalizedProfile)
+  writeScopedStorageJSON(PROFILE_STORAGE_KEY, normalizedProfile, user)
   return normalizedProfile
 }
 
@@ -150,19 +237,19 @@ function normalizeAddresses(addresses) {
   return normalizedAddresses
 }
 
-export function getAddresses() {
-  const storedAddresses = readStorageJSON(ADDRESS_STORAGE_KEY, [])
+export function getAddresses(user = null) {
+  const storedAddresses = readScopedStorageJSON(ADDRESS_STORAGE_KEY, [], user)
   return normalizeAddresses(storedAddresses)
 }
 
-export function saveAddresses(addresses) {
+export function saveAddresses(addresses, user = null) {
   const normalizedAddresses = normalizeAddresses(addresses)
-  writeStorageJSON(ADDRESS_STORAGE_KEY, normalizedAddresses)
+  writeScopedStorageJSON(ADDRESS_STORAGE_KEY, normalizedAddresses, user)
   return normalizedAddresses
 }
 
-export function getNotifications() {
-  const storedNotifications = readStorageJSON(NOTIFICATION_STORAGE_KEY, {})
+export function getNotifications(user = null) {
+  const storedNotifications = readScopedStorageJSON(NOTIFICATION_STORAGE_KEY, {}, user)
 
   return {
     ...defaultNotifications,
@@ -170,18 +257,18 @@ export function getNotifications() {
   }
 }
 
-export function saveNotifications(notifications) {
+export function saveNotifications(notifications, user = null) {
   const nextNotifications = {
     ...defaultNotifications,
     ...(typeof notifications === 'object' && notifications ? notifications : {}),
   }
 
-  writeStorageJSON(NOTIFICATION_STORAGE_KEY, nextNotifications)
+  writeScopedStorageJSON(NOTIFICATION_STORAGE_KEY, nextNotifications, user)
   return nextNotifications
 }
 
-export function getAIPreferences() {
-  const storedPreferences = readStorageJSON(AI_PREFERENCE_STORAGE_KEY, {})
+export function getAIPreferences(user = null) {
+  const storedPreferences = readScopedStorageJSON(AI_PREFERENCE_STORAGE_KEY, {}, user)
 
   const mergedPreferences = {
     ...defaultAIPreferences,
@@ -201,7 +288,7 @@ export function getAIPreferences() {
   }
 }
 
-export function saveAIPreferences(preferences) {
+export function saveAIPreferences(preferences, user = null) {
   const normalizedPreferences = {
     interests: Array.isArray(preferences?.interests) ? preferences.interests : [],
     favoriteCategories: Array.isArray(preferences?.favoriteCategories)
@@ -213,12 +300,12 @@ export function saveAIPreferences(preferences) {
       : [],
   }
 
-  writeStorageJSON(AI_PREFERENCE_STORAGE_KEY, normalizedPreferences)
+  writeScopedStorageJSON(AI_PREFERENCE_STORAGE_KEY, normalizedPreferences, user)
   return normalizedPreferences
 }
 
-export function getAppearancePreferences() {
-  const storedPreferences = readStorageJSON(APPEARANCE_STORAGE_KEY, {})
+export function getAppearancePreferences(user = null) {
+  const storedPreferences = readScopedStorageJSON(APPEARANCE_STORAGE_KEY, {}, user)
 
   return {
     ...defaultAppearancePreferences,
@@ -226,18 +313,18 @@ export function getAppearancePreferences() {
   }
 }
 
-export function saveAppearancePreferences(preferences) {
+export function saveAppearancePreferences(preferences, user = null) {
   const normalizedPreferences = {
     compactMode: Boolean(preferences?.compactMode),
     reduceMotion: Boolean(preferences?.reduceMotion),
   }
 
-  writeStorageJSON(APPEARANCE_STORAGE_KEY, normalizedPreferences)
+  writeScopedStorageJSON(APPEARANCE_STORAGE_KEY, normalizedPreferences, user)
   return normalizedPreferences
 }
 
-export function getSecurityState() {
-  const storedState = readStorageJSON(SECURITY_STORAGE_KEY, {})
+export function getSecurityState(user = null) {
+  const storedState = readScopedStorageJSON(SECURITY_STORAGE_KEY, {}, user)
 
   return {
     password: String(storedState?.password || ''),
@@ -245,13 +332,13 @@ export function getSecurityState() {
   }
 }
 
-export function saveSecurityState(securityState) {
+export function saveSecurityState(securityState, user = null) {
   const normalizedState = {
     password: String(securityState?.password || ''),
     updatedAt: String(securityState?.updatedAt || ''),
   }
 
-  writeStorageJSON(SECURITY_STORAGE_KEY, normalizedState)
+  writeScopedStorageJSON(SECURITY_STORAGE_KEY, normalizedState, user)
   return normalizedState
 }
 

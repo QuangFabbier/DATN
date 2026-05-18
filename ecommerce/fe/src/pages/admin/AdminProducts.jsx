@@ -1,7 +1,8 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import EmptyState from '../../components/EmptyState'
 import { AdminProductsSkeleton } from '../../components/Skeleton'
 import { ButtonSpinner } from '../../components/Spinner'
+import { useAuth } from '../../hooks/useAuth'
 import { useToast } from '../../hooks/useToast'
 import { createProduct, deleteProduct, getProducts, updateProduct } from '../../services/productService'
 import { formatCurrency } from '../../utils/formatCurrency'
@@ -18,6 +19,7 @@ const initialFormData = {
 }
 
 function AdminProducts() {
+  const { token, isAuthenticated, user } = useAuth()
   const { showToast } = useToast()
   const [products, setProducts] = useState([])
   const [loading, setLoading] = useState(true)
@@ -28,11 +30,18 @@ function AdminProducts() {
   const [sortBy, setSortBy] = useState('newest')
   const [formData, setFormData] = useState(initialFormData)
   const [formErrors, setFormErrors] = useState({})
+  const [imageUploadError, setImageUploadError] = useState('')
+  const [isReadingImage, setIsReadingImage] = useState(false)
+  const [isDraggingImage, setIsDraggingImage] = useState(false)
   const [editingProductId, setEditingProductId] = useState('')
   const [isFormOpen, setIsFormOpen] = useState(false)
   const [selectedProduct, setSelectedProduct] = useState(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [deletingProductId, setDeletingProductId] = useState('')
+  const [pendingDeleteProduct, setPendingDeleteProduct] = useState(null)
+  const hasAdminAccess = isAuthenticated && user?.role === 'admin'
+  const hasImagePreview = Boolean(formData.image)
+  const imageInputRef = useRef(null)
 
   useEffect(() => {
     async function fetchProducts() {
@@ -50,6 +59,19 @@ function AdminProducts() {
 
     fetchProducts()
   }, [])
+
+  useEffect(() => {
+    if (!isFormOpen) {
+      return undefined
+    }
+
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+
+    return () => {
+      document.body.style.overflow = previousOverflow
+    }
+  }, [isFormOpen])
 
   const categories = useMemo(
     () => ['Tất cả', ...new Set(products.map((product) => product.category).filter(Boolean))],
@@ -96,6 +118,9 @@ function AdminProducts() {
   function resetForm() {
     setFormData(initialFormData)
     setFormErrors({})
+    setImageUploadError('')
+    setIsReadingImage(false)
+    setIsDraggingImage(false)
     setEditingProductId('')
     setIsFormOpen(false)
     setIsSubmitting(false)
@@ -106,7 +131,105 @@ function AdminProducts() {
 
     setFormData((currentData) => ({ ...currentData, [name]: value }))
     setFormErrors((currentErrors) => ({ ...currentErrors, [name]: '' }))
+    if (name === 'image') {
+      setImageUploadError('')
+    }
     setError('')
+  }
+
+  function processImageFile(selectedFile) {
+    const fileReader = new FileReader()
+    setIsReadingImage(true)
+    setImageUploadError('')
+
+    fileReader.onload = () => {
+      const imageDataUrl = String(fileReader.result || '')
+
+      setFormData((currentData) => ({
+        ...currentData,
+        image: imageDataUrl,
+      }))
+      setIsReadingImage(false)
+    }
+
+    fileReader.onerror = () => {
+      setImageUploadError('Không thể đọc file ảnh. Vui lòng thử lại.')
+      setIsReadingImage(false)
+    }
+
+    fileReader.readAsDataURL(selectedFile)
+  }
+
+  function handleImageFileChange(event) {
+    const selectedFile = event.target.files?.[0]
+
+    if (!selectedFile) {
+      return
+    }
+
+    if (!selectedFile.type.startsWith('image/')) {
+      setImageUploadError('Chỉ hỗ trợ upload file ảnh (jpg, png, webp, gif, ...).')
+      return
+    }
+
+    const maxImageSizeInBytes = 4 * 1024 * 1024
+    if (selectedFile.size > maxImageSizeInBytes) {
+      setImageUploadError('Ảnh quá lớn. Vui lòng chọn ảnh tối đa 4MB.')
+      return
+    }
+
+    processImageFile(selectedFile)
+    event.target.value = ''
+  }
+
+  function handleImageDrop(event) {
+    event.preventDefault()
+    setIsDraggingImage(false)
+
+    if (isReadingImage) {
+      return
+    }
+
+    const selectedFile = event.dataTransfer?.files?.[0]
+    if (!selectedFile) {
+      return
+    }
+
+    if (!selectedFile.type.startsWith('image/')) {
+      setImageUploadError('Chỉ hỗ trợ kéo-thả file ảnh.')
+      return
+    }
+
+    const maxImageSizeInBytes = 4 * 1024 * 1024
+    if (selectedFile.size > maxImageSizeInBytes) {
+      setImageUploadError('Ảnh quá lớn. Vui lòng chọn ảnh tối đa 4MB.')
+      return
+    }
+
+    processImageFile(selectedFile)
+  }
+
+  function handleImageDragOver(event) {
+    event.preventDefault()
+    if (!isDraggingImage) {
+      setIsDraggingImage(true)
+    }
+  }
+
+  function handleImageDragLeave() {
+    setIsDraggingImage(false)
+  }
+
+  function handleOpenImagePicker() {
+    imageInputRef.current?.click()
+  }
+
+  function handleClearImage() {
+    setFormData((currentData) => ({
+      ...currentData,
+      image: '',
+    }))
+    setImageUploadError('')
   }
 
   function validateForm() {
@@ -159,7 +282,7 @@ function AdminProducts() {
       }
 
       if (editingProductId) {
-        const updatedProduct = await withMinimumDelay(updateProduct(editingProductId, payload), 280)
+        const updatedProduct = await withMinimumDelay(updateProduct(editingProductId, payload, token), 280)
         setProducts((currentProducts) =>
           currentProducts.map((product) =>
             getProductId(product) === editingProductId ? updatedProduct : product,
@@ -176,7 +299,7 @@ function AdminProducts() {
           message: `${payload.name} đã được cập nhật trong storefront.`,
         })
       } else {
-        const createdProduct = await withMinimumDelay(createProduct(payload), 280)
+        const createdProduct = await withMinimumDelay(createProduct(payload, token), 280)
         setProducts((currentProducts) => [createdProduct, ...currentProducts])
         showToast({
           type: 'success',
@@ -206,7 +329,18 @@ function AdminProducts() {
   }
 
   function handleEditProduct(product) {
-    setEditingProductId(getProductId(product))
+    const productId = getProductId(product)
+
+    if (!productId) {
+      showToast({
+        type: 'error',
+        title: 'Không thể sửa sản phẩm',
+        message: 'Sản phẩm này thiếu mã định danh hợp lệ.',
+      })
+      return
+    }
+
+    setEditingProductId(productId)
     setIsFormOpen(true)
     setFormErrors({})
     setError('')
@@ -220,18 +354,21 @@ function AdminProducts() {
     })
   }
 
-  async function handleDeleteProduct(product) {
-    const shouldDelete = window.confirm(`Bạn có chắc muốn xóa sản phẩm "${product.name}" không?`)
-
-    if (!shouldDelete) {
+  async function handleDeleteProduct() {
+    if (!pendingDeleteProduct) {
       return
     }
 
     try {
       setError('')
-      const productId = getProductId(product)
+      const productId = getProductId(pendingDeleteProduct)
+
+      if (!productId) {
+        throw new Error('Sản phẩm thiếu mã định danh hợp lệ, không thể xóa.')
+      }
+
       setDeletingProductId(productId)
-      await withMinimumDelay(deleteProduct(productId), 240)
+      await withMinimumDelay(deleteProduct(productId, token), 240)
 
       setProducts((currentProducts) =>
         currentProducts.filter((currentProduct) => getProductId(currentProduct) !== productId),
@@ -239,7 +376,7 @@ function AdminProducts() {
       showToast({
         type: 'success',
         title: 'Xóa sản phẩm thành công',
-        message: `${product.name} đã được xóa khỏi hệ thống.`,
+        message: `${pendingDeleteProduct.name} đã được xóa khỏi hệ thống.`,
       })
 
       if (editingProductId === productId) {
@@ -249,6 +386,8 @@ function AdminProducts() {
       if (selectedProduct && getProductId(selectedProduct) === productId) {
         setSelectedProduct(null)
       }
+
+      setPendingDeleteProduct(null)
     } catch (deleteError) {
       setError(deleteError.message || 'Không thể xóa sản phẩm.')
       showToast({
@@ -261,8 +400,32 @@ function AdminProducts() {
     }
   }
 
+  function handleRequestDelete(product) {
+    setPendingDeleteProduct(product)
+  }
+
   if (loading) {
     return <AdminProductsSkeleton />
+  }
+
+  if (!isAuthenticated) {
+    return (
+      <EmptyState
+        title="Cần đăng nhập để quản lý sản phẩm"
+        description="Bạn cần đăng nhập bằng tài khoản quản trị để thêm, sửa hoặc xóa sản phẩm."
+        icon="fa-user-lock"
+      />
+    )
+  }
+
+  if (!hasAdminAccess) {
+    return (
+      <EmptyState
+        title="Không có quyền quản trị"
+        description="Tài khoản hiện tại không có quyền admin để thao tác sản phẩm."
+        icon="fa-lock"
+      />
+    )
   }
 
   return (
@@ -272,7 +435,7 @@ function AdminProducts() {
           <p className="eyebrow">Quản lý sản phẩm</p>
           <h2>Admin Products</h2>
         </div>
-        <button type="button" className="button" onClick={handleOpenCreateForm}>
+        <button type="button" className="button admin-create-button" onClick={handleOpenCreateForm}>
           Thêm sản phẩm
         </button>
       </div>
@@ -306,80 +469,6 @@ function AdminProducts() {
           <option value="stockDesc">Tồn kho giảm dần</option>
         </select>
       </div>
-
-      {isFormOpen ? (
-        <form className="admin-form-card" onSubmit={handleSubmit}>
-          <div className="admin-form-header">
-            <div>
-              <h3>{editingProductId ? 'Sửa sản phẩm' : 'Thêm sản phẩm mới'}</h3>
-              <p>{editingProductId ? 'Cập nhật thông tin sản phẩm hiện có.' : 'Điền thông tin để tạo sản phẩm mới.'}</p>
-            </div>
-          </div>
-
-          <div className="admin-form-grid">
-            <label>
-              Tên sản phẩm
-              <input name="name" value={formData.name} onChange={handleFormChange} />
-              {formErrors.name ? <span className="field-error">{formErrors.name}</span> : null}
-            </label>
-
-            <label>
-              Danh mục
-              <input name="category" value={formData.category} onChange={handleFormChange} />
-              {formErrors.category ? <span className="field-error">{formErrors.category}</span> : null}
-            </label>
-
-            <label>
-              Giá
-              <input name="price" type="number" min="0" value={formData.price} onChange={handleFormChange} />
-              {formErrors.price ? <span className="field-error">{formErrors.price}</span> : null}
-            </label>
-
-            <label>
-              Tồn kho
-              <input name="stock" type="number" min="0" value={formData.stock} onChange={handleFormChange} />
-              {formErrors.stock ? <span className="field-error">{formErrors.stock}</span> : null}
-            </label>
-
-            <label className="admin-form-full">
-              Ảnh
-              <input
-                name="image"
-                value={formData.image}
-                onChange={handleFormChange}
-                placeholder="Để trống sẽ dùng placeholder"
-              />
-            </label>
-
-            <label className="admin-form-full">
-              Mô tả
-              <textarea
-                name="description"
-                rows="4"
-                value={formData.description}
-                onChange={handleFormChange}
-                placeholder="Có thể để trống"
-              />
-            </label>
-          </div>
-
-          <div className="admin-form-actions">
-            <button type="submit" className="button" disabled={isSubmitting}>
-              {isSubmitting ? (
-                <>
-                  <ButtonSpinner size="sm" />
-                  <span>{editingProductId ? 'Đang lưu...' : 'Đang thêm...'}</span>
-                </>
-              ) : (
-                <span>{editingProductId ? 'Lưu' : 'Thêm sản phẩm'}</span>
-              )}
-            </button>
-            <button type="button" className="button button-light" onClick={resetForm}>
-              Hủy
-            </button>
-          </div>
-        </form>
-      ) : null}
 
       {products.length === 0 ? (
         <EmptyState
@@ -443,22 +532,22 @@ function AdminProducts() {
                         <div className="admin-row-actions">
                           <button
                             type="button"
-                            className="button button-light"
+                            className="button button-light admin-action-button"
                             onClick={() => setSelectedProduct(product)}
                           >
                             Xem
                           </button>
                           <button
                             type="button"
-                            className="button button-outline"
+                            className="button button-outline admin-action-button"
                             onClick={() => handleEditProduct(product)}
                           >
                             Sửa
                           </button>
                           <button
                             type="button"
-                            className="button admin-danger-button"
-                            onClick={() => handleDeleteProduct(product)}
+                            className="button admin-danger-button admin-action-button"
+                            onClick={() => handleRequestDelete(product)}
                             disabled={deletingProductId === getProductId(product)}
                           >
                             {deletingProductId === getProductId(product) ? (
@@ -517,6 +606,166 @@ function AdminProducts() {
                   <strong>Mô tả:</strong> {selectedProduct.description || 'Chưa có mô tả.'}
                 </p>
               </div>
+            </div>
+          </div>
+        </div>
+      ) : null}
+
+      {isFormOpen ? (
+        <div className="admin-modal-backdrop" onClick={resetForm}>
+          <div
+            className={`admin-modal admin-product-form-modal ${hasImagePreview ? 'has-image-preview' : ''}`}
+            onClick={(event) => event.stopPropagation()}
+          >
+            <div className="admin-modal-header">
+              <div>
+                <p className="eyebrow">Biểu mẫu sản phẩm</p>
+                <h3>{editingProductId ? 'Sửa sản phẩm' : 'Thêm sản phẩm mới'}</h3>
+              </div>
+              <button type="button" className="button button-light" onClick={resetForm}>
+                Đóng
+              </button>
+            </div>
+
+            <form className="admin-form-card admin-product-form-card" onSubmit={handleSubmit}>
+              <div className="admin-form-grid">
+                <label>
+                  Tên sản phẩm
+                  <input name="name" value={formData.name} onChange={handleFormChange} />
+                  {formErrors.name ? <span className="field-error">{formErrors.name}</span> : null}
+                </label>
+
+                <label>
+                  Danh mục
+                  <input name="category" value={formData.category} onChange={handleFormChange} />
+                  {formErrors.category ? <span className="field-error">{formErrors.category}</span> : null}
+                </label>
+
+                <label>
+                  Giá
+                  <input name="price" type="number" min="0" value={formData.price} onChange={handleFormChange} />
+                  {formErrors.price ? <span className="field-error">{formErrors.price}</span> : null}
+                </label>
+
+                <label>
+                  Tồn kho
+                  <input name="stock" type="number" min="0" value={formData.stock} onChange={handleFormChange} />
+                  {formErrors.stock ? <span className="field-error">{formErrors.stock}</span> : null}
+                </label>
+
+                <label className="admin-form-full">
+                  Ảnh URL
+                  <input
+                    name="image"
+                    value={formData.image}
+                    onChange={handleFormChange}
+                    placeholder="Dán URL ảnh hoặc dùng nút upload bên dưới"
+                  />
+                </label>
+
+                <div className="admin-form-full admin-image-upload-block">
+                  <label htmlFor="admin-product-image-upload">
+                    Upload ảnh từ máy
+                  </label>
+                  <button
+                    type="button"
+                    className={`admin-image-dropzone ${isDraggingImage ? 'is-dragging' : ''}`}
+                    onClick={handleOpenImagePicker}
+                    onDragOver={handleImageDragOver}
+                    onDragLeave={handleImageDragLeave}
+                    onDrop={handleImageDrop}
+                    disabled={isReadingImage}
+                  >
+                    <span>Kéo ảnh vào đây hoặc bấm để chọn file</span>
+                    <small>Hỗ trợ: jpg, png, webp, gif (tối đa 4MB)</small>
+                  </button>
+                  <input
+                    ref={imageInputRef}
+                    id="admin-product-image-upload"
+                    type="file"
+                    accept="image/*"
+                    onChange={handleImageFileChange}
+                    disabled={isReadingImage}
+                  />
+                  {isReadingImage ? (
+                    <span className="section-heading-meta">Đang đọc ảnh...</span>
+                  ) : null}
+                  {imageUploadError ? <span className="field-error">{imageUploadError}</span> : null}
+                  {formData.image ? (
+                    <div className="admin-image-preview">
+                      <img src={formData.image} alt="Xem trước ảnh sản phẩm" />
+                      <button type="button" className="button button-light" onClick={handleClearImage}>
+                        Xóa ảnh
+                      </button>
+                    </div>
+                  ) : null}
+                </div>
+
+                <label className="admin-form-full">
+                  Mô tả
+                  <textarea
+                    name="description"
+                    rows="4"
+                    value={formData.description}
+                    onChange={handleFormChange}
+                    placeholder="Có thể để trống"
+                  />
+                </label>
+              </div>
+
+              <div className="admin-form-actions">
+                <button type="submit" className="button" disabled={isSubmitting}>
+                  {isSubmitting ? (
+                    <>
+                      <ButtonSpinner size="sm" />
+                      <span>{editingProductId ? 'Đang lưu...' : 'Đang thêm...'}</span>
+                    </>
+                  ) : (
+                    <span>{editingProductId ? 'Lưu' : 'Thêm sản phẩm'}</span>
+                  )}
+                </button>
+                <button type="button" className="button button-light" onClick={resetForm}>
+                  Hủy
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      ) : null}
+
+      {pendingDeleteProduct ? (
+        <div className="admin-modal-backdrop" onClick={() => setPendingDeleteProduct(null)}>
+          <div className="admin-modal admin-confirm-modal" onClick={(event) => event.stopPropagation()}>
+            <div className="admin-modal-header">
+              <div>
+                <p className="eyebrow">Xác nhận xóa</p>
+                <h3>Xóa sản phẩm</h3>
+              </div>
+            </div>
+
+            <p>
+              Bạn có chắc muốn xóa <strong>{pendingDeleteProduct.name}</strong> không?
+            </p>
+
+            <div className="admin-form-actions">
+              <button
+                type="button"
+                className="button admin-danger-button"
+                onClick={handleDeleteProduct}
+                disabled={deletingProductId === getProductId(pendingDeleteProduct)}
+              >
+                {deletingProductId === getProductId(pendingDeleteProduct) ? (
+                  <>
+                    <ButtonSpinner size="sm" />
+                    <span>Đang xóa...</span>
+                  </>
+                ) : (
+                  'Xác nhận xóa'
+                )}
+              </button>
+              <button type="button" className="button button-light" onClick={() => setPendingDeleteProduct(null)}>
+                Hủy
+              </button>
             </div>
           </div>
         </div>
