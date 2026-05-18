@@ -19,7 +19,7 @@ git pull
 ## 2. Di chuyen vao thu muc project
 
 ```bash
-cd DATN/ecommerce
+cd DATN/ecommerce-ai-project/ecommerce
 ```
 
 ## 3. Cai dependencies
@@ -44,6 +44,12 @@ Tao file `.env` tu file mau:
 cp be/.env.example be/.env
 ```
 
+Neu dung PowerShell tren Windows:
+
+```powershell
+Copy-Item be/.env.example be/.env
+```
+
 Sau do sua gia tri trong `be/.env`:
 
 - `PORT`
@@ -57,14 +63,14 @@ Mo 2 terminal:
 Terminal 1 (backend):
 
 ```bash
-cd DATN/ecommerce
+cd DATN/ecommerce-ai-project/ecommerce
 npm run dev:be
 ```
 
 Terminal 2 (frontend):
 
 ```bash
-cd DATN/ecommerce
+cd DATN/ecommerce-ai-project/ecommerce
 npm run dev:fe
 ```
 
@@ -85,7 +91,7 @@ npm run lint
 ## 7. (Tuy chon) Seed du lieu mau cho backend
 
 ```bash
-cd DATN/ecommerce/be
+cd DATN/ecommerce-ai-project/ecommerce/be
 node seedProducts.js
 ```
 
