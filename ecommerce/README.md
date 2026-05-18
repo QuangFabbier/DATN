@@ -91,7 +91,7 @@ be/
 
 ```bash
 # Tu root repository
-cd ecommerce
+cd ecommerce-ai-project/ecommerce
 
 # Cai dependencies cho FE va BE (chay 1 lan dau)
 npm --prefix fe install
@@ -101,6 +101,12 @@ npm run dev:fe     # Chay frontend
 npm run dev:be     # Chay backend
 npm run lint       # Lint frontend
 npm run build      # Build frontend
+```
+
+Neu dung PowerShell tren Windows de tao file `.env`, dung:
+
+```powershell
+Copy-Item be/.env.example be/.env
 ```
 
 ## 4. Frontend
