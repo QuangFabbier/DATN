@@ -36,7 +36,7 @@
     - tạo order record trong `localStorage` key `nexora_orders`
     - status mặc định `pending`
     - Admin Orders và Account Orders đọc realtime cùng source này
-- Cập nhật gần nhất trong summary này: `2026-05-15`
+- Cập nhật gần nhất trong summary này: `2026-05-18`
 
 ### 1.1 Cập Nhật Mới (2026-05-15)
 
@@ -106,6 +106,42 @@
   - `QuickViewModal`
   - `Favorites`
   - `AccountWishlist`
+
+### 1.4 Cập Nhật Form Admin Products (2026-05-18)
+
+- Đã review nhanh luồng form thêm/sửa sản phẩm tại `AdminProducts`.
+- Đã chỉnh modal form theo hướng giảm scroll không mong muốn:
+  - khóa scroll nền trang khi mở form thêm/sửa
+  - modal form mặc định không bật scroll dọc
+  - chỉ bật scroll dọc khi có preview ảnh (nội dung nở cao do thêm ảnh)
+- Đã tối ưu block upload ảnh để form gọn hơn trên màn hình nhỏ:
+  - giảm chiều cao tối thiểu dropzone
+  - giảm padding nội bộ dropzone
+- Đã tinh chỉnh thêm (vòng 2) để tránh scrollbar không cần thiết trong modal form:
+  - giảm padding viền ngoài backdrop modal
+  - tăng chiều cao hữu dụng của modal (`max-height` theo `100dvh`)
+  - giảm padding/gap bên trong `admin-product-form-card`
+  - giảm chiều cao preview ảnh và textarea trong form
+- File liên quan:
+  - `fe/src/pages/admin/AdminProducts.jsx`
+  - `fe/src/App.css`
+
+### 1.5 Cập Nhật Đồng Bộ Hồ Sơ Theo Tài Khoản (2026-05-18)
+
+- Đã fix lỗi profile/avatar bị dùng chung giữa nhiều tài khoản trên cùng trình duyệt.
+- Nguyên nhân: `accountStorage` trước đây lưu theo key tĩnh (`nexora_profile`, `nexora_addresses`, ...).
+- Đã chuyển sang storage có scope theo user:
+  - ưu tiên `user.id`
+  - fallback theo `user.email`
+  - guest vẫn tương thích ngược với key cũ
+- Đã cập nhật `AccountProfile` để lưu/đọc hồ sơ và địa chỉ theo user hiện tại.
+- Đã cập nhật header account ở `MainLayout`:
+  - avatar dropdown lấy từ profile storage của user
+  - tên hiển thị ưu tiên `displayName/fullName` thay vì chỉ `user.name`
+- File liên quan:
+  - `fe/src/services/accountStorage.js`
+  - `fe/src/pages/account/AccountProfile.jsx`
+  - `fe/src/components/MainLayout.jsx`
 
 ---
 
