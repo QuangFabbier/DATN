@@ -14,10 +14,10 @@
   - storefront đã được nâng UX/UI theo hướng modern ecommerce
   - shopping flow vẫn là frontend-only cho cart / favorites / orders
   - admin có:
-    - CRUD sản phẩm vẫn frontend-first (source chính đang là localStorage ở FE)
+    - CRUD sản phẩm đã chạy qua backend MongoDB (`/api/products`)
     - quản lý đơn hàng frontend-only
   - backend auth đã hoạt động và đã mở rộng thêm avatar API
-  - backend products đã có CRUD MongoDB đầy đủ (phase 1), FE sẽ migrate dần sau
+  - backend products đã được FE consume trực tiếp qua `productService` (Axios)
   - đã có dark mode, compare, quick view, mini cart, toast, skeleton, progress bar, mobile nav
   - đã có account center đầy đủ ở `/account/*`
   - đã có nhóm trang policy riêng:
@@ -40,6 +40,11 @@
     - tạo order record trong `localStorage` key `nexora_orders`
     - status mặc định `pending`
     - Admin Orders và Account Orders đọc realtime cùng source này
+  - AI Consultant đã tích hợp backend Gemini:
+    - endpoint `POST /api/ai/chat`
+    - trả `reply` + `recommendedProducts`
+    - FE hiển thị danh sách sản phẩm gợi ý ngay trong widget
+    - đồng thời đẩy kết quả ra trang `/products` dạng card như danh sách sản phẩm chính
 - Cập nhật gần nhất trong summary này: `2026-05-19`
 
 ### 1.1 Cập Nhật Mới (2026-05-15)
@@ -179,6 +184,70 @@
   - `npm run lint` pass
   - `npm run build` pass
 
+### 1.7 Cập Nhật AI Consultant + Tối Ưu UI (2026-05-19)
+
+- Đã tích hợp Gemini vào backend:
+  - package: `@google/generative-ai`
+  - env:
+    - `GEMINI_API_KEY`
+    - `GEMINI_MODEL` (mặc định `gemini-1.5-flash`)
+  - files mới:
+    - `be/services/geminiService.js`
+    - `be/controllers/aiController.js`
+    - `be/routes/aiRoutes.js`
+  - mount route:
+    - `app.use('/api/ai', aiRoutes)` trong `be/server.js`
+- Đã triển khai endpoint tư vấn:
+  - `POST /api/ai/chat`
+  - input:
+    - `message`
+    - `context.cartItems`
+    - `context.favoriteItems`
+    - `context.aiPreferences`
+  - validate message không rỗng
+  - chỉ gửi tối đa 10 sản phẩm candidate vào Gemini (không dump toàn bộ DB)
+  - yêu cầu AI trả tiếng Việt, không bịa sản phẩm ngoài danh sách DB
+  - output:
+    - `reply`
+    - `recommendedProducts`
+- Đã cập nhật FE AI widget:
+  - tạo service mới:
+    - `fe/src/services/aiService.js`
+  - `AIConsultantWidget` gọi API `/api/ai/chat`
+  - có loading/typing state
+  - có fallback local khi API lỗi
+  - hỗ trợ `Enter` để gửi, `Shift + Enter` để xuống dòng
+  - cải thiện độ tương phản tin nhắn user (chữ sáng hơn)
+- Đã nâng luồng hiển thị kết quả AI:
+  - kết quả sản phẩm không chỉ nằm trong chat
+  - widget tự điều hướng sang `/products` với chế độ `AI result`
+  - `Products` page nhận `aiIds` từ query và render card sản phẩm theo thứ tự AI đề xuất
+- Đã fix UI liên quan:
+  - tránh chồng nút `AI` và `BackToTop` trên desktop/mobile
+  - giảm khoảng thừa footer/copyright, xử lý nền lệch màu ở dải cuối trang
+- Đã verify kỹ thuật:
+  - `npm run lint` pass
+  - `npm run build` pass
+
+### 1.8 Cập Nhật Hero Slider + AI Product Discovery (2026-05-19)
+
+- Đã cập nhật hero trang chủ sang bộ ảnh overlay mới:
+  - `fe/src/assets/hero-overlay-1.png` ... `hero-overlay-6.png`
+  - ảnh `hero-overlay-6.png` đã được thêm vào slider
+- Đã chuyển hero sang chế độ image-only (không còn text CTA đè lên ảnh).
+- Đã giữ auto-slide mỗi `5 giây` và thêm điều hướng thủ công bằng dot indicator:
+  - click chấm tròn để nhảy trực tiếp tới ảnh mong muốn
+  - vẫn giữ hỗ trợ swipe trên touch device
+- Đã tối ưu hiển thị để hạn chế cắt chữ/thừa nền khi ảnh khác tỉ lệ:
+  - mỗi slide có `aspect-ratio` theo đúng kích thước ảnh gốc
+  - stage nhận `--hero-aspect-ratio` theo ảnh active
+- Đã cải thiện thêm AI widget:
+  - câu hỏi kiểu "chỉ xem sản phẩm" vẫn trả danh sách sản phẩm thay vì yêu cầu mô tả nhu cầu thêm
+  - khi có danh sách gợi ý sẽ điều hướng sang `/products` để hiển thị dạng product card chính
+- Đã verify kỹ thuật:
+  - `npm run lint` pass
+  - `npm run build` pass
+
 ---
 
 ## 2. Stack Và Kiến Trúc Đang Dùng
@@ -198,6 +267,7 @@
 - Express
 - MongoDB
 - Mongoose
+- Google Generative AI SDK (`@google/generative-ai`)
 - Dotenv
 - Cors
 - Nodemon
@@ -230,9 +300,14 @@
 
 ### 3.2 Nguồn dữ liệu runtime thực tế
 
-- Key localStorage chính cho sản phẩm: `datn_products`
-- Tầng xử lý chính FE: [fe/src/services/productStorage.js](./fe/src/services/productStorage.js)
-- Backend phase 1 đã sẵn sàng ở:
+- Tầng xử lý chính FE: [fe/src/services/productService.js](./fe/src/services/productService.js)
+- FE gọi backend API trực tiếp qua Axios:
+  - `GET /api/products`
+  - `GET /api/products/:id`
+  - `POST /api/products`
+  - `PUT /api/products/:id`
+  - `DELETE /api/products/:id`
+- Backend lõi:
   - `be/models/Product.js`
   - `be/controllers/productController.js`
   - `be/routes/productRoutes.js`
@@ -240,11 +315,11 @@
 Flow:
 
 1. App load
-2. `productStorage` kiểm tra `localStorage`
-3. Nếu chưa có `datn_products`, seed từ `fe/src/data/products.json`
-4. Sau đó toàn app đọc sản phẩm từ `localStorage`
-5. Admin create/update/delete ghi trực tiếp vào key này
-6. Storefront và admin luôn dùng cùng một source
+2. FE gọi `GET /api/products` để lấy danh sách
+3. Chuẩn hóa dữ liệu qua `normalizeProduct`
+4. Render đồng nhất cho storefront/admin
+5. Admin create/update/delete gọi API backend
+6. Dữ liệu nguồn sản phẩm tập trung ở MongoDB
 
 ### 3.3 Chuẩn hóa dữ liệu sản phẩm
 
@@ -262,9 +337,8 @@ Flow:
 ### 3.4 Hệ quả quan trọng
 
 - Thêm/sửa/xóa ở Admin phản ánh ra storefront ngay
-- Xóa sạch `localStorage` rồi reload sẽ seed lại từ `products.json`
-- FE hiện vẫn chạy ổn dù backend products chưa được FE consume full
-- Có thể migrate dần từng màn sang `/api/products` mà không phá UX hiện tại
+- `productStorage.js` còn tồn tại như lớp legacy/fallback, nhưng không còn là runtime chính
+- Dữ liệu runtime chính của sản phẩm hiện đã backend-first (`/api/products`)
 
 ---
 
@@ -284,6 +358,8 @@ Khai báo route nằm ở: [fe/src/App.jsx](./fe/src/App.jsx)
 - `/privacy-policy` -> `PrivacyPolicy`
 - `/warranty-policy` -> `WarrantyPolicy`
 - `/return-policy` -> `ReturnPolicy`
+- `/terms-of-use` -> `TermsOfUse`
+- `/shipping-inspection-policy` -> `ShippingInspectionPolicy`
 - `/login` -> `Login`
 - `/register` -> `Register`
 - `/account` -> redirect `/account/profile`
@@ -537,9 +613,10 @@ Interface hiện có:
 
 Thực tế:
 
-- tất cả đều gọi `productStorage`
-- chưa gọi trực tiếp backend products ở runtime chính
-- backend products API đã sẵn sàng để migrate từng bước
+- tất cả thao tác hiện gọi backend `/api/products` qua Axios
+- hỗ trợ header `Authorization: Bearer <token>` cho route cần quyền admin
+- mọi response đều đi qua `normalizeProduct` để đồng bộ dữ liệu FE
+- có chuẩn hóa thông báo lỗi service theo `error.response.data.message`
 
 ### 7.2 Product storage
 
@@ -547,8 +624,9 @@ File: [fe/src/services/productStorage.js](./fe/src/services/productStorage.js)
 
 Các điểm chính:
 
-- seed dữ liệu từ JSON
-- persist vào `localStorage`
+- vai trò legacy/fallback, không còn là nguồn runtime chính của `productService`
+- seed dữ liệu từ JSON (phục vụ luồng cũ)
+- persist vào `localStorage` (phục vụ luồng cũ)
 - chuẩn hóa:
   - `id`
   - `name`
@@ -639,6 +717,10 @@ Payment Settings API:
 - `GET /api/payment-settings/qr-image`
 - `PUT /api/payment-settings` (require super admin)
 
+AI API:
+
+- `POST /api/ai/chat`
+
 Seeder:
 
 - `npm --prefix be run seed:products`
@@ -670,6 +752,12 @@ Seeder:
 ### 8.4 AI widget
 
 - [fe/src/components/AIConsultantWidget.jsx](./fe/src/components/AIConsultantWidget.jsx)
+- [fe/src/services/aiService.js](./fe/src/services/aiService.js)
+- Hiện hỗ trợ:
+  - gọi backend AI thật (`/api/ai/chat`)
+  - loading/typing state
+  - render sản phẩm gợi ý trong chat
+  - đẩy kết quả sang trang `/products` để hiển thị card sản phẩm chính
 
 ### 8.5 Account components
 
@@ -693,12 +781,11 @@ File: [fe/src/pages/Home.jsx](./fe/src/pages/Home.jsx)
 
 Hiện có:
 
-- hero slider toàn section
-- auto slide + dot indicator
+- hero slider toàn section, image-only (không còn text/CTA overlay)
+- sử dụng bộ `hero-overlay-1..6`
+- auto slide mỗi `5 giây` + dot indicator có thể click
 - hỗ trợ swipe mobile
-- CTA:
-  - `Xem sản phẩm`
-  - `Tư vấn AI`
+- tỷ lệ hiển thị hero được set động theo từng ảnh (`--hero-aspect-ratio`) để hạn chế cắt chữ/thừa nền
 - sản phẩm nổi bật:
   - lấy từ product service
   - hiện đang ưu tiên nhóm sản phẩm giá cao hơn
@@ -727,6 +814,10 @@ Hiện có:
   - `priceDesc`
   - `nameAsc`
 - search đồng bộ từ header qua query string
+- có AI result mode qua query `aiIds`:
+  - render đúng thứ tự sản phẩm AI đề xuất
+  - hiển thị ngữ cảnh câu hỏi AI (`aiQuery`)
+  - khi user đổi filter/search thì tự thoát AI mode
 - nếu search/filter không có kết quả:
   - hiển thị empty state
   - hiển thị `suggestedProducts`
@@ -1158,12 +1249,15 @@ Hiện có:
   - `be/models/Product.js`
   - `be/models/User.js`
   - `be/models/PaymentSetting.js`
+  - `be/services/geminiService.js`
   - `be/controllers/productController.js`
   - `be/controllers/authController.js`
   - `be/controllers/paymentSettingController.js`
+  - `be/controllers/aiController.js`
   - `be/routes/productRoutes.js`
   - `be/routes/authRoutes.js`
   - `be/routes/paymentSettingRoutes.js`
+  - `be/routes/aiRoutes.js`
   - `be/middleware/errorMiddleware.js`
   - `be/seeders/seedProducts.js`
 
