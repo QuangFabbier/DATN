@@ -6,10 +6,11 @@ function notFound(req, res, next) {
 
 function errorHandler(error, req, res, next) {
   const statusCode = error.statusCode || (res.statusCode && res.statusCode !== 200 ? res.statusCode : 500)
+  const shouldIncludeStack = process.env.NODE_ENV === 'development'
 
   res.status(statusCode).json({
     message: error.message || 'Internal Server Error',
-    stack: process.env.NODE_ENV === 'production' ? undefined : error.stack,
+    stack: shouldIncludeStack ? error.stack : undefined,
   })
 }
 

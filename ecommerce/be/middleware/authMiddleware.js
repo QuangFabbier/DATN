@@ -1,5 +1,6 @@
 ﻿import jwt from 'jsonwebtoken'
 import User from '../models/User.js'
+import { USER_ROLES, resolveUserAccess } from '../utils/userRole.js'
 
 async function authMiddleware(req, res, next) {
   try {
@@ -23,17 +24,48 @@ async function authMiddleware(req, res, next) {
       return res.status(401).json({ message: 'Token không hợp lệ' })
     }
 
+    const access = resolveUserAccess(user)
+
     req.user = {
       id: user._id,
       name: user.name,
       email: user.email,
+      role: access.role,
+      isSuperAdmin: access.isSuperAdmin,
+      canManageAdmins: access.canManageAdmins,
+      adminLevel: access.adminLevel,
       createdAt: user.createdAt,
     }
 
     return next()
   } catch (error) {
-    return res.status(401).json({ message: 'Token không hợp lệ hoặc đã hết hạn', error: error.message })
+    return res.status(401).json({ message: 'Token không hợp lệ hoặc đã hết hạn' })
   }
 }
 
+function requireAdmin(req, res, next) {
+  if (!req.user) {
+    return res.status(401).json({ message: 'Yêu cầu đăng nhập' })
+  }
+
+  if (req.user.role !== USER_ROLES.ADMIN) {
+    return res.status(403).json({ message: 'Bạn không có quyền quản trị để thao tác sản phẩm' })
+  }
+
+  return next()
+}
+
+function requireSuperAdmin(req, res, next) {
+  if (!req.user) {
+    return res.status(401).json({ message: 'Yêu cầu đăng nhập' })
+  }
+
+  if (!req.user.isSuperAdmin) {
+    return res.status(403).json({ message: 'Chỉ super admin mới có quyền thực hiện thao tác này' })
+  }
+
+  return next()
+}
+
+export { requireAdmin, requireSuperAdmin }
 export default authMiddleware
