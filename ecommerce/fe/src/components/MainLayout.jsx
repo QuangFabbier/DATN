@@ -28,6 +28,8 @@ const menuItems = [
 ];
 
 const nexoraLogoPng = new URL("../assets/image/logo.png", import.meta.url).href;
+const sidePictureLeftPng = new URL("../assets/side/side-picture-1.png", import.meta.url).href;
+const sidePictureRightPng = new URL("../assets/side/side-picture-2-.png", import.meta.url).href;
 
 function MainLayout() {
   const location = useLocation();
@@ -548,6 +550,20 @@ function MainLayout() {
           isAdminRoute ? "main-content admin-page-content" : "main-content"
         }
       >
+        {!isAdminRoute ? (
+          <div className="side-picture-rails" aria-hidden="true">
+            <aside className="side-picture-rail side-picture-rail-left">
+              <div className="side-picture-sticky">
+                <img src={sidePictureLeftPng} alt="" className="side-picture-image" loading="lazy" />
+              </div>
+            </aside>
+            <aside className="side-picture-rail side-picture-rail-right">
+              <div className="side-picture-sticky">
+                <img src={sidePictureRightPng} alt="" className="side-picture-image" loading="lazy" />
+              </div>
+            </aside>
+          </div>
+        ) : null}
         <div
           key={`${location.pathname}${location.search}`}
           className="route-transition-panel"

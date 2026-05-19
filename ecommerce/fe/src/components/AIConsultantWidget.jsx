@@ -289,6 +289,15 @@ function AIConsultantWidget() {
     }
   }
 
+  function handleQuestionKeyDown(event) {
+    if (event.key !== 'Enter' || event.shiftKey) {
+      return
+    }
+
+    event.preventDefault()
+    handleSubmit(event)
+  }
+
   const renderedMessages = isLoading
     ? [
         ...messages,
@@ -375,6 +384,7 @@ function AIConsultantWidget() {
             rows="3"
             value={question}
             onChange={(event) => setQuestion(event.target.value)}
+            onKeyDown={handleQuestionKeyDown}
             placeholder="Ví dụ: Tôi cần thiết bị để học online, ngân sách khoảng 15 triệu..."
             tabIndex={isOpen ? 0 : -1}
             disabled={isLoading}
