@@ -12,7 +12,9 @@ import SearchProvider from './context/SearchProvider'
 import ThemeProvider from './context/ThemeProvider'
 import ToastProvider from './context/ToastProvider'
 import AdminDashboard from './pages/admin/AdminDashboard'
+import AdminAccess from './pages/admin/AdminAccess'
 import AdminOrders from './pages/admin/AdminOrders'
+import AdminPaymentSettings from './pages/admin/AdminPaymentSettings'
 import AdminProducts from './pages/admin/AdminProducts'
 import Cart from './pages/Cart'
 import Favorites from './pages/Favorites'
@@ -20,6 +22,7 @@ import Home from './pages/Home'
 import Login from './pages/Login'
 import NotFound from './pages/NotFound'
 import Orders from './pages/Orders'
+import OrderQrPayment from './pages/OrderQrPayment'
 import ProductDetail from './pages/ProductDetail'
 import Products from './pages/Products'
 import PrivacyPolicy from './pages/PrivacyPolicy'
@@ -57,6 +60,7 @@ function App() {
                         <Route path="cart" element={<Cart />} />
                         <Route path="favorites" element={<Favorites />} />
                         <Route path="orders" element={<Orders />} />
+                        <Route path="orders/qr-payment" element={<OrderQrPayment />} />
                         <Route path="privacy-policy" element={<PrivacyPolicy />} />
                         <Route path="warranty-policy" element={<WarrantyPolicy />} />
                         <Route path="return-policy" element={<ReturnPolicy />} />
@@ -80,6 +84,8 @@ function App() {
                           <Route index element={<AdminDashboard />} />
                           <Route path="products" element={<AdminProducts />} />
                           <Route path="orders" element={<AdminOrders />} />
+                          <Route path="payment" element={<AdminPaymentSettings />} />
+                          <Route path="access" element={<AdminAccess />} />
                         </Route>
                         <Route path="*" element={<NotFound />} />
                       </Route>

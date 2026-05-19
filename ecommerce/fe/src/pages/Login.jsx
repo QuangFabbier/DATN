@@ -8,6 +8,7 @@ function Login() {
   const location = useLocation()
   const { login } = useAuth()
   const [formData, setFormData] = useState({ email: '', password: '' })
+  const [showPassword, setShowPassword] = useState(false)
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
 
@@ -26,7 +27,8 @@ function Login() {
 
       // Lưu token và user vào localStorage thông qua AuthContext.
       login(data.user, data.token)
-      navigate('/')
+      const redirectPath = location.state?.from || '/'
+      navigate(redirectPath)
     } catch (err) {
       setError(err.response?.data?.message || 'Đăng nhập thất bại')
     } finally {
@@ -57,13 +59,24 @@ function Login() {
         </label>
         <label>
           Mật khẩu
-          <input
-            type="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            placeholder="Nhập mật khẩu"
-          />
+          <div className="auth-password-field">
+            <input
+              type={showPassword ? 'text' : 'password'}
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              placeholder="Nhập mật khẩu"
+            />
+            <button
+              type="button"
+              className="auth-password-toggle"
+              onClick={() => setShowPassword((currentValue) => !currentValue)}
+              aria-label={showPassword ? 'Ẩn mật khẩu' : 'Hiện mật khẩu'}
+              aria-pressed={showPassword}
+            >
+              {showPassword ? 'Ẩn' : 'Hiện'}
+            </button>
+          </div>
         </label>
         <button type="submit" className="button" disabled={loading}>
           {loading ? 'Đang đăng nhập...' : 'Đăng nhập'}

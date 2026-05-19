@@ -447,11 +447,16 @@ File mau: `be/.env.example`
 PORT=5000
 MONGO_URI=your_mongodb_connection_string
 JWT_SECRET=your_jwt_secret_key
+SUPER_ADMIN_EMAILS=admin@example.com
 ```
 
 File that: `be/.env`
 
 Khong commit `.env` that vi co thong tin nhay cam.
+
+`SUPER_ADMIN_EMAILS` la danh sach email super admin (cach nhau boi dau phay). Super admin co quyen them/sua/xoa san pham va cap/thu hoi admin phu trong giao dien `/admin/access`.
+
+Admin phu duoc cap qua UI se co quyen quan ly san pham, nhung khong co quyen cap them admin khac.
 
 ## 8. API Hien Co
 
@@ -461,6 +466,9 @@ Auth API:
 POST http://localhost:5000/api/auth/register
 POST http://localhost:5000/api/auth/login
 GET  http://localhost:5000/api/auth/me
+GET  http://localhost:5000/api/auth/admin-access         (super admin)
+POST http://localhost:5000/api/auth/admin-access/grant   (super admin)
+POST http://localhost:5000/api/auth/admin-access/revoke  (super admin)
 ```
 
 Product API:

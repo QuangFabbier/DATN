@@ -25,7 +25,7 @@ function AddressCard({ address, onDelete, onEdit, onSetDefault }) {
         <button type="button" className="button button-outline" onClick={() => onEdit(address)}>
           Chỉnh sửa
         </button>
-        <button type="button" className="text-button" onClick={() => onDelete(address.id)}>
+        <button type="button" className="text-button button-danger" onClick={() => onDelete(address.id)}>
           Xóa
         </button>
       </footer>

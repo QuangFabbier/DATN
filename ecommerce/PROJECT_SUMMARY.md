@@ -29,6 +29,10 @@
   - checkout `/orders` hiện đã tách thành 2 màn nội bộ:
     - `Thông tin`
     - `Thanh toán`
+  - nếu user chọn phương thức `QR` ở `/orders`:
+    - điều hướng sang trang riêng `/orders/qr-payment`
+    - trang này hiển thị ảnh QR + thông tin tài khoản nhận tiền
+    - có nút back về lại màn chọn phương thức
   - bước thanh toán hiện có 2 lựa chọn:
     - `Thanh toán bằng QR`
     - `Thanh toán khi nhận hàng`
@@ -36,7 +40,7 @@
     - tạo order record trong `localStorage` key `nexora_orders`
     - status mặc định `pending`
     - Admin Orders và Account Orders đọc realtime cùng source này
-- Cập nhật gần nhất trong summary này: `2026-05-18`
+- Cập nhật gần nhất trong summary này: `2026-05-19`
 
 ### 1.1 Cập Nhật Mới (2026-05-15)
 
@@ -143,6 +147,38 @@
   - `fe/src/pages/account/AccountProfile.jsx`
   - `fe/src/components/MainLayout.jsx`
 
+### 1.6 Cập Nhật Thanh Toán QR + Phân Quyền Admin Tổng (2026-05-19)
+
+- Đã thêm backend `payment-settings` để cấu hình thông tin thanh toán QR:
+  - `GET /api/payment-settings` (public)
+  - `GET /api/payment-settings/qr-image` (public)
+  - `PUT /api/payment-settings` (chỉ super admin)
+- Đã thêm model mới:
+  - `be/models/PaymentSetting.js`
+  - lưu:
+    - `bankName`
+    - `accountName`
+    - `accountNumber`
+    - `transferNote`
+    - `qrImage` (Buffer + metadata)
+    - `updatedBy`
+- Đã thêm trang admin mới chỉ dành cho admin tổng:
+  - `/admin/payment` -> `AdminPaymentSettings`
+  - tính năng:
+    - nhập thông tin tài khoản nhận tiền
+    - upload / xóa ảnh QR
+    - lưu cấu hình để storefront đọc lại
+- Đã tách flow QR trên checkout:
+  - `/orders`: chỉ chọn phương thức thanh toán
+  - `/orders/qr-payment`: trang riêng hiển thị QR + thông tin tài khoản + nút back
+- Đã nâng UX QR:
+  - tăng kích thước QR để dễ quét
+  - bấm ảnh QR để mở overlay zoom, làm mờ nền
+  - có hint: `Bấm vào ảnh để zoom`
+- Đã verify kỹ thuật:
+  - `npm run lint` pass
+  - `npm run build` pass
+
 ---
 
 ## 2. Stack Và Kiến Trúc Đang Dùng
@@ -244,6 +280,7 @@ Khai báo route nằm ở: [fe/src/App.jsx](./fe/src/App.jsx)
 - `/cart` -> `Cart`
 - `/favorites` -> `Favorites`
 - `/orders` -> `Orders`
+- `/orders/qr-payment` -> `OrderQrPayment`
 - `/privacy-policy` -> `PrivacyPolicy`
 - `/warranty-policy` -> `WarrantyPolicy`
 - `/return-policy` -> `ReturnPolicy`
@@ -265,6 +302,8 @@ Khai báo route nằm ở: [fe/src/App.jsx](./fe/src/App.jsx)
 - `/admin` -> `AdminDashboard`
 - `/admin/products` -> `AdminProducts`
 - `/admin/orders` -> `AdminOrders`
+- `/admin/payment` -> `AdminPaymentSettings` (super admin only)
+- `/admin/access` -> `AdminAccess` (super admin only)
 
 ### 4.3 Fallback route
 
@@ -594,6 +633,12 @@ Products API (phase 1 done):
 - `PUT /api/products/:id`
 - `DELETE /api/products/:id`
 
+Payment Settings API:
+
+- `GET /api/payment-settings`
+- `GET /api/payment-settings/qr-image`
+- `PUT /api/payment-settings` (require super admin)
+
 Seeder:
 
 - `npm --prefix be run seed:products`
@@ -825,7 +870,7 @@ Hiện có:
   - cho chọn 1 trong 2 phương thức:
     - `Thanh toán bằng QR`
     - `Thanh toán khi nhận hàng`
-  - nếu chọn `QR` thì hiện khối QR demo frontend-only
+  - nếu chọn `QR` thì điều hướng sang `/orders/qr-payment`
 - summary:
   - `cartTotalOriginal`
   - `cartSavings`
@@ -836,7 +881,7 @@ Hiện có:
 - sticky summary trên desktop
 - submit:
   - chỉ cho submit ở màn `Thanh toán`
-  - không gọi backend
+  - không gọi backend orders (vẫn localStorage-first)
   - tạo order record vào `nexora_orders` qua `orderStorage`
   - status mặc định: `pending`
   - có loading state
@@ -845,6 +890,16 @@ Hiện có:
   - reset checkout stage về `info`
   - hiển thị success state
   - auto navigate về `/products`
+
+Trang QR riêng:
+
+- File: [fe/src/pages/OrderQrPayment.jsx](./fe/src/pages/OrderQrPayment.jsx)
+- Hiện có:
+  - đọc thông tin QR từ backend `payment-settings`
+  - hiển thị ảnh QR và thông tin tài khoản nhận tiền
+  - QR có thể zoom overlay
+  - có nút `Quay lại chọn phương thức`
+  - có nút xác nhận hoàn tất đơn hàng QR
 
 ### 9.10 Auth pages
 
@@ -899,6 +954,8 @@ Hiện có:
   - `Tổng quan`
   - `Quản lý sản phẩm`
   - `Quản lý đơn hàng`
+  - `Quản lý thanh toán` (super admin)
+  - `Quản lý admin` (super admin)
 
 ### 10.2 AdminDashboard
 
@@ -976,6 +1033,24 @@ Hiện có:
   - loading state
   - toast feedback
 - có `AdminOrdersSkeleton`
+
+### 10.5 AdminPaymentSettings
+
+File: [fe/src/pages/admin/AdminPaymentSettings.jsx](./fe/src/pages/admin/AdminPaymentSettings.jsx)
+
+Hiện có:
+
+- chỉ super admin mới có quyền truy cập/chỉnh sửa
+- form cấu hình:
+  - ngân hàng
+  - tên chủ tài khoản
+  - số tài khoản
+  - nội dung chuyển khoản gợi ý
+- upload ảnh QR:
+  - click chọn file
+  - kéo-thả file
+  - xóa ảnh QR
+- lưu cấu hình vào backend `payment-settings`
 
 ---
 
@@ -1055,6 +1130,7 @@ Hiện có:
   - [fe/src/pages/Cart.jsx](./fe/src/pages/Cart.jsx)
   - [fe/src/pages/Favorites.jsx](./fe/src/pages/Favorites.jsx)
   - [fe/src/pages/Orders.jsx](./fe/src/pages/Orders.jsx)
+  - [fe/src/pages/OrderQrPayment.jsx](./fe/src/pages/OrderQrPayment.jsx)
   - [fe/src/pages/PrivacyPolicy.jsx](./fe/src/pages/PrivacyPolicy.jsx)
   - [fe/src/pages/WarrantyPolicy.jsx](./fe/src/pages/WarrantyPolicy.jsx)
   - [fe/src/pages/ReturnPolicy.jsx](./fe/src/pages/ReturnPolicy.jsx)
@@ -1072,15 +1148,22 @@ Hiện có:
   - [fe/src/pages/admin/AdminDashboard.jsx](./fe/src/pages/admin/AdminDashboard.jsx)
   - [fe/src/pages/admin/AdminProducts.jsx](./fe/src/pages/admin/AdminProducts.jsx)
   - [fe/src/pages/admin/AdminOrders.jsx](./fe/src/pages/admin/AdminOrders.jsx)
+  - [fe/src/pages/admin/AdminAccess.jsx](./fe/src/pages/admin/AdminAccess.jsx)
+  - [fe/src/pages/admin/AdminPaymentSettings.jsx](./fe/src/pages/admin/AdminPaymentSettings.jsx)
+- Services:
+  - [fe/src/services/paymentSettingService.js](./fe/src/services/paymentSettingService.js)
 - Backend:
   - `be/server.js`
   - `be/config/db.js`
   - `be/models/Product.js`
   - `be/models/User.js`
+  - `be/models/PaymentSetting.js`
   - `be/controllers/productController.js`
   - `be/controllers/authController.js`
+  - `be/controllers/paymentSettingController.js`
   - `be/routes/productRoutes.js`
   - `be/routes/authRoutes.js`
+  - `be/routes/paymentSettingRoutes.js`
   - `be/middleware/errorMiddleware.js`
   - `be/seeders/seedProducts.js`
 

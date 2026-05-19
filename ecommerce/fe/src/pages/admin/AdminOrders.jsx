@@ -1,8 +1,8 @@
-import { useEffect, useMemo, useState } from 'react'
-import EmptyState from '../../components/EmptyState'
-import { AdminOrdersSkeleton } from '../../components/Skeleton'
-import { ButtonSpinner } from '../../components/Spinner'
-import { useToast } from '../../hooks/useToast'
+import { useEffect, useMemo, useState } from "react";
+import EmptyState from "../../components/EmptyState";
+import { AdminOrdersSkeleton } from "../../components/Skeleton";
+import { ButtonSpinner } from "../../components/Spinner";
+import { useToast } from "../../hooks/useToast";
 import {
   getAvailableStatusTransitions,
   getOrders,
@@ -10,176 +10,187 @@ import {
   ORDER_STORAGE_KEY,
   ORDER_STORAGE_UPDATED_EVENT,
   updateOrderStatus,
-} from '../../services/orderStorage'
-import { formatCurrency } from '../../utils/formatCurrency'
-import { withMinimumDelay } from '../../utils/timing'
+} from "../../services/orderStorage";
+import { formatCurrency } from "../../utils/formatCurrency";
+import { withMinimumDelay } from "../../utils/timing";
 
 const statusOptions = [
-  { value: 'all', label: 'Tất cả trạng thái' },
-  { value: ORDER_STATUSES.PENDING, label: 'Chờ xác nhận' },
-  { value: ORDER_STATUSES.CONFIRMED, label: 'Đã xác nhận' },
-  { value: ORDER_STATUSES.SHIPPING, label: 'Đang giao' },
-  { value: ORDER_STATUSES.COMPLETED, label: 'Hoàn thành' },
-  { value: ORDER_STATUSES.CANCELLED, label: 'Đã hủy' },
-]
+  { value: "all", label: "Tất cả trạng thái" },
+  { value: ORDER_STATUSES.PENDING, label: "Chờ xác nhận" },
+  { value: ORDER_STATUSES.CONFIRMED, label: "Đã xác nhận" },
+  { value: ORDER_STATUSES.SHIPPING, label: "Đang giao" },
+  { value: ORDER_STATUSES.COMPLETED, label: "Hoàn thành" },
+  { value: ORDER_STATUSES.CANCELLED, label: "Đã hủy" },
+];
 
 const statusLabelMap = {
-  [ORDER_STATUSES.PENDING]: 'Chờ xác nhận',
-  [ORDER_STATUSES.CONFIRMED]: 'Đã xác nhận',
-  [ORDER_STATUSES.SHIPPING]: 'Đang giao',
-  [ORDER_STATUSES.COMPLETED]: 'Hoàn thành',
-  [ORDER_STATUSES.CANCELLED]: 'Đã hủy',
-}
+  [ORDER_STATUSES.PENDING]: "Chờ xác nhận",
+  [ORDER_STATUSES.CONFIRMED]: "Đã xác nhận",
+  [ORDER_STATUSES.SHIPPING]: "Đang giao",
+  [ORDER_STATUSES.COMPLETED]: "Hoàn thành",
+  [ORDER_STATUSES.CANCELLED]: "Đã hủy",
+};
 
 const statusActionLabelMap = {
-  [ORDER_STATUSES.CONFIRMED]: 'Xác nhận đơn',
-  [ORDER_STATUSES.SHIPPING]: 'Bắt đầu giao hàng',
-  [ORDER_STATUSES.COMPLETED]: 'Hoàn thành đơn',
-  [ORDER_STATUSES.CANCELLED]: 'Hủy đơn',
-}
+  [ORDER_STATUSES.CONFIRMED]: "Xác nhận đơn",
+  [ORDER_STATUSES.SHIPPING]: "Bắt đầu giao hàng",
+  [ORDER_STATUSES.COMPLETED]: "Hoàn thành đơn",
+  [ORDER_STATUSES.CANCELLED]: "Hủy đơn",
+};
 
 function formatOrderDate(dateValue) {
-  return new Date(dateValue).toLocaleString('vi-VN')
+  return new Date(dateValue).toLocaleString("vi-VN");
 }
 
 function AdminOrders() {
-  const { showToast } = useToast()
-  const [orders, setOrders] = useState([])
-  const [isLoading, setIsLoading] = useState(true)
-  const [errorMessage, setErrorMessage] = useState('')
-  const [searchKeyword, setSearchKeyword] = useState('')
-  const [selectedStatus, setSelectedStatus] = useState('all')
-  const [sortBy, setSortBy] = useState('newest')
-  const [selectedOrder, setSelectedOrder] = useState(null)
-  const [updatingOrderId, setUpdatingOrderId] = useState('')
+  const { showToast } = useToast();
+  const [orders, setOrders] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [searchKeyword, setSearchKeyword] = useState("");
+  const [selectedStatus, setSelectedStatus] = useState("all");
+  const [sortBy, setSortBy] = useState("newest");
+  const [selectedOrder, setSelectedOrder] = useState(null);
+  const [updatingOrderId, setUpdatingOrderId] = useState("");
 
   useEffect(() => {
-    let isMounted = true
+    let isMounted = true;
 
     async function loadOrders() {
       try {
-        setIsLoading(true)
-        setErrorMessage('')
-        const data = await withMinimumDelay(Promise.resolve(getOrders()), 220)
+        setIsLoading(true);
+        setErrorMessage("");
+        const data = await withMinimumDelay(Promise.resolve(getOrders()), 220);
 
         if (isMounted) {
-          setOrders(data)
+          setOrders(data);
         }
       } catch {
         if (isMounted) {
-          setErrorMessage('Không thể tải danh sách đơn hàng.')
+          setErrorMessage("Không thể tải danh sách đơn hàng.");
         }
       } finally {
         if (isMounted) {
-          setIsLoading(false)
+          setIsLoading(false);
         }
       }
     }
 
-    loadOrders()
+    loadOrders();
 
     function handleOrdersUpdated(event) {
-      const nextOrders = event?.detail?.orders
+      const nextOrders = event?.detail?.orders;
 
       if (Array.isArray(nextOrders)) {
-        setOrders(nextOrders)
+        setOrders(nextOrders);
       } else {
-        setOrders(getOrders())
+        setOrders(getOrders());
       }
     }
 
     function handleStorageSync(event) {
       if (event.key === ORDER_STORAGE_KEY) {
-        setOrders(getOrders())
+        setOrders(getOrders());
       }
     }
 
-    window.addEventListener(ORDER_STORAGE_UPDATED_EVENT, handleOrdersUpdated)
-    window.addEventListener('storage', handleStorageSync)
+    window.addEventListener(ORDER_STORAGE_UPDATED_EVENT, handleOrdersUpdated);
+    window.addEventListener("storage", handleStorageSync);
 
     return () => {
-      isMounted = false
-      window.removeEventListener(ORDER_STORAGE_UPDATED_EVENT, handleOrdersUpdated)
-      window.removeEventListener('storage', handleStorageSync)
-    }
-  }, [])
+      isMounted = false;
+      window.removeEventListener(
+        ORDER_STORAGE_UPDATED_EVENT,
+        handleOrdersUpdated,
+      );
+      window.removeEventListener("storage", handleStorageSync);
+    };
+  }, []);
 
   const filteredOrders = useMemo(() => {
-    const normalizedKeyword = searchKeyword.trim().toLowerCase()
+    const normalizedKeyword = searchKeyword.trim().toLowerCase();
 
     const nextOrders = orders
       .filter((order) => {
-        if (selectedStatus === 'all') {
-          return true
+        if (selectedStatus === "all") {
+          return true;
         }
 
-        return order.status === selectedStatus
+        return order.status === selectedStatus;
       })
       .filter((order) => {
         if (!normalizedKeyword) {
-          return true
+          return true;
         }
 
         const searchableText = [
-          String(order.id || ''),
-          String(order.code || ''),
-          String(order.customerInfo?.fullName || ''),
-          String(order.customerInfo?.phone || ''),
+          String(order.id || ""),
+          String(order.code || ""),
+          String(order.customerInfo?.fullName || ""),
+          String(order.customerInfo?.phone || ""),
         ]
-          .join(' ')
-          .toLowerCase()
+          .join(" ")
+          .toLowerCase();
 
-        return searchableText.includes(normalizedKeyword)
-      })
+        return searchableText.includes(normalizedKeyword);
+      });
 
     return [...nextOrders].sort((firstOrder, secondOrder) => {
-      const firstTimestamp = new Date(firstOrder.createdAt).getTime()
-      const secondTimestamp = new Date(secondOrder.createdAt).getTime()
+      const firstTimestamp = new Date(firstOrder.createdAt).getTime();
+      const secondTimestamp = new Date(secondOrder.createdAt).getTime();
 
-      return sortBy === 'oldest' ? firstTimestamp - secondTimestamp : secondTimestamp - firstTimestamp
-    })
-  }, [orders, searchKeyword, selectedStatus, sortBy])
+      return sortBy === "oldest"
+        ? firstTimestamp - secondTimestamp
+        : secondTimestamp - firstTimestamp;
+    });
+  }, [orders, searchKeyword, selectedStatus, sortBy]);
 
   async function handleUpdateOrderStatus(order, nextStatus) {
     const shouldUpdate = window.confirm(
       `Xác nhận đổi trạng thái đơn ${order.id} từ "${statusLabelMap[order.status]}" sang "${statusLabelMap[nextStatus]}"?`,
-    )
+    );
 
     if (!shouldUpdate || updatingOrderId) {
-      return
+      return;
     }
 
     try {
-      setUpdatingOrderId(order.id)
+      setUpdatingOrderId(order.id);
       const result = await withMinimumDelay(
-        Promise.resolve(updateOrderStatus(order.id, nextStatus, 'Cập nhật từ trang quản trị đơn hàng.')),
+        Promise.resolve(
+          updateOrderStatus(
+            order.id,
+            nextStatus,
+            "Cập nhật từ trang quản trị đơn hàng.",
+          ),
+        ),
         300,
-      )
+      );
 
-      setOrders(result.orders)
+      setOrders(result.orders);
 
       if (selectedOrder?.id === order.id) {
-        setSelectedOrder(result.order)
+        setSelectedOrder(result.order);
       }
 
       showToast({
-        type: 'success',
-        title: 'Đã cập nhật trạng thái đơn hàng',
+        type: "success",
+        title: "Đã cập nhật trạng thái đơn hàng",
         message: `Đơn ${order.id} hiện ở trạng thái "${statusLabelMap[nextStatus]}".`,
-      })
+      });
     } catch (error) {
       showToast({
-        type: 'error',
-        title: 'Không thể cập nhật trạng thái',
-        message: error?.message || 'Vui lòng thử lại sau.',
-      })
+        type: "error",
+        title: "Không thể cập nhật trạng thái",
+        message: error?.message || "Vui lòng thử lại sau.",
+      });
     } finally {
-      setUpdatingOrderId('')
+      setUpdatingOrderId("");
     }
   }
 
   if (isLoading) {
-    return <AdminOrdersSkeleton />
+    return <AdminOrdersSkeleton />;
   }
 
   if (errorMessage) {
@@ -190,7 +201,7 @@ function AdminOrders() {
         icon="fa-circle-exclamation"
         tone="warning"
       />
-    )
+    );
   }
 
   return (
@@ -198,7 +209,7 @@ function AdminOrders() {
       <div className="admin-page-header">
         <div>
           <p className="eyebrow">Quản lý đơn hàng</p>
-          <h2>Admin Orders</h2>
+          <h2>Orders Management</h2>
         </div>
       </div>
 
@@ -210,7 +221,10 @@ function AdminOrders() {
           placeholder="Tìm theo mã đơn, tên khách hoặc số điện thoại"
         />
 
-        <select value={selectedStatus} onChange={(event) => setSelectedStatus(event.target.value)}>
+        <select
+          value={selectedStatus}
+          onChange={(event) => setSelectedStatus(event.target.value)}
+        >
           {statusOptions.map((statusOption) => (
             <option key={statusOption.value} value={statusOption.value}>
               {statusOption.label}
@@ -218,7 +232,10 @@ function AdminOrders() {
           ))}
         </select>
 
-        <select value={sortBy} onChange={(event) => setSortBy(event.target.value)}>
+        <select
+          value={sortBy}
+          onChange={(event) => setSortBy(event.target.value)}
+        >
           <option value="newest">Mới nhất trước</option>
           <option value="oldest">Cũ nhất trước</option>
         </select>
@@ -259,30 +276,41 @@ function AdminOrders() {
                 </thead>
                 <tbody>
                   {filteredOrders.map((order) => {
-                    const itemCount = order.items.reduce((count, item) => count + item.quantity, 0)
+                    const itemCount = order.items.reduce(
+                      (count, item) => count + item.quantity,
+                      0,
+                    );
 
                     return (
                       <tr key={order.id}>
                         <td>
                           <strong>{order.id}</strong>
                         </td>
-                        <td>{order.customerInfo?.fullName || 'Khách vãng lai'}</td>
-                        <td>{order.customerInfo?.phone || 'Chưa có'}</td>
+                        <td>
+                          {order.customerInfo?.fullName || "Khách vãng lai"}
+                        </td>
+                        <td>{order.customerInfo?.phone || "Chưa có"}</td>
                         <td>{formatCurrency(order.total)}</td>
                         <td>{itemCount}</td>
                         <td>
-                          <span className={`admin-status-badge order-${order.status}`}>
-                            {statusLabelMap[order.status] || 'Đang xử lý'}
+                          <span
+                            className={`admin-status-badge order-${order.status}`}
+                          >
+                            {statusLabelMap[order.status] || "Đang xử lý"}
                           </span>
                         </td>
                         <td>{formatOrderDate(order.createdAt)}</td>
                         <td>
-                          <button type="button" className="button button-light" onClick={() => setSelectedOrder(order)}>
+                          <button
+                            type="button"
+                            className="button button-light"
+                            onClick={() => setSelectedOrder(order)}
+                          >
                             Xem
                           </button>
                         </td>
                       </tr>
-                    )
+                    );
                   })}
                 </tbody>
               </table>
@@ -292,8 +320,14 @@ function AdminOrders() {
       )}
 
       {selectedOrder ? (
-        <div className="admin-modal-backdrop" onClick={() => setSelectedOrder(null)}>
-          <section className="admin-modal" onClick={(event) => event.stopPropagation()}>
+        <div
+          className="admin-modal-backdrop"
+          onClick={() => setSelectedOrder(null)}
+        >
+          <section
+            className="admin-modal"
+            onClick={(event) => event.stopPropagation()}
+          >
             <header className="admin-modal-header">
               <div>
                 <p className="eyebrow">Chi tiết đơn hàng</p>
@@ -313,22 +347,26 @@ function AdminOrders() {
               <article className="admin-orders-panel">
                 <h3>Thông tin khách hàng</h3>
                 <p>
-                  <span>Họ tên:</span> {selectedOrder.customerInfo?.fullName || 'Chưa có'}
+                  <span>Họ tên:</span>{" "}
+                  {selectedOrder.customerInfo?.fullName || "Chưa có"}
                 </p>
                 <p>
-                  <span>Số điện thoại:</span> {selectedOrder.customerInfo?.phone || 'Chưa có'}
+                  <span>Số điện thoại:</span>{" "}
+                  {selectedOrder.customerInfo?.phone || "Chưa có"}
                 </p>
                 <p>
-                  <span>Địa chỉ:</span> {selectedOrder.customerInfo?.address || 'Chưa có'}
+                  <span>Địa chỉ:</span>{" "}
+                  {selectedOrder.customerInfo?.address || "Chưa có"}
                 </p>
                 <p>
-                  <span>Ghi chú:</span> {selectedOrder.customerInfo?.note || 'Không có'}
+                  <span>Ghi chú:</span>{" "}
+                  {selectedOrder.customerInfo?.note || "Không có"}
                 </p>
                 <p>
-                  <span>Thanh toán:</span>{' '}
-                  {selectedOrder.customerInfo?.paymentMethod === 'qr'
-                    ? 'Thanh toán QR'
-                    : 'Thanh toán khi nhận hàng'}
+                  <span>Thanh toán:</span>{" "}
+                  {selectedOrder.customerInfo?.paymentMethod === "qr"
+                    ? "Thanh toán QR"
+                    : "Thanh toán khi nhận hàng"}
                 </p>
               </article>
 
@@ -336,7 +374,10 @@ function AdminOrders() {
                 <h3>Sản phẩm trong đơn</h3>
                 <div className="admin-orders-item-list">
                   {selectedOrder.items.map((item) => (
-                    <div key={`${selectedOrder.id}-${item.id}`} className="admin-orders-item-row">
+                    <div
+                      key={`${selectedOrder.id}-${item.id}`}
+                      className="admin-orders-item-row"
+                    >
                       <img src={item.image} alt={item.name} />
                       <div>
                         <strong>{item.name}</strong>
@@ -344,7 +385,9 @@ function AdminOrders() {
                           {formatCurrency(item.price)} x {item.quantity}
                         </p>
                       </div>
-                      <strong>{formatCurrency(item.price * item.quantity)}</strong>
+                      <strong>
+                        {formatCurrency(item.price * item.quantity)}
+                      </strong>
                     </div>
                   ))}
                 </div>
@@ -369,44 +412,59 @@ function AdminOrders() {
                 <h3>Timeline trạng thái</h3>
                 <div className="admin-order-timeline">
                   {[...selectedOrder.statusHistory]
-                    .sort((firstStatusLog, secondStatusLog) =>
-                      new Date(firstStatusLog.at).getTime() - new Date(secondStatusLog.at).getTime(),
+                    .sort(
+                      (firstStatusLog, secondStatusLog) =>
+                        new Date(firstStatusLog.at).getTime() -
+                        new Date(secondStatusLog.at).getTime(),
                     )
                     .map((statusLog) => (
-                      <div key={`${selectedOrder.id}-${statusLog.status}-${statusLog.at}`} className="admin-order-timeline-item">
-                        <span className={`admin-status-badge order-${statusLog.status}`}>
+                      <div
+                        key={`${selectedOrder.id}-${statusLog.status}-${statusLog.at}`}
+                        className="admin-order-timeline-item"
+                      >
+                        <span
+                          className={`admin-status-badge order-${statusLog.status}`}
+                        >
                           {statusLabelMap[statusLog.status]}
                         </span>
                         <p>{formatOrderDate(statusLog.at)}</p>
-                        {statusLog.note ? <small>{statusLog.note}</small> : null}
+                        {statusLog.note ? (
+                          <small>{statusLog.note}</small>
+                        ) : null}
                       </div>
                     ))}
                 </div>
 
                 <div className="admin-order-status-actions">
-                  {getAvailableStatusTransitions(selectedOrder.status).length === 0 ? (
+                  {getAvailableStatusTransitions(selectedOrder.status)
+                    .length === 0 ? (
                     <p className="section-heading-meta">
-                      Đơn hàng đã ở trạng thái cuối, không còn thao tác chuyển trạng thái.
+                      Đơn hàng đã ở trạng thái cuối, không còn thao tác chuyển
+                      trạng thái.
                     </p>
                   ) : (
-                    getAvailableStatusTransitions(selectedOrder.status).map((nextStatus) => (
-                      <button
-                        key={`${selectedOrder.id}-${nextStatus}`}
-                        type="button"
-                        className={`button ${nextStatus === ORDER_STATUSES.CANCELLED ? 'admin-danger-button' : ''}`}
-                        onClick={() => handleUpdateOrderStatus(selectedOrder, nextStatus)}
-                        disabled={updatingOrderId === selectedOrder.id}
-                      >
-                        {updatingOrderId === selectedOrder.id ? (
-                          <>
-                            <ButtonSpinner size="sm" />
-                            <span>Đang cập nhật...</span>
-                          </>
-                        ) : (
-                          statusActionLabelMap[nextStatus]
-                        )}
-                      </button>
-                    ))
+                    getAvailableStatusTransitions(selectedOrder.status).map(
+                      (nextStatus) => (
+                        <button
+                          key={`${selectedOrder.id}-${nextStatus}`}
+                          type="button"
+                          className={`button ${nextStatus === ORDER_STATUSES.CANCELLED ? "admin-danger-button" : ""}`}
+                          onClick={() =>
+                            handleUpdateOrderStatus(selectedOrder, nextStatus)
+                          }
+                          disabled={updatingOrderId === selectedOrder.id}
+                        >
+                          {updatingOrderId === selectedOrder.id ? (
+                            <>
+                              <ButtonSpinner size="sm" />
+                              <span>Đang cập nhật...</span>
+                            </>
+                          ) : (
+                            statusActionLabelMap[nextStatus]
+                          )}
+                        </button>
+                      ),
+                    )
                   )}
                 </div>
               </article>
@@ -415,7 +473,7 @@ function AdminOrders() {
         </div>
       ) : null}
     </div>
-  )
+  );
 }
 
-export default AdminOrders
+export default AdminOrders;

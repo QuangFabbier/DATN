@@ -4,6 +4,20 @@ import { normalizeProduct } from '../utils/product'
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api'
 const PRODUCTS_API_URL = `${API_BASE_URL}/products`
 
+function buildAuthRequestConfig(token = '') {
+  const normalizedToken = String(token || '').trim()
+
+  if (!normalizedToken) {
+    return undefined
+  }
+
+  return {
+    headers: {
+      Authorization: `Bearer ${normalizedToken}`,
+    },
+  }
+}
+
 function extractApiErrorMessage(error, fallbackMessage) {
   return error?.response?.data?.message || error?.message || fallbackMessage
 }
@@ -46,9 +60,9 @@ export async function getProductById(id) {
   }
 }
 
-export async function createProduct(productData) {
+export async function createProduct(productData, token = '') {
   try {
-    const response = await axios.post(PRODUCTS_API_URL, productData)
+    const response = await axios.post(PRODUCTS_API_URL, productData, buildAuthRequestConfig(token))
     const normalizedProduct = normalizeProduct(response.data)
 
     if (!normalizedProduct) {
@@ -61,9 +75,13 @@ export async function createProduct(productData) {
   }
 }
 
-export async function updateProduct(productId, productData) {
+export async function updateProduct(productId, productData, token = '') {
   try {
-    const response = await axios.put(`${PRODUCTS_API_URL}/${productId}`, productData)
+    const response = await axios.put(
+      `${PRODUCTS_API_URL}/${productId}`,
+      productData,
+      buildAuthRequestConfig(token),
+    )
     const normalizedProduct = normalizeProduct(response.data)
 
     if (!normalizedProduct) {
@@ -76,9 +94,9 @@ export async function updateProduct(productId, productData) {
   }
 }
 
-export async function deleteProduct(productId) {
+export async function deleteProduct(productId, token = '') {
   try {
-    const response = await axios.delete(`${PRODUCTS_API_URL}/${productId}`)
+    const response = await axios.delete(`${PRODUCTS_API_URL}/${productId}`, buildAuthRequestConfig(token))
     return response.data
   } catch (error) {
     throw createProductServiceError(error, 'Không thể xóa sản phẩm.')

@@ -55,6 +55,7 @@ Sau do sua gia tri trong `be/.env`:
 - `PORT`
 - `MONGO_URI`
 - `JWT_SECRET`
+- `SUPER_ADMIN_EMAILS` (email super admin, co the nhieu email cach nhau boi dau phay)
 
 ## 5. Chay project
 

@@ -91,7 +91,7 @@ function Favorites() {
                 </button>
                 <button
                   type="button"
-                  className="text-button"
+                  className="text-button button-danger"
                   onClick={() => {
                     removeFavorite(getProductId(product))
                     showToast({
