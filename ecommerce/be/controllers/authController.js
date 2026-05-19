@@ -1,9 +1,11 @@
 ﻿import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import User from '../models/User.js'
+import { USER_ROLES, getSuperAdminEmailSet, isSuperAdminEmail, resolveUserAccess } from '../utils/userRole.js'
 
 const DEFAULT_AVATAR_MAX_SIZE = 2 * 1024 * 1024
 const ALLOWED_AVATAR_MIME_TYPES = new Set(['image/jpeg', 'image/png', 'image/webp', 'image/gif'])
+const SIMPLE_EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 function createToken(userId) {
   if (!process.env.JWT_SECRET) {
@@ -35,11 +37,16 @@ function buildAvatarUrl(user) {
 
 function sanitizeUser(user) {
   const avatarSize = Number(user?.avatar?.size || 0)
+  const access = resolveUserAccess(user)
 
   return {
     id: user._id,
     name: user.name,
     email: user.email,
+    role: access.role,
+    isSuperAdmin: access.isSuperAdmin,
+    canManageAdmins: access.canManageAdmins,
+    adminLevel: access.adminLevel,
     createdAt: user.createdAt,
     hasAvatar: avatarSize > 0,
     avatarUrl: buildAvatarUrl(user),
@@ -93,16 +100,24 @@ function parseAvatarDataUrl(avatarData) {
   }
 }
 
+function normalizeRequiredString(value) {
+  return typeof value === 'string' ? value.trim() : ''
+}
+
 export async function register(req, res) {
   try {
     const body = req.body || {}
-    const { name, email, password } = body
+    const normalizedName = normalizeRequiredString(body.name)
+    const normalizedEmail = normalizeRequiredString(body.email).toLowerCase()
+    const normalizedPassword = normalizeRequiredString(body.password)
 
-    if (!name || !email || !password) {
+    if (!normalizedName || !normalizedEmail || !normalizedPassword) {
       return res.status(400).json({ message: 'Vui lòng nhập đầy đủ name, email và password' })
     }
 
-    const normalizedEmail = email.toLowerCase().trim()
+    if (!SIMPLE_EMAIL_REGEX.test(normalizedEmail)) {
+      return res.status(400).json({ message: 'Email chưa đúng định dạng' })
+    }
 
     // Không cho đăng ký trùng email.
     const existingUser = await User.findOne({ email: normalizedEmail })
@@ -110,11 +125,12 @@ export async function register(req, res) {
       return res.status(400).json({ message: 'Email đã tồn tại' })
     }
 
-    const hashedPassword = await bcrypt.hash(password, 10)
+    const hashedPassword = await bcrypt.hash(normalizedPassword, 10)
     const user = await User.create({
-      name: name.trim(),
+      name: normalizedName,
       email: normalizedEmail,
       password: hashedPassword,
+      role: isSuperAdminEmail(normalizedEmail) ? USER_ROLES.ADMIN : USER_ROLES.CUSTOMER,
     })
 
     return res.status(201).json({
@@ -122,27 +138,133 @@ export async function register(req, res) {
       user: sanitizeUser(user),
     })
   } catch (error) {
-    return res.status(500).json({ message: 'Lỗi đăng ký', error: error.message })
+    if (error.name === 'ValidationError') {
+      return res.status(400).json({ message: 'Dữ liệu đăng ký không hợp lệ' })
+    }
+
+    return res.status(500).json({ message: 'Lỗi đăng ký' })
+  }
+}
+
+function normalizeAdminListItem(user) {
+  const access = resolveUserAccess(user)
+
+  return {
+    id: user._id,
+    name: user.name,
+    email: user.email,
+    role: access.role,
+    isSuperAdmin: access.isSuperAdmin,
+    canManageAdmins: access.canManageAdmins,
+    adminLevel: access.adminLevel,
+    createdAt: user.createdAt,
+  }
+}
+
+export async function getAdminAccessList(req, res) {
+  try {
+    const superAdminEmails = [...getSuperAdminEmailSet()]
+    const users = await User.find(
+      {
+        $or: [{ role: USER_ROLES.ADMIN }, { email: { $in: superAdminEmails } }],
+      },
+      {
+        name: 1,
+        email: 1,
+        role: 1,
+        createdAt: 1,
+      },
+    ).sort({ createdAt: 1 })
+
+    return res.json({
+      admins: users.map((user) => normalizeAdminListItem(user)),
+    })
+  } catch (error) {
+    return res.status(500).json({ message: 'Lỗi tải danh sách admin' })
+  }
+}
+
+export async function grantSubAdminAccess(req, res) {
+  try {
+    const targetEmail = String(req.body?.email || '').trim().toLowerCase()
+
+    if (!targetEmail) {
+      return res.status(400).json({ message: 'Vui lòng nhập email cần cấp quyền admin' })
+    }
+
+    if (isSuperAdminEmail(targetEmail)) {
+      return res.status(400).json({ message: 'Email này đã là super admin từ cấu hình hệ thống' })
+    }
+
+    const user = await User.findOne({ email: targetEmail })
+
+    if (!user) {
+      return res.status(404).json({ message: 'Email này chưa đăng ký tài khoản trong hệ thống' })
+    }
+
+    user.role = USER_ROLES.ADMIN
+    await user.save()
+
+    return res.json({
+      message: `Đã cấp quyền admin cho ${targetEmail}`,
+      user: normalizeAdminListItem(user),
+    })
+  } catch (error) {
+    return res.status(500).json({ message: 'Lỗi cấp quyền admin' })
+  }
+}
+
+export async function revokeSubAdminAccess(req, res) {
+  try {
+    const targetEmail = String(req.body?.email || '').trim().toLowerCase()
+
+    if (!targetEmail) {
+      return res.status(400).json({ message: 'Vui lòng nhập email cần thu hồi quyền admin' })
+    }
+
+    if (isSuperAdminEmail(targetEmail)) {
+      return res.status(400).json({ message: 'Không thể thu hồi super admin từ giao diện' })
+    }
+
+    const user = await User.findOne({ email: targetEmail })
+
+    if (!user) {
+      return res.status(404).json({ message: 'Không tìm thấy tài khoản tương ứng email đã nhập' })
+    }
+
+    user.role = USER_ROLES.CUSTOMER
+    await user.save()
+
+    return res.json({
+      message: `Đã thu hồi quyền admin của ${targetEmail}`,
+      user: normalizeAdminListItem(user),
+    })
+  } catch (error) {
+    return res.status(500).json({ message: 'Lỗi thu hồi quyền admin' })
   }
 }
 
 export async function login(req, res) {
   try {
     const body = req.body || {}
-    const { email, password } = body
+    const normalizedEmail = normalizeRequiredString(body.email).toLowerCase()
+    const normalizedPassword = normalizeRequiredString(body.password)
 
-    if (!email || !password) {
+    if (!normalizedEmail || !normalizedPassword) {
       return res.status(400).json({ message: 'Vui lòng nhập email và password' })
     }
 
-    const normalizedEmail = email.toLowerCase().trim()
+    if (!SIMPLE_EMAIL_REGEX.test(normalizedEmail)) {
+      return res.status(400).json({ message: 'Email chưa đúng định dạng' })
+    }
+
     const user = await User.findOne({ email: normalizedEmail }).select('+password')
 
     if (!user) {
       return res.status(401).json({ message: 'Email hoặc mật khẩu không đúng' })
     }
 
-    const isPasswordValid = await bcrypt.compare(password, user.password)
+    const isPasswordValid = await bcrypt.compare(normalizedPassword, user.password)
     if (!isPasswordValid) {
       return res.status(401).json({ message: 'Email hoặc mật khẩu không đúng' })
     }
@@ -155,7 +277,7 @@ export async function login(req, res) {
       user: sanitizeUser(user),
     })
   } catch (error) {
-    return res.status(500).json({ message: 'Lỗi đăng nhập', error: error.message })
+    return res.status(500).json({ message: 'Lỗi đăng nhập' })
   }
 }
 
@@ -169,7 +291,7 @@ export async function getMe(req, res) {
 
     return res.json({ user: sanitizeUser(user) })
   } catch (error) {
-    return res.status(500).json({ message: 'Lỗi lấy thông tin người dùng', error: error.message })
+    return res.status(500).json({ message: 'Lỗi lấy thông tin người dùng' })
   }
 }
 
@@ -222,7 +344,6 @@ export async function updateMyAvatar(req, res) {
     const statusCode = error.statusCode || 500
     return res.status(statusCode).json({
       message: statusCode === 500 ? 'Lỗi cập nhật ảnh đại diện' : error.message,
-      error: statusCode === 500 ? error.message : undefined,
     })
   }
 }
@@ -243,7 +364,7 @@ export async function getMyAvatar(req, res) {
     res.setHeader('Content-Length', String(user.avatar.size))
     return res.send(user.avatar.data)
   } catch (error) {
-    return res.status(500).json({ message: 'Lỗi lấy ảnh đại diện', error: error.message })
+    return res.status(500).json({ message: 'Lỗi lấy ảnh đại diện' })
   }
 }
 
@@ -269,6 +390,6 @@ export async function deleteMyAvatar(req, res) {
       user: sanitizeUser(user),
     })
   } catch (error) {
-    return res.status(500).json({ message: 'Lỗi xóa ảnh đại diện', error: error.message })
+    return res.status(500).json({ message: 'Lỗi xóa ảnh đại diện' })
   }
 }
