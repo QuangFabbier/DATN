@@ -18,7 +18,7 @@ const paymentMethodOptions = [
   {
     value: 'qr',
     label: 'Thanh toán bằng QR',
-    description: 'Quét mã QR để chuyển khoản nhanh. Đây là UI demo frontend-only, chưa tích hợp cổng thật.',
+    description: 'Chuyển sang trang thông tin thanh toán QR để quét mã và xem thông tin nhận tiền.',
     badge: 'QR',
   },
   {
@@ -113,6 +113,23 @@ function Orders() {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
+  function handleContinueToQrPayment() {
+    if (!validateInfoForm() || !validatePaymentForm()) {
+      return
+    }
+
+    navigate('/orders/qr-payment', {
+      state: {
+        customerInfo: {
+          fullName: formData.fullname,
+          phone: formData.phone,
+          address: formData.address,
+          note: formData.note,
+        },
+      },
+    })
+  }
+
   async function handleSubmit(event) {
     event.preventDefault()
 
@@ -123,6 +140,11 @@ function Orders() {
       !validatePaymentForm() ||
       isSubmitting
     ) {
+      return
+    }
+
+    if (paymentMethod === 'qr') {
+      handleContinueToQrPayment()
       return
     }
 
@@ -332,6 +354,12 @@ function Orders() {
               </div>
 
               <div className="payment-method-section">
+                <div className="payment-method-heading">
+                  <p className="eyebrow">Thanh toán</p>
+                  <h3>Chọn phương thức thanh toán</h3>
+                  <p>Chọn hình thức phù hợp, bạn có thể quay lại chỉnh ở bước trước bất cứ lúc nào.</p>
+                </div>
+
                 <div className="payment-method-grid">
                   {paymentMethodOptions.map((option) => {
                     const isSelected = paymentMethod === option.value
@@ -368,17 +396,6 @@ function Orders() {
                   <span className="field-error">{errors.paymentMethod}</span>
                 ) : null}
 
-                {paymentMethod === 'qr' ? (
-                  <div className="payment-qr-preview">
-                    <div className="payment-qr-code" aria-hidden="true">
-                      <div className="payment-qr-pattern" />
-                    </div>
-                    <div className="payment-qr-copy">
-                      <strong>Quét QR để thanh toán</strong>
-                      <p>Demo UI: sau này có thể thay bằng mã QR thật từ backend hoặc cổng thanh toán.</p>
-                    </div>
-                  </div>
-                ) : null}
               </div>
 
               <div className="checkout-stage-actions">
@@ -391,19 +408,26 @@ function Orders() {
                   <span>Quay lại thông tin</span>
                 </button>
 
-                <button type="submit" className="button button-pressable" disabled={isSubmitting}>
-                  {isSubmitting ? (
-                    <>
-                      <ButtonSpinner size="sm" />
-                      <span>Đang xử lý...</span>
-                    </>
-                  ) : (
-                    <>
-                      <i className="fa-solid fa-shield-heart" aria-hidden="true" />
-                      <span>Xác nhận đặt hàng</span>
-                    </>
-                  )}
-                </button>
+                {paymentMethod === 'qr' ? (
+                  <button type="button" className="button button-pressable" onClick={handleContinueToQrPayment}>
+                    <i className="fa-solid fa-qrcode" aria-hidden="true" />
+                    <span>Xem thông tin thanh toán QR</span>
+                  </button>
+                ) : (
+                  <button type="submit" className="button button-pressable" disabled={isSubmitting}>
+                    {isSubmitting ? (
+                      <>
+                        <ButtonSpinner size="sm" />
+                        <span>Đang xử lý...</span>
+                      </>
+                    ) : (
+                      <>
+                        <i className="fa-solid fa-shield-heart" aria-hidden="true" />
+                        <span>Xác nhận đặt hàng</span>
+                      </>
+                    )}
+                  </button>
+                )}
               </div>
             </>
           )}

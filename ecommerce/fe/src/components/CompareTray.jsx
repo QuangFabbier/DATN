@@ -32,7 +32,7 @@ function CompareTray() {
               </div>
               <button
                 type="button"
-                className="icon-button subtle"
+                className="icon-button subtle button-danger"
                 onClick={() => removeCompare(item.id)}
                 aria-label={`Bỏ ${item.name} khỏi danh sách so sánh`}
               >
@@ -43,7 +43,7 @@ function CompareTray() {
         </div>
 
         <div className="compare-tray-actions">
-          <button type="button" className="button button-light" onClick={clearCompare}>
+          <button type="button" className="button button-danger" onClick={clearCompare}>
             Xóa hết
           </button>
           <button type="button" className="button" onClick={() => setIsCompareOpen(true)}>

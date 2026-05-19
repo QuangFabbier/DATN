@@ -16,6 +16,17 @@ function Products() {
   const [searchParams, setSearchParams] = useSearchParams()
   const { searchKeyword, setSearchKeyword } = useSearch()
   const selectedCategory = searchParams.get('category') || 'Tất cả'
+  const aiIdsParam = String(searchParams.get('aiIds') || '').trim()
+  const aiQuery = String(searchParams.get('aiQuery') || '').trim()
+  const isAiResultMode = aiIdsParam.length > 0
+  const aiIdList = useMemo(
+    () =>
+      aiIdsParam
+        .split(',')
+        .map((value) => value.trim())
+        .filter(Boolean),
+    [aiIdsParam],
+  )
 
   useEffect(() => {
     setSearchKeyword(searchParams.get('search') || '')
@@ -44,9 +55,26 @@ function Products() {
   )
 
   const keyword = searchKeyword.trim().toLowerCase()
-  const pageTitle = selectedCategory === 'Tất cả' ? 'Sản phẩm' : selectedCategory
+  const pageTitle = isAiResultMode
+    ? 'Kết quả từ AI'
+    : selectedCategory === 'Tất cả'
+      ? 'Sản phẩm'
+      : selectedCategory
 
   const filteredProducts = useMemo(() => {
+    if (isAiResultMode) {
+      const aiOrderMap = new Map(aiIdList.map((id, index) => [id, index]))
+      const aiProducts = products
+        .filter((product) => aiOrderMap.has(getProductId(product)))
+        .sort((firstProduct, secondProduct) => {
+          const firstProductOrder = aiOrderMap.get(getProductId(firstProduct)) ?? Number.MAX_SAFE_INTEGER
+          const secondProductOrder = aiOrderMap.get(getProductId(secondProduct)) ?? Number.MAX_SAFE_INTEGER
+          return firstProductOrder - secondProductOrder
+        })
+
+      return aiProducts
+    }
+
     const nextProducts = products
       .filter((product) => (keyword ? product.name.toLowerCase().includes(keyword) : true))
       .filter((product) => (selectedCategory === 'Tất cả' ? true : product.category === selectedCategory))
@@ -66,7 +94,7 @@ function Products() {
 
       return secondProduct.price - firstProduct.price
     })
-  }, [keyword, products, selectedCategory, sortBy])
+  }, [aiIdList, isAiResultMode, keyword, products, selectedCategory, sortBy])
 
   const suggestedProducts = useMemo(
     () =>
@@ -83,6 +111,9 @@ function Products() {
 
   function updateParams(nextCategory, nextSearch) {
     const nextParams = new URLSearchParams(searchParams)
+    nextParams.delete('aiIds')
+    nextParams.delete('aiQuery')
+    nextParams.delete('fromAI')
 
     if (nextCategory && nextCategory !== 'Tất cả') {
       nextParams.set('category', nextCategory)
@@ -105,6 +136,11 @@ function Products() {
         <div>
           <p className="eyebrow">Danh sách sản phẩm</p>
           <h1>{pageTitle}</h1>
+          {isAiResultMode ? (
+            <p className="section-heading-description">
+              {aiQuery ? `Từ tư vấn AI: "${aiQuery}"` : 'Các sản phẩm được AI đề xuất từ kho hiện có.'}
+            </p>
+          ) : null}
         </div>
         <span className="section-heading-meta">{filteredProducts.length} sản phẩm</span>
       </div>
@@ -184,7 +220,7 @@ function Products() {
             action={
               <button
                 type="button"
-                className="button"
+                className="button button-danger"
                 onClick={() => {
                   setSearchKeyword('')
                   setSearchParams(new URLSearchParams())

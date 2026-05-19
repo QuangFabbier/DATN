@@ -85,9 +85,6 @@ function AdminDashboard() {
           <p className="eyebrow">Tổng quan</p>
           <h2>Dashboard</h2>
         </div>
-        <Link to="/admin/products" className="button">
-          Quản lý sản phẩm
-        </Link>
       </div>
 
       <div className="admin-stats-grid">

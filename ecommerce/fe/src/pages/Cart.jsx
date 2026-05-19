@@ -34,7 +34,7 @@ function Cart() {
         {cartItems.length > 0 ? (
           <button
             type="button"
-            className="button button-light button-pressable"
+            className="button button-danger button-pressable"
             onClick={() => {
               clearCart()
               showToast({
@@ -92,7 +92,7 @@ function Cart() {
                 <div className="cart-item-actions">
                   <button
                     type="button"
-                    className="text-button"
+                    className="text-button button-danger"
                     onClick={() => {
                       removeFromCart(item.id)
                       showToast({

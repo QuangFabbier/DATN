@@ -532,14 +532,14 @@ function AdminProducts() {
                         <div className="admin-row-actions">
                           <button
                             type="button"
-                            className="button button-light admin-action-button"
+                            className="button admin-view-button admin-action-button"
                             onClick={() => setSelectedProduct(product)}
                           >
                             Xem
                           </button>
                           <button
                             type="button"
-                            className="button button-outline admin-action-button"
+                            className="button admin-edit-button admin-action-button"
                             onClick={() => handleEditProduct(product)}
                           >
                             Sửa
@@ -694,7 +694,7 @@ function AdminProducts() {
                   {formData.image ? (
                     <div className="admin-image-preview">
                       <img src={formData.image} alt="Xem trước ảnh sản phẩm" />
-                      <button type="button" className="button button-light" onClick={handleClearImage}>
+                      <button type="button" className="button button-danger" onClick={handleClearImage}>
                         Xóa ảnh
                       </button>
                     </div>

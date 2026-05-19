@@ -33,7 +33,7 @@ function MainLayout() {
   const location = useLocation();
   const navigate = useNavigate();
   const { user, isAuthenticated, logout } = useAuth();
-  const { cartItemCount, cartItems, cartTotal } = useCart();
+  const { cartItemCount, cartItems, cartTotal, removeFromCart } = useCart();
   const { favoriteItems } = useFavorites();
   const { searchKeyword, setSearchKeyword } = useSearch();
   const { isDarkMode, toggleTheme } = useTheme();
@@ -221,6 +221,14 @@ function MainLayout() {
                               {item.quantity} x {formatCurrency(item.price)}
                             </span>
                           </div>
+                          <button
+                            type="button"
+                            className="icon-button subtle button-danger mini-cart-remove-button"
+                            onClick={() => removeFromCart(item.id)}
+                            aria-label={`Xóa ${item.name} khỏi giỏ hàng`}
+                          >
+                            <i className="fa-solid fa-trash-can" aria-hidden="true" />
+                          </button>
                         </article>
                       ))}
                     </div>
