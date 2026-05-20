@@ -554,12 +554,22 @@ function MainLayout() {
           <div className="side-picture-rails" aria-hidden="true">
             <aside className="side-picture-rail side-picture-rail-left">
               <div className="side-picture-sticky">
-                <img src={sidePictureLeftPng} alt="" className="side-picture-image" loading="lazy" />
+                <img
+                  src={sidePictureLeftPng}
+                  alt=""
+                  className="side-picture-image side-picture-image-left"
+                  loading="lazy"
+                />
               </div>
             </aside>
             <aside className="side-picture-rail side-picture-rail-right">
               <div className="side-picture-sticky">
-                <img src={sidePictureRightPng} alt="" className="side-picture-image" loading="lazy" />
+                <img
+                  src={sidePictureRightPng}
+                  alt=""
+                  className="side-picture-image side-picture-image-right"
+                  loading="lazy"
+                />
               </div>
             </aside>
           </div>

@@ -45,7 +45,7 @@
     - trả `reply` + `recommendedProducts`
     - FE hiển thị danh sách sản phẩm gợi ý ngay trong widget
     - đồng thời đẩy kết quả ra trang `/products` dạng card như danh sách sản phẩm chính
-- Cập nhật gần nhất trong summary này: `2026-05-19`
+- Cập nhật gần nhất trong summary này: `2026-05-20`
 
 ### 1.1 Cập Nhật Mới (2026-05-15)
 
@@ -238,14 +238,30 @@
 - Đã giữ auto-slide mỗi `5 giây` và thêm điều hướng thủ công bằng dot indicator:
   - click chấm tròn để nhảy trực tiếp tới ảnh mong muốn
   - vẫn giữ hỗ trợ swipe trên touch device
-- Đã tối ưu hiển thị để hạn chế cắt chữ/thừa nền khi ảnh khác tỉ lệ:
-  - mỗi slide có `aspect-ratio` theo đúng kích thước ảnh gốc
-  - stage nhận `--hero-aspect-ratio` theo ảnh active
+- Đã chốt hero về chế độ `cover` toàn khung để ảnh phủ kín banner, hạn chế khoảng thừa.
 - Đã cải thiện thêm AI widget:
   - câu hỏi kiểu "chỉ xem sản phẩm" vẫn trả danh sách sản phẩm thay vì yêu cầu mô tả nhu cầu thêm
   - khi có danh sách gợi ý sẽ điều hướng sang `/products` để hiển thị dạng product card chính
 - Đã verify kỹ thuật:
   - `npm run lint` pass
+  - `npm run build` pass
+
+### 1.9 Cập Nhật Side Picture Rails + Fine-tune Layout (2026-05-20)
+
+- Đã thêm side banner 2 bên storefront:
+  - `fe/src/assets/side/side-picture-1.png`
+  - `fe/src/assets/side/side-picture-2-.png`
+- Đã mount side rails trong `MainLayout` và chỉ hiển thị ở desktop đủ rộng.
+- Behavior cuộn:
+  - side ảnh dùng `position: sticky`, cuộn theo nội dung
+  - tự dừng trước footer theo vùng `main-content` (không chồng footer)
+- Đã tinh chỉnh UI side rails:
+  - đưa ảnh gần content hơn
+  - tự co giãn theo màn hình bằng `clamp(...)`
+  - giữ cùng khung kích thước cho 2 bên để cân bố cục
+  - bỏ `box-shadow` theo yêu cầu
+  - cân thị giác trái/phải bằng scale riêng cho ảnh phải
+- Đã verify kỹ thuật:
   - `npm run build` pass
 
 ---
@@ -478,6 +494,7 @@ File chính: [fe/src/components/MainLayout.jsx](./fe/src/components/MainLayout.j
 - `BackToTopButton`
 - `AIConsultantWidget`
 - `CompareTray`
+- `SidePictureRails` (2 ảnh trang trí 2 bên, sticky theo nội dung)
 
 ---
 
@@ -785,7 +802,7 @@ Hiện có:
 - sử dụng bộ `hero-overlay-1..6`
 - auto slide mỗi `5 giây` + dot indicator có thể click
 - hỗ trợ swipe mobile
-- tỷ lệ hiển thị hero được set động theo từng ảnh (`--hero-aspect-ratio`) để hạn chế cắt chữ/thừa nền
+- hero hiện dùng `background-size: cover` để phủ kín toàn bộ khung banner
 - sản phẩm nổi bật:
   - lấy từ product service
   - hiện đang ưu tiên nhóm sản phẩm giá cao hơn
