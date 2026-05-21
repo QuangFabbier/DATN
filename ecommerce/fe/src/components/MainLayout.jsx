@@ -46,6 +46,7 @@ function MainLayout() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isCartIconAnimated, setIsCartIconAnimated] = useState(false);
   const [isFavoriteIconAnimated, setIsFavoriteIconAnimated] = useState(false);
+  const [isMainNavVisible, setIsMainNavVisible] = useState(true);
   const isAdminRoute = location.pathname.startsWith("/admin");
   const hasAdminAccess = isAuthenticated && user?.role === "admin";
   const accountProfile = useMemo(() => getProfile(user), [user]);
@@ -66,6 +67,84 @@ function MainLayout() {
     }
 
     fetchCategories();
+  }, []);
+
+  useEffect(() => {
+    let lastScrollY = window.scrollY;
+    let direction = 0;
+    let directionStartY = window.scrollY;
+    let isNavVisible = true;
+    let lockUntil = 0;
+    const hideThreshold = 36;
+    const showThreshold = 28;
+    const toggleLockMs = 180;
+
+    function handleWindowScroll() {
+      const currentScrollY = window.scrollY;
+      const scrolledDistance = currentScrollY - lastScrollY;
+      const isDesktop = window.innerWidth > 860;
+      const now = performance.now();
+
+      if (!isDesktop) {
+        if (!isNavVisible) {
+          isNavVisible = true;
+          setIsMainNavVisible(true);
+        }
+        lastScrollY = currentScrollY;
+        direction = 0;
+        directionStartY = currentScrollY;
+        return;
+      }
+
+      if (now < lockUntil) {
+        lastScrollY = currentScrollY;
+        return;
+      }
+
+      if (currentScrollY <= 8) {
+        if (!isNavVisible) {
+          isNavVisible = true;
+          setIsMainNavVisible(true);
+        }
+        lastScrollY = currentScrollY;
+        direction = 0;
+        directionStartY = currentScrollY;
+        return;
+      }
+
+      if (Math.abs(scrolledDistance) < 6) {
+        return;
+      }
+
+      const nextDirection = scrolledDistance > 0 ? 1 : -1;
+      if (nextDirection !== direction) {
+        direction = nextDirection;
+        directionStartY = lastScrollY;
+      }
+
+      const traveledDistance = Math.abs(currentScrollY - directionStartY);
+
+      if (direction > 0 && isNavVisible && traveledDistance >= hideThreshold) {
+        isNavVisible = false;
+        setIsMainNavVisible(false);
+        lockUntil = now + toggleLockMs;
+        direction = 0;
+        directionStartY = currentScrollY;
+      } else if (direction < 0 && !isNavVisible && traveledDistance >= showThreshold) {
+        isNavVisible = true;
+        setIsMainNavVisible(true);
+        lockUntil = now + toggleLockMs;
+        direction = 0;
+        directionStartY = currentScrollY;
+      }
+
+      lastScrollY = currentScrollY;
+    }
+
+    window.addEventListener("scroll", handleWindowScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", handleWindowScroll);
+    };
   }, []);
 
   useEffect(() => {
@@ -374,69 +453,74 @@ function MainLayout() {
           </div>
         </div>
 
-        <nav className="main-nav" aria-label="Điều hướng chính">
-          {menuItems.map((item) => (
-            <NavLink
-              key={item.path}
-              to={item.path}
-              end={item.end}
-              className={({ isActive }) =>
-                isActive ? "nav-link active" : "nav-link"
-              }
-              onClick={() => setIsCategoryMenuOpen(false)}
-            >
-              {item.label}
-            </NavLink>
-          ))}
-
-          <div
-            className="mega-menu-shell"
-            onMouseEnter={() => setIsCategoryMenuOpen(true)}
-            onMouseLeave={() => setIsCategoryMenuOpen(false)}
+        <div className={`main-nav-slot ${isMainNavVisible ? "" : "main-nav-slot-hidden"}`}>
+          <nav
+            className={`main-nav ${isMainNavVisible ? "" : "main-nav-hidden"}`}
+            aria-label="Điều hướng chính"
           >
-            <button
-              type="button"
-              className={`nav-link nav-link-button ${isCategoryMenuOpen ? "active" : ""}`}
-              onClick={() =>
-                setIsCategoryMenuOpen((currentState) => !currentState)
-              }
-              aria-expanded={isCategoryMenuOpen}
-            >
-              Danh mục
-              <i className="fa-solid fa-chevron-down" aria-hidden="true" />
-            </button>
+            {menuItems.map((item) => (
+              <NavLink
+                key={item.path}
+                to={item.path}
+                end={item.end}
+                className={({ isActive }) =>
+                  isActive ? "nav-link active" : "nav-link"
+                }
+                onClick={() => setIsCategoryMenuOpen(false)}
+              >
+                {item.label}
+              </NavLink>
+            ))}
 
             <div
-              className={`mega-menu-panel ${isCategoryMenuOpen ? "open" : ""}`}
+              className="mega-menu-shell"
+              onMouseEnter={() => setIsCategoryMenuOpen(true)}
+              onMouseLeave={() => setIsCategoryMenuOpen(false)}
             >
-              <div className="mega-menu-copy">
-                <p className="eyebrow">Mega menu</p>
-                <h2>Khám phá danh mục nổi bật</h2>
-                <p>
-                  Từ laptop, điện thoại đến góc làm việc tại nhà, mọi nhóm sản
-                  phẩm của Nexora đều được gom rõ ràng để tìm nhanh hơn.
-                </p>
-              </div>
+              <button
+                type="button"
+                className={`nav-link nav-link-button ${isCategoryMenuOpen ? "active" : ""}`}
+                onClick={() =>
+                  setIsCategoryMenuOpen((currentState) => !currentState)
+                }
+                aria-expanded={isCategoryMenuOpen}
+              >
+                Danh mục
+                <i className="fa-solid fa-chevron-down" aria-hidden="true" />
+              </button>
 
-              <div className="mega-menu-grid">
-                {categories.map((category) => (
-                  <button
-                    key={category}
-                    type="button"
-                    className="mega-menu-card"
-                    onClick={() => handleCategoryNavigate(category)}
-                  >
-                    <span className="mega-menu-icon" aria-hidden="true">
-                      <i className="fa-solid fa-layer-group" />
-                    </span>
-                    <strong>{category}</strong>
-                    <span>Xem danh sách sản phẩm</span>
-                  </button>
-                ))}
+              <div
+                className={`mega-menu-panel ${isCategoryMenuOpen ? "open" : ""}`}
+              >
+                <div className="mega-menu-copy">
+                  <p className="eyebrow">Mega menu</p>
+                  <h2>Khám phá danh mục nổi bật</h2>
+                  <p>
+                    Từ laptop, điện thoại đến góc làm việc tại nhà, mọi nhóm sản
+                    phẩm của Nexora đều được gom rõ ràng để tìm nhanh hơn.
+                  </p>
+                </div>
+
+                <div className="mega-menu-grid">
+                  {categories.map((category) => (
+                    <button
+                      key={category}
+                      type="button"
+                      className="mega-menu-card"
+                      onClick={() => handleCategoryNavigate(category)}
+                    >
+                      <span className="mega-menu-icon" aria-hidden="true">
+                        <i className="fa-solid fa-layer-group" />
+                      </span>
+                      <strong>{category}</strong>
+                      <span>Xem danh sách sản phẩm</span>
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
-        </nav>
+          </nav>
+        </div>
       </header>
 
       <div

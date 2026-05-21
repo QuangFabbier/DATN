@@ -777,6 +777,26 @@ button:disabled {
   align-items: center;
   gap: 12px;
   padding: 0 0 16px;
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 0.2s ease,
+    transform 0.24s ease;
+}
+
+.main-nav-slot {
+  height: 56px;
+  overflow: hidden;
+}
+
+.main-nav-slot.main-nav-slot-hidden {
+  height: 0;
+}
+
+.main-nav.main-nav-hidden {
+  opacity: 0;
+  transform: translateY(-100%);
+  pointer-events: none;
 }
 
 .nav-link,
@@ -3919,6 +3939,10 @@ button:disabled {
   }
 
   .main-nav {
+    display: none;
+  }
+
+  .main-nav-slot {
     display: none;
   }
 
