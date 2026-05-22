@@ -75,9 +75,12 @@ function MainLayout() {
     let directionStartY = window.scrollY;
     let isNavVisible = true;
     let lockUntil = 0;
-    const hideThreshold = 36;
-    const showThreshold = 28;
-    const toggleLockMs = 180;
+    let lastToggleScrollY = window.scrollY;
+    const hideThreshold = 56;
+    const showThreshold = 24;
+    const toggleLockMs = 240;
+    const minScrollBeforeHide = 120;
+    const minDistanceBetweenToggles = 140;
 
     function handleWindowScroll() {
       const currentScrollY = window.scrollY;
@@ -93,6 +96,7 @@ function MainLayout() {
         lastScrollY = currentScrollY;
         direction = 0;
         directionStartY = currentScrollY;
+        lastToggleScrollY = currentScrollY;
         return;
       }
 
@@ -109,6 +113,7 @@ function MainLayout() {
         lastScrollY = currentScrollY;
         direction = 0;
         directionStartY = currentScrollY;
+        lastToggleScrollY = currentScrollY;
         return;
       }
 
@@ -123,19 +128,33 @@ function MainLayout() {
       }
 
       const traveledDistance = Math.abs(currentScrollY - directionStartY);
+      const distanceFromLastToggle = Math.abs(currentScrollY - lastToggleScrollY);
 
-      if (direction > 0 && isNavVisible && traveledDistance >= hideThreshold) {
+      if (
+        direction > 0 &&
+        isNavVisible &&
+        currentScrollY >= minScrollBeforeHide &&
+        traveledDistance >= hideThreshold &&
+        distanceFromLastToggle >= minDistanceBetweenToggles
+      ) {
         isNavVisible = false;
         setIsMainNavVisible(false);
         lockUntil = now + toggleLockMs;
         direction = 0;
         directionStartY = currentScrollY;
-      } else if (direction < 0 && !isNavVisible && traveledDistance >= showThreshold) {
+        lastToggleScrollY = currentScrollY;
+      } else if (
+        direction < 0 &&
+        !isNavVisible &&
+        traveledDistance >= showThreshold &&
+        distanceFromLastToggle >= minDistanceBetweenToggles
+      ) {
         isNavVisible = true;
         setIsMainNavVisible(true);
         lockUntil = now + toggleLockMs;
         direction = 0;
         directionStartY = currentScrollY;
+        lastToggleScrollY = currentScrollY;
       }
 
       lastScrollY = currentScrollY;
@@ -455,7 +474,7 @@ function MainLayout() {
 
         <div className={`main-nav-slot ${isMainNavVisible ? "" : "main-nav-slot-hidden"}`}>
           <nav
-            className={`main-nav ${isMainNavVisible ? "" : "main-nav-hidden"}`}
+            className="main-nav"
             aria-label="Điều hướng chính"
           >
             {menuItems.map((item) => (

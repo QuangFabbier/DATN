@@ -1311,3 +1311,23 @@ Ghi chú cấu trúc chạy local sau pull:
 - frontend ở `ecommerce/fe`
 - backend ở `ecommerce/be`
 - xem thêm [SETUP_AFTER_PULL.md](./SETUP_AFTER_PULL.md)
+
+---
+
+## 15. Update 2026-05-21 (Main Nav Scroll Behavior)
+
+- Đã cập nhật hành vi ẩn/hiện thanh điều hướng desktop (`main-nav`) theo hướng cuộn:
+  - cuộn xuống: ẩn
+  - cuộn lên: hiện lại
+- Đã đồng bộ để chữ + nền thanh nav đổi trạng thái cùng lúc (không còn lệch nhịp mất chữ trước).
+- Đã thêm các cơ chế giảm giật khi thao tác kéo/giữ scrollbar:
+  - `hideThreshold` / `showThreshold`
+  - `minScrollBeforeHide`
+  - `toggleLockMs`
+  - `minDistanceBetweenToggles`
+- Đã tinh chỉnh animation `main-nav-slot` theo hướng mượt hơn khi thu/giãn.
+- File thay đổi:
+  - `fe/src/components/MainLayout.jsx`
+  - `fe/src/App.css`
+- Verify:
+  - `npm run lint` pass

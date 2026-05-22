@@ -10,7 +10,7 @@ import { buildProductPricing, getProductId, getProductImages, getProductStock } 
 import { formatCurrency } from '../utils/formatCurrency'
 import { wait } from '../utils/timing'
 
-function QuickViewModal({ onClose, product }) {
+function QuickViewModal({ onClose, product, flashSaleCampaign = null }) {
   const { addToCart } = useCart()
   const { isFavorite, toggleFavorite } = useFavorites()
   const { isCompared, toggleCompare } = useCompare()
@@ -23,7 +23,8 @@ function QuickViewModal({ onClose, product }) {
   const productImages = getProductImages(product)
   const isProductFavorite = isFavorite(productId)
   const isProductCompared = isCompared(productId)
-  const { discountPercent, originalPrice } = buildProductPricing(product)
+  const { discountPercent, originalPrice } = buildProductPricing(product, flashSaleCampaign)
+  const hasDiscount = discountPercent > 0
 
   async function handleAddToCart() {
     if (isAddingToCart) {
@@ -105,8 +106,8 @@ function QuickViewModal({ onClose, product }) {
             <p className="product-category-tag">{product.category}</p>
             <div className="detail-price-stack">
               <p className="detail-price">{formatCurrency(product.price)}</p>
-              <p className="product-original-price">{formatCurrency(originalPrice)}</p>
-              <span className="product-discount-badge inline">-{discountPercent}%</span>
+              {hasDiscount ? <p className="product-original-price">{formatCurrency(originalPrice)}</p> : null}
+              {hasDiscount ? <span className="product-discount-badge inline">-{discountPercent}%</span> : null}
             </div>
             <p className="detail-description">{product.description}</p>
             <div className="product-meta-grid">
