@@ -8,6 +8,7 @@ import { useCart } from '../hooks/useCart'
 import { useInitialRender } from '../hooks/useInitialRender'
 import { useToast } from '../hooks/useToast'
 import { createOrderRecord } from '../services/orderStorage'
+import { getActiveFlashSaleCampaign } from '../utils/flashSale'
 import { buildProductPricing } from '../utils/product'
 import { formatCurrency } from '../utils/formatCurrency'
 import { wait } from '../utils/timing'
@@ -45,9 +46,10 @@ function Orders() {
   const [errors, setErrors] = useState({})
   const [successMessage, setSuccessMessage] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const flashSaleCampaign = getActiveFlashSaleCampaign()
 
   const cartTotalOriginal = cartItems.reduce((total, item) => {
-    const { originalPrice } = buildProductPricing(item)
+    const { originalPrice } = buildProductPricing(item, flashSaleCampaign)
     return total + originalPrice * item.quantity
   }, 0)
   const cartSavings = Math.max(0, cartTotalOriginal - cartTotal)

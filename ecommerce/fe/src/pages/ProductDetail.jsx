@@ -10,6 +10,7 @@ import { useCompare } from '../hooks/useCompare'
 import { useFavorites } from '../hooks/useFavorites'
 import { useToast } from '../hooks/useToast'
 import { getProductById } from '../services/productService'
+import { getActiveFlashSaleCampaign } from '../utils/flashSale'
 import { formatCurrency } from '../utils/formatCurrency'
 import {
   buildProductPricing,
@@ -54,12 +55,14 @@ function ProductDetail() {
   }, [id])
 
   const productId = getProductId(product)
+  const flashSaleCampaign = useMemo(() => getActiveFlashSaleCampaign(), [id])
   const stock = getProductStock(product)
   const isOutOfStock = stock === 0
   const isProductFavorite = productId ? isFavorite(productId) : false
   const isProductCompared = productId ? isCompared(productId) : false
   const productImages = useMemo(() => getProductImages(product), [product])
-  const { discountPercent, originalPrice, discountAmount } = buildProductPricing(product)
+  const { discountPercent, originalPrice, discountAmount } = buildProductPricing(product, flashSaleCampaign)
+  const hasDiscount = discountPercent > 0
 
   const breadcrumbs = [
     { label: 'Trang chủ', to: '/' },
@@ -192,11 +195,13 @@ function ProductDetail() {
 
           <div className="detail-price-stack">
             <p className="detail-price">{formatCurrency(product.price)}</p>
-            <p className="product-original-price">{formatCurrency(originalPrice)}</p>
-            <span className="product-discount-badge inline">-{discountPercent}%</span>
+            {hasDiscount ? <p className="product-original-price">{formatCurrency(originalPrice)}</p> : null}
+            {hasDiscount ? <span className="product-discount-badge inline">-{discountPercent}%</span> : null}
           </div>
 
-          <p className="detail-savings">Tiết kiệm {formatCurrency(discountAmount)} so với giá niêm yết.</p>
+          {hasDiscount ? (
+            <p className="detail-savings">Tiết kiệm {formatCurrency(discountAmount)} so với giá niêm yết.</p>
+          ) : null}
           <p className="detail-description">{product.description}</p>
 
           <div className="detail-meta-grid">
