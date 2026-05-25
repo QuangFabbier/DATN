@@ -1,93 +1,76 @@
-import { GoogleGenerativeAI } from "@google/generative-ai";
+import { GoogleGenerativeAI } from '@google/generative-ai'
+import { safeJsonParseFromText } from './aiJsonUtils.js'
 
-function normalizeJsonResponse(rawText = "") {
-  const responseText = String(rawText || "").trim();
-
-  if (!responseText) {
-    return null;
-  }
-
-  const fencedMatch = responseText.match(/```(?:json)?\s*([\s\S]*?)```/i);
-  const jsonCandidate = fencedMatch?.[1] || responseText;
-
-  try {
-    return JSON.parse(jsonCandidate);
-  } catch {
-    return null;
-  }
+function buildError(message, statusCode = 500) {
+  const error = new Error(message)
+  error.statusCode = statusCode
+  return error
 }
 
-function buildPrompt({ message, context, candidateProducts }) {
-  return `
-Bạn là AI tư vấn mua sắm cho Nexora.
-
-NHIỆM VỤ:
-- Tư vấn bằng tiếng Việt, ngắn gọn, dễ hiểu.
-- Nếu user hỏi xem sản phẩm và không có như cầu khác thì cho user xem
-- CHỈ được dùng sản phẩm trong danh sách bên dưới.
-- Không được bịa sản phẩm ngoài danh sách.
-- Nếu không có sản phẩm phù hợp, nói rõ lý do và trả recommendedProductIds là mảng rỗng.
-- Ưu tiên tối đa 5 sản phẩm trong recommendedProductIds.
-
-RÀNG BUỘC TRẢ VỀ:
-- Chỉ trả về JSON hợp lệ, không thêm markdown/code fence.
-- JSON schema:
-{
-  "reply": "string",
-  "recommendedProductIds": ["string"]
-}
-
-NGỮ CẢNH NGƯỜI DÙNG:
-${JSON.stringify(context || {}, null, 2)}
-
-YÊU CẦU NGƯỜI DÙNG:
-${String(message || "").trim()}
-
-DANH SÁCH SẢN PHẨM CHO PHÉP:
-${JSON.stringify(candidateProducts, null, 2)}
-  `.trim();
-}
-
-function getGeminiModel() {
-  const apiKey = String(process.env.GEMINI_API_KEY || "").trim();
-  const modelName = String(
-    process.env.GEMINI_MODEL || "gemini-1.5-flash",
-  ).trim();
+function getGeminiConfig() {
+  const apiKey = String(process.env.GEMINI_API_KEY || '').trim()
+  const model = String(process.env.GEMINI_MODEL || 'gemini-1.5-flash').trim()
 
   if (!apiKey) {
-    const error = new Error("GEMINI_API_KEY chưa được cấu hình");
-    error.statusCode = 500;
-    throw error;
+    throw buildError('GEMINI_API_KEY chua duoc cau hinh', 500)
   }
 
-  const genAI = new GoogleGenerativeAI(apiKey);
-  return genAI.getGenerativeModel({ model: modelName });
+  return { apiKey, model }
 }
 
-export async function generateAiConsultation({
-  message,
-  context = {},
-  candidateProducts = [],
-}) {
-  const model = getGeminiModel();
-  const prompt = buildPrompt({ message, context, candidateProducts });
+function getGenerativeModel() {
+  const { apiKey, model } = getGeminiConfig()
+  const genAI = new GoogleGenerativeAI(apiKey)
+  return genAI.getGenerativeModel({ model })
+}
 
-  const result = await model.generateContent(prompt);
-  const responseText = result?.response?.text?.() || "";
-  const parsedResponse = normalizeJsonResponse(responseText);
+function getTemperature(explicitTemperature) {
+  const fromEnv = Number(process.env.GEMINI_TEMPERATURE)
 
-  if (!parsedResponse || typeof parsedResponse !== "object") {
-    const error = new Error("AI trả về dữ liệu không hợp lệ");
-    error.statusCode = 502;
-    throw error;
+  if (Number.isFinite(explicitTemperature)) {
+    return explicitTemperature
   }
 
-  return {
-    reply: String(parsedResponse.reply || "").trim(),
-    recommendedProductIds: Array.isArray(parsedResponse.recommendedProductIds)
-      ? parsedResponse.recommendedProductIds
-          .map((id) => String(id || "").trim())
-          .filter(Boolean)
-      : [],
-  };
+  if (Number.isFinite(fromEnv)) {
+    return Math.min(1, Math.max(0, fromEnv))
+  }
+
+  return 0.2
+}
+
+async function generateGeminiText(prompt, { temperature } = {}) {
+  const model = getGenerativeModel()
+  const nextTemperature = getTemperature(temperature)
+
+  try {
+    const result = await model.generateContent({
+      contents: [{ role: 'user', parts: [{ text: String(prompt || '').trim() }] }],
+      generationConfig: {
+        temperature: nextTemperature,
+        responseMimeType: 'application/json',
+      },
+    })
+
+    return result?.response?.text?.() || ''
+  } catch {
+    const fallbackResult = await model.generateContent({
+      contents: [{ role: 'user', parts: [{ text: String(prompt || '').trim() }] }],
+      generationConfig: {
+        temperature: nextTemperature,
+      },
+    })
+
+    return fallbackResult?.response?.text?.() || ''
+  }
+}
+
+export async function generateGeminiJson(prompt, options = {}) {
+  const text = await generateGeminiText(prompt, options)
+  const parsed = safeJsonParseFromText(text)
+
+  if (!parsed || typeof parsed !== 'object') {
+    throw buildError('AI tra ve JSON khong hop le', 502)
+  }
+
+  return parsed
 }

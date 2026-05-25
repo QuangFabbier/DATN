@@ -3625,7 +3625,12 @@ button:disabled {
   background: var(--color-bg-muted);
 }
 
-.ai-product-result-item div {
+.ai-product-result-body {
+  display: grid;
+  gap: 8px;
+}
+
+.ai-product-result-copy {
   display: grid;
   gap: 2px;
 }
@@ -3656,10 +3661,114 @@ button:disabled {
   line-height: 1.25;
 }
 
+.ai-product-result-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.button.button-small {
+  min-height: 32px;
+  padding: 6px 10px;
+  font-size: 12px;
+}
+
+.button.button-secondary {
+  background: var(--color-bg-muted);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+}
+
+.ai-quick-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.ai-quick-chip {
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-bg-muted) 85%, #ffffff);
+  color: var(--color-text);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 7px 10px;
+  cursor: pointer;
+  transition:
+    border-color 0.18s ease,
+    transform 0.18s ease;
+}
+
+.ai-quick-chip:hover:not(:disabled) {
+  transform: translateY(-1px);
+  border-color: color-mix(
+    in srgb,
+    var(--color-primary) 48%,
+    var(--color-border)
+  );
+}
+
+.ai-quick-chip:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
 .ai-answer {
   padding: 16px;
   border-radius: 16px;
   background: var(--color-bg-muted);
+}
+
+.ai-widget.ai-widget-shortcut {
+  pointer-events: none;
+}
+
+.ai-widget.ai-widget-shortcut .ai-widget-fab {
+  pointer-events: auto;
+}
+
+.ai-consultant-page {
+  gap: 18px;
+}
+
+.ai-consultant-shell {
+  min-height: min(78vh, 860px);
+  display: grid;
+  grid-template-rows: 1fr auto;
+  gap: 14px;
+  padding: 18px;
+  border: 1px solid var(--color-border);
+  border-radius: 24px;
+  background: var(--color-bg-panel);
+  box-shadow: var(--color-shadow);
+}
+
+.ai-consultant-messages {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.ai-consultant-messages .ai-message {
+  max-width: min(92%, 980px);
+}
+
+.ai-consultant-form {
+  display: grid;
+  gap: 10px;
+}
+
+.ai-consultant-form textarea {
+  width: 100%;
+  min-height: 100px;
+  resize: vertical;
+}
+
+.ai-consultant-form-actions {
+  display: flex;
+  justify-content: flex-end;
 }
 
 /* =========================
