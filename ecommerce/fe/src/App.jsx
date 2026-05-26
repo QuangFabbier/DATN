@@ -16,6 +16,7 @@ import AdminAccess from './pages/admin/AdminAccess'
 import AdminOrders from './pages/admin/AdminOrders'
 import AdminPaymentSettings from './pages/admin/AdminPaymentSettings'
 import AdminProducts from './pages/admin/AdminProducts'
+import AIConsultant from './pages/AIConsultant'
 import Cart from './pages/Cart'
 import Favorites from './pages/Favorites'
 import Home from './pages/Home'
@@ -51,12 +52,12 @@ function App() {
               <FavoritesProvider>
                 <CartProvider>
                   <CompareProvider>
-                    {/* Routes chính của website */}
                     <Routes>
                       <Route path="/" element={<MainLayout />}>
                         <Route index element={<Home />} />
                         <Route path="products" element={<Products />} />
                         <Route path="products/:id" element={<ProductDetail />} />
+                        <Route path="ai-consultant" element={<AIConsultant />} />
                         <Route path="cart" element={<Cart />} />
                         <Route path="favorites" element={<Favorites />} />
                         <Route path="orders" element={<Orders />} />
