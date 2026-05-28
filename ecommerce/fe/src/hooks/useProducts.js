@@ -1,4 +1,4 @@
-﻿import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { getProducts } from '../services/productService'
 
 export function useProducts() {
@@ -15,7 +15,7 @@ export function useProducts() {
         const data = await getProducts()
         setProducts(data)
       } catch {
-        setError('Không thể tải danh sách sản phẩm.')
+        setError('Khng th ti danh sch sn phm.')
       } finally {
         setLoading(false)
       }

@@ -25,7 +25,7 @@ function getStoredTheme() {
     return storedTheme
   }
 
-  return SYSTEM_THEME
+  return 'light'
 }
 
 function ThemeProvider({ children }) {

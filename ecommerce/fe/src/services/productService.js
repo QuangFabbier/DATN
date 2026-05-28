@@ -41,7 +41,7 @@ export async function getProducts() {
     const response = await axios.get(PRODUCTS_API_URL)
     return normalizeProductList(response.data)
   } catch (error) {
-    throw createProductServiceError(error, 'Không thể tải danh sách sản phẩm.')
+    throw createProductServiceError(error, 'Khng th ti danh sch sn phm.')
   }
 }
 
@@ -51,12 +51,12 @@ export async function getProductById(id) {
     const normalizedProduct = normalizeProduct(response.data)
 
     if (!normalizedProduct) {
-      throw new Error('Dữ liệu sản phẩm không hợp lệ')
+      throw new Error('D liu sn phm khng hp l')
     }
 
     return normalizedProduct
   } catch (error) {
-    throw createProductServiceError(error, 'Không thể tải chi tiết sản phẩm.')
+    throw createProductServiceError(error, 'Khng th ti chi tit sn phm.')
   }
 }
 
@@ -66,12 +66,12 @@ export async function createProduct(productData, token = '') {
     const normalizedProduct = normalizeProduct(response.data)
 
     if (!normalizedProduct) {
-      throw new Error('Dữ liệu sản phẩm mới không hợp lệ')
+      throw new Error('D liu sn phm mi khng hp l')
     }
 
     return normalizedProduct
   } catch (error) {
-    throw createProductServiceError(error, 'Không thể tạo sản phẩm.')
+    throw createProductServiceError(error, 'Khng th to sn phm.')
   }
 }
 
@@ -85,12 +85,12 @@ export async function updateProduct(productId, productData, token = '') {
     const normalizedProduct = normalizeProduct(response.data)
 
     if (!normalizedProduct) {
-      throw new Error('Dữ liệu sản phẩm cập nhật không hợp lệ')
+      throw new Error('D liu sn phm cp nht khng hp l')
     }
 
     return normalizedProduct
   } catch (error) {
-    throw createProductServiceError(error, 'Không thể cập nhật sản phẩm.')
+    throw createProductServiceError(error, 'Khng th cp nht sn phm.')
   }
 }
 
@@ -99,6 +99,6 @@ export async function deleteProduct(productId, token = '') {
     const response = await axios.delete(`${PRODUCTS_API_URL}/${productId}`, buildAuthRequestConfig(token))
     return response.data
   } catch (error) {
-    throw createProductServiceError(error, 'Không thể xóa sản phẩm.')
+    throw createProductServiceError(error, 'Khng th xa sn phm.')
   }
 }

@@ -1,4 +1,4 @@
-﻿import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { CartContext } from './CartContext'
 import { getProductStock, normalizeProduct } from '../utils/product'
 

@@ -1,4 +1,4 @@
-﻿import { useEffect, useEffectEvent, useMemo, useRef, useState } from 'react'
+import { useEffect, useEffectEvent, useMemo, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import EmptyState from '../components/EmptyState'
 import ProductCard from '../components/ProductCard'
@@ -31,12 +31,13 @@ const heroSlides = [
 
 const HOME_FLASH_SALE_LIMIT = 3
 const HOME_PRODUCT_LIMIT = 4
+const INITIAL_COUNTDOWN_NOW = Date.now()
 
 function Home() {
   const { searchKeyword } = useSearch()
   const [products, setProducts] = useState([])
   const [flashSaleCampaign, setFlashSaleCampaign] = useState(null)
-  const [countdownNow, setCountdownNow] = useState(Date.now())
+  const [countdownNow, setCountdownNow] = useState(INITIAL_COUNTDOWN_NOW)
   const [activeHeroSlideIndex, setActiveHeroSlideIndex] = useState(0)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
@@ -124,21 +125,25 @@ function Home() {
     () => new Set((flashSaleCampaign?.featuredProductIds || []).map((productId) => String(productId))),
     [flashSaleCampaign?.featuredProductIds],
   )
+  const featuredProductIds = useMemo(
+    () => flashSaleCampaign?.featuredProductIds || [],
+    [flashSaleCampaign?.featuredProductIds],
+  )
 
   const flashSaleProducts = useMemo(
     () => {
-      if (!flashSaleCampaign?.featuredProductIds?.length) {
+      if (!featuredProductIds.length) {
         return []
       }
 
       const productById = new Map(filteredProducts.map((product) => [getProductId(product), product]))
 
-      return flashSaleCampaign.featuredProductIds
+      return featuredProductIds
         .map((productId) => productById.get(String(productId)))
         .filter(Boolean)
         .slice(0, HOME_FLASH_SALE_LIMIT)
     },
-    [filteredProducts, flashSaleCampaign?.featuredProductIds],
+    [featuredProductIds, filteredProducts],
   )
 
   const regularProducts = useMemo(

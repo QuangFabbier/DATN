@@ -1,4 +1,4 @@
-﻿import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { AuthContext } from './AuthContext'
 import { getMe } from '../services/authService'
 

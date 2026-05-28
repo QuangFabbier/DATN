@@ -13,21 +13,41 @@ function normalizeId(value) {
 
 function resolveProductIds({ productIds, products }) {
   const idsFromBody = Array.isArray(productIds) ? productIds : []
-  const idsFromProducts = Array.isArray(products)
-    ? products.map((item) => item?._id || item?.id).filter(Boolean)
-    : []
+  const idsFromProducts = Array.isArray(products) ? products.map((item) => item?._id || item?.id).filter(Boolean) : []
 
   return [...new Set([...idsFromBody, ...idsFromProducts].map((value) => normalizeId(value)).filter(Boolean))]
 }
 
-function buildComparePrompt({ products, focus }) {
+function toGeminiProductBrief(product = {}) {
+  return {
+    id: String(product?.id || product?._id || '').trim(),
+    name: normalizeText(product?.name),
+    brand: normalizeText(product?.brand),
+    category: normalizeText(product?.category),
+    price: Number(product?.price || 0),
+    specs: Array.isArray(product?.specs)
+      ? product.specs
+          .map((spec) => `${normalizeText(spec?.label)}: ${normalizeText(spec?.value)}`.trim())
+          .filter(Boolean)
+          .slice(0, 6)
+      : [],
+    description: normalizeText(product?.description).slice(0, 220),
+  }
+}
+
+function buildComparePrompt({ products, focus, useCase }) {
+  const geminiProducts = Array.isArray(products) ? products.slice(0, 5).map(toGeminiProductBrief) : []
+
   return `
-Ban la AI Compare Explainer cho Nexora.
-Chi duoc so sanh dung danh sach san pham da cung cap.
+Bạn là AI Smart Compare của Nexora.
+Chỉ được so sánh đúng danh sách sản phẩm đã cung cấp.
 
-Tieu chi so sanh: gia, hieu nang, nhu cau hoc tap, gaming, pin, thiet ke, value for money.
+Phong cách trả lời:
+- Giống tech reviewer assistant.
+- Tập trung theo nhu cầu thực tế: học tập, gaming, pin, cơ động, value for money.
+- Ưu tiên ngắn gọn, lý do rõ ràng.
 
-Tra ve JSON hop le theo schema:
+Trả về JSON theo schema:
 {
   "summary": "string",
   "bestForStudy": { "productId": "string", "reason": "string" },
@@ -36,13 +56,16 @@ Tra ve JSON hop le theo schema:
   "recommendation": "string"
 }
 
-Neu khong du thong tin cho tieu chi nao, ghi reason ngan gon va co the de productId rong.
+Nếu thiếu dữ liệu, reason cần nói rõ "chưa đủ dữ liệu".
 
-Ngu canh bo sung:
+Ngữ cảnh:
 ${JSON.stringify(focus || {}, null, 2)}
 
-San pham:
-${JSON.stringify(products, null, 2)}
+Use case ưu tiên:
+${normalizeText(useCase || '') || 'Chưa rõ'}
+
+Danh sách sản phẩm:
+${JSON.stringify(geminiProducts, null, 2)}
   `.trim()
 }
 
@@ -65,33 +88,33 @@ function fallbackPick(products = [], strategy = 'value') {
   return [...source].sort((a, b) => Number(a.price || 0) - Number(b.price || 0))[0]
 }
 
-function fallbackCompare(products = []) {
+function fallbackCompare(products = [], useCase = '') {
   const bestForStudy = fallbackPick(products, 'study')
   const bestForGaming = fallbackPick(products, 'gaming')
   const bestValue = fallbackPick(products, 'value')
 
   return {
-    summary: 'Minh da so sanh theo gia, ton kho va mo ta hien co trong database Nexora.',
+    summary: `Mình đã so sánh nhanh theo giá, tồn kho và mô tả hiện có trong dữ liệu Nexora${useCase ? ` cho nhu cầu ${useCase}` : ''}.`,
     bestForStudy: {
       productId: normalizeId(bestForStudy?.id),
-      reason: bestForStudy ? `${bestForStudy.name} co muc gia de tiep can cho hoc tap.` : 'Chua du du lieu.',
+      reason: bestForStudy ? `${bestForStudy.name} có mức giá dễ tiếp cận cho học tập.` : 'Chưa đủ dữ liệu.',
     },
     bestForGaming: {
       productId: normalizeId(bestForGaming?.id),
-      reason: bestForGaming ? `${bestForGaming.name} co dinh gia cao hon, thuong phu hop nhom uu tien hieu nang.` : 'Chua du du lieu.',
+      reason: bestForGaming ? `${bestForGaming.name} thiên hiệu năng hơn trong nhóm hiện tại.` : 'Chưa đủ dữ liệu.',
     },
     bestValue: {
       productId: normalizeId(bestValue?.id),
-      reason: bestValue ? `${bestValue.name} la lua chon can bang nhat theo gia hien tai.` : 'Chua du du lieu.',
+      reason: bestValue ? `${bestValue.name} cân bằng nhất giữa giá và nhu cầu phổ thông.` : 'Chưa đủ dữ liệu.',
     },
-    recommendation: 'Ban nen uu tien nhu cau su dung chinh, sau do chot mau co ton kho va gia hop ly nhat.',
+    recommendation: 'Nếu ưu tiên ổn định dài hạn, hãy chốt mẫu còn hàng tốt và phù hợp nhu cầu chính.',
   }
 }
 
 function sanitizePick(item, fallbackItem) {
   return {
     productId: normalizeId(item?.productId || fallbackItem?.productId || ''),
-    reason: normalizeText(item?.reason || fallbackItem?.reason || 'Chua co nhan xet.'),
+    reason: normalizeText(item?.reason || fallbackItem?.reason || 'Chưa có nhận xét.'),
   }
 }
 
@@ -101,40 +124,69 @@ export async function compareProductsWithAi({ productIds, products, focus = {} }
     .slice(0, 5)
 
   if (ids.length < 2) {
-    const error = new Error('Can it nhat 2 san pham de so sanh.')
+    const error = new Error('Cần ít nhất 2 sản phẩm để so sánh.')
     error.statusCode = 400
     throw error
   }
 
   const dbProducts = await Product.find({ _id: { $in: ids } })
-    .select('name category description price stock image specs')
+    .select('name category brand description price stock image specs tags useCases')
     .lean()
 
   if (dbProducts.length < 2) {
-    const error = new Error('Khong tim thay du san pham hop le trong database de so sanh.')
+    const error = new Error('Không tìm thấy đủ sản phẩm hợp lệ trong database để so sánh.')
     error.statusCode = 404
     throw error
   }
 
   const mappedProducts = dbProducts.map(mapProductForResponse)
-  const fallback = fallbackCompare(mappedProducts)
+  const useCase = normalizeText(focus?.useCase || focus?.question || '')
+  const fallback = fallbackCompare(mappedProducts, useCase)
+
+  function toPickSummary(pick) {
+    if (!pick?.productId) {
+      return normalizeText(pick?.reason || 'Chưa đủ dữ liệu.')
+    }
+
+    const matched = mappedProducts.find((item) => item.id === pick.productId)
+    const productName = matched?.name || 'San pham'
+    const reason = normalizeText(pick?.reason || '')
+    return reason ? `${productName}: ${reason}` : productName
+  }
 
   try {
-    const prompt = buildComparePrompt({ products: mappedProducts, focus })
-    const aiJson = await generateGeminiJson(prompt, { temperature: 0.15 })
+    const prompt = buildComparePrompt({ products: mappedProducts, focus, useCase })
+    const aiJson = await generateGeminiJson(prompt, { temperature: 0.1, route: 'compare.main' })
+    const bestForStudyPick = sanitizePick(aiJson?.bestForStudy, fallback.bestForStudy)
+    const bestForGamingPick = sanitizePick(aiJson?.bestForGaming, fallback.bestForGaming)
+    const bestValuePick = sanitizePick(aiJson?.bestValue, fallback.bestValue)
 
     return {
       comparedProducts: mappedProducts,
       summary: normalizeText(aiJson?.summary || fallback.summary),
-      bestForStudy: sanitizePick(aiJson?.bestForStudy, fallback.bestForStudy),
-      bestForGaming: sanitizePick(aiJson?.bestForGaming, fallback.bestForGaming),
-      bestValue: sanitizePick(aiJson?.bestValue, fallback.bestValue),
+      bestForStudy: toPickSummary(bestForStudyPick),
+      bestForGaming: toPickSummary(bestForGamingPick),
+      bestValue: toPickSummary(bestValuePick),
+      bestForStudyPick,
+      bestForGamingPick,
+      bestValuePick,
       recommendation: normalizeText(aiJson?.recommendation || fallback.recommendation),
     }
   } catch {
+    const bestForStudyPick = fallback.bestForStudy
+    const bestForGamingPick = fallback.bestForGaming
+    const bestValuePick = fallback.bestValue
+
     return {
       comparedProducts: mappedProducts,
-      ...fallback,
+      summary: fallback.summary,
+      bestForStudy: toPickSummary(bestForStudyPick),
+      bestForGaming: toPickSummary(bestForGamingPick),
+      bestValue: toPickSummary(bestValuePick),
+      bestForStudyPick,
+      bestForGamingPick,
+      bestValuePick,
+      recommendation: fallback.recommendation,
     }
   }
 }

@@ -10,8 +10,42 @@ const SCORE_WEIGHTS = {
   preferredBrand: 5,
 }
 
+const CANONICAL_CATEGORY_BY_FOLD = {
+  laptop: 'Laptop',
+  'dien thoai': 'Điện thoại',
+  'may tinh bang': 'Máy tính bảng',
+  'am thanh': 'Âm thanh',
+  'man hinh': 'Màn hình',
+  'phu kien': 'Phụ kiện',
+  'noi that': 'Nội thất',
+}
+
 function normalizeText(value = '') {
   return String(value || '').trim()
+}
+
+function resolveCanonicalCategory(rawCategory = '') {
+  const foldedCategory = normalizeTextFold(rawCategory)
+  if (!foldedCategory) {
+    return ''
+  }
+
+  return CANONICAL_CATEGORY_BY_FOLD[foldedCategory] || normalizeText(rawCategory)
+}
+
+function isCategoryMatch(productCategory = '', targetCategory = '') {
+  const normalizedProductCategory = normalizeTextFold(productCategory)
+  const normalizedTargetCategory = normalizeTextFold(targetCategory)
+
+  if (!normalizedProductCategory || !normalizedTargetCategory) {
+    return false
+  }
+
+  return (
+    normalizedProductCategory === normalizedTargetCategory ||
+    normalizedProductCategory.includes(normalizedTargetCategory) ||
+    normalizedTargetCategory.includes(normalizedProductCategory)
+  )
 }
 
 function tokenizeText(text = '') {
@@ -45,6 +79,15 @@ function findBrandInProductName(name = '') {
   const normalized = normalizeTextFold(name)
   const firstToken = normalized.split(/[^a-z0-9]+/g).find(Boolean)
   return firstToken || ''
+}
+
+function resolveProductBrand(product = {}) {
+  const normalizedBrand = normalizeTextFold(product?.brand || '')
+  if (normalizedBrand) {
+    return normalizedBrand
+  }
+
+  return findBrandInProductName(product?.name || '')
 }
 
 function scoreProduct(product, intent = {}) {
@@ -123,7 +166,14 @@ function buildProductQuery(intent = {}) {
   const query = {}
 
   if (intent?.category) {
-    query.category = { $regex: normalizeText(intent.category), $options: 'i' }
+    const rawCategory = normalizeText(intent.category)
+    const normalizedCategory = normalizeTextFold(rawCategory)
+    const canonicalCategory = resolveCanonicalCategory(rawCategory)
+    query.$or = [
+      { category: { $regex: rawCategory, $options: 'i' } },
+      { category: { $regex: canonicalCategory, $options: 'i' } },
+      { searchableText: { $regex: normalizedCategory, $options: 'i' } },
+    ]
   }
 
   const budgetMax = Number(intent?.budget?.max)
@@ -139,6 +189,7 @@ export function mapProductForResponse(product) {
     id: String(product?._id || product?.id || ''),
     name: normalizeText(product?.name),
     category: normalizeText(product?.category),
+    brand: normalizeText(product?.brand),
     description: normalizeText(product?.description),
     price: Number(product?.price || 0),
     stock: Number(product?.stock || 0),
@@ -156,11 +207,13 @@ export function mapProductForResponse(product) {
 
 export async function matchProductsByIntent(intent, { limit = 5 } = {}) {
   const safeLimit = Math.min(5, Math.max(3, Number(limit) || 5))
+  const requestedCategory = normalizeText(intent?.category)
+  const hasCategoryConstraint = Boolean(requestedCategory)
   const budgetMax = Number(intent?.budget?.max)
   const hasBudgetLimit = Number.isFinite(budgetMax) && budgetMax > 0
   const query = buildProductQuery(intent)
   const candidates = await Product.find(query)
-    .select('name category description price stock image specs createdAt')
+    .select('name category brand description price stock image specs searchableText createdAt')
     .sort({ createdAt: -1 })
     .limit(120)
     .lean()
@@ -168,8 +221,14 @@ export async function matchProductsByIntent(intent, { limit = 5 } = {}) {
   const fallbackCandidates =
     candidates.length > 0
       ? candidates
-      : await Product.find({})
-          .select('name category description price stock image specs createdAt')
+      : hasCategoryConstraint
+        ? await Product.find({})
+          .select('name category brand description price stock image specs searchableText createdAt')
+          .sort({ createdAt: -1 })
+          .limit(120)
+          .lean()
+        : await Product.find({})
+          .select('name category brand description price stock image specs searchableText createdAt')
           .sort({ createdAt: -1 })
           .limit(120)
           .lean()
@@ -195,18 +254,33 @@ export async function matchProductsByIntent(intent, { limit = 5 } = {}) {
       return Number(a.product?.price || 0) - Number(b.product?.price || 0)
     })
 
-  const categoryMatchedProducts = intent?.category
-    ? scoredProducts.filter((item) => Number(item?.scoreBreakdown?.category || 0) > 0)
+  const categoryMatchedProducts = hasCategoryConstraint
+    ? scoredProducts.filter((item) => isCategoryMatch(item?.product?.category, requestedCategory))
     : []
 
-  const rankedProducts = categoryMatchedProducts.length > 0 ? categoryMatchedProducts : scoredProducts
+  const rankedProducts = hasCategoryConstraint
+    ? categoryMatchedProducts
+    : scoredProducts
+
+  const avoidBrandSet = new Set(
+    Array.isArray(intent?.avoidBrands)
+      ? intent.avoidBrands.map((brand) => normalizeTextFold(brand)).filter(Boolean)
+      : [],
+  )
+
+  const avoidFilteredProducts =
+    avoidBrandSet.size > 0
+      ? rankedProducts.filter((item) => !avoidBrandSet.has(resolveProductBrand(item?.product)))
+      : rankedProducts
+
+  const avoidAwareProducts = avoidFilteredProducts.length > 0 ? avoidFilteredProducts : rankedProducts
 
   const budgetMatchedProducts = hasBudgetLimit
-    ? rankedProducts.filter((item) => Number(item?.product?.price || 0) <= budgetMax)
+    ? avoidAwareProducts.filter((item) => Number(item?.product?.price || 0) <= budgetMax)
     : []
 
   // If there are products within budget, only return those.
-  const budgetAwareProducts = budgetMatchedProducts.length > 0 ? budgetMatchedProducts : rankedProducts
+  const budgetAwareProducts = budgetMatchedProducts.length > 0 ? budgetMatchedProducts : avoidAwareProducts
   const topScoredProducts = budgetAwareProducts.slice(0, safeLimit)
 
   return {

@@ -66,7 +66,7 @@ export async function getPaymentSettings() {
     const response = await axios.get(PAYMENT_SETTINGS_API_URL)
     return normalizePaymentSettings(response?.data?.paymentSettings || {})
   } catch (error) {
-    throw createPaymentSettingServiceError(error, 'Không thể tải cấu hình thanh toán.')
+    throw createPaymentSettingServiceError(error, 'Khng th ti cu hnh thanh ton.')
   }
 }
 
@@ -79,6 +79,6 @@ export async function updatePaymentSettings(token, payload = {}) {
     )
     return normalizePaymentSettings(response?.data?.paymentSettings || {})
   } catch (error) {
-    throw createPaymentSettingServiceError(error, 'Không thể cập nhật cấu hình thanh toán.')
+    throw createPaymentSettingServiceError(error, 'Khng th cp nht cu hnh thanh ton.')
   }
 }

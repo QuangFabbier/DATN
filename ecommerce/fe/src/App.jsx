@@ -1,4 +1,4 @@
-﻿import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import './App.css'
 import AccountLayout from './components/account/AccountLayout'
 import AdminLayout from './components/admin/AdminLayout'

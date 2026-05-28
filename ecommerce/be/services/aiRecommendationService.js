@@ -1,19 +1,37 @@
-import { generateGeminiJson } from './geminiService.js'
+﻿import { generateGeminiJson } from './geminiService.js'
 
 function normalizeText(value = '') {
   return String(value || '').trim()
 }
 
-function buildRecommendationPrompt({ message, intent, topProducts }) {
-  return `
-Bạn là AI Shopping Assistant của Nexora. Chỉ được dùng danh sách sản phẩm backend đã chọn.
+function toGeminiProductBrief(product = {}) {
+  return {
+    id: String(product?.id || product?._id || '').trim(),
+    name: normalizeText(product?.name),
+    brand: normalizeText(product?.brand),
+    category: normalizeText(product?.category),
+    price: Number(product?.price || 0),
+    specs: Array.isArray(product?.specs)
+      ? product.specs
+          .map((spec) => `${normalizeText(spec?.label)}: ${normalizeText(spec?.value)}`.trim())
+          .filter(Boolean)
+          .slice(0, 6)
+      : [],
+    description: normalizeText(product?.description).slice(0, 220),
+  }
+}
 
-Mục tiêu:
-- Tư vấn bằng tiếng Việt có dấu, ngắn gọn, rõ ràng.
-- Trình bày đã hiểu nhu cầu, tiêu chí, lý do chọn từng sản phẩm.
-- Chỉ ra 1 sản phẩm phù hợp nhất.
-- Nếu thiếu thông tin, hỏi thêm 1 câu ngắn.
-- Không được đề xuất sản phẩm ngoài danh sách.
+function buildRecommendationPrompt({ message, intent, topProducts }) {
+  const geminiProducts = Array.isArray(topProducts) ? topProducts.slice(0, 5).map(toGeminiProductBrief) : []
+
+  return `
+Bạn là AI Shopping Assistant của Nexora.
+Chỉ được tư vấn dựa trên danh sách sản phẩm đã cung cấp.
+
+Mục tiêu trả lời:
+- Ngắn gọn, tự nhiên, như tư vấn viên bán hàng thật.
+- Ưu tiên bám sát nhu cầu, ngân sách, mục đích sử dụng.
+- Nếu còn thiếu dữ liệu, hỏi đúng 1 câu ngắn để làm rõ.
 
 Bắt buộc trả về JSON hợp lệ:
 {
@@ -23,39 +41,48 @@ Bắt buộc trả về JSON hợp lệ:
   "followUpQuestion": "string"
 }
 
-Intent:
+Quy tắc nội dung:
+- reply tối đa 4 câu.
+- Nếu needMoreInfo=true thì bestProductId để rỗng.
+- Không đề xuất sản phẩm ngoài danh sách bên dưới.
+
+Intent hiện tại:
 ${JSON.stringify(intent, null, 2)}
 
-Câu user:
+Tin nhắn người dùng:
 ${normalizeText(message)}
 
-Top products:
-${JSON.stringify(topProducts, null, 2)}
+Danh sách sản phẩm đã lọc relevance:
+${JSON.stringify(geminiProducts, null, 2)}
   `.trim()
 }
 
 function buildFallbackReply(intent, topProducts) {
   if (!Array.isArray(topProducts) || topProducts.length === 0) {
     return {
-      reply: 'Hiện chưa có sản phẩm phù hợp trong kho. Bạn có thể nới rộng tiêu chí hoặc ngân sách để mình lọc lại.',
+      reply: 'Hiện mình chưa thấy mẫu thật sự phù hợp trong kho theo tiêu chí hiện tại.',
       bestProductId: '',
       needMoreInfo: true,
-      followUpQuestion: 'Bạn có thể cho mình biết thêm nhu cầu ưu tiên nhất không?',
+      followUpQuestion: 'Bạn muốn nới ngân sách nhẹ hoặc đổi ưu tiên chính để mình lọc lại không?',
     }
   }
 
   const topOne = topProducts[0]
-  const priorities = Array.isArray(intent?.priorities) && intent.priorities.length > 0
-    ? intent.priorities.join(', ')
-    : 'hiệu năng và độ phù hợp nhu cầu'
+  const shortlist = topProducts
+    .slice(0, 3)
+    .map((product) => product.name)
+    .join(', ')
+
+  const reply =
+    intent?.needMoreInfo && intent?.followUpQuestion
+      ? `Mình đã lọc tạm theo thông tin hiện có và thấy ${shortlist} là những lựa chọn nổi bật. Trước khi chốt, ${intent.followUpQuestion.toLowerCase()}`
+      : `Mình đã lọc theo nhu cầu của bạn và chọn nhanh 3 mẫu phù hợp: ${shortlist}. Nếu cần chốt một mẫu cân bằng nhất lúc này thì mình nghiêng về ${topOne.name}.`
 
   return {
-    reply: `Mình đã phân tích nhu cầu và ưu tiên ${priorities}. ${topProducts
-      .map((product, index) => `${index + 1}) ${product.name}`)
-      .join(', ')} là các lựa chọn phù hợp trong kho. Lựa chọn cân bằng nhất hiện tại là ${topOne.name}. Bạn muốn mình so sánh kỹ hơn giữa các mẫu này không?`,
-    bestProductId: String(topOne.id || ''),
-    needMoreInfo: false,
-    followUpQuestion: '',
+    reply,
+    bestProductId: intent?.needMoreInfo ? '' : String(topOne.id || ''),
+    needMoreInfo: Boolean(intent?.needMoreInfo),
+    followUpQuestion: intent?.needMoreInfo ? String(intent?.followUpQuestion || '') : '',
   }
 }
 
@@ -68,7 +95,7 @@ export async function buildRecommendationExplanation({ message, intent, topProdu
 
   try {
     const prompt = buildRecommendationPrompt({ message, intent, topProducts })
-    const aiJson = await generateGeminiJson(prompt, { temperature: 0.2 })
+    const aiJson = await generateGeminiJson(prompt, { temperature: 0.12, route: 'chat.recommendation' })
 
     return {
       reply: normalizeText(aiJson?.reply || fallback.reply) || fallback.reply,

@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import CheckoutSteps from '../components/CheckoutSteps'
 import EmptyState from '../components/EmptyState'
@@ -5,13 +6,43 @@ import { CartSkeleton } from '../components/Skeleton'
 import { useCart } from '../hooks/useCart'
 import { useInitialRender } from '../hooks/useInitialRender'
 import { useToast } from '../hooks/useToast'
+import { analyzeCartWithAi } from '../services/aiService'
 import { formatCurrency } from '../utils/formatCurrency'
 import { getProductStock } from '../utils/product'
 
 function Cart() {
+  const defaultCartNeed = 'Tôi muốn kiểm tra giỏ hàng này có hợp lý không'
   const { cartItems, cartTotal, clearCart, removeFromCart, updateQuantity } = useCart()
   const isInitialRenderReady = useInitialRender()
   const { showToast } = useToast()
+  const [cartNeed, setCartNeed] = useState(defaultCartNeed)
+  const [isAiAnalyzing, setIsAiAnalyzing] = useState(false)
+  const [aiCartError, setAiCartError] = useState('')
+  const [aiCartResult, setAiCartResult] = useState(null)
+
+  async function handleAnalyzeCartWithAi() {
+    if (isAiAnalyzing || cartItems.length === 0) {
+      return
+    }
+
+    setIsAiAnalyzing(true)
+    setAiCartError('')
+
+    try {
+      const result = await analyzeCartWithAi({
+        cartItems: cartItems.map((item) => ({
+          productId: item.id,
+          quantity: item.quantity,
+        })),
+        userNeed: cartNeed.trim() || defaultCartNeed,
+      })
+      setAiCartResult(result)
+    } catch (requestError) {
+      setAiCartError(requestError?.message || 'Không thể phân tích giỏ hàng bằng AI lúc này.')
+    } finally {
+      setIsAiAnalyzing(false)
+    }
+  }
 
   if (!isInitialRenderReady) {
     return (
@@ -129,6 +160,79 @@ function Cart() {
               <Link to="/orders" className="button">
                 Đặt hàng
               </Link>
+            </div>
+            <div className="consultant-card cart-ai-card">
+              <div className="form-card-header">
+                <p className="eyebrow">AI Cart Analyzer</p>
+                <h3>AI phân tích giỏ hàng</h3>
+              </div>
+
+              <label htmlFor="cart-ai-need">
+                Nhu cầu cần AI phân tích
+                <textarea
+                  id="cart-ai-need"
+                  rows={3}
+                  value={cartNeed}
+                  onChange={(event) => setCartNeed(event.target.value)}
+                  placeholder={defaultCartNeed}
+                  disabled={isAiAnalyzing}
+                />
+              </label>
+
+              <div className="summary-actions">
+                <button type="button" className="button" onClick={handleAnalyzeCartWithAi} disabled={isAiAnalyzing}>
+                  {isAiAnalyzing ? 'AI đang phân tích...' : 'AI phân tích giỏ hàng'}
+                </button>
+              </div>
+
+              {aiCartError ? <p className="field-error">{aiCartError}</p> : null}
+
+              {aiCartResult?.analysis ? (
+                <div className="ai-answer cart-ai-answer">
+                  {aiCartResult.analysis.summary ? <p>{aiCartResult.analysis.summary}</p> : null}
+                  {aiCartResult.analysis.fitAssessment ? (
+                    <p>
+                      <strong>Độ phù hợp:</strong> {aiCartResult.analysis.fitAssessment}
+                    </p>
+                  ) : null}
+                  {aiCartResult.analysis.budgetAssessment ? (
+                    <p>
+                      <strong>Ngân sách:</strong> {aiCartResult.analysis.budgetAssessment}
+                    </p>
+                  ) : null}
+                  {aiCartResult.analysis.redundantItems?.length ? (
+                    <div className="ai-list-group">
+                      <strong>Món có thể dư thừa</strong>
+                      <ul>
+                        {aiCartResult.analysis.redundantItems.map((item, index) => (
+                          <li key={`${item.productId || 'redundant'}-${index}`}>{item.reason || item.productId}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  ) : null}
+                  {aiCartResult.analysis.missingAccessories?.length ? (
+                    <div className="ai-list-group">
+                      <strong>Món phụ kiện nên bổ sung</strong>
+                      <ul>
+                        {aiCartResult.analysis.missingAccessories.map((item, index) => (
+                          <li key={`${item.productId || 'missing'}-${index}`}>{item.reason || item.productId}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  ) : null}
+                  {aiCartResult.analysis.swapSuggestions?.length ? (
+                    <div className="ai-list-group">
+                      <strong>Đề xuất thay thế</strong>
+                      <ul>
+                        {aiCartResult.analysis.swapSuggestions.map((item, index) => (
+                          <li key={`${item.fromProductId || item.toProductId || 'swap'}-${index}`}>{item.reason}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  ) : null}
+                  {aiCartResult.analysis.finalRecommendation ? <p>{aiCartResult.analysis.finalRecommendation}</p> : null}
+                </div>
+              ) : null}
             </div>
           </aside>
         </div>
