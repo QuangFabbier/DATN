@@ -1,4 +1,4 @@
-﻿import { useContext } from 'react'
+import { useContext } from 'react'
 import { FavoritesContext } from '../context/FavoritesContext'
 
 export function useFavorites() {

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+﻿import { useEffect, useMemo, useState } from "react";
 import {
   Link,
   NavLink,
@@ -48,6 +48,7 @@ function MainLayout() {
   const [isFavoriteIconAnimated, setIsFavoriteIconAnimated] = useState(false);
   const [isMainNavVisible, setIsMainNavVisible] = useState(true);
   const isAdminRoute = location.pathname.startsWith("/admin");
+  const isHomeRoute = location.pathname === "/";
   const hasAdminAccess = isAuthenticated && user?.role === "admin";
   const accountProfile = useMemo(() => getProfile(user), [user]);
   const accountDisplayName =
@@ -214,6 +215,18 @@ function MainLayout() {
     navigate(`/products?category=${encodeURIComponent(category)}`);
   }
 
+  function handleProtectedCartNavigation(event, targetPath) {
+    if (!isAuthenticated) {
+      event.preventDefault();
+      setIsCartMenuOpen(false);
+      navigate("/login");
+      return;
+    }
+
+    setIsCartMenuOpen(false);
+    navigate(targetPath);
+  }
+
   return (
     <div className={`app-shell ${isAdminRoute ? "admin-shell-page" : ""}`}>
       <TopProgressBar />
@@ -342,14 +355,18 @@ function MainLayout() {
                         <NavLink
                           to="/cart"
                           className="button button-light"
-                          onClick={() => setIsCartMenuOpen(false)}
+                          onClick={(event) =>
+                            handleProtectedCartNavigation(event, "/cart")
+                          }
                         >
                           Xem giỏ hàng
                         </NavLink>
                         <NavLink
                           to="/orders"
                           className="button"
-                          onClick={() => setIsCartMenuOpen(false)}
+                          onClick={(event) =>
+                            handleProtectedCartNavigation(event, "/orders")
+                          }
                         >
                           Thanh toán
                         </NavLink>
@@ -653,7 +670,7 @@ function MainLayout() {
           isAdminRoute ? "main-content admin-page-content" : "main-content"
         }
       >
-        {!isAdminRoute ? (
+        {!isAdminRoute && isHomeRoute ? (
           <div className="side-picture-rails" aria-hidden="true">
             <aside className="side-picture-rail side-picture-rail-left">
               <div className="side-picture-sticky">
@@ -823,6 +840,12 @@ function MainLayout() {
             className={({ isActive }) =>
               isActive ? "mobile-bottom-link active" : "mobile-bottom-link"
             }
+            onClick={(event) => {
+              if (!isAuthenticated) {
+                event.preventDefault();
+                navigate("/login");
+              }
+            }}
           >
             <i className="fa-solid fa-cart-shopping" aria-hidden="true" />
             <span>Cart</span>

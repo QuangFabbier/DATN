@@ -9,6 +9,7 @@ import { useCart } from '../hooks/useCart'
 import { useCompare } from '../hooks/useCompare'
 import { useFavorites } from '../hooks/useFavorites'
 import { useToast } from '../hooks/useToast'
+import { explainProductWithAi } from '../services/aiService'
 import { getProductById } from '../services/productService'
 import { getActiveFlashSaleCampaign } from '../utils/flashSale'
 import { formatCurrency } from '../utils/formatCurrency'
@@ -20,6 +21,8 @@ import {
   normalizeProduct,
 } from '../utils/product'
 import { wait, withMinimumDelay } from '../utils/timing'
+
+const DEFAULT_AI_QUESTION = 'Sản phẩm này có đáng mua không? Phù hợp với ai?'
 
 function ProductDetail() {
   const { id } = useParams()
@@ -35,6 +38,10 @@ function ProductDetail() {
   const [isAddingToCart, setIsAddingToCart] = useState(false)
   const [isTogglingFavorite, setIsTogglingFavorite] = useState(false)
   const [isBuyingNow, setIsBuyingNow] = useState(false)
+  const [aiQuestion, setAiQuestion] = useState(DEFAULT_AI_QUESTION)
+  const [isAiAnalyzing, setIsAiAnalyzing] = useState(false)
+  const [aiExplainError, setAiExplainError] = useState('')
+  const [aiExplainResult, setAiExplainResult] = useState(null)
 
   useEffect(() => {
     async function fetchProduct() {
@@ -44,6 +51,9 @@ function ProductDetail() {
         const data = await withMinimumDelay(getProductById(id), 220)
         setProduct(normalizeProduct(data))
         setQuantity(1)
+        setAiExplainError('')
+        setAiExplainResult(null)
+        setAiQuestion(DEFAULT_AI_QUESTION)
       } catch (requestError) {
         setError(requestError.status === 404 ? 'Không tìm thấy sản phẩm' : 'Không thể tải chi tiết sản phẩm')
       } finally {
@@ -55,7 +65,7 @@ function ProductDetail() {
   }, [id])
 
   const productId = getProductId(product)
-  const flashSaleCampaign = useMemo(() => getActiveFlashSaleCampaign(), [id])
+  const flashSaleCampaign = useMemo(() => getActiveFlashSaleCampaign(), [])
   const stock = getProductStock(product)
   const isOutOfStock = stock === 0
   const isProductFavorite = productId ? isFavorite(productId) : false
@@ -152,6 +162,27 @@ function ProductDetail() {
     await wait(380)
     setIsBuyingNow(false)
     navigate('/orders')
+  }
+
+  async function handleAskAiAboutProduct() {
+    if (!productId || isAiAnalyzing) {
+      return
+    }
+
+    setIsAiAnalyzing(true)
+    setAiExplainError('')
+
+    try {
+      const result = await explainProductWithAi({
+        productId,
+        question: aiQuestion.trim() || DEFAULT_AI_QUESTION,
+      })
+      setAiExplainResult(result)
+    } catch (requestError) {
+      setAiExplainError(requestError?.message || 'Không thể phân tích sản phẩm bằng AI lúc này.')
+    } finally {
+      setIsAiAnalyzing(false)
+    }
   }
 
   if (loading) {
@@ -308,6 +339,97 @@ function ProductDetail() {
               <i className="fa-solid fa-scale-balanced" aria-hidden="true" />
               <span>{isProductCompared ? 'Đang so sánh' : 'So sánh'}</span>
             </button>
+          </div>
+
+          <div className="consultant-card detail-ai-card">
+            <div className="form-card-header">
+              <p className="eyebrow">AI Product Explainer</p>
+              <h3>Hỏi AI về sản phẩm này</h3>
+            </div>
+
+            <label htmlFor="detail-ai-question">
+              Câu hỏi cho AI
+              <textarea
+                id="detail-ai-question"
+                rows={3}
+                value={aiQuestion}
+                onChange={(event) => setAiQuestion(event.target.value)}
+                placeholder={DEFAULT_AI_QUESTION}
+                disabled={isAiAnalyzing}
+              />
+            </label>
+
+            <div className="summary-actions">
+              <button type="button" className="button" onClick={handleAskAiAboutProduct} disabled={isAiAnalyzing}>
+                {isAiAnalyzing ? 'AI đang phân tích...' : 'Hỏi AI về sản phẩm này'}
+              </button>
+            </div>
+
+            {aiExplainError ? <p className="field-error">{aiExplainError}</p> : null}
+
+            {aiExplainResult?.answer ? (
+              <div className="ai-answer detail-ai-answer">
+                {aiExplainResult.answer.summary ? <p>{aiExplainResult.answer.summary}</p> : null}
+                {aiExplainResult.answer.suitableFor ? (
+                  <p>
+                    <strong>Phù hợp với:</strong> {aiExplainResult.answer.suitableFor}
+                  </p>
+                ) : null}
+                {aiExplainResult.answer.isWorthBuying ? (
+                  <p>
+                    <strong>Đáng mua không:</strong> {aiExplainResult.answer.isWorthBuying}
+                  </p>
+                ) : null}
+                {aiExplainResult.answer.fitForStudy ? (
+                  <p>
+                    <strong>Học tập:</strong> {aiExplainResult.answer.fitForStudy}
+                  </p>
+                ) : null}
+                {aiExplainResult.answer.fitForGaming ? (
+                  <p>
+                    <strong>Gaming:</strong> {aiExplainResult.answer.fitForGaming}
+                  </p>
+                ) : null}
+                {aiExplainResult.answer.fitForOffice ? (
+                  <p>
+                    <strong>Văn phòng:</strong> {aiExplainResult.answer.fitForOffice}
+                  </p>
+                ) : null}
+                {aiExplainResult.answer.strengths?.length ? (
+                  <div className="ai-list-group">
+                    <strong>Điểm mạnh</strong>
+                    <ul>
+                      {aiExplainResult.answer.strengths.map((item) => (
+                        <li key={`strength-${item}`}>{item}</li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : null}
+                {aiExplainResult.answer.weaknesses?.length ? (
+                  <div className="ai-list-group">
+                    <strong>Điểm cần cân nhắc</strong>
+                    <ul>
+                      {aiExplainResult.answer.weaknesses.map((item) => (
+                        <li key={`weakness-${item}`}>{item}</li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : null}
+                {aiExplainResult.answer.betterAlternatives?.length ? (
+                  <div className="ai-list-group">
+                    <strong>Gợi ý thay thế</strong>
+                    <ul>
+                      {aiExplainResult.answer.betterAlternatives.map((item, index) => (
+                        <li key={`${item.productId || 'alternative'}-${index}`}>
+                          {item.reason || item.productId}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : null}
+                {aiExplainResult.answer.finalRecommendation ? <p>{aiExplainResult.answer.finalRecommendation}</p> : null}
+              </div>
+            ) : null}
           </div>
         </div>
       </div>

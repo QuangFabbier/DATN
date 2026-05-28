@@ -1,4 +1,4 @@
-import { coerceBoolean, normalizeTextFold, sanitizeStringArray } from './aiJsonUtils.js'
+﻿import { coerceBoolean, normalizeTextFold, sanitizeStringArray } from './aiJsonUtils.js'
 import { generateGeminiJson } from './geminiService.js'
 
 const KNOWN_BRANDS = [
@@ -22,7 +22,7 @@ const CATEGORY_RULES = [
   { category: 'Laptop', keywords: ['laptop', 'notebook', 'macbook'] },
   { category: 'Dien thoai', keywords: ['dien thoai', 'smartphone', 'iphone', 'galaxy', 'redmi'] },
   { category: 'May tinh bang', keywords: ['tablet', 'ipad', 'may tinh bang'] },
-  { category: 'Am thanh', keywords: ['tai nghe', 'loa', 'audio', 'chong on', 'khong day'] },
+  { category: 'Am thanh', keywords: ['tai nghe', 'headphone', 'earbud', 'airpods', 'loa', 'audio', 'chong on'] },
   { category: 'Man hinh', keywords: ['man hinh', 'monitor', 'display'] },
   { category: 'Phu kien', keywords: ['phu kien', 'chuot', 'ban phim', 'sac du phong', 'cap sac'] },
   { category: 'Noi that', keywords: ['ghe', 'ban', 'den ban', 'noi that'] },
@@ -32,12 +32,13 @@ const PRIORITY_RULES = [
   { label: 'pin tot', keywords: ['pin', 'thoi luong pin', 'battery', 'pin trau'] },
   { label: 'nhe', keywords: ['nhe', 'mong', 'di dong'] },
   { label: 'hieu nang', keywords: ['hieu nang', 'manh', 'cpu', 'ram'] },
-  { label: 'gia tot', keywords: ['re', 'gia tot', 'tiet kiem', 'value'] },
+  { label: 'gia tot', keywords: ['gia re', 're hon', 'gia tot', 'tiet kiem', 'value'] },
   { label: 'chong on', keywords: ['chong on', 'noise cancelling', 'anc'] },
 ]
 
 const USE_CASE_RULES = [
-  { useCase: 'hoc lap trinh', keywords: ['lap trinh', 'code', 'dev', 'hoc'] },
+  { useCase: 'hoc lap trinh', keywords: ['lap trinh', 'code', 'dev', 'it', 'cntt'] },
+  { useCase: 'hoc tap', keywords: ['hoc', 'sinh vien', 'ghi chu', 'on thi'] },
   { useCase: 'hoc online', keywords: ['hoc online', 'zoom', 'meet', 'hoc tu xa'] },
   { useCase: 'gaming', keywords: ['game', 'gaming', 'fps', 'esports'] },
   { useCase: 'van phong', keywords: ['van phong', 'office', 'lam viec'] },
@@ -49,19 +50,22 @@ function normalizeText(value = '') {
 
 function parseBudgetFromMessage(message = '') {
   const normalized = normalizeTextFold(message)
-  const normalizedNoisy = normalized.replace(/\?/g, '')
   const budgetUnitPattern = '(trieu|triu|tr|k|nghin|ngin|vnd|dong)?'
+
   const underPattern = new RegExp(
     `(?:duoi|dui|khong qua|toi da|under|less than)\\s*(\\d+(?:[.,]\\d+)?)\\s*${budgetUnitPattern}`,
     'i',
   )
+
   const rangePattern = new RegExp(
     `(?:tu|from)\\s*(\\d+(?:[.,]\\d+)?)\\s*${budgetUnitPattern}\\s*(?:den|-|to)\\s*(\\d+(?:[.,]\\d+)?)\\s*${budgetUnitPattern}`,
     'i',
   )
 
-  const underMatch = normalized.match(underPattern) || normalizedNoisy.match(underPattern)
-  const rangeMatch = normalized.match(rangePattern) || normalizedNoisy.match(rangePattern)
+  const exactPattern = new RegExp(
+    `(?:tam|khoang|around|budget)?\\s*(\\d+(?:[.,]\\d+)?)\\s*${budgetUnitPattern}`,
+    'i',
+  )
 
   function toVnd(rawValue, rawUnit) {
     const value = Number(String(rawValue || '').replace(',', '.'))
@@ -70,11 +74,11 @@ function parseBudgetFromMessage(message = '') {
     }
 
     const unit = normalizeTextFold(rawUnit || '')
-    if (['trieu', 'tr'].includes(unit)) {
+    if (['trieu', 'triu', 'tr'].includes(unit)) {
       return Math.round(value * 1_000_000)
     }
 
-    if (['k', 'nghin'].includes(unit)) {
+    if (['k', 'nghin', 'ngin'].includes(unit)) {
       return Math.round(value * 1_000)
     }
 
@@ -89,10 +93,10 @@ function parseBudgetFromMessage(message = '') {
     return Math.round(value)
   }
 
+  const rangeMatch = normalized.match(rangePattern)
   if (rangeMatch) {
     const min = toVnd(rangeMatch[1], rangeMatch[2])
     const max = toVnd(rangeMatch[3], rangeMatch[4])
-
     return {
       min: min && max ? Math.min(min, max) : min,
       max: min && max ? Math.max(min, max) : max,
@@ -100,10 +104,22 @@ function parseBudgetFromMessage(message = '') {
     }
   }
 
+  const underMatch = normalized.match(underPattern)
   if (underMatch) {
     return {
       min: null,
       max: toVnd(underMatch[1], underMatch[2]),
+      currency: 'VND',
+    }
+  }
+
+  const hasBudgetIntent = /(budget|ngan sach|gia|tam|khoang|duoi|toi da|trieu|tr|vnd|dong)/i.test(normalized)
+  const exactMatch = normalized.match(exactPattern)
+  if (hasBudgetIntent && exactMatch) {
+    const exact = toVnd(exactMatch[1], exactMatch[2])
+    return {
+      min: null,
+      max: exact,
       currency: 'VND',
     }
   }
@@ -147,12 +163,18 @@ function inferPreferredBrands(message = '') {
 
 function inferAvoidBrands(message = '') {
   const normalized = normalizeTextFold(message)
-  const avoidMatches = [...normalized.matchAll(/(?:khong thich|tranh|avoid|khong muon)\s+([a-z0-9\-\s]+)/gi)]
+  const avoidMatches = [
+    ...normalized.matchAll(/(?:khong thich|khong muon|tranh|avoid|khong lay|khong chon)\s+([a-z0-9\-\s,]+)/gi),
+  ]
 
-  return avoidMatches
-    .flatMap((match) => String(match[1] || '').split(/[\s,]+/g))
-    .map((value) => value.trim())
-    .filter((value) => KNOWN_BRANDS.includes(value))
+  const candidates = avoidMatches.flatMap((match) => String(match[1] || '').split(/[\s,]+/g))
+
+  return sanitizeStringArray(
+    candidates
+      .map((value) => normalizeTextFold(value))
+      .filter((value) => KNOWN_BRANDS.includes(value)),
+    6,
+  )
 }
 
 function buildFallbackFollowUp(intent) {
@@ -188,7 +210,7 @@ function buildHeuristicIntent(message = '') {
 
 function sanitizeIntent(input = {}, fallback = {}) {
   const budgetCandidate = input?.budget && typeof input.budget === 'object' ? input.budget : fallback.budget || {}
-  
+
   function normalizeBudgetNumber(value) {
     if (value === null || value === undefined) {
       return null
@@ -218,6 +240,12 @@ function sanitizeIntent(input = {}, fallback = {}) {
   const normalizedInputFollowUp = normalizeText(input?.followUpQuestion || '')
   const normalizedFallbackFollowUp = normalizeText(fallback.followUpQuestion || '')
 
+  const avoidBrands = sanitizeStringArray(input?.avoidBrands || fallback.avoidBrands || [], 6)
+  const preferredBrandsRaw = sanitizeStringArray(input?.preferredBrands || fallback.preferredBrands || [], 6)
+  const preferredBrands = preferredBrandsRaw.filter(
+    (brand) => !avoidBrands.some((avoidBrand) => normalizeTextFold(avoidBrand) === normalizeTextFold(brand)),
+  )
+
   const intent = {
     category: normalizedInputCategory || normalizedFallbackCategory,
     budget: {
@@ -227,8 +255,8 @@ function sanitizeIntent(input = {}, fallback = {}) {
     },
     useCase: normalizedInputUseCase || normalizedFallbackUseCase,
     priorities: sanitizeStringArray(input?.priorities || fallback.priorities || [], 6),
-    preferredBrands: sanitizeStringArray(input?.preferredBrands || fallback.preferredBrands || [], 6),
-    avoidBrands: sanitizeStringArray(input?.avoidBrands || fallback.avoidBrands || [], 6),
+    preferredBrands,
+    avoidBrands,
     needMoreInfo: coerceBoolean(input?.needMoreInfo, false),
     followUpQuestion: normalizedInputFollowUp || normalizedFallbackFollowUp,
   }
@@ -243,15 +271,57 @@ function sanitizeIntent(input = {}, fallback = {}) {
   return intent
 }
 
+function areCategoriesEquivalent(firstValue = '', secondValue = '') {
+  const firstNormalized = normalizeTextFold(firstValue)
+  const secondNormalized = normalizeTextFold(secondValue)
+
+  if (!firstNormalized || !secondNormalized) {
+    return false
+  }
+
+  return (
+    firstNormalized === secondNormalized ||
+    firstNormalized.includes(secondNormalized) ||
+    secondNormalized.includes(firstNormalized)
+  )
+}
+
+function applyHeuristicOverrides(intent = {}, heuristicIntent = {}) {
+  const nextIntent = { ...intent }
+  const heuristicCategory = normalizeText(heuristicIntent?.category || '')
+  const intentCategory = normalizeText(nextIntent?.category || '')
+
+  // If user explicitly names a category in the latest message, prioritize it.
+  if (heuristicCategory && !areCategoriesEquivalent(intentCategory, heuristicCategory)) {
+    nextIntent.category = heuristicCategory
+  }
+
+  const heuristicBudget = heuristicIntent?.budget && typeof heuristicIntent.budget === 'object' ? heuristicIntent.budget : null
+  if (heuristicBudget?.max && Number(heuristicBudget.max) > 0 && !nextIntent?.budget?.max) {
+    nextIntent.budget = {
+      min: Number.isFinite(Number(heuristicBudget.min)) ? Number(heuristicBudget.min) : nextIntent?.budget?.min ?? null,
+      max: Number(heuristicBudget.max),
+      currency: 'VND',
+    }
+  }
+
+  const heuristicUseCase = normalizeText(heuristicIntent?.useCase || '')
+  if (heuristicUseCase && !normalizeText(nextIntent?.useCase || '')) {
+    nextIntent.useCase = heuristicUseCase
+  }
+
+  return sanitizeIntent(nextIntent, heuristicIntent)
+}
+
 function buildIntentPrompt({ message, context, heuristicIntent }) {
   return `
 Bạn là AI Intent Analyzer cho trợ lý mua sắm ecommerce Nexora.
 
 Nhiệm vụ:
-- Trích xuất intent người dùng thành JSON CHÍNH XÁC theo schema.
-- Nếu không rõ thông tin, đánh dấu needMoreInfo=true và đặt 1 followUpQuestion ngắn gọn.
+- Trích xuất intent người dùng thành JSON chính xác theo schema.
+- Nếu chưa rõ thông tin, đánh dấu needMoreInfo=true và đặt 1 followUpQuestion ngắn gọn.
 - Không viết giải thích, chỉ trả về JSON.
-- Ưu tiên viết followUpQuestion bằng tiếng Việt có dấu.
+- Ưu tiên viết followUpQuestion bằng tiếng Việt tự nhiên.
 
 Schema:
 {
@@ -282,8 +352,9 @@ export async function analyzeShoppingIntent({ message, context = {} }) {
   try {
     const prompt = buildIntentPrompt({ message, context, heuristicIntent })
     const aiIntent = await generateGeminiJson(prompt, { temperature: 0.1 })
-    return sanitizeIntent(aiIntent, heuristicIntent)
+    const sanitized = sanitizeIntent(aiIntent, heuristicIntent)
+    return applyHeuristicOverrides(sanitized, heuristicIntent)
   } catch {
-    return sanitizeIntent(heuristicIntent, heuristicIntent)
+    return applyHeuristicOverrides(heuristicIntent, heuristicIntent)
   }
 }

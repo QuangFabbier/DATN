@@ -1,4 +1,4 @@
-﻿import mongoose from 'mongoose'
+import mongoose from 'mongoose'
 import { USER_ROLES } from '../utils/userRole.js'
 
 const avatarSchema = new mongoose.Schema(

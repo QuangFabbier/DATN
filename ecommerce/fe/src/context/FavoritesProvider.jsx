@@ -1,4 +1,4 @@
-﻿import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { FavoritesContext } from './FavoritesContext'
 import { normalizeProduct } from '../utils/product'
 

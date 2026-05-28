@@ -1,4 +1,4 @@
-﻿import bcrypt from 'bcryptjs'
+import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import User from '../models/User.js'
 import { USER_ROLES, getSuperAdminEmailSet, isSuperAdminEmail, resolveUserAccess } from '../utils/userRole.js'

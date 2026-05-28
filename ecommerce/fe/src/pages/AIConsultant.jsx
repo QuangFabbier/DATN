@@ -1,4 +1,4 @@
-﻿import { useMemo, useRef, useState } from 'react'
+import { useMemo, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../hooks/useAuth'
 import { useCart } from '../hooks/useCart'
@@ -44,7 +44,13 @@ function normalizeContextProducts(items = []) {
 }
 
 function normalizeSearchText(value = '') {
-  return String(value || '').toLowerCase().normalize('NFD').replace(/\p{Diacritic}/gu, '').trim()
+  return String(value || '')
+    .replace(/đ/g, 'd')
+    .replace(/Đ/g, 'D')
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/\p{Diacritic}/gu, '')
+    .trim()
 }
 
 function isViewProductsIntent(question = '') {

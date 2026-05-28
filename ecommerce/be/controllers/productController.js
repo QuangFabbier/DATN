@@ -31,6 +31,59 @@ function normalizeSpecs(specs) {
     .filter((spec) => spec.label || spec.value)
 }
 
+function normalizeStringList(values) {
+  if (!Array.isArray(values)) {
+    return []
+  }
+
+  return [...new Set(values.map((item) => String(item || '').trim()).filter(Boolean))]
+}
+
+function normalizeTextFold(value = '') {
+  return String(value || '')
+    .replace(/đ/g, 'd')
+    .replace(/Đ/g, 'D')
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/\p{Diacritic}/gu, '')
+    .replace(/[^a-z0-9\s]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+}
+
+function inferBrandFromName(name = '') {
+  return String(name || '').trim().split(/\s+/g).find(Boolean) || ''
+}
+
+function buildSearchableText(payload = {}, fallback = {}) {
+  const specsSource = Array.isArray(payload.specs) ? payload.specs : Array.isArray(fallback.specs) ? fallback.specs : []
+  const specsText = specsSource
+    .map((spec) => `${String(spec?.label || '').trim()} ${String(spec?.value || '').trim()}`.trim())
+    .filter(Boolean)
+    .join(' ')
+
+  const tagsSource = Array.isArray(payload.tags) ? payload.tags : Array.isArray(fallback.tags) ? fallback.tags : []
+  const useCasesSource = Array.isArray(payload.useCases)
+    ? payload.useCases
+    : Array.isArray(fallback.useCases)
+      ? fallback.useCases
+      : []
+
+  return normalizeTextFold(
+    [
+      payload.name || fallback.name,
+      payload.category || fallback.category,
+      payload.brand || fallback.brand,
+      payload.description || fallback.description,
+      tagsSource.join(' '),
+      useCasesSource.join(' '),
+      specsText,
+    ]
+      .filter(Boolean)
+      .join(' '),
+  )
+}
+
 function buildProductPayload(body = {}) {
   const payload = {}
 
@@ -44,6 +97,10 @@ function buildProductPayload(body = {}) {
 
   if (Object.prototype.hasOwnProperty.call(body, 'description')) {
     payload.description = String(body.description || '').trim()
+  }
+
+  if (Object.prototype.hasOwnProperty.call(body, 'brand')) {
+    payload.brand = String(body.brand || '').trim()
   }
 
   if (Object.prototype.hasOwnProperty.call(body, 'price')) {
@@ -66,6 +123,14 @@ function buildProductPayload(body = {}) {
 
   if (Object.prototype.hasOwnProperty.call(body, 'specs')) {
     payload.specs = normalizeSpecs(body.specs)
+  }
+
+  if (Object.prototype.hasOwnProperty.call(body, 'tags')) {
+    payload.tags = normalizeStringList(body.tags)
+  }
+
+  if (Object.prototype.hasOwnProperty.call(body, 'useCases')) {
+    payload.useCases = normalizeStringList(body.useCases)
   }
 
   return payload
@@ -120,6 +185,12 @@ const createProduct = asyncHandler(async (req, res) => {
       payload.images = [payload.image]
     }
 
+    if (!payload.brand) {
+      payload.brand = inferBrandFromName(payload.name)
+    }
+
+    payload.searchableText = buildSearchableText(payload)
+
     const product = await Product.create(payload)
     res.status(201).json(product)
   } catch (error) {
@@ -150,6 +221,12 @@ const updateProduct = asyncHandler(async (req, res) => {
     if (!payload.images && Object.prototype.hasOwnProperty.call(payload, 'image')) {
       payload.images = normalizeImageList(existingProduct.images, payload.image)
     }
+
+    if (Object.prototype.hasOwnProperty.call(payload, 'name') || Object.prototype.hasOwnProperty.call(payload, 'brand')) {
+      payload.brand = String(payload.brand || existingProduct.brand || inferBrandFromName(payload.name || existingProduct.name || '')).trim()
+    }
+
+    payload.searchableText = buildSearchableText(payload, existingProduct)
 
     const updatedProduct = await Product.findByIdAndUpdate(id, payload, {
       new: true,
@@ -198,3 +275,4 @@ const deleteProduct = asyncHandler(async (req, res) => {
 })
 
 export { getProducts, getProductById, createProduct, updateProduct, deleteProduct }
+

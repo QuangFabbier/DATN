@@ -156,11 +156,12 @@ function Products() {
     () => Math.max(1, Math.ceil(filteredProducts.length / PRODUCTS_PAGE_SIZE)),
     [filteredProducts.length],
   )
+  const safeCurrentPage = Math.min(currentPage, totalPages)
 
   const paginatedProducts = useMemo(() => {
-    const startIndex = (currentPage - 1) * PRODUCTS_PAGE_SIZE
+    const startIndex = (safeCurrentPage - 1) * PRODUCTS_PAGE_SIZE
     return filteredProducts.slice(startIndex, startIndex + PRODUCTS_PAGE_SIZE)
-  }, [currentPage, filteredProducts])
+  }, [filteredProducts, safeCurrentPage])
 
   const paginationItems = useMemo(() => {
     if (totalPages <= 1) {
@@ -175,11 +176,11 @@ function Products() {
     }
 
     const items = [{ type: 'page', value: 1 }]
-    const startPage = Math.max(2, currentPage - 1)
-    const endPage = Math.min(totalPages - 1, currentPage + 1)
+    const startPage = Math.max(2, safeCurrentPage - 1)
+    const endPage = Math.min(totalPages - 1, safeCurrentPage + 1)
 
     if (startPage > 2) {
-      items.push({ type: 'ellipsis', value: `ellipsis-left-${currentPage}` })
+      items.push({ type: 'ellipsis', value: `ellipsis-left-${safeCurrentPage}` })
     }
 
     for (let page = startPage; page <= endPage; page += 1) {
@@ -187,21 +188,13 @@ function Products() {
     }
 
     if (endPage < totalPages - 1) {
-      items.push({ type: 'ellipsis', value: `ellipsis-right-${currentPage}` })
+      items.push({ type: 'ellipsis', value: `ellipsis-right-${safeCurrentPage}` })
     }
 
     items.push({ type: 'page', value: totalPages })
 
     return items
-  }, [currentPage, totalPages])
-
-  useEffect(() => {
-    setCurrentPage(1)
-  }, [searchKeyword, selectedCategory, sortBy, aiIdsParam, aiQuery])
-
-  useEffect(() => {
-    setCurrentPage((page) => Math.min(page, totalPages))
-  }, [totalPages])
+  }, [safeCurrentPage, totalPages])
 
   useEffect(() => {
     if (loading) {
@@ -297,6 +290,7 @@ function Products() {
             value={searchKeyword}
             onChange={(event) => {
               setSearchKeyword(event.target.value)
+              setCurrentPage(1)
               updateParams(selectedCategory, event.target.value)
             }}
             placeholder="Tìm theo tên sản phẩm"
@@ -325,6 +319,7 @@ function Products() {
                     type="button"
                     className={`filter-dropdown-option ${selectedCategory === category ? 'active' : ''}`}
                     onClick={() => {
+                      setCurrentPage(1)
                       updateParams(category, searchKeyword)
                       setOpenDropdown('')
                     }}
@@ -361,6 +356,7 @@ function Products() {
                     type="button"
                     className={`filter-dropdown-option ${sortBy === option.value ? 'active' : ''}`}
                     onClick={() => {
+                      setCurrentPage(1)
                       setSortBy(option.value)
                       setOpenDropdown('')
                     }}
@@ -409,8 +405,8 @@ function Products() {
               <button
                 type="button"
                 className="home-pagination-button"
-                onClick={() => setCurrentPage((page) => Math.max(1, page - 1))}
-                disabled={currentPage === 1}
+                onClick={() => setCurrentPage(Math.max(1, safeCurrentPage - 1))}
+                disabled={safeCurrentPage === 1}
                 aria-label="Trang trước"
               >
                 <i className="fa-solid fa-angle-left" aria-hidden="true" />
@@ -425,9 +421,9 @@ function Products() {
                   <button
                     key={item.value}
                     type="button"
-                    className={`home-pagination-button ${currentPage === item.value ? 'active' : ''}`}
+                    className={`home-pagination-button ${safeCurrentPage === item.value ? 'active' : ''}`}
                     onClick={() => setCurrentPage(item.value)}
-                    aria-current={currentPage === item.value ? 'page' : undefined}
+                    aria-current={safeCurrentPage === item.value ? 'page' : undefined}
                     aria-label={`Trang ${item.value}`}
                   >
                     {item.value}
@@ -438,8 +434,8 @@ function Products() {
               <button
                 type="button"
                 className="home-pagination-button"
-                onClick={() => setCurrentPage((page) => Math.min(totalPages, page + 1))}
-                disabled={currentPage === totalPages}
+                onClick={() => setCurrentPage(Math.min(totalPages, safeCurrentPage + 1))}
+                disabled={safeCurrentPage === totalPages}
                 aria-label="Trang sau"
               >
                 <i className="fa-solid fa-angle-right" aria-hidden="true" />
@@ -461,6 +457,7 @@ function Products() {
                 className="button button-danger"
                 onClick={() => {
                   setSearchKeyword('')
+                  setCurrentPage(1)
                   setSearchParams(new URLSearchParams())
                 }}
               >
@@ -496,3 +493,4 @@ function Products() {
 }
 
 export default Products
+

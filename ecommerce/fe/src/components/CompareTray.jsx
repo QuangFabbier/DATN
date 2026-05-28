@@ -1,17 +1,86 @@
+import { useRef, useState } from 'react'
+import { compareProductsWithAi } from '../services/aiService'
 import { useCompare } from '../hooks/useCompare'
+import { useToast } from '../hooks/useToast'
 import { formatCurrency } from '../utils/formatCurrency'
 
+const AI_ACTION_COOLDOWN_MS = 2000
+
 function CompareTray() {
-  const {
-    clearCompare,
-    compareItems,
-    isCompareOpen,
-    removeCompare,
-    setIsCompareOpen,
-  } = useCompare()
+  const { clearCompare, compareItems, isCompareOpen, removeCompare, setIsCompareOpen } = useCompare()
+  const { showToast } = useToast()
+
+  const [compareUseCase, setCompareUseCase] = useState('')
+  const [isAiAnalyzing, setIsAiAnalyzing] = useState(false)
+  const [aiCompareError, setAiCompareError] = useState('')
+  const [aiCompareResult, setAiCompareResult] = useState(null)
+  const lastAiRequestAtRef = useRef(0)
+  const lastAiPayloadRef = useRef('')
 
   if (!compareItems.length) {
     return null
+  }
+
+  async function handleAiCompare() {
+    if (isAiAnalyzing) {
+      return
+    }
+
+    const now = Date.now()
+    if (now - lastAiRequestAtRef.current < AI_ACTION_COOLDOWN_MS) {
+      showToast({
+        type: 'warning',
+        title: 'Bạn thao tác hơi nhanh',
+        message: 'Vui lòng chờ một chút trước khi gửi tiếp.',
+      })
+      return
+    }
+
+    if (compareItems.length < 2) {
+      setAiCompareError('Bạn cần chọn ít nhất 2 sản phẩm để AI phân tích.')
+      showToast({
+        type: 'warning',
+        title: 'Chưa đủ sản phẩm để so sánh',
+        message: 'Hãy thêm ít nhất 2 sản phẩm trong khay compare.',
+      })
+      return
+    }
+
+    const productIds = compareItems.map((item) => item.id).filter(Boolean).slice(0, 5)
+    const payloadSignature = `${productIds.join('|')}::${String(compareUseCase || '').trim().toLowerCase()}`
+
+    if (payloadSignature && payloadSignature === lastAiPayloadRef.current && now - lastAiRequestAtRef.current < 5_000) {
+      showToast({
+        type: 'info',
+        title: 'Yêu cầu vừa gửi rồi',
+        message: 'Mình đã nhận đúng yêu cầu này, bạn chờ kết quả giúp nhé.',
+      })
+      return
+    }
+
+    lastAiRequestAtRef.current = now
+    lastAiPayloadRef.current = payloadSignature
+
+    setIsAiAnalyzing(true)
+    setAiCompareError('')
+
+    try {
+      const result = await compareProductsWithAi({
+        productIds,
+        useCase: compareUseCase,
+      })
+
+      setAiCompareResult(result)
+    } catch (error) {
+      setAiCompareError(error?.message || 'Không thể phân tích so sánh bằng AI lúc này.')
+      showToast({
+        type: 'warning',
+        title: 'AI so sánh tạm gián đoạn',
+        message: error?.message || 'Vui lòng thử lại sau ít phút.',
+      })
+    } finally {
+      setIsAiAnalyzing(false)
+    }
   }
 
   return (
@@ -116,6 +185,49 @@ function CompareTray() {
                   </tr>
                 </tbody>
               </table>
+            </div>
+
+            <div className="consultant-card compare-ai-card">
+              <div className="form-card-header">
+                <p className="eyebrow">AI Smart Compare</p>
+                <h3>AI phân tích giúp tôi</h3>
+                <p>Bạn có thể nhập ngắn nhu cầu chính để AI so sánh sát hơn.</p>
+              </div>
+
+              <label>
+                Nhu cầu ưu tiên (tùy chọn)
+                <input
+                  type="text"
+                  value={compareUseCase}
+                  onChange={(event) => setCompareUseCase(event.target.value)}
+                  placeholder="Ví dụ: học lập trình, gaming, văn phòng"
+                  disabled={isAiAnalyzing}
+                />
+              </label>
+
+              <div className="summary-actions">
+                <button type="button" className="button" onClick={handleAiCompare} disabled={isAiAnalyzing}>
+                  {isAiAnalyzing ? 'AI đang phân tích...' : 'AI phân tích giúp tôi'}
+                </button>
+              </div>
+
+              {aiCompareError ? <p className="field-error">{aiCompareError}</p> : null}
+
+              {aiCompareResult ? (
+                <div className="ai-answer compare-ai-answer">
+                  <p>{aiCompareResult.summary || 'AI đã hoàn tất phân tích so sánh.'}</p>
+                  <p>
+                    <strong>Best for study:</strong> {aiCompareResult.bestForStudyText || aiCompareResult.bestForStudy.reason || 'Chưa đủ dữ liệu'}
+                  </p>
+                  <p>
+                    <strong>Best for gaming:</strong> {aiCompareResult.bestForGamingText || aiCompareResult.bestForGaming.reason || 'Chưa đủ dữ liệu'}
+                  </p>
+                  <p>
+                    <strong>Best value:</strong> {aiCompareResult.bestValueText || aiCompareResult.bestValue.reason || 'Chưa đủ dữ liệu'}
+                  </p>
+                  <p>{aiCompareResult.recommendation || ''}</p>
+                </div>
+              ) : null}
             </div>
           </section>
         </div>
