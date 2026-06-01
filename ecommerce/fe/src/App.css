@@ -225,6 +225,7 @@ button:disabled {
 .admin-toolbar select,
 .admin-form-card input,
 .admin-form-card textarea,
+.consultant-card input,
 .consultant-card textarea,
 .ai-widget-form textarea {
   width: 100%;
@@ -1643,6 +1644,7 @@ button:disabled {
 .admin-toolbar select,
 .admin-form-card input,
 .admin-form-card textarea,
+.consultant-card input,
 .consultant-card textarea,
 .ai-widget-form textarea {
   padding: 13px 14px;
@@ -3019,8 +3021,7 @@ button:disabled {
   color: #ffffff;
 }
 
-.admin-table-wrapper,
-.compare-table-wrapper {
+.admin-table-wrapper {
   overflow-x: auto;
 }
 
@@ -3029,6 +3030,43 @@ button:disabled {
   width: 100%;
   min-width: 900px;
   border-collapse: collapse;
+}
+
+/* Keep compare content fully visible without horizontal scrolling. */
+.compare-table-wrapper {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.compare-table-wrapper::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;
+}
+
+.compare-table {
+  width: 100% !important;
+  min-width: 0;
+  table-layout: fixed;
+}
+
+.compare-table th,
+.compare-table td {
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.compare-table th:first-child,
+.compare-table td:first-child {
+  width: 160px;
+}
+
+.compare-table tbody tr:last-child td {
+  border-bottom: 0;
 }
 
 .admin-table th,
@@ -3336,6 +3374,11 @@ button:disabled {
 
 .compare-modal {
   max-width: 1040px;
+  overflow-x: hidden;
+}
+
+.compare-modal .compare-ai-card {
+  margin-top: 10px;
 }
 
 .compare-product-head {
@@ -3346,7 +3389,7 @@ button:disabled {
 
 .compare-product-head img {
   width: 100%;
-  max-width: 180px;
+  max-width: 120px;
   aspect-ratio: 4 / 3;
   object-fit: cover;
   border-radius: 18px;
@@ -3555,12 +3598,24 @@ button:disabled {
   transform: scale(0.92);
 }
 
+.ai-widget-fab.ai-widget-fab-resume {
+  animation: ai-widget-resume-pulse 1.8s ease-in-out infinite;
+  box-shadow:
+    0 22px 34px -20px rgba(29, 78, 216, 0.8),
+    0 0 0 0 rgba(59, 130, 246, 0.45);
+}
+
 .ai-widget-messages {
   min-height: 220px;
   overflow-y: auto;
   padding-right: 4px;
   scrollbar-gutter: stable;
   gap: 12px;
+}
+
+.ai-widget-footer-actions {
+  display: flex;
+  justify-content: flex-end;
 }
 
 .ai-message {
@@ -4392,6 +4447,24 @@ button:disabled {
   }
 }
 
+@keyframes ai-widget-resume-pulse {
+  0% {
+    box-shadow:
+      0 22px 34px -20px rgba(29, 78, 216, 0.8),
+      0 0 0 0 rgba(59, 130, 246, 0.45);
+  }
+  70% {
+    box-shadow:
+      0 22px 34px -20px rgba(29, 78, 216, 0.8),
+      0 0 0 12px rgba(59, 130, 246, 0);
+  }
+  100% {
+    box-shadow:
+      0 22px 34px -20px rgba(29, 78, 216, 0.8),
+      0 0 0 0 rgba(59, 130, 246, 0);
+  }
+}
+
 *:focus-visible {
   outline: 3px solid var(--color-focus);
   outline-offset: 3px;
@@ -4752,6 +4825,63 @@ button:disabled {
 
   .site-footer-copyright p {
     font-size: 13px;
+  }
+}
+
+/* =========================
+   RESPONSIVE: iPhone 14 Pro Max (430 x 932)
+   Minimal and safe overrides to avoid layout conflicts.
+   ========================= */
+@media (max-width: 430px), only screen and (device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) {
+  html,
+  body,
+  #root {
+    overflow-x: hidden;
+  }
+
+  .app-shell,
+  .main-content,
+  .site-footer,
+  .page-section {
+    overflow-x: clip;
+  }
+
+  .header-search input,
+  .header-link,
+  .header-icon-button,
+  .account-trigger,
+  .button,
+  .product-add-button,
+  .product-secondary-button {
+    min-width: 0;
+  }
+
+  .mini-cart-dropdown {
+    right: 10px;
+    width: min(400px, calc(100vw - 20px));
+    max-height: min(70vh, 560px);
+  }
+
+  .compare-tray {
+    left: 10px;
+    right: 10px;
+    width: auto;
+  }
+
+  .ai-widget {
+    right: 10px;
+    bottom: 90px;
+  }
+
+  .ai-widget-panel {
+    width: min(390px, calc(100vw - 20px));
+    max-height: min(68vh, 560px);
+  }
+
+  .admin-table-wrapper,
+  .warranty-policy-table-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
   }
 }
 
