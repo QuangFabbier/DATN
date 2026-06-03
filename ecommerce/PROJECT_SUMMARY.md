@@ -1,79 +1,80 @@
 ﻿# PROJECT SUMMARY
 
-## 1. Tổng Quan Dự Án
+## 1. Thông Tin Dự Án
 
-- Tên workspace: `nexora-workspace`
-- Repo chính: `ecommerce/`
+- Tên đồ án: **Nexora Ecommerce + AI Shopping Assistant**
+- Workspace: `nexora-workspace`
+- Repository: `ecommerce/`
 - Frontend: `ecommerce/fe` (React + Vite)
 - Backend: `ecommerce/be` (Express + MongoDB + Mongoose)
-- Branding storefront: `Nexora`
-- Cập nhật tài liệu lần này: **2026-05-27**
+- Cập nhật tài liệu: **2026-05-28**
 
-Mục tiêu chính:
-1. Vận hành storefront ecommerce hoàn chỉnh (responsive + dark mode + account/admin).
-2. Triển khai AI Shopping Assistant thực tế (chat/recommend/compare/product/cart).
-3. Ổn định request flow để giảm spam/429 và dùng Gemini free-tier bền hơn.
+Mục tiêu dự án:
+1. Xây dựng website thương mại điện tử full-stack có thể vận hành được (catalog, auth, giỏ hàng, checkout UI, admin).
+2. Tích hợp AI tư vấn mua hàng thực tế theo ngữ cảnh sản phẩm và giỏ hàng.
+3. Tối ưu request flow để giảm spam/duplicate/rate-limit khi gọi AI model.
 
 ---
 
-## 2. Trạng Thái Hiện Tại (As-Is)
+## 2. Phạm Vi Và Chức Năng
 
-### 2.1 Đang chạy ổn
+### 2.1 Chức năng người dùng (Customer)
 
-1. Product CRUD backend-first qua MongoDB.
-2. AI API đầy đủ 4 route:
-   - `POST /api/ai/chat`
-   - `POST /api/ai/compare`
-   - `POST /api/ai/product-explain`
-   - `POST /api/ai/cart-analyze`
-3. FE + BE đã có dedupe/cache/chống spam request.
-4. `npm run lint` pass.
-5. `npm run build` pass.
-6. Đã fix lỗi lẫn category (ví dụ hỏi điện thoại/âm thanh/phụ kiện bị lòi laptop/macbook).
+1. Đăng ký/đăng nhập tài khoản, xem thông tin cá nhân.
+2. Tìm kiếm/lọc/xem chi tiết sản phẩm.
+3. Thêm vào giỏ, yêu thích, so sánh.
+4. Xem trang đặt hàng và QR thanh toán.
+5. Nhận tư vấn AI theo các kịch bản:
+   - Chat tư vấn sản phẩm.
+   - So sánh sản phẩm.
+   - Hỏi AI về sản phẩm cụ thể.
+   - AI phân tích giỏ hàng.
 
-### 2.2 Cập nhật nóng 2026-05-27
+### 2.2 Chức năng quản trị (Admin)
 
-1. Sửa logic category query/matching để map category không dấu -> category có dấu trong DB.
-2. Sửa intent rule:
-   - bỏ keyword mơ hồ `phone` khỏi nhóm điện thoại (tránh match nhầm `headphone`).
-   - thêm `headphone/earbud/airpods` vào nhóm âm thanh.
-   - bỏ `khong day` khỏi rule âm thanh để không nuốt mất `chuot khong day`.
-3. Thêm AI entry point trực tiếp trên UI:
-   - ProductDetail: nút **Hỏi AI về sản phẩm này**.
-   - Cart: nút **AI phân tích giỏ hàng**.
+1. CRUD sản phẩm.
+2. Quản lý đơn ở mức giao diện admin.
+3. Quản lý cấu hình thanh toán (bank info + QR image).
+4. Quản lý phân quyền admin (super-admin cấp/thu hồi sub-admin).
+
+### 2.3 Ngoài phạm vi hiện tại
+
+1. Chưa có quy trình thanh toán cổng thật (VNPAY/MoMo/Stripe).
+2. Chưa có pipeline CI/CD tự động trên cloud.
+3. Chưa có bộ test tự động backend đầy đủ (unit/integration framework).
 
 ---
 
 ## 3. Kiến Trúc Tổng Thể
 
-## 3.1 System Context
+### 3.1 System Context
 
 ```mermaid
 flowchart LR
   U[User Browser]
-  FE[Frontend React/Vite]
-  BE[Backend Express API]
-  MDB[(MongoDB)]
-  G[Gemini API]
+  FE[React/Vite Frontend]
+  BE[Express API Backend]
+  DB[(MongoDB)]
+  AI[Gemini API]
 
   U --> FE
   FE -->|REST /api/*| BE
-  BE --> MDB
-  BE -->|Curated Prompt| G
-  G --> BE
+  BE --> DB
+  BE -->|Prompt đã rút gọn| AI
+  AI --> BE
   BE --> FE
 ```
 
-## 3.2 Nguyên tắc
+### 3.2 Nguyên tắc kiến trúc
 
-1. Không gọi Gemini trực tiếp từ frontend.
-2. Không gửi full DB cho AI.
-3. Backend lọc candidate trước, Gemini chỉ nhận top nhỏ.
-4. Ưu tiên fix theo scope nhỏ, không phá flow đang ổn.
+1. Frontend **không gọi AI trực tiếp**; mọi logic AI đi qua backend.
+2. Backend lọc candidate sản phẩm trước, AI chỉ nhận top dữ liệu cần thiết.
+3. Tách rõ các lớp: route -> controller -> service -> model.
+4. Tối ưu mạng nhiều tầng: FE cache/dedupe + BE middleware cache/dedupe.
 
 ---
 
-## 4. Cấu Trúc Thư Mục
+## 4. Cấu Trúc Mã Nguồn
 
 ```txt
 ecommerce/
@@ -91,17 +92,15 @@ ecommerce/
     middleware/
     models/
     routes/
-    seeders/
     services/
+    seeders/
 ```
 
 ---
 
-## 5. Backend Architecture
+## 5. API Và Module Chính
 
-## 5.1 Route map
-
-File: `be/server.js`
+### 5.1 Route map backend
 
 1. `/api/test`
 2. `/api/auth`
@@ -109,274 +108,287 @@ File: `be/server.js`
 4. `/api/payment-settings`
 5. `/api/ai`
 
-## 5.2 AI routes
+### 5.2 Auth API
 
-Files:
-- `be/routes/aiRoutes.js`
-- `be/controllers/aiController.js`
+- `POST /api/auth/register`
+- `POST /api/auth/login`
+- `GET /api/auth/me`
+- `PUT /api/auth/me/avatar`
+- `GET /api/auth/me/avatar`
+- `DELETE /api/auth/me/avatar`
+- `GET /api/auth/admin-access` (super-admin)
+- `POST /api/auth/admin-access/grant` (super-admin)
+- `POST /api/auth/admin-access/revoke` (super-admin)
 
-Endpoints:
-1. `POST /api/ai/chat`
-2. `POST /api/ai/compare`
-3. `POST /api/ai/product-explain`
-4. `POST /api/ai/cart-analyze`
+### 5.3 Product API
 
-Middleware:
-- `be/middleware/aiOptimizationMiddleware.js` bọc `/api/ai/*`.
+- `GET /api/products`
+- `GET /api/products/:id`
+- `POST /api/products` (admin)
+- `PUT /api/products/:id` (admin)
+- `DELETE /api/products/:id` (admin)
 
-## 5.3 Product model
+### 5.4 Payment setting API
 
-File: `be/models/Product.js`
+- `GET /api/payment-settings`
+- `GET /api/payment-settings/qr-image`
+- `PUT /api/payment-settings` (super-admin)
 
-1. `name`, `category`, `price`, `stock` (required)
-2. `brand`, `description`, `image`, `images[]`
-3. `specs[]`, `tags[]`, `useCases[]`
-4. `searchableText`
-5. `timestamps`
+### 5.5 AI API
 
----
-
-## 6. AI Service Map
-
-1. `be/services/aiIntentAnalyzerService.js`
-2. `be/services/productMatchingService.js`
-3. `be/services/aiRecommendationService.js`
-4. `be/services/aiCompareService.js`
-5. `be/services/aiProductService.js`
-6. `be/services/geminiService.js`
-7. `be/services/aiJsonUtils.js`
-
-Vai trò:
-1. Intent analyzer: parse category/budget/use-case/priorities/brand.
-2. Matching: query + scoring + sort + gating theo category/avoid-brand.
-3. Recommendation: trả lời chat ngắn gọn, tự nhiên.
-4. Compare/Product/Cart: DB-first + fallback an toàn.
-5. Gemini service: retry/backoff/cache/dedupe.
+- `POST /api/ai/chat`
+- `POST /api/ai/compare`
+- `POST /api/ai/product-explain`
+- `POST /api/ai/cart-analyze`
 
 ---
 
-## 7. AI Request Optimization
+## 6. Workflow Nghiệp Vụ (Business Workflow)
 
-## 7.1 Frontend (`fe/src/services/aiService.js`)
+### 6.1 Mua sắm cơ bản
 
-1. Normalize payload + giới hạn context:
-   - message <= 600 chars
-   - recent messages <= 8
-   - compare ids <= 5
-2. Inflight dedupe theo request key.
-3. Memory cache + localStorage cache.
-4. Timeout request 30s.
-5. Friendly message cho 429.
+```mermaid
+flowchart TD
+  A[User vào trang] --> B[Tìm kiếm/Lọc sản phẩm]
+  B --> C[Xem Product Detail]
+  C --> D[Thêm giỏ hàng hoặc yêu thích]
+  D --> E[Vào trang Orders]
+  E --> F[Xem QR thanh toán]
+```
 
-## 7.2 Backend middleware (`be/middleware/aiOptimizationMiddleware.js`)
+### 6.2 Tư vấn AI trong hành trình mua sắm
 
-1. Rate-limit nhẹ theo IP/route.
-2. Duplicate payload detection theo time window.
-3. Inflight dedupe cấp API.
-4. Response cache TTL ngắn.
+```mermaid
+flowchart TD
+  A[Người dùng hỏi AI] --> B[AI chat gợi ý sản phẩm]
+  B --> C{Xem chi tiết?}
+  C -- Có --> D[Mở Product Detail]
+  D --> E[Chatbox thu nhỏ ở góc để tiếp tục tư vấn]
+  C -- Không --> F[Tiếp tục nhắn trong AI Consultant]
+```
 
-## 7.3 Gemini (`be/services/geminiService.js`)
+### 6.3 Workflow quản trị
 
-1. Retry tối đa 1 lần cho lỗi rate-limit.
-2. Exponential backoff nhẹ.
-3. Prompt cache + inflight dedupe.
+```mermaid
+flowchart TD
+  A[Admin login] --> B[Admin Dashboard]
+  B --> C[Quản lý sản phẩm CRUD]
+  B --> D[Quản lý thanh toán QR]
+  B --> E[Quản lý phân quyền admin]
+```
 
 ---
 
-## 8. Workflow AI
+## 7. Workflow Kỹ Thuật (Request/Data Flow)
 
-## 8.1 Chat recommendation
+### 7.1 Chat AI recommendation
 
 ```mermaid
 sequenceDiagram
   participant U as User
-  participant FE as FE
+  participant FE as FE aiService
   participant BE as /api/ai/chat
-  participant MW as AI Middleware
+  participant MW as optimizeAiRequests
   participant IA as Intent Analyzer
   participant PM as Product Matching
   participant RS as Recommendation Service
   participant G as Gemini
 
-  U->>FE: nhập câu hỏi
+  U->>FE: Gửi câu hỏi
   FE->>BE: POST /api/ai/chat
-  BE->>MW: anti-spam/cache/dedupe
-  BE->>IA: analyze intent
+  BE->>MW: anti-spam + dedupe + cache
+  BE->>IA: phân tích intent
   IA-->>BE: intent
-  BE->>PM: match products
-  PM-->>BE: top products
-  BE->>RS: build reply
-  RS->>G: prompt (top nhỏ)
-  G-->>RS: json
-  RS-->>BE: final
-  BE-->>FE: reply + products
+  BE->>PM: lấy top products
+  PM-->>BE: danh sách candidate
+  BE->>RS: sinh nội dung trả lời
+  RS->>G: prompt rút gọn
+  G-->>RS: response
+  RS-->>BE: reply + metadata
+  BE-->>FE: reply + recommendedProducts
 ```
 
-## 8.2 Product explain
+### 7.2 Product explain flow
 
-```mermaid
-flowchart TD
-  A[POST /api/ai/product-explain] --> B[validate productId]
-  B --> C[load product DB]
-  C --> D[load alternatives same category]
-  D --> E[Gemini explain]
-  E --> F{OK?}
-  F -- yes --> G[normalize answer]
-  F -- no --> H[fallback answer]
-  G --> I[return]
-  H --> I
-```
+1. FE gửi `productId` + câu hỏi.
+2. BE validate `productId`, load product từ DB.
+3. Service lấy thêm alternatives cùng category.
+4. Gọi Gemini để tạo phần phân tích.
+5. Chuẩn hóa JSON output; lỗi thì fallback an toàn.
 
-## 8.3 Cart analyze
+### 7.3 Cart analyze flow
 
-```mermaid
-flowchart TD
-  A[POST /api/ai/cart-analyze] --> B[normalize cartItems]
-  B --> C[sync DB]
-  C --> D[build suggestion pool]
-  D --> E[Gemini analyze]
-  E --> F{OK?}
-  F -- yes --> G[sanitize output]
-  F -- no --> H[fallback]
-  G --> I[return]
-  H --> I
-```
+1. FE gửi `cartItems` và `userNeed`.
+2. BE chuẩn hóa dữ liệu, sync sản phẩm từ DB.
+3. Tạo suggestion pool theo category/compatibility.
+4. Gọi AI để phân tích dư-thiếu-tối ưu.
+5. Trả về `analysis` + `suggestionProducts`.
 
 ---
 
-## 9. Matching & Category Guard (Mới)
+## 8. Quy Trình Phát Triển Phần Mềm (SDLC Áp Dụng)
 
-Trọng tâm sửa để không lẫn sản phẩm:
+Phương pháp áp dụng: **Iterative/Incremental theo sprint ngắn**, ưu tiên release sớm và cải tiến liên tục.
 
-1. Category canonical mapping trong `productMatchingService`:
-   - `Dien thoai` -> `Điện thoại`
-   - `Am thanh` -> `Âm thanh`
-   - `Phu kien` -> `Phụ kiện`
-   - `May tinh bang` -> `Máy tính bảng`
-   - `Man hinh` -> `Màn hình`
-   - `Noi that` -> `Nội thất`
-   - `Laptop` -> `Laptop`
-2. Query theo category dùng cả raw + canonical + searchableText.
-3. Nếu query category ra rỗng, fallback lấy candidate toàn kho rồi **lọc chặt lại theo category match**.
-4. Intent keyword tránh đè sai category (`phone` vs `headphone`).
+### 8.1 Giai đoạn 1 - Khởi tạo & Thu thập yêu cầu
 
-Kết quả: giảm lỗi “hỏi category A ra sản phẩm category B”.
+1. Xác định bài toán: storefront + AI tư vấn.
+2. Chốt phạm vi MVP: auth, catalog, detail, cart, ai consultant.
+3. Xác định actor: customer, admin, super-admin.
+4. Xác định công nghệ phù hợp cho đồ án.
 
----
+Output:
+- Danh sách yêu cầu chức năng/phi chức năng.
+- Sơ đồ kiến trúc sơ bộ.
 
-## 10. Frontend UX & Entry Points
+### 8.2 Giai đoạn 2 - Phân tích hệ thống
 
-## 10.1 AIConsultant
+1. Phân rã module FE/BE/AI service.
+2. Thiết kế luồng dữ liệu request-response.
+3. Phân tích rủi ro rate-limit AI và spam request.
 
-- Route: `/ai-consultant`
-- Có conversational flow + recommendation cards + context memory.
+Output:
+- API contract sơ bộ.
+- Kế hoạch tối ưu request đa tầng.
 
-## 10.2 ProductDetail
+### 8.3 Giai đoạn 3 - Thiết kế
 
-File: `fe/src/pages/ProductDetail.jsx`
+1. Thiết kế DB schema (`User`, `Product`, `PaymentSetting`).
+2. Thiết kế routing frontend và backend.
+3. Thiết kế role model (`customer/admin/super-admin`).
+4. Thiết kế UX các điểm chạm AI.
 
-- Có nút **Hỏi AI về sản phẩm này**.
-- Gọi `POST /api/ai/product-explain` qua `explainProductWithAi`.
-- Truyền `productId` hiện tại + câu hỏi mặc định.
-- Có loading/error/result card.
-- Không ảnh hưởng add cart/favorite/compare/mua ngay.
+Output:
+- Schema, route map, giao diện module.
 
-## 10.3 Cart
+### 8.4 Giai đoạn 4 - Cài đặt (Implementation)
 
-File: `fe/src/pages/Cart.jsx`
+1. FE: page/component/context/service theo domain.
+2. BE: route-controller-service-model.
+3. AI: intent analyzer, matching, recommend/compare/explain/cart.
+4. Security: JWT auth, RBAC cho admin route.
 
-- Có nút **AI phân tích giỏ hàng**.
-- Gọi `POST /api/ai/cart-analyze` qua `analyzeCartWithAi`.
-- Truyền `cartItems` (`productId`, `quantity`) + `userNeed` mặc định.
-- Có loading/error/result card.
-- Không ảnh hưởng tăng/giảm/xóa item/checkout.
+Output:
+- Source code chạy được end-to-end.
 
-## 10.4 Compare
+### 8.5 Giai đoạn 5 - Kiểm thử
 
-File: `fe/src/components/CompareTray.jsx`
+1. Static check: `npm run lint` (frontend).
+2. Build check: `npm run build`.
+3. API smoke test thủ công (Postman/FE flow).
+4. Regression test theo user journey:
+   - browse -> detail -> cart -> order
+   - AI chat -> view detail -> continue chat
 
-- Có AI compare block.
-- Guard dưới 2 sản phẩm thì không gọi API.
+Output:
+- Danh sách lỗi và bản vá theo vòng lặp.
 
----
+### 8.6 Giai đoạn 6 - Triển khai nội bộ
 
-## 11. API Contract Tóm Tắt
+1. Chạy local FE/BE theo script workspace.
+2. Seed dữ liệu mẫu sản phẩm.
+3. Cấu hình `.env` cho backend và FE.
 
-## 11.1 `POST /api/ai/chat`
+Output:
+- Môi trường demo/đánh giá đồ án ổn định.
 
-Request:
-```json
-{
-  "message": "toi muon dien thoai duoi 20 trieu",
-  "context": { "cartItems": [], "favoriteItems": [], "aiPreferences": {} },
-  "conversationContext": {},
-  "recentMessages": [],
-  "conversationSummary": ""
-}
-```
+### 8.7 Giai đoạn 7 - Bảo trì & cải tiến
 
-Response:
-```json
-{
-  "reply": "string",
-  "intent": {},
-  "recommendedProducts": [],
-  "bestProductId": "string",
-  "needMoreInfo": false,
-  "followUpQuestion": ""
-}
-```
+1. Tối ưu intent/category guard.
+2. Giảm lỗi AI 429 bằng cache/dedupe.
+3. Cải thiện UX hội thoại (lưu session, thu nhỏ chatbox).
 
-## 11.2 `POST /api/ai/compare`
-
-Request:
-```json
-{
-  "productIds": ["id1", "id2"],
-  "focus": { "question": "so sanh cho hoc tap" }
-}
-```
-
-## 11.3 `POST /api/ai/product-explain`
-
-Request:
-```json
-{
-  "productId": "mongoObjectId",
-  "question": "Sản phẩm này có đáng mua không?"
-}
-```
-
-## 11.4 `POST /api/ai/cart-analyze`
-
-Request:
-```json
-{
-  "cartItems": [{ "productId": "mongoObjectId", "quantity": 1 }],
-  "userNeed": "Tôi muốn kiểm tra giỏ hàng này có hợp lý không"
-}
-```
+Output:
+- Các bản cập nhật nhỏ, không phá kiến trúc chính.
 
 ---
 
-## 12. Test Kết Quả Gần Nhất
+## 9. Quy Trình Làm Việc Kỹ Thuật Hằng Ngày
 
-Ngày test: **2026-05-27**
+### 9.1 Development workflow
 
-1. Lint: `npm run lint` -> **PASS**.
-2. Build: `npm run build` -> **PASS**.
-3. Smoke API:
-   - `/api/ai/product-explain` -> OK
-   - `/api/ai/cart-analyze` -> OK
-   - `/api/ai/compare` -> OK
-4. Category isolation test matrix 21 câu hỏi đa danh mục -> **TOTAL_FAIL=0**.
-5. Case ngoài danh mục (`toi can may anh chup hinh`) -> không trả bừa sản phẩm, `needMoreInfo=true`.
+1. Nhận yêu cầu hoặc bug.
+2. Phân tích tác động (FE/BE/API/DB/AI).
+3. Chỉnh code theo phạm vi nhỏ nhất.
+4. Chạy lint/build/smoke flow liên quan.
+5. Cập nhật tài liệu và handoff note.
+
+### 9.2 Quy ước commit/branch (khuyến nghị cho báo cáo)
+
+1. `feature/*`: phát triển chức năng mới.
+2. `fix/*`: vá lỗi hoặc hồi quy.
+3. `docs/*`: cập nhật tài liệu.
+4. Commit theo ý nghĩa module: `fe: ...`, `be: ...`, `ai: ...`, `docs: ...`.
+
+### 9.3 Tiêu chuẩn code đang áp dụng
+
+1. FE lint bằng ESLint.
+2. Tách logic service khỏi UI component.
+3. Chuẩn hóa payload trước khi gọi API.
+4. Trả lỗi thân thiện cho người dùng cuối.
 
 ---
 
-## 13. Handoff Notes
+## 10. Chiến Lược Kiểm Thử
 
-1. Nếu chỉnh AI logic, ưu tiên ở backend service, không dồn sang FE.
-2. Giữ schema response ổn định để Consultant/ProductDetail/Cart/Compare dùng chung.
-3. Khi thêm sản phẩm mới, điền đủ `brand/tags/useCases/specs/searchableText` để matching tốt.
-4. Nếu cần giảm quota Gemini thêm, hạ limit candidate ở `matchProductsByIntent` và giữ temperature thấp.
+### 10.1 Mức kiểm thử
+
+1. Build verification: đảm bảo compile pass.
+2. API contract test thủ công theo endpoint.
+3. Functional test theo nghiệp vụ chính.
+4. Regression test cho các luồng AI.
+
+### 10.2 Bộ case kiểm thử trọng tâm
+
+1. Auth: đăng ký/đăng nhập/role guard.
+2. Product: list/detail/CRUD admin.
+3. Payment settings: update QR + lấy QR image.
+4. AI chat: intent đúng category, trả candidate phù hợp.
+5. Compare/Product explain/Cart analyze: trả JSON hợp lệ, có fallback.
+
+### 10.3 Rủi ro & giảm thiểu
+
+1. AI rate-limit: xử lý bằng cache + dedupe + retry nhẹ.
+2. Mất ngữ cảnh chat: lưu session storage.
+3. Sai category recommendation: thêm category canonical mapping + guard.
+
+---
+
+## 11. Trạng Thái Chất Lượng Hiện Tại
+
+Tại thời điểm **2026-05-28**:
+
+1. `npm run lint` (FE): PASS.
+2. `npm run build` (FE): PASS.
+3. AI API 4 endpoint hoạt động qua middleware tối ưu.
+4. Product CRUD có RBAC admin.
+5. Payment setting + QR image endpoint hoạt động.
+6. Luồng AI -> bấm xem chi tiết -> chatbox thu nhỏ để tiếp tục tư vấn đã hoàn thiện.
+
+---
+
+## 12. Milestone Đã Hoàn Thành
+
+1. Hoàn tất nền tảng FE/BE và kết nối MongoDB.
+2. Hoàn tất auth + role model admin/super-admin.
+3. Hoàn tất catalog và product CRUD.
+4. Hoàn tất AI consultant đa endpoint.
+5. Hoàn tất tối ưu request chống spam/duplicate.
+6. Hoàn tất tích hợp AI entry point tại ProductDetail/Cart/Compare.
+7. Hoàn tất UX giữ phiên tư vấn khi chuyển sang trang chi tiết sản phẩm.
+
+---
+
+## 13. Kế Hoạch Phát Triển Tiếp Theo
+
+1. Bổ sung test tự động backend (unit/integration) cho controller và AI services.
+2. Chuẩn hóa module order thành API backend đầy đủ (create/list/status).
+3. Tách logging và monitoring (request id, timing, error trace).
+4. Triển khai CI cơ bản (lint + build + smoke API) trước khi merge.
+5. Mở rộng cơ chế gợi ý AI theo lịch sử mua hàng thực tế.
+
+---
+
+## 14. Kết Luận
+
+Dự án đã đạt mục tiêu của một hệ thống ecommerce có AI tư vấn ở mức đồ án tốt nghiệp: kiến trúc rõ ràng, luồng dữ liệu đầy đủ, có cơ chế tối ưu vận hành AI, và đã áp dụng quy trình phát triển phần mềm theo vòng lặp từ yêu cầu -> thiết kế -> triển khai -> kiểm thử -> cải tiến. Tài liệu này có thể dùng trực tiếp cho phần **Workflow** và **Quy trình phát triển phần mềm** trong báo cáo.
