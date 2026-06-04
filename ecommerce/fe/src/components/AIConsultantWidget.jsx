@@ -9,6 +9,7 @@ import { getAIPreferences } from '../services/accountStorage'
 import { chatWithAi } from '../services/aiService'
 import { getProducts } from '../services/productService'
 import { formatCurrency } from '../utils/formatCurrency'
+import StarRating from './StarRating'
 
 const PRODUCT_FALLBACK_IMAGE = 'https://placehold.co/120x120/e5e7eb/111827?text=Nexora'
 const MAX_WIDGET_PRODUCTS = 5
@@ -140,6 +141,8 @@ function pickFallbackProducts(question = '', catalog = []) {
       price: Number(product.price || 0),
       stock: Number(product.stock || 0),
       image: String(product.image || ''),
+      averageRating: Number(product.averageRating || 0),
+      totalReviews: Number(product.totalReviews || 0),
     }))
 }
 
@@ -158,19 +161,17 @@ function AIConsultantWidget() {
   const messageIdRef = useRef(2)
 
   const [isOpen, setIsOpen] = useState(false)
-  const [hasPendingResumeSession, setHasPendingResumeSession] = useState(false)
+  const [hasPendingResumeSession, setHasPendingResumeSession] = useState(() => {
+    if (typeof window === 'undefined') {
+      return false
+    }
+
+    return window.sessionStorage.getItem(AI_WIDGET_MINIMIZED_FLAG_KEY) === '1'
+  })
   const [question, setQuestion] = useState(() => persistedSession?.question || '')
   const [messages, setMessages] = useState(() => persistedSession?.messages || [DEFAULT_ASSISTANT_MESSAGE])
   const [isLoading, setIsLoading] = useState(false)
   const [productCatalog, setProductCatalog] = useState([])
-
-  useEffect(() => {
-    if (typeof window === 'undefined') {
-      return
-    }
-
-    setHasPendingResumeSession(window.sessionStorage.getItem(AI_WIDGET_MINIMIZED_FLAG_KEY) === '1')
-  }, [location.pathname, location.search])
 
   useEffect(() => {
     const nextIdFromMessages =
@@ -464,6 +465,14 @@ function AIConsultantWidget() {
                         <div className="ai-product-result-copy">
                           <strong>{product.name}</strong>
                           <span>{product.category}</span>
+                          <StarRating
+                            value={product.averageRating}
+                            reviewCount={product.totalReviews}
+                            readonly
+                            size="xs"
+                            showValue={product.totalReviews > 0}
+                            ariaLabel={`Đánh giá của ${product.name}`}
+                          />
                           <p>{formatCurrency(product.price)}</p>
                           <small>{product.stock > 0 ? `Còn hàng: ${product.stock}` : 'Tạm hết hàng'}</small>
                         </div>

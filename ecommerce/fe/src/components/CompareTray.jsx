@@ -3,6 +3,7 @@ import { compareProductsWithAi } from '../services/aiService'
 import { useCompare } from '../hooks/useCompare'
 import { useToast } from '../hooks/useToast'
 import { formatCurrency } from '../utils/formatCurrency'
+import StarRating from './StarRating'
 
 const AI_ACTION_COOLDOWN_MS = 2000
 
@@ -98,6 +99,14 @@ function CompareTray() {
               <div>
                 <p>{item.name}</p>
                 <span>{formatCurrency(item.price)}</span>
+                <StarRating
+                  value={item.averageRating}
+                  reviewCount={item.totalReviews}
+                  readonly
+                  size="xs"
+                  showValue={item.totalReviews > 0}
+                  ariaLabel={`Đánh giá của ${item.name}`}
+                />
               </div>
               <button
                 type="button"
@@ -166,6 +175,21 @@ function CompareTray() {
                     ))}
                   </tr>
                   <tr>
+                    <td>Đánh giá</td>
+                    {compareItems.map((item) => (
+                      <td key={`${item.id}-rating`}>
+                        <StarRating
+                          value={item.averageRating}
+                          reviewCount={item.totalReviews}
+                          readonly
+                          size="sm"
+                          showValue={item.totalReviews > 0}
+                          ariaLabel={`Đánh giá của ${item.name}`}
+                        />
+                      </td>
+                    ))}
+                  </tr>
+                  <tr>
                     <td>Danh mục</td>
                     {compareItems.map((item) => (
                       <td key={`${item.id}-category`}>{item.category}</td>
@@ -217,13 +241,16 @@ function CompareTray() {
                 <div className="ai-answer compare-ai-answer">
                   <p>{aiCompareResult.summary || 'AI đã hoàn tất phân tích so sánh.'}</p>
                   <p>
-                    <strong>Best for study:</strong> {aiCompareResult.bestForStudyText || aiCompareResult.bestForStudy.reason || 'Chưa đủ dữ liệu'}
+                    <strong>Best for study:</strong>{' '}
+                    {aiCompareResult.bestForStudyText || aiCompareResult.bestForStudy?.reason || 'Chưa đủ dữ liệu'}
                   </p>
                   <p>
-                    <strong>Best for gaming:</strong> {aiCompareResult.bestForGamingText || aiCompareResult.bestForGaming.reason || 'Chưa đủ dữ liệu'}
+                    <strong>Best for gaming:</strong>{' '}
+                    {aiCompareResult.bestForGamingText || aiCompareResult.bestForGaming?.reason || 'Chưa đủ dữ liệu'}
                   </p>
                   <p>
-                    <strong>Best value:</strong> {aiCompareResult.bestValueText || aiCompareResult.bestValue.reason || 'Chưa đủ dữ liệu'}
+                    <strong>Best value:</strong>{' '}
+                    {aiCompareResult.bestValueText || aiCompareResult.bestValue?.reason || 'Chưa đủ dữ liệu'}
                   </p>
                   <p>{aiCompareResult.recommendation || ''}</p>
                 </div>

@@ -5,11 +5,19 @@ import EmptyState from '../components/EmptyState'
 import ProductGallery from '../components/ProductGallery'
 import { DetailSkeleton } from '../components/Skeleton'
 import { ButtonSpinner } from '../components/Spinner'
+import StarRating from '../components/StarRating'
+import { useAuth } from '../hooks/useAuth'
 import { useCart } from '../hooks/useCart'
 import { useCompare } from '../hooks/useCompare'
 import { useFavorites } from '../hooks/useFavorites'
 import { useToast } from '../hooks/useToast'
 import { explainProductWithAi } from '../services/aiService'
+import {
+  createProductReview,
+  deleteProductReview,
+  getProductReviews,
+  updateProductReview,
+} from '../services/reviewService'
 import { getProductById } from '../services/productService'
 import { getActiveFlashSaleCampaign } from '../utils/flashSale'
 import { formatCurrency } from '../utils/formatCurrency'
@@ -23,14 +31,57 @@ import {
 import { wait, withMinimumDelay } from '../utils/timing'
 
 const DEFAULT_AI_QUESTION = 'Sản phẩm này có đáng mua không? Phù hợp với ai?'
+const INITIAL_REVIEW_FORM = {
+  rating: 0,
+  title: '',
+  comment: '',
+}
+
+function formatReviewDate(value) {
+  if (!value) {
+    return ''
+  }
+
+  try {
+    return new Intl.DateTimeFormat('vi-VN', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+    }).format(new Date(value))
+  } catch {
+    return ''
+  }
+}
+
+function buildReviewSummaryPayload(rawSummary = {}) {
+  return {
+    text: String(rawSummary?.text || ''),
+    highlights: Array.isArray(rawSummary?.highlights) ? rawSummary.highlights : [],
+    sourceReviewCount: Number(rawSummary?.sourceReviewCount || 0),
+  }
+}
+
+function buildRatingBreakdown(product = {}) {
+  const breakdown =
+    product?.ratingBreakdown && typeof product.ratingBreakdown === 'object'
+      ? product.ratingBreakdown
+      : { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 }
+
+  return [5, 4, 3, 2, 1].map((star) => ({
+    star,
+    count: Number(breakdown?.[star] || breakdown?.[String(star)] || 0),
+  }))
+}
 
 function ProductDetail() {
   const { id } = useParams()
   const navigate = useNavigate()
+  const { token, isAuthenticated } = useAuth()
   const { addToCart } = useCart()
   const { isCompared, toggleCompare } = useCompare()
   const { isFavorite, toggleFavorite } = useFavorites()
   const { showToast } = useToast()
+
   const [product, setProduct] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
@@ -42,6 +93,25 @@ function ProductDetail() {
   const [isAiAnalyzing, setIsAiAnalyzing] = useState(false)
   const [aiExplainError, setAiExplainError] = useState('')
   const [aiExplainResult, setAiExplainResult] = useState(null)
+
+  const [reviews, setReviews] = useState([])
+  const [reviewSummary, setReviewSummary] = useState(buildReviewSummaryPayload())
+  const [reviewPagination, setReviewPagination] = useState({
+    page: 1,
+    limit: 6,
+    totalItems: 0,
+    totalPages: 1,
+    hasNextPage: false,
+    hasPreviousPage: false,
+  })
+  const [viewerReview, setViewerReview] = useState(null)
+  const [reviewLoading, setReviewLoading] = useState(true)
+  const [reviewError, setReviewError] = useState('')
+  const [isLoadingMoreReviews, setIsLoadingMoreReviews] = useState(false)
+  const [reviewDraft, setReviewDraft] = useState(null)
+  const [reviewFormErrors, setReviewFormErrors] = useState({})
+  const [isSubmittingReview, setIsSubmittingReview] = useState(false)
+  const [deletingReviewId, setDeletingReviewId] = useState('')
 
   useEffect(() => {
     async function fetchProduct() {
@@ -64,6 +134,82 @@ function ProductDetail() {
     fetchProduct()
   }, [id])
 
+  async function loadReviews(page = 1, { append = false, silent = false } = {}) {
+    if (!id) {
+      return
+    }
+
+    try {
+      if (!silent) {
+        if (append) {
+          setIsLoadingMoreReviews(true)
+        } else {
+          setReviewLoading(true)
+        }
+      }
+
+      setReviewError('')
+      const response = await getProductReviews(id, { page, limit: 6, token })
+
+      setProduct((currentProduct) =>
+        currentProduct
+          ? normalizeProduct({
+              ...currentProduct,
+              ...response.product,
+              reviewSummary: response.reviewSummary,
+            })
+          : currentProduct,
+      )
+      setReviewSummary(buildReviewSummaryPayload(response.reviewSummary))
+      setReviewPagination(response.pagination)
+      setViewerReview(response.viewerReview)
+      setReviews((currentReviews) => (append ? [...currentReviews, ...response.reviews] : response.reviews))
+    } catch (requestError) {
+      setReviewError(requestError.message || 'Không thể tải đánh giá sản phẩm.')
+    } finally {
+      if (!silent) {
+        setReviewLoading(false)
+        setIsLoadingMoreReviews(false)
+      }
+    }
+  }
+
+  useEffect(() => {
+    async function syncInitialReviews() {
+      if (!id) {
+        return
+      }
+
+      try {
+        setReviewLoading(true)
+        setReviewError('')
+
+        const response = await getProductReviews(id, { page: 1, limit: 6, token })
+        setProduct((currentProduct) =>
+          currentProduct
+            ? normalizeProduct({
+                ...currentProduct,
+                ...response.product,
+                reviewSummary: response.reviewSummary,
+              })
+            : currentProduct,
+        )
+        setReviewSummary(buildReviewSummaryPayload(response.reviewSummary))
+        setReviewPagination(response.pagination)
+        setViewerReview(response.viewerReview)
+        setReviewDraft(null)
+        setReviews(response.reviews)
+      } catch (requestError) {
+        setReviewError(requestError.message || 'Không thể tải đánh giá sản phẩm.')
+      } finally {
+        setReviewLoading(false)
+        setIsLoadingMoreReviews(false)
+      }
+    }
+
+    syncInitialReviews()
+  }, [id, token])
+
   const productId = getProductId(product)
   const flashSaleCampaign = useMemo(() => getActiveFlashSaleCampaign(), [])
   const stock = getProductStock(product)
@@ -73,6 +219,22 @@ function ProductDetail() {
   const productImages = useMemo(() => getProductImages(product), [product])
   const { discountPercent, originalPrice, discountAmount } = buildProductPricing(product, flashSaleCampaign)
   const hasDiscount = discountPercent > 0
+  const ratingBreakdown = useMemo(() => buildRatingBreakdown(product), [product])
+  const reviewForm = useMemo(() => {
+    if (reviewDraft) {
+      return reviewDraft
+    }
+
+    if (viewerReview) {
+      return {
+        rating: Number(viewerReview.rating || 0),
+        title: String(viewerReview.title || ''),
+        comment: String(viewerReview.comment || ''),
+      }
+    }
+
+    return INITIAL_REVIEW_FORM
+  }, [reviewDraft, viewerReview])
 
   const breadcrumbs = [
     { label: 'Trang chủ', to: '/' },
@@ -185,6 +347,162 @@ function ProductDetail() {
     }
   }
 
+  function handleReviewFormChange(field, value) {
+    setReviewDraft((currentDraft) => ({
+      ...(currentDraft || reviewForm),
+      [field]: field === 'rating' ? Number(value) : value,
+    }))
+    setReviewFormErrors((currentErrors) => ({
+      ...currentErrors,
+      [field]: '',
+    }))
+  }
+
+  function validateReviewForm() {
+    const nextErrors = {}
+
+    if (!Number(reviewForm.rating)) {
+      nextErrors.rating = 'Vui lòng chọn số sao đánh giá.'
+    }
+
+    if (!String(reviewForm.comment || '').trim()) {
+      nextErrors.comment = 'Vui lòng nhập nhận xét của bạn.'
+    } else if (String(reviewForm.comment || '').trim().length < 8) {
+      nextErrors.comment = 'Nội dung đánh giá nên chi tiết hơn một chút.'
+    }
+
+    if (String(reviewForm.title || '').trim().length > 140) {
+      nextErrors.title = 'Tiêu đề không nên vượt quá 140 ký tự.'
+    }
+
+    setReviewFormErrors(nextErrors)
+    return Object.keys(nextErrors).length === 0
+  }
+
+  function applyAggregateUpdate(nextAggregate) {
+    if (!nextAggregate) {
+      return
+    }
+
+    setProduct((currentProduct) =>
+      currentProduct
+        ? normalizeProduct({
+            ...currentProduct,
+            ...nextAggregate,
+          })
+        : currentProduct,
+    )
+  }
+
+  async function handleSubmitReview(event) {
+    event.preventDefault()
+
+    if (!isAuthenticated) {
+      navigate('/login', { state: { from: `/products/${id}` } })
+      return
+    }
+
+    if (!validateReviewForm() || isSubmittingReview) {
+      return
+    }
+
+    try {
+      setIsSubmittingReview(true)
+      setReviewError('')
+
+      const payload = {
+        rating: Number(reviewForm.rating || 0),
+        title: String(reviewForm.title || '').trim(),
+        comment: String(reviewForm.comment || '').trim(),
+      }
+
+      const response = viewerReview?.id
+        ? await updateProductReview(viewerReview.id, payload, token)
+        : await createProductReview(productId, payload, token)
+
+      if (response.review) {
+        setViewerReview(response.review)
+        setReviewDraft(null)
+        setReviews((currentReviews) => {
+          const existingIndex = currentReviews.findIndex((review) => review.id === response.review.id)
+
+          if (existingIndex >= 0) {
+            const nextReviews = [...currentReviews]
+            nextReviews[existingIndex] = response.review
+            return nextReviews
+          }
+
+          return [response.review, ...currentReviews]
+        })
+      }
+
+      applyAggregateUpdate(response.aggregate)
+      await loadReviews(1, { silent: true })
+
+      showToast({
+        type: 'success',
+        title: viewerReview?.id ? 'Đã cập nhật đánh giá' : 'Đã gửi đánh giá',
+        message: viewerReview?.id
+          ? 'Nhận xét của bạn đã được cập nhật.'
+          : 'Cảm ơn bạn đã chia sẻ trải nghiệm về sản phẩm này.',
+      })
+    } catch (requestError) {
+      const errorMessage = requestError.message || 'Không thể lưu đánh giá lúc này.'
+      setReviewError(errorMessage)
+      showToast({
+        type: 'error',
+        title: 'Không thể lưu đánh giá',
+        message: errorMessage,
+      })
+    } finally {
+      setIsSubmittingReview(false)
+    }
+  }
+
+  async function handleDeleteReview(reviewId) {
+    if (!reviewId || !token || deletingReviewId) {
+      return
+    }
+
+    try {
+      setDeletingReviewId(reviewId)
+      const response = await deleteProductReview(reviewId, token)
+
+      setReviews((currentReviews) => currentReviews.filter((review) => review.id !== reviewId))
+      if (viewerReview?.id === reviewId) {
+        setViewerReview(null)
+        setReviewDraft(null)
+      }
+
+      applyAggregateUpdate(response.aggregate)
+      await loadReviews(1, { silent: true })
+
+      showToast({
+        type: 'success',
+        title: 'Đã xóa đánh giá',
+        message: 'Đánh giá đã được gỡ khỏi sản phẩm.',
+      })
+    } catch (requestError) {
+      const errorMessage = requestError.message || 'Không thể xóa đánh giá lúc này.'
+      setReviewError(errorMessage)
+      showToast({
+        type: 'error',
+        title: 'Không thể xóa đánh giá',
+        message: errorMessage,
+      })
+    } finally {
+      setDeletingReviewId('')
+    }
+  }
+
+  async function handleLoadMoreReviews() {
+    if (!reviewPagination.hasNextPage || isLoadingMoreReviews) {
+      return
+    }
+
+    await loadReviews(reviewPagination.page + 1, { append: true })
+  }
+
   if (loading) {
     return (
       <section className="page-section">
@@ -224,6 +542,20 @@ function ProductDetail() {
           <p className="eyebrow">{product.category}</p>
           <h1>{product.name}</h1>
 
+          <div className="product-rating-inline">
+            <StarRating
+              value={product.averageRating}
+              reviewCount={product.totalReviews}
+              readonly
+              size="md"
+              showValue={product.totalReviews > 0}
+              ariaLabel={`Đánh giá trung bình của ${product.name}`}
+            />
+            <span className="product-rating-inline-note">
+              {product.totalReviews > 0 ? `${product.totalReviews} đánh giá` : 'Chưa có đánh giá nào'}
+            </span>
+          </div>
+
           <div className="detail-price-stack">
             <p className="detail-price">{formatCurrency(product.price)}</p>
             {hasDiscount ? <p className="product-original-price">{formatCurrency(originalPrice)}</p> : null}
@@ -247,6 +579,10 @@ function ProductDetail() {
             <div>
               <span>Trạng thái</span>
               <strong>{isOutOfStock ? 'Tạm hết hàng' : 'Sẵn sàng giao nhanh'}</strong>
+            </div>
+            <div>
+              <span>Điểm đánh giá</span>
+              <strong>{product.totalReviews > 0 ? `${product.averageRating.toFixed(1)}/5` : 'Đang chờ review đầu tiên'}</strong>
             </div>
           </div>
 
@@ -430,6 +766,230 @@ function ProductDetail() {
                 {aiExplainResult.answer.finalRecommendation ? <p>{aiExplainResult.answer.finalRecommendation}</p> : null}
               </div>
             ) : null}
+          </div>
+        </div>
+      </div>
+
+      <div className="product-review-section">
+        <div className="product-review-summary-card">
+          <div className="product-review-summary-head">
+            <div>
+              <p className="eyebrow">Đánh giá sản phẩm</p>
+              <h2>Đánh giá từ người mua</h2>
+            </div>
+            <div className="product-review-summary-score">
+              <strong>{product.totalReviews > 0 ? product.averageRating.toFixed(1) : '0.0'}</strong>
+              <StarRating
+                value={product.averageRating}
+                reviewCount={product.totalReviews}
+                readonly
+                size="lg"
+                showValue={false}
+                ariaLabel={`Tổng điểm đánh giá của ${product.name}`}
+              />
+            </div>
+          </div>
+
+          <div className="product-review-overview-grid">
+            <div className="product-review-breakdown">
+              {ratingBreakdown.map((item) => {
+                const ratio = product.totalReviews > 0 ? (item.count / product.totalReviews) * 100 : 0
+
+                return (
+                  <div key={`breakdown-${item.star}`} className="product-review-breakdown-row">
+                    <span>{item.star} sao</span>
+                    <div className="product-review-breakdown-track" aria-hidden="true">
+                      <span className="product-review-breakdown-fill" style={{ width: `${ratio}%` }} />
+                    </div>
+                    <strong>{item.count}</strong>
+                  </div>
+                )
+              })}
+            </div>
+
+            <div className="product-review-ai-summary">
+              <h3>AI review summary</h3>
+              {reviewSummary.text ? (
+                <>
+                  <p>{reviewSummary.text}</p>
+                  {reviewSummary.highlights.length > 0 ? (
+                    <div className="product-review-highlight-list">
+                      {reviewSummary.highlights.map((highlight) => (
+                        <span key={highlight} className="product-review-highlight-chip">
+                          {highlight}
+                        </span>
+                      ))}
+                    </div>
+                  ) : null}
+                </>
+              ) : (
+                <p>AI sẽ tổng hợp nhận xét sau khi sản phẩm có đủ review để phân tích.</p>
+              )}
+            </div>
+          </div>
+        </div>
+
+        <div className="product-review-layout">
+          <div className="consultant-card product-review-form-card">
+            <div className="form-card-header">
+              <p className="eyebrow">Review & Rating</p>
+              <h3>{viewerReview ? 'Chỉnh sửa đánh giá của bạn' : 'Viết đánh giá cho sản phẩm này'}</h3>
+              <p>
+                {isAuthenticated
+                  ? 'Chia sẻ trải nghiệm thực tế để giúp những người mua sau ra quyết định nhanh hơn.'
+                  : 'Đăng nhập để đánh giá sản phẩm và đóng góp vào độ tin cậy của hệ thống gợi ý.'}
+              </p>
+            </div>
+
+            {isAuthenticated ? (
+              <form className="product-review-form" onSubmit={handleSubmitReview}>
+                <div className="product-review-rating-field">
+                  <span>Số sao đánh giá</span>
+                  <StarRating
+                    value={reviewForm.rating}
+                    onChange={(nextValue) => handleReviewFormChange('rating', nextValue)}
+                    readonly={isSubmittingReview}
+                    size="lg"
+                    ariaLabel="Chọn số sao đánh giá"
+                  />
+                  {reviewFormErrors.rating ? <span className="field-error">{reviewFormErrors.rating}</span> : null}
+                </div>
+
+                <label>
+                  Tiêu đề (tùy chọn)
+                  <input
+                    type="text"
+                    maxLength="140"
+                    value={reviewForm.title}
+                    onChange={(event) => handleReviewFormChange('title', event.target.value)}
+                    placeholder="Ví dụ: Dùng ổn trong tầm giá"
+                    disabled={isSubmittingReview}
+                  />
+                  {reviewFormErrors.title ? <span className="field-error">{reviewFormErrors.title}</span> : null}
+                </label>
+
+                <label>
+                  Nhận xét của bạn
+                  <textarea
+                    rows="5"
+                    value={reviewForm.comment}
+                    onChange={(event) => handleReviewFormChange('comment', event.target.value)}
+                    placeholder="Hãy chia sẻ điểm bạn hài lòng, điểm cần cân nhắc và nhu cầu sử dụng thực tế."
+                    disabled={isSubmittingReview}
+                  />
+                  <div className="product-review-form-meta">
+                    <span>{String(reviewForm.comment || '').length}/1600 ký tự</span>
+                    {reviewFormErrors.comment ? <span className="field-error">{reviewFormErrors.comment}</span> : null}
+                  </div>
+                </label>
+
+                {reviewError ? <p className="field-error">{reviewError}</p> : null}
+
+                <div className="summary-actions">
+                  <button type="submit" className="button" disabled={isSubmittingReview}>
+                    {isSubmittingReview ? (
+                      <>
+                        <ButtonSpinner size="sm" />
+                        <span>{viewerReview ? 'Đang cập nhật...' : 'Đang gửi review...'}</span>
+                      </>
+                    ) : (
+                      <span>{viewerReview ? 'Cập nhật đánh giá' : 'Gửi đánh giá'}</span>
+                    )}
+                  </button>
+
+                  {viewerReview?.canDelete ? (
+                    <button
+                      type="button"
+                      className="button button-light"
+                      onClick={() => handleDeleteReview(viewerReview.id)}
+                      disabled={deletingReviewId === viewerReview.id}
+                    >
+                      {deletingReviewId === viewerReview.id ? 'Đang xóa...' : 'Xóa đánh giá của tôi'}
+                    </button>
+                  ) : null}
+                </div>
+              </form>
+            ) : (
+              <div className="product-review-login-cta">
+                <p>Bạn cần đăng nhập để gửi review, chỉnh sửa review cũ và nhận thông báo xác nhận.</p>
+                <button type="button" className="button" onClick={() => navigate('/login', { state: { from: `/products/${id}` } })}>
+                  Đăng nhập để đánh giá
+                </button>
+              </div>
+            )}
+          </div>
+
+          <div className="product-review-list-card">
+            <div className="section-heading compact">
+              <div>
+                <p className="eyebrow">Review list</p>
+                <h2>{product.totalReviews > 0 ? `${product.totalReviews} nhận xét` : 'Chưa có nhận xét nào'}</h2>
+              </div>
+            </div>
+
+            {reviewLoading ? (
+              <div className="product-review-empty">Đang tải review...</div>
+            ) : reviewError && reviews.length === 0 ? (
+              <div className="product-review-empty">{reviewError}</div>
+            ) : reviews.length === 0 ? (
+              <div className="product-review-empty">
+                Chưa có review nào cho sản phẩm này. Bạn có thể trở thành người đầu tiên chia sẻ trải nghiệm.
+              </div>
+            ) : (
+              <>
+                <div className="product-review-list">
+                  {reviews.map((review) => (
+                    <article key={review.id} className="product-review-item">
+                      <div className="product-review-item-head">
+                        <div className="product-review-author">
+                          {review.avatar ? (
+                            <img src={review.avatar} alt={review.username} className="product-review-avatar" />
+                          ) : (
+                            <span className="product-review-avatar product-review-avatar-fallback">
+                              {String(review.username || 'N').slice(0, 1).toUpperCase()}
+                            </span>
+                          )}
+                          <div>
+                            <strong>{review.username || 'Người dùng Nexora'}</strong>
+                            <span>{formatReviewDate(review.createdAt)}</span>
+                          </div>
+                        </div>
+
+                        <div className="product-review-item-actions">
+                          <StarRating
+                            value={review.rating}
+                            readonly
+                            size="sm"
+                            ariaLabel={`Đánh giá ${review.rating} sao`}
+                          />
+                          {review.canDelete ? (
+                            <button
+                              type="button"
+                              className="text-button button-danger"
+                              onClick={() => handleDeleteReview(review.id)}
+                              disabled={deletingReviewId === review.id}
+                            >
+                              {deletingReviewId === review.id ? 'Đang xóa...' : 'Xóa'}
+                            </button>
+                          ) : null}
+                        </div>
+                      </div>
+
+                      {review.title ? <h4>{review.title}</h4> : null}
+                      <p>{review.comment}</p>
+                    </article>
+                  ))}
+                </div>
+
+                {reviewPagination.hasNextPage ? (
+                  <div className="product-review-load-more">
+                    <button type="button" className="button button-light" onClick={handleLoadMoreReviews} disabled={isLoadingMoreReviews}>
+                      {isLoadingMoreReviews ? 'Đang tải thêm...' : 'Xem thêm review'}
+                    </button>
+                  </div>
+                ) : null}
+              </>
+            )}
           </div>
         </div>
       </div>

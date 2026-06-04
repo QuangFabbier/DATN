@@ -212,7 +212,7 @@ function buildConversationSummary(messages = []) {
     return ''
   }
 
-  return `Tom tat yeu cau truoc do: ${userHighlights.join(' | ').slice(0, 420)}`
+  return `Tóm tắt yêu cầu trước đó: ${userHighlights.join(' | ').slice(0, 420)}`
 }
 
 async function requestWithDedupeAndCache({

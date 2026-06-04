@@ -16,6 +16,45 @@ const specSchema = new mongoose.Schema(
   { _id: false },
 )
 
+const reviewSummarySchema = new mongoose.Schema(
+  {
+    text: {
+      type: String,
+      trim: true,
+      default: '',
+    },
+    highlights: {
+      type: [String],
+      default: [],
+    },
+    sourceReviewCount: {
+      type: Number,
+      default: 0,
+      min: 0,
+    },
+    stale: {
+      type: Boolean,
+      default: true,
+    },
+    updatedAt: {
+      type: Date,
+      default: null,
+    },
+  },
+  { _id: false },
+)
+
+const ratingBreakdownSchema = new mongoose.Schema(
+  {
+    1: { type: Number, default: 0, min: 0 },
+    2: { type: Number, default: 0, min: 0 },
+    3: { type: Number, default: 0, min: 0 },
+    4: { type: Number, default: 0, min: 0 },
+    5: { type: Number, default: 0, min: 0 },
+  },
+  { _id: false },
+)
+
 const productSchema = new mongoose.Schema(
   {
     name: {
@@ -74,6 +113,25 @@ const productSchema = new mongoose.Schema(
       type: String,
       trim: true,
       default: '',
+    },
+    averageRating: {
+      type: Number,
+      default: 0,
+      min: 0,
+      max: 5,
+    },
+    totalReviews: {
+      type: Number,
+      default: 0,
+      min: 0,
+    },
+    ratingBreakdown: {
+      type: ratingBreakdownSchema,
+      default: () => ({ 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 }),
+    },
+    reviewSummary: {
+      type: reviewSummarySchema,
+      default: () => ({ stale: true }),
     },
   },
   {
@@ -144,4 +202,3 @@ productSchema.pre('save', function normalizeProductMetadata(next) {
 const Product = mongoose.model('Product', productSchema)
 
 export default Product
-

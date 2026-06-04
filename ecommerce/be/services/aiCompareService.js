@@ -25,6 +25,9 @@ function toGeminiProductBrief(product = {}) {
     brand: normalizeText(product?.brand),
     category: normalizeText(product?.category),
     price: Number(product?.price || 0),
+    averageRating: Number(product?.averageRating || 0),
+    totalReviews: Number(product?.totalReviews || 0),
+    reviewSummary: normalizeText(product?.reviewSummary?.text || ''),
     specs: Array.isArray(product?.specs)
       ? product.specs
           .map((spec) => `${normalizeText(spec?.label)}: ${normalizeText(spec?.value)}`.trim())
@@ -130,7 +133,7 @@ export async function compareProductsWithAi({ productIds, products, focus = {} }
   }
 
   const dbProducts = await Product.find({ _id: { $in: ids } })
-    .select('name category brand description price stock image specs tags useCases')
+    .select('name category brand description price stock image specs tags useCases averageRating totalReviews ratingBreakdown reviewSummary')
     .lean()
 
   if (dbProducts.length < 2) {
@@ -149,7 +152,7 @@ export async function compareProductsWithAi({ productIds, products, focus = {} }
     }
 
     const matched = mappedProducts.find((item) => item.id === pick.productId)
-    const productName = matched?.name || 'San pham'
+    const productName = matched?.name || 'Sản phẩm'
     const reason = normalizeText(pick?.reason || '')
     return reason ? `${productName}: ${reason}` : productName
   }
@@ -164,9 +167,12 @@ export async function compareProductsWithAi({ productIds, products, focus = {} }
     return {
       comparedProducts: mappedProducts,
       summary: normalizeText(aiJson?.summary || fallback.summary),
-      bestForStudy: toPickSummary(bestForStudyPick),
-      bestForGaming: toPickSummary(bestForGamingPick),
-      bestValue: toPickSummary(bestValuePick),
+      bestForStudy: bestForStudyPick,
+      bestForGaming: bestForGamingPick,
+      bestValue: bestValuePick,
+      bestForStudyText: toPickSummary(bestForStudyPick),
+      bestForGamingText: toPickSummary(bestForGamingPick),
+      bestValueText: toPickSummary(bestValuePick),
       bestForStudyPick,
       bestForGamingPick,
       bestValuePick,
@@ -180,9 +186,12 @@ export async function compareProductsWithAi({ productIds, products, focus = {} }
     return {
       comparedProducts: mappedProducts,
       summary: fallback.summary,
-      bestForStudy: toPickSummary(bestForStudyPick),
-      bestForGaming: toPickSummary(bestForGamingPick),
-      bestValue: toPickSummary(bestValuePick),
+      bestForStudy: bestForStudyPick,
+      bestForGaming: bestForGamingPick,
+      bestValue: bestValuePick,
+      bestForStudyText: toPickSummary(bestForStudyPick),
+      bestForGamingText: toPickSummary(bestForGamingPick),
+      bestValueText: toPickSummary(bestValuePick),
       bestForStudyPick,
       bestForGamingPick,
       bestValuePick,

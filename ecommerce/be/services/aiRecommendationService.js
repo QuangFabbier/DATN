@@ -11,6 +11,9 @@ function toGeminiProductBrief(product = {}) {
     brand: normalizeText(product?.brand),
     category: normalizeText(product?.category),
     price: Number(product?.price || 0),
+    averageRating: Number(product?.averageRating || 0),
+    totalReviews: Number(product?.totalReviews || 0),
+    reviewSummary: normalizeText(product?.reviewSummary?.text || ''),
     specs: Array.isArray(product?.specs)
       ? product.specs
           .map((spec) => `${normalizeText(spec?.label)}: ${normalizeText(spec?.value)}`.trim())
@@ -45,6 +48,8 @@ Quy tắc nội dung:
 - reply tối đa 4 câu.
 - Nếu needMoreInfo=true thì bestProductId để rỗng.
 - Không đề xuất sản phẩm ngoài danh sách bên dưới.
+- Ưu tiên sản phẩm có rating cao hơn khi các tiêu chí khác gần tương đương.
+- Nếu sản phẩm có rating thấp hoặc reviewSummary có điểm trừ, phải nói trung thực và không được lảng tránh.
 
 Intent hiện tại:
 ${JSON.stringify(intent, null, 2)}
@@ -75,8 +80,8 @@ function buildFallbackReply(intent, topProducts) {
 
   const reply =
     intent?.needMoreInfo && intent?.followUpQuestion
-      ? `Mình đã lọc tạm theo thông tin hiện có và thấy ${shortlist} là những lựa chọn nổi bật. Trước khi chốt, ${intent.followUpQuestion.toLowerCase()}`
-      : `Mình đã lọc theo nhu cầu của bạn và chọn nhanh 3 mẫu phù hợp: ${shortlist}. Nếu cần chốt một mẫu cân bằng nhất lúc này thì mình nghiêng về ${topOne.name}.`
+      ? `Minh da loc tam theo thong tin hien co va thay ${shortlist} la nhung lua chon noi bat. Truoc khi chot, ${intent.followUpQuestion.toLowerCase()}`
+      : `Minh da loc theo nhu cau cua ban va chon nhanh 3 mau phu hop: ${shortlist}. Neu can chot mot mau can bang nhat luc nay thi minh nghieng ve ${topOne.name}.`
 
   return {
     reply,
