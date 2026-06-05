@@ -9,6 +9,7 @@ import { getAIPreferences } from '../services/accountStorage'
 import { chatWithAi, compareProductsWithAi } from '../services/aiService'
 import { getProducts } from '../services/productService'
 import { formatCurrency } from '../utils/formatCurrency'
+import StarRating from '../components/StarRating'
 
 const PRODUCT_FALLBACK_IMAGE = 'https://placehold.co/120x120/e5e7eb/111827?text=Nexora'
 const MAX_WIDGET_PRODUCTS = 5
@@ -100,6 +101,8 @@ function pickFallbackProducts(question = '', catalog = []) {
       price: Number(product.price || 0),
       stock: Number(product.stock || 0),
       image: String(product.image || ''),
+      averageRating: Number(product.averageRating || 0),
+      totalReviews: Number(product.totalReviews || 0),
     }))
 }
 
@@ -400,6 +403,14 @@ function AIConsultant() {
                             <div className="ai-product-result-copy">
                               <strong>{product.name}</strong>
                               <span>{product.category}</span>
+                              <StarRating
+                                value={product.averageRating}
+                                reviewCount={product.totalReviews}
+                                readonly
+                                size="xs"
+                                showValue={product.totalReviews > 0}
+                                ariaLabel={`Đánh giá của ${product.name}`}
+                              />
                               <p>{formatCurrency(product.price)}</p>
                               <small>{product.stock > 0 ? `Còn hàng: ${product.stock}` : 'Tạm hết hàng'}</small>
                             </div>

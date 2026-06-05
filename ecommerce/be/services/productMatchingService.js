@@ -8,6 +8,7 @@ const SCORE_WEIGHTS = {
   inStock: 15,
   priorities: 10,
   preferredBrand: 5,
+  rating: 10,
 }
 
 const CANONICAL_CATEGORY_BY_FOLD = {
@@ -90,6 +91,21 @@ function resolveProductBrand(product = {}) {
   return findBrandInProductName(product?.name || '')
 }
 
+function calculateRatingScore(product = {}) {
+  const averageRating = Math.max(0, Math.min(5, Number(product?.averageRating || 0)))
+  const totalReviews = Math.max(0, Number(product?.totalReviews || 0))
+
+  if (averageRating <= 0 || totalReviews <= 0) {
+    return 0
+  }
+
+  const normalizedAverage = averageRating / 5
+  const confidence = Math.min(1, totalReviews / 12)
+  const blendedScore = normalizedAverage * 0.8 + confidence * 0.2
+
+  return Number((blendedScore * SCORE_WEIGHTS.rating).toFixed(2))
+}
+
 function scoreProduct(product, intent = {}) {
   const productCategory = normalizeTextFold(product?.category || '')
   const productText = buildProductSearchText(product)
@@ -114,6 +130,7 @@ function scoreProduct(product, intent = {}) {
     inStock: 0,
     priorities: 0,
     brand: 0,
+    rating: 0,
     penalty: 0,
   }
 
@@ -144,6 +161,8 @@ function scoreProduct(product, intent = {}) {
   if (priorityTokens.length > 0 && hasAnyKeyword(productText, priorityTokens)) {
     scoreBreakdown.priorities = SCORE_WEIGHTS.priorities
   }
+
+  scoreBreakdown.rating = calculateRatingScore(product)
 
   const productBrand = findBrandInProductName(product?.name || '')
   if (preferredBrands.length > 0 && preferredBrands.includes(productBrand)) {
@@ -194,6 +213,24 @@ export function mapProductForResponse(product) {
     price: Number(product?.price || 0),
     stock: Number(product?.stock || 0),
     image: normalizeText(product?.image),
+    images: Array.isArray(product?.images)
+      ? product.images.map((image) => normalizeText(image)).filter(Boolean)
+      : [],
+    averageRating: Number(product?.averageRating || 0),
+    totalReviews: Number(product?.totalReviews || 0),
+    ratingBreakdown:
+      product?.ratingBreakdown && typeof product.ratingBreakdown === 'object'
+        ? product.ratingBreakdown
+        : { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 },
+    reviewSummary:
+      product?.reviewSummary && typeof product.reviewSummary === 'object'
+        ? {
+            text: normalizeText(product.reviewSummary?.text),
+            highlights: Array.isArray(product.reviewSummary?.highlights)
+              ? product.reviewSummary.highlights.map((item) => normalizeText(item)).filter(Boolean).slice(0, 4)
+              : [],
+          }
+        : { text: '', highlights: [] },
     specs: Array.isArray(product?.specs)
       ? product.specs
           .map((spec) => ({
@@ -201,6 +238,10 @@ export function mapProductForResponse(product) {
             value: normalizeText(spec?.value),
           }))
           .filter((spec) => spec.label || spec.value)
+      : [],
+    tags: Array.isArray(product?.tags) ? product.tags.map((item) => normalizeText(item)).filter(Boolean) : [],
+    useCases: Array.isArray(product?.useCases)
+      ? product.useCases.map((item) => normalizeText(item)).filter(Boolean)
       : [],
   }
 }
@@ -213,7 +254,7 @@ export async function matchProductsByIntent(intent, { limit = 5 } = {}) {
   const hasBudgetLimit = Number.isFinite(budgetMax) && budgetMax > 0
   const query = buildProductQuery(intent)
   const candidates = await Product.find(query)
-    .select('name category brand description price stock image specs searchableText createdAt')
+    .select('name category brand description price stock image specs searchableText createdAt averageRating totalReviews ratingBreakdown reviewSummary')
     .sort({ createdAt: -1 })
     .limit(120)
     .lean()
@@ -222,13 +263,13 @@ export async function matchProductsByIntent(intent, { limit = 5 } = {}) {
     candidates.length > 0
       ? candidates
       : hasCategoryConstraint
-        ? await Product.find({})
-          .select('name category brand description price stock image specs searchableText createdAt')
+      ? await Product.find({})
+          .select('name category brand description price stock image specs searchableText createdAt averageRating totalReviews ratingBreakdown reviewSummary')
           .sort({ createdAt: -1 })
           .limit(120)
           .lean()
         : await Product.find({})
-          .select('name category brand description price stock image specs searchableText createdAt')
+          .select('name category brand description price stock image specs searchableText createdAt averageRating totalReviews ratingBreakdown reviewSummary')
           .sort({ createdAt: -1 })
           .limit(120)
           .lean()

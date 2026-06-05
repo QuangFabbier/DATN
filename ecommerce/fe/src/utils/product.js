@@ -140,6 +140,25 @@ export function normalizeProduct(product) {
     images: normalizedImages,
     stock,
     price: Number.isFinite(price) ? price : 0,
+    averageRating: Number.isFinite(Number(product.averageRating)) ? Number(product.averageRating) : 0,
+    totalReviews: Number.isFinite(Number(product.totalReviews)) ? Number(product.totalReviews) : 0,
+    ratingBreakdown:
+      product.ratingBreakdown && typeof product.ratingBreakdown === 'object'
+        ? {
+            1: Number(product.ratingBreakdown?.[1] || product.ratingBreakdown?.['1'] || 0),
+            2: Number(product.ratingBreakdown?.[2] || product.ratingBreakdown?.['2'] || 0),
+            3: Number(product.ratingBreakdown?.[3] || product.ratingBreakdown?.['3'] || 0),
+            4: Number(product.ratingBreakdown?.[4] || product.ratingBreakdown?.['4'] || 0),
+            5: Number(product.ratingBreakdown?.[5] || product.ratingBreakdown?.['5'] || 0),
+          }
+        : { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 },
+    reviewSummary:
+      product.reviewSummary && typeof product.reviewSummary === 'object'
+        ? {
+            text: String(product.reviewSummary?.text || ''),
+            highlights: Array.isArray(product.reviewSummary?.highlights) ? product.reviewSummary.highlights : [],
+          }
+        : { text: '', highlights: [] },
   }
 }
 

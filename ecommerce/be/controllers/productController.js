@@ -1,5 +1,6 @@
 import mongoose from 'mongoose'
 import Product from '../models/Product.js'
+import { deleteReviewsByProductId } from '../services/productReviewService.js'
 import asyncHandler from '../utils/asyncHandler.js'
 
 function normalizeImageList(images, fallbackImage = '') {
@@ -261,6 +262,7 @@ const deleteProduct = asyncHandler(async (req, res) => {
       throw new Error('Product not found')
     }
 
+    await deleteReviewsByProductId(product._id)
     await product.deleteOne()
 
     res.status(200).json({ message: 'Product deleted successfully' })

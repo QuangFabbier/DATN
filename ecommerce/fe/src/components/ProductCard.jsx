@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ButtonSpinner } from './Spinner'
+import StarRating from './StarRating'
 import { useCart } from '../hooks/useCart'
 import { useCompare } from '../hooks/useCompare'
 import { useFavorites } from '../hooks/useFavorites'
@@ -144,6 +145,14 @@ function ProductCard({ product, flashSaleCampaign = null }) {
       <div className="product-card-body">
         <p className="product-category-tag">{product.category}</p>
         <h3>{product.name}</h3>
+        <StarRating
+          value={product.averageRating}
+          reviewCount={product.totalReviews}
+          readonly
+          size="sm"
+          showValue={product.totalReviews > 0}
+          ariaLabel={`Đánh giá trung bình của ${product.name}`}
+        />
         <div className="product-pricing">
           <p className="product-price">{formatCurrency(product.price)}</p>
           {hasDiscount ? <p className="product-original-price">{formatCurrency(originalPrice)}</p> : null}

@@ -1,4 +1,4 @@
-﻿# PROJECT SUMMARY
+# PROJECT SUMMARY
 
 ## 1. Thông Tin Dự Án
 
@@ -7,12 +7,13 @@
 - Repository: `ecommerce/`
 - Frontend: `ecommerce/fe` (React + Vite)
 - Backend: `ecommerce/be` (Express + MongoDB + Mongoose)
-- Cập nhật tài liệu: **2026-05-28**
+- Cập nhật tài liệu: **2026-06-04**
 
 Mục tiêu dự án:
 1. Xây dựng website thương mại điện tử full-stack có thể vận hành được (catalog, auth, giỏ hàng, checkout UI, admin).
 2. Tích hợp AI tư vấn mua hàng thực tế theo ngữ cảnh sản phẩm và giỏ hàng.
 3. Tối ưu request flow để giảm spam/duplicate/rate-limit khi gọi AI model.
+4. Mở rộng trải nghiệm mua sắm bằng hệ thống review/rating có thể tái sử dụng cho UI và AI.
 
 ---
 
@@ -20,11 +21,14 @@ Mục tiêu dự án:
 
 ### 2.1 Chức năng người dùng (Customer)
 
-1. Đăng ký/đăng nhập tài khoản, xem thông tin cá nhân.
+1. Đăng ký/đăng nhập tài khoản, xem và cập nhật thông tin cá nhân.
 2. Tìm kiếm/lọc/xem chi tiết sản phẩm.
 3. Thêm vào giỏ, yêu thích, so sánh.
 4. Xem trang đặt hàng và QR thanh toán.
-5. Nhận tư vấn AI theo các kịch bản:
+5. Gửi đánh giá sản phẩm theo số sao, viết nhận xét, sửa/xóa review của chính mình.
+6. Xem điểm trung bình, breakdown rating và phần tóm tắt review trên trang chi tiết sản phẩm.
+7. Quản lý khu vực tài khoản cá nhân: hồ sơ, bảo mật, địa chỉ, wishlist, đơn hàng, thông báo, giao diện và AI preferences.
+8. Nhận tư vấn AI theo các kịch bản:
    - Chat tư vấn sản phẩm.
    - So sánh sản phẩm.
    - Hỏi AI về sản phẩm cụ thể.
@@ -34,14 +38,16 @@ Mục tiêu dự án:
 
 1. CRUD sản phẩm.
 2. Quản lý đơn ở mức giao diện admin.
-3. Quản lý cấu hình thanh toán (bank info + QR image).
-4. Quản lý phân quyền admin (super-admin cấp/thu hồi sub-admin).
+3. Quản lý review sản phẩm: lọc, tìm kiếm, phân trang, xóa review.
+4. Quản lý cấu hình thanh toán (bank info + QR image).
+5. Quản lý phân quyền admin (super-admin cấp/thu hồi sub-admin).
 
 ### 2.3 Ngoài phạm vi hiện tại
 
 1. Chưa có quy trình thanh toán cổng thật (VNPAY/MoMo/Stripe).
 2. Chưa có pipeline CI/CD tự động trên cloud.
 3. Chưa có bộ test tự động backend đầy đủ (unit/integration framework).
+4. Chưa có order API backend hoàn chỉnh cho toàn bộ vòng đời đơn hàng.
 
 ---
 
@@ -71,6 +77,7 @@ flowchart LR
 2. Backend lọc candidate sản phẩm trước, AI chỉ nhận top dữ liệu cần thiết.
 3. Tách rõ các lớp: route -> controller -> service -> model.
 4. Tối ưu mạng nhiều tầng: FE cache/dedupe + BE middleware cache/dedupe.
+5. Dữ liệu review/rating được tổng hợp ở backend và tái sử dụng cho UI lẫn AI flow.
 
 ---
 
@@ -107,6 +114,7 @@ ecommerce/
 3. `/api/products`
 4. `/api/payment-settings`
 5. `/api/ai`
+6. `/api/reviews`
 
 ### 5.2 Auth API
 
@@ -141,6 +149,14 @@ ecommerce/
 - `POST /api/ai/product-explain`
 - `POST /api/ai/cart-analyze`
 
+### 5.6 Review API
+
+- `GET /api/reviews` (admin)
+- `GET /api/reviews/product/:productId`
+- `POST /api/reviews/product/:productId`
+- `PUT /api/reviews/:id`
+- `DELETE /api/reviews/:id`
+
 ---
 
 ## 6. Workflow Nghiệp Vụ (Business Workflow)
@@ -173,8 +189,22 @@ flowchart TD
 flowchart TD
   A[Admin login] --> B[Admin Dashboard]
   B --> C[Quản lý sản phẩm CRUD]
-  B --> D[Quản lý thanh toán QR]
-  B --> E[Quản lý phân quyền admin]
+  B --> D[Quản lý review]
+  B --> E[Quản lý thanh toán QR]
+  B --> F[Quản lý phân quyền admin]
+```
+
+### 6.4 Workflow review sản phẩm
+
+```mermaid
+flowchart TD
+  A[User vào Product Detail] --> B[Xem điểm trung bình và breakdown]
+  B --> C{Đã đăng nhập?}
+  C -- Có --> D[Gửi hoặc sửa review]
+  C -- Không --> E[Hiển thị CTA đăng nhập]
+  D --> F[Backend validate + chống spam nhẹ]
+  F --> G[Cập nhật aggregate rating]
+  G --> H[Làm mới review summary và UI]
 ```
 
 ---
@@ -213,8 +243,9 @@ sequenceDiagram
 1. FE gửi `productId` + câu hỏi.
 2. BE validate `productId`, load product từ DB.
 3. Service lấy thêm alternatives cùng category.
-4. Gọi Gemini để tạo phần phân tích.
-5. Chuẩn hóa JSON output; lỗi thì fallback an toàn.
+4. Gắn thêm `averageRating`, `totalReviews`, `reviewSummary` vào ngữ cảnh AI.
+5. Gọi Gemini để tạo phần phân tích.
+6. Chuẩn hóa JSON output; lỗi thì fallback an toàn.
 
 ### 7.3 Cart analyze flow
 
@@ -223,6 +254,14 @@ sequenceDiagram
 3. Tạo suggestion pool theo category/compatibility.
 4. Gọi AI để phân tích dư-thiếu-tối ưu.
 5. Trả về `analysis` + `suggestionProducts`.
+
+### 7.4 Review & rating flow
+
+1. FE gọi `GET /api/reviews/product/:productId` để lấy danh sách review, aggregate và review của người đang xem.
+2. Backend dùng `optionalAuthMiddleware` để nhận diện user nếu có token nhưng vẫn cho guest đọc review.
+3. Với thao tác ghi, backend áp dụng `authMiddleware` + `reviewWriteRateLimit`.
+4. Service validate 1 user chỉ có 1 review trên 1 sản phẩm, sanitize dữ liệu và cập nhật aggregate rating cho `Product`.
+5. `reviewSummaryService` tạo hoặc làm mới phần tóm tắt review để frontend và AI dùng lại.
 
 ---
 
@@ -245,7 +284,7 @@ Output:
 
 1. Phân rã module FE/BE/AI service.
 2. Thiết kế luồng dữ liệu request-response.
-3. Phân tích rủi ro rate-limit AI và spam request.
+3. Phân tích rủi ro rate-limit AI, spam request và spam review.
 
 Output:
 - API contract sơ bộ.
@@ -253,10 +292,10 @@ Output:
 
 ### 8.3 Giai đoạn 3 - Thiết kế
 
-1. Thiết kế DB schema (`User`, `Product`, `PaymentSetting`).
+1. Thiết kế DB schema (`User`, `Product`, `PaymentSetting`, `ProductReview`).
 2. Thiết kế routing frontend và backend.
 3. Thiết kế role model (`customer/admin/super-admin`).
-4. Thiết kế UX các điểm chạm AI.
+4. Thiết kế UX các điểm chạm AI và review.
 
 Output:
 - Schema, route map, giao diện module.
@@ -266,7 +305,7 @@ Output:
 1. FE: page/component/context/service theo domain.
 2. BE: route-controller-service-model.
 3. AI: intent analyzer, matching, recommend/compare/explain/cart.
-4. Security: JWT auth, RBAC cho admin route.
+4. Security: JWT auth, RBAC cho admin route, optional auth cho luồng đọc review.
 
 Output:
 - Source code chạy được end-to-end.
@@ -275,10 +314,12 @@ Output:
 
 1. Static check: `npm run lint` (frontend).
 2. Build check: `npm run build`.
-3. API smoke test thủ công (Postman/FE flow).
-4. Regression test theo user journey:
+3. Syntax check backend bằng `node --check`.
+4. API smoke test thủ công (Postman/FE flow).
+5. Regression test theo user journey:
    - browse -> detail -> cart -> order
    - AI chat -> view detail -> continue chat
+   - detail -> review -> cập nhật aggregate -> admin review
 
 Output:
 - Danh sách lỗi và bản vá theo vòng lặp.
@@ -297,6 +338,7 @@ Output:
 1. Tối ưu intent/category guard.
 2. Giảm lỗi AI 429 bằng cache/dedupe.
 3. Cải thiện UX hội thoại (lưu session, thu nhỏ chatbox).
+4. Mở rộng hệ thống review/rating cho các tình huống moderation sâu hơn nếu cần.
 
 Output:
 - Các bản cập nhật nhỏ, không phá kiến trúc chính.
@@ -326,6 +368,7 @@ Output:
 2. Tách logic service khỏi UI component.
 3. Chuẩn hóa payload trước khi gọi API.
 4. Trả lỗi thân thiện cho người dùng cuối.
+5. Dùng reusable component cho rating (`StarRating`) và chuẩn hóa product payload có `rating`/`reviewSummary`.
 
 ---
 
@@ -337,6 +380,7 @@ Output:
 2. API contract test thủ công theo endpoint.
 3. Functional test theo nghiệp vụ chính.
 4. Regression test cho các luồng AI.
+5. Regression test cho review/rating và quyền hạn người dùng.
 
 ### 10.2 Bộ case kiểm thử trọng tâm
 
@@ -345,25 +389,29 @@ Output:
 3. Payment settings: update QR + lấy QR image.
 4. AI chat: intent đúng category, trả candidate phù hợp.
 5. Compare/Product explain/Cart analyze: trả JSON hợp lệ, có fallback.
+6. Review: create/update/delete đúng quyền, aggregate rating cập nhật đúng, admin list hoạt động.
 
 ### 10.3 Rủi ro & giảm thiểu
 
 1. AI rate-limit: xử lý bằng cache + dedupe + retry nhẹ.
 2. Mất ngữ cảnh chat: lưu session storage.
 3. Sai category recommendation: thêm category canonical mapping + guard.
+4. Spam review: chặn ghi lặp trong thời gian ngắn bằng `reviewWriteRateLimit`.
 
 ---
 
 ## 11. Trạng Thái Chất Lượng Hiện Tại
 
-Tại thời điểm **2026-05-28**:
+Tại thời điểm **2026-06-04**:
 
 1. `npm run lint` (FE): PASS.
 2. `npm run build` (FE): PASS.
-3. AI API 4 endpoint hoạt động qua middleware tối ưu.
-4. Product CRUD có RBAC admin.
-5. Payment setting + QR image endpoint hoạt động.
-6. Luồng AI -> bấm xem chi tiết -> chatbox thu nhỏ để tiếp tục tư vấn đã hoàn thiện.
+3. `node --check` trên các file backend đã sửa: PASS.
+4. AI API 4 endpoint hoạt động qua middleware tối ưu.
+5. Product CRUD có RBAC admin.
+6. Payment setting + QR image endpoint hoạt động.
+7. Hệ thống review/rating đã tích hợp end-to-end ở Product Detail, Product Card, Compare và AI flow.
+8. Luồng AI -> bấm xem chi tiết -> chatbox thu nhỏ để tiếp tục tư vấn đã hoàn thiện.
 
 ---
 
@@ -376,6 +424,7 @@ Tại thời điểm **2026-05-28**:
 5. Hoàn tất tối ưu request chống spam/duplicate.
 6. Hoàn tất tích hợp AI entry point tại ProductDetail/Cart/Compare.
 7. Hoàn tất UX giữ phiên tư vấn khi chuyển sang trang chi tiết sản phẩm.
+8. Hoàn tất hệ thống Product Review & Rating, admin review management và AI-aware rating signals.
 
 ---
 
@@ -384,11 +433,12 @@ Tại thời điểm **2026-05-28**:
 1. Bổ sung test tự động backend (unit/integration) cho controller và AI services.
 2. Chuẩn hóa module order thành API backend đầy đủ (create/list/status).
 3. Tách logging và monitoring (request id, timing, error trace).
-4. Triển khai CI cơ bản (lint + build + smoke API) trước khi merge.
-5. Mở rộng cơ chế gợi ý AI theo lịch sử mua hàng thực tế.
+4. Tối ưu bundle frontend, đặc biệt các chunk lớn hơn 500kB sau build.
+5. Triển khai CI cơ bản (lint + build + smoke API) trước khi merge.
+6. Mở rộng cơ chế gợi ý AI theo lịch sử mua hàng thực tế.
 
 ---
 
 ## 14. Kết Luận
 
-Dự án đã đạt mục tiêu của một hệ thống ecommerce có AI tư vấn ở mức đồ án tốt nghiệp: kiến trúc rõ ràng, luồng dữ liệu đầy đủ, có cơ chế tối ưu vận hành AI, và đã áp dụng quy trình phát triển phần mềm theo vòng lặp từ yêu cầu -> thiết kế -> triển khai -> kiểm thử -> cải tiến. Tài liệu này có thể dùng trực tiếp cho phần **Workflow** và **Quy trình phát triển phần mềm** trong báo cáo.
+Dự án đã đạt mục tiêu của một hệ thống ecommerce có AI tư vấn ở mức đồ án tốt nghiệp: kiến trúc rõ ràng, luồng dữ liệu đầy đủ, có cơ chế tối ưu vận hành AI, và đã mở rộng thêm hệ thống review/rating để tăng độ tin cậy của trải nghiệm mua sắm lẫn chất lượng đầu vào cho AI. Tài liệu này có thể dùng trực tiếp cho phần **Workflow** và **Quy trình phát triển phần mềm** trong báo cáo.

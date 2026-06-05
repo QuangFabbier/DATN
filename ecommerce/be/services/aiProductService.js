@@ -26,6 +26,9 @@ function toCompactProduct(product = {}) {
     tags: Array.isArray(mapped.tags) ? mapped.tags.slice(0, 12) : [],
     useCases: Array.isArray(mapped.useCases) ? mapped.useCases.slice(0, 8) : [],
     image: mapped.image,
+    averageRating: Number(mapped.averageRating || 0),
+    totalReviews: Number(mapped.totalReviews || 0),
+    reviewSummary: mapped.reviewSummary || { text: '', highlights: [] },
   }
 }
 
@@ -36,6 +39,9 @@ function toGeminiProductBrief(product = {}) {
     brand: normalizeText(product?.brand),
     category: normalizeText(product?.category),
     price: Number(product?.price || 0),
+    averageRating: Number(product?.averageRating || 0),
+    totalReviews: Number(product?.totalReviews || 0),
+    reviewSummary: normalizeText(product?.reviewSummary?.text || ''),
     specs: Array.isArray(product?.specs)
       ? product.specs
           .map((spec) => `${normalizeText(spec?.label)}: ${normalizeText(spec?.value)}`.trim())
@@ -55,7 +61,7 @@ async function getProductByIdOrThrow(productId) {
   }
 
   const product = await Product.findById(normalizedId)
-    .select('name category brand description price stock image specs tags useCases createdAt')
+    .select('name category brand description price stock image specs tags useCases createdAt averageRating totalReviews ratingBreakdown reviewSummary')
     .lean()
 
   if (!product) {
@@ -155,7 +161,7 @@ export async function explainProductWithAi({ productId, question }) {
     _id: { $ne: productDoc._id },
     category: productDoc.category,
   })
-    .select('name category brand description price stock image specs tags useCases createdAt')
+    .select('name category brand description price stock image specs tags useCases createdAt averageRating totalReviews ratingBreakdown reviewSummary')
     .sort({ stock: -1, createdAt: -1 })
     .limit(8)
     .lean()
@@ -385,7 +391,7 @@ export async function analyzeCartWithAi({ cartItems, userNeed }) {
   }
 
   const dbProducts = await Product.find({ _id: { $in: validIds } })
-    .select('name category brand description price stock image specs tags useCases createdAt')
+    .select('name category brand description price stock image specs tags useCases createdAt averageRating totalReviews ratingBreakdown reviewSummary')
     .lean()
 
   if (dbProducts.length === 0) {
@@ -422,7 +428,7 @@ export async function analyzeCartWithAi({ cartItems, userNeed }) {
     _id: { $nin: cartProducts.map((item) => item.id).filter((id) => mongoose.Types.ObjectId.isValid(id)) },
     category: { $in: [...cartCategorySet, 'Phu kien', 'Am thanh'] },
   })
-    .select('name category brand description price stock image specs tags useCases createdAt')
+    .select('name category brand description price stock image specs tags useCases createdAt averageRating totalReviews ratingBreakdown reviewSummary')
     .sort({ stock: -1, createdAt: -1 })
     .limit(18)
     .lean()

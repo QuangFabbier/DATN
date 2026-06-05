@@ -6,6 +6,7 @@ import { useAuth } from '../../hooks/useAuth'
 const adminMenuItems = [
   { path: '/admin', label: 'Tổng quan', end: true, superAdminOnly: false },
   { path: '/admin/products', label: 'Quản lý sản phẩm', superAdminOnly: false },
+  { path: '/admin/reviews', label: 'Quản lý review', superAdminOnly: false },
   { path: '/admin/orders', label: 'Quản lý đơn hàng', superAdminOnly: false },
   { path: '/admin/payment', label: 'Quản lý thanh toán', superAdminOnly: true },
   { path: '/admin/access', label: 'Quản lý admin', superAdminOnly: true },

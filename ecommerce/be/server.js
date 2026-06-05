@@ -7,6 +7,7 @@ import aiRoutes from './routes/aiRoutes.js'
 import authRoutes from './routes/authRoutes.js'
 import paymentSettingRoutes from './routes/paymentSettingRoutes.js'
 import productRoutes from './routes/productRoutes.js'
+import reviewRoutes from './routes/reviewRoutes.js'
 import testRoutes from './routes/testRoutes.js'
 
 dotenv.config()
@@ -25,6 +26,7 @@ app.use('/api/test', testRoutes)
 app.use('/api/auth', authRoutes)
 app.use('/api/products', productRoutes)
 app.use('/api/payment-settings', paymentSettingRoutes)
+app.use('/api/reviews', reviewRoutes)
 app.use('/api/ai', aiRoutes)
 app.use(notFound)
 app.use(errorHandler)
