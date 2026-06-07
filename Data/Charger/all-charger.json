@@ -1,0 +1,172 @@
+[
+  {
+    "name": "Apple USB-C Power Adapter 20W",
+    "category": "Charger",
+    "brand": "Apple",
+    "price": 590000,
+    "stock": 120,
+    "minStockLevel": 25,
+    "images": [],
+    "description": "Củ sạc Apple USB-C 20W là phụ kiện chính hãng phù hợp cho iPhone, iPad và AirPods. Thiết bị hỗ trợ sạc nhanh cho các dòng iPhone hiện đại, thiết kế nhỏ gọn và đảm bảo độ an toàn cao trong quá trình sử dụng.",
+    "specifications": {
+      "power": "20W",
+      "ports": "1 x USB-C",
+      "technology": "USB Power Delivery",
+      "input": "100-240V",
+      "color": "White"
+    }
+  },
+  {
+    "name": "Apple USB-C Power Adapter 35W Dual Port",
+    "category": "Charger",
+    "brand": "Apple",
+    "price": 1490000,
+    "stock": 60,
+    "minStockLevel": 12,
+    "images": [],
+    "description": "Củ sạc Apple 35W hai cổng USB-C cho phép sạc đồng thời iPhone, iPad, AirPods hoặc MacBook Air với hiệu suất ổn định.",
+    "specifications": {
+      "power": "35W",
+      "ports": "2 x USB-C",
+      "technology": "USB Power Delivery",
+      "input": "100-240V",
+      "color": "White"
+    }
+  },
+  {
+    "name": "Samsung Super Fast Charger 25W",
+    "category": "Charger",
+    "brand": "Samsung",
+    "price": 490000,
+    "stock": 110,
+    "minStockLevel": 20,
+    "images": [],
+    "description": "Củ sạc Samsung 25W hỗ trợ công nghệ Super Fast Charging cho điện thoại Galaxy và các thiết bị USB-C tương thích.",
+    "specifications": {
+      "power": "25W",
+      "ports": "1 x USB-C",
+      "technology": "PD PPS",
+      "input": "100-240V",
+      "color": "Black"
+    }
+  },
+  {
+    "name": "Samsung Super Fast Charger 45W",
+    "category": "Charger",
+    "brand": "Samsung",
+    "price": 890000,
+    "stock": 80,
+    "minStockLevel": 15,
+    "images": [],
+    "description": "Phiên bản 45W dành cho smartphone flagship Galaxy, tablet Samsung và nhiều thiết bị USB-C hiện đại.",
+    "specifications": {
+      "power": "45W",
+      "ports": "1 x USB-C",
+      "technology": "PD PPS",
+      "input": "100-240V",
+      "color": "Black"
+    }
+  },
+  {
+    "name": "Anker Nano 3 USB-C Charger 30W",
+    "category": "Charger",
+    "brand": "Anker",
+    "price": 490000,
+    "stock": 100,
+    "minStockLevel": 20,
+    "images": [],
+    "description": "Anker Nano 3 sử dụng công nghệ GaN giúp thiết kế nhỏ gọn nhưng vẫn cung cấp công suất sạc nhanh lên đến 30W.",
+    "specifications": {
+      "power": "30W",
+      "ports": "1 x USB-C",
+      "technology": "GaN, PD",
+      "input": "100-240V",
+      "color": "White"
+    }
+  },
+  {
+    "name": "Anker 735 GaNPrime Charger 65W",
+    "category": "Charger",
+    "brand": "Anker",
+    "price": 1490000,
+    "stock": 55,
+    "minStockLevel": 12,
+    "images": [],
+    "description": "Anker 735 là củ sạc GaN cao cấp hỗ trợ sạc đồng thời laptop, tablet và smartphone với công suất tối đa 65W.",
+    "specifications": {
+      "power": "65W",
+      "ports": "2 x USB-C, 1 x USB-A",
+      "technology": "GaNPrime, PD",
+      "input": "100-240V",
+      "color": "Black"
+    }
+  },
+  {
+    "name": "UGREEN Nexode GaN Charger 65W",
+    "category": "Charger",
+    "brand": "UGREEN",
+    "price": 1190000,
+    "stock": 70,
+    "minStockLevel": 15,
+    "images": [],
+    "description": "UGREEN Nexode 65W là củ sạc GaN đa năng phù hợp cho MacBook Air, ultrabook, tablet và điện thoại.",
+    "specifications": {
+      "power": "65W",
+      "ports": "2 x USB-C, 1 x USB-A",
+      "technology": "GaN, PD",
+      "input": "100-240V",
+      "color": "Gray"
+    }
+  },
+  {
+    "name": "Baseus GaN5 Fast Charger 100W",
+    "category": "Charger",
+    "brand": "Baseus",
+    "price": 1390000,
+    "stock": 60,
+    "minStockLevel": 12,
+    "images": [],
+    "description": "Baseus GaN5 100W hỗ trợ sạc nhanh cho laptop, tablet và smartphone với nhiều cổng kết nối tiện lợi.",
+    "specifications": {
+      "power": "100W",
+      "ports": "2 x USB-C, 2 x USB-A",
+      "technology": "GaN5, PD",
+      "input": "100-240V",
+      "color": "Black"
+    }
+  },
+  {
+    "name": "Xiaomi 67W Turbo Charger",
+    "category": "Charger",
+    "brand": "Xiaomi",
+    "price": 590000,
+    "stock": 90,
+    "minStockLevel": 18,
+    "images": [],
+    "description": "Củ sạc Xiaomi 67W hỗ trợ sạc nhanh cho điện thoại Xiaomi, Redmi, POCO và các thiết bị USB-C tương thích.",
+    "specifications": {
+      "power": "67W",
+      "ports": "1 x USB-A",
+      "technology": "Turbo Charge",
+      "input": "100-240V",
+      "color": "White"
+    }
+  },
+  {
+    "name": "Belkin BoostCharge Pro 65W GaN",
+    "category": "Charger",
+    "brand": "Belkin",
+    "price": 1590000,
+    "stock": 45,
+    "minStockLevel": 10,
+    "images": [],
+    "description": "Belkin BoostCharge Pro 65W là củ sạc GaN cao cấp phù hợp cho MacBook, iPad, iPhone và nhiều thiết bị USB-C hiện đại.",
+    "specifications": {
+      "power": "65W",
+      "ports": "2 x USB-C",
+      "technology": "GaN, PD",
+      "input": "100-240V",
+      "color": "White"
+    }
+  }
+]

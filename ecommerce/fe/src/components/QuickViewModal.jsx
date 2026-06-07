@@ -6,7 +6,14 @@ import { useCart } from '../hooks/useCart'
 import { useFavorites } from '../hooks/useFavorites'
 import { useCompare } from '../hooks/useCompare'
 import { useToast } from '../hooks/useToast'
-import { buildProductPricing, getProductId, getProductImages, getProductStock } from '../utils/product'
+import {
+  buildProductPricing,
+  getProductCategoryLabel,
+  getProductId,
+  getProductImages,
+  getProductSpecifications,
+  getProductStock,
+} from '../utils/product'
 import { formatCurrency } from '../utils/formatCurrency'
 import { wait } from '../utils/timing'
 
@@ -25,6 +32,7 @@ function QuickViewModal({ onClose, product, flashSaleCampaign = null }) {
   const isProductCompared = isCompared(productId)
   const { discountPercent, originalPrice } = buildProductPricing(product, flashSaleCampaign)
   const hasDiscount = discountPercent > 0
+  const productSpecifications = getProductSpecifications(product)
 
   async function handleAddToCart() {
     if (isAddingToCart) {
@@ -103,7 +111,7 @@ function QuickViewModal({ onClose, product, flashSaleCampaign = null }) {
           <ProductGallery images={productImages} isCompact name={product.name} />
 
           <div className="quick-view-content">
-            <p className="product-category-tag">{product.category}</p>
+            <p className="product-category-tag">{getProductCategoryLabel(product.category)}</p>
             <div className="detail-price-stack">
               <p className="detail-price">{formatCurrency(product.price)}</p>
               {hasDiscount ? <p className="product-original-price">{formatCurrency(originalPrice)}</p> : null}
@@ -113,13 +121,30 @@ function QuickViewModal({ onClose, product, flashSaleCampaign = null }) {
             <div className="product-meta-grid">
               <div>
                 <span>Danh mục</span>
-                <strong>{product.category}</strong>
+                <strong>{getProductCategoryLabel(product.category)}</strong>
               </div>
               <div>
                 <span>Tồn kho</span>
                 <strong>{stock === null ? 'Đang cập nhật' : stock}</strong>
               </div>
             </div>
+
+            {productSpecifications.length > 0 ? (
+              <div className="product-specs-preview">
+                <p className="product-specs-preview-label">Thông số kỹ thuật</p>
+                <div className="product-specs-preview-list">
+                  {productSpecifications.slice(0, 4).map((spec, index) => (
+                    <div key={`${spec.label || 'spec'}-${spec.value || index}`} className="product-specs-preview-item">
+                      <span>{spec.label || 'Thông số'}</span>
+                      <strong>{spec.value || 'Đang cập nhật'}</strong>
+                    </div>
+                  ))}
+                </div>
+                {productSpecifications.length > 4 ? (
+                  <p className="product-specs-preview-note">Còn {productSpecifications.length - 4} thông số khác trong trang chi tiết.</p>
+                ) : null}
+              </div>
+            ) : null}
 
             <div className="quick-view-actions">
               <button

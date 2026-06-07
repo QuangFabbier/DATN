@@ -3,6 +3,7 @@ import { generateGeminiJson } from './geminiService.js'
 
 const KNOWN_BRANDS = [
   'apple',
+  'google',
   'dell',
   'asus',
   'hp',
@@ -11,21 +12,320 @@ const KNOWN_BRANDS = [
   'msi',
   'samsung',
   'xiaomi',
+  'oppo',
+  'vivo',
+  'redmi',
+  'poco',
   'logitech',
   'anker',
+  'baseus',
+  'ugreen',
   'sony',
   'jbl',
   'keychron',
 ]
 
+const FAMILY_RULES = [
+  {
+    brand: 'apple',
+    family: 'MacBook',
+    category: 'Laptop',
+    queryKeywords: ['macbook', 'mac book', 'mac os', 'macos'],
+    productKeywords: ['macbook', 'mac os', 'macos'],
+  },
+  {
+    brand: 'apple',
+    family: 'iPhone',
+    category: 'Phone',
+    queryKeywords: ['iphone', 'ios'],
+    productKeywords: ['iphone', 'ios'],
+  },
+  {
+    brand: 'apple',
+    family: 'AirPods',
+    category: 'Headphones',
+    queryKeywords: ['airpods'],
+    productKeywords: ['airpods'],
+  },
+  {
+    brand: 'apple',
+    family: 'Apple Watch',
+    category: 'Smartwatch',
+    queryKeywords: ['apple watch', 'watch se', 'watch series', 'watch ultra'],
+    productKeywords: ['apple watch', 'watch se', 'watch series', 'watch ultra'],
+  },
+  {
+    brand: 'lenovo',
+    family: 'ThinkPad',
+    category: 'Laptop',
+    queryKeywords: ['thinkpad'],
+    productKeywords: ['thinkpad'],
+  },
+  {
+    brand: 'lenovo',
+    family: 'Legion',
+    category: 'Laptop',
+    queryKeywords: ['legion'],
+    productKeywords: ['legion'],
+  },
+  {
+    brand: 'lenovo',
+    family: 'LOQ',
+    category: 'Laptop',
+    queryKeywords: ['loq'],
+    productKeywords: ['loq'],
+  },
+  {
+    brand: 'lenovo',
+    family: 'Yoga',
+    category: 'Laptop',
+    queryKeywords: ['yoga'],
+    productKeywords: ['yoga'],
+  },
+  {
+    brand: 'dell',
+    family: 'XPS',
+    category: 'Laptop',
+    queryKeywords: ['xps'],
+    productKeywords: ['xps'],
+  },
+  {
+    brand: 'dell',
+    family: 'Inspiron',
+    category: 'Laptop',
+    queryKeywords: ['inspiron'],
+    productKeywords: ['inspiron'],
+  },
+  {
+    brand: 'dell',
+    family: 'Vostro',
+    category: 'Laptop',
+    queryKeywords: ['vostro'],
+    productKeywords: ['vostro'],
+  },
+  {
+    brand: 'asus',
+    family: 'Zenbook',
+    category: 'Laptop',
+    queryKeywords: ['zenbook'],
+    productKeywords: ['zenbook'],
+  },
+  {
+    brand: 'asus',
+    family: 'Vivobook',
+    category: 'Laptop',
+    queryKeywords: ['vivobook'],
+    productKeywords: ['vivobook'],
+  },
+  {
+    brand: 'asus',
+    family: 'ROG',
+    category: 'Laptop',
+    queryKeywords: ['rog', 'rog strix'],
+    productKeywords: ['rog'],
+  },
+  {
+    brand: 'asus',
+    family: 'TUF',
+    category: 'Laptop',
+    queryKeywords: ['tuf'],
+    productKeywords: ['tuf'],
+  },
+  {
+    brand: 'acer',
+    family: 'Aspire',
+    category: 'Laptop',
+    queryKeywords: ['aspire'],
+    productKeywords: ['aspire'],
+  },
+  {
+    brand: 'acer',
+    family: 'Nitro',
+    category: 'Laptop',
+    queryKeywords: ['nitro'],
+    productKeywords: ['nitro'],
+  },
+  {
+    brand: 'acer',
+    family: 'Predator',
+    category: 'Laptop',
+    queryKeywords: ['predator'],
+    productKeywords: ['predator'],
+  },
+  {
+    brand: 'hp',
+    family: 'Pavilion',
+    category: 'Laptop',
+    queryKeywords: ['pavilion'],
+    productKeywords: ['pavilion'],
+  },
+  {
+    brand: 'hp',
+    family: 'Envy',
+    category: 'Laptop',
+    queryKeywords: ['envy'],
+    productKeywords: ['envy'],
+  },
+  {
+    brand: 'hp',
+    family: 'Omen',
+    category: 'Laptop',
+    queryKeywords: ['omen'],
+    productKeywords: ['omen'],
+  },
+  {
+    brand: 'hp',
+    family: 'Victus',
+    category: 'Laptop',
+    queryKeywords: ['victus'],
+    productKeywords: ['victus'],
+  },
+  {
+    brand: 'samsung',
+    family: 'Galaxy',
+    category: 'Phone',
+    queryKeywords: ['galaxy', 'samsung galaxy', 'galaxy s', 'galaxy z', 'galaxy a'],
+    productKeywords: ['galaxy'],
+  },
+  {
+    brand: 'samsung',
+    family: 'Galaxy Watch',
+    category: 'Smartwatch',
+    queryKeywords: ['galaxy watch', 'samsung watch', 'watch 7', 'watch ultra'],
+    productKeywords: ['galaxy watch', 'watch'],
+  },
+  {
+    brand: 'google',
+    family: 'Pixel',
+    category: 'Phone',
+    queryKeywords: ['pixel', 'google pixel'],
+    productKeywords: ['pixel'],
+  },
+  {
+    brand: 'xiaomi',
+    family: 'Redmi',
+    category: 'Phone',
+    queryKeywords: ['redmi', 'redmi note'],
+    productKeywords: ['redmi'],
+  },
+  {
+    brand: 'xiaomi',
+    family: 'POCO',
+    category: 'Phone',
+    queryKeywords: ['poco'],
+    productKeywords: ['poco'],
+  },
+  {
+    brand: 'xiaomi',
+    family: 'Xiaomi',
+    category: 'Phone',
+    queryKeywords: ['xiaomi', 'mi phone'],
+    productKeywords: ['xiaomi'],
+  },
+  {
+    brand: 'oppo',
+    family: 'OPPO Find',
+    category: 'Phone',
+    queryKeywords: ['oppo find', 'find x'],
+    productKeywords: ['find'],
+  },
+  {
+    brand: 'oppo',
+    family: 'OPPO Reno',
+    category: 'Phone',
+    queryKeywords: ['reno'],
+    productKeywords: ['reno'],
+  },
+  {
+    brand: 'oppo',
+    family: 'OPPO A',
+    category: 'Phone',
+    queryKeywords: ['oppo a', 'a series'],
+    productKeywords: ['oppo a'],
+  },
+  {
+    brand: 'vivo',
+    family: 'vivo X',
+    category: 'Phone',
+    queryKeywords: ['vivo x'],
+    productKeywords: ['vivo x'],
+  },
+  {
+    brand: 'vivo',
+    family: 'vivo V',
+    category: 'Phone',
+    queryKeywords: ['vivo v'],
+    productKeywords: ['vivo v'],
+  },
+  {
+    brand: 'vivo',
+    family: 'vivo Y',
+    category: 'Phone',
+    queryKeywords: ['vivo y'],
+    productKeywords: ['vivo y'],
+  },
+  {
+    brand: 'sony',
+    family: 'Sony WH',
+    category: 'Headphones',
+    queryKeywords: ['sony wh', 'wh-1000xm', 'wh 1000xm', 'wh1000xm'],
+    productKeywords: ['sony', 'wh-1000xm'],
+  },
+  {
+    brand: 'sony',
+    family: 'Sony WF',
+    category: 'Headphones',
+    queryKeywords: ['sony wf', 'wf-1000xm', 'wf 1000xm', 'wf1000xm'],
+    productKeywords: ['sony', 'wf-1000xm'],
+  },
+  {
+    brand: 'jbl',
+    family: 'JBL',
+    category: 'Headphones',
+    queryKeywords: ['jbl'],
+    productKeywords: ['jbl'],
+  },
+  {
+    brand: 'logitech',
+    family: 'Logitech MX',
+    category: 'Mouse',
+    queryKeywords: ['logitech mx', 'mx master', 'mx anywhere'],
+    productKeywords: ['logitech mx', 'mx master', 'mx anywhere'],
+  },
+  {
+    brand: 'logitech',
+    family: 'Logitech G',
+    category: 'Mouse',
+    queryKeywords: ['logitech g', 'g pro', 'g102', 'g304', 'lightspeed', 'superlight'],
+    productKeywords: ['logitech g', 'g pro', 'g102', 'g304', 'lightspeed', 'superlight'],
+  },
+  {
+    brand: 'keychron',
+    family: 'Keychron',
+    category: 'Keyboard',
+    queryKeywords: ['keychron'],
+    productKeywords: ['keychron'],
+  },
+]
+
 const CATEGORY_RULES = [
-  { category: 'Laptop', keywords: ['laptop', 'notebook', 'macbook'] },
-  { category: 'Dien thoai', keywords: ['dien thoai', 'smartphone', 'iphone', 'galaxy', 'redmi'] },
-  { category: 'May tinh bang', keywords: ['tablet', 'ipad', 'may tinh bang'] },
-  { category: 'Am thanh', keywords: ['tai nghe', 'headphone', 'earbud', 'airpods', 'loa', 'audio', 'chong on'] },
-  { category: 'Man hinh', keywords: ['man hinh', 'monitor', 'display'] },
-  { category: 'Phu kien', keywords: ['phu kien', 'chuot', 'ban phim', 'sac du phong', 'cap sac'] },
-  { category: 'Noi that', keywords: ['ghe', 'ban', 'den ban', 'noi that'] },
+  { category: 'Tablet', keywords: ['tablet', 'ipad', 'may tinh bang'] },
+  {
+    category: 'Laptop',
+    keywords: ['laptop', 'notebook', 'macbook', 'may tinh xach tay', 'may tinh', 'pc', 'computer', 'gaming pc'],
+  },
+  { category: 'Phone', keywords: ['dien thoai', 'phone', 'smartphone', 'mobile', 'iphone', 'galaxy', 'redmi'] },
+  { category: 'Headphones', keywords: ['tai nghe', 'headphone', 'earbud', 'airpods', 'loa', 'audio', 'chong on'] },
+  { category: 'Monitor', keywords: ['man hinh', 'monitor', 'display'] },
+  { category: 'Mouse', keywords: ['chuot', 'mouse'] },
+  { category: 'Keyboard', keywords: ['ban phim', 'keyboard'] },
+  { category: 'SSD', keywords: ['ssd', 'ocung', 'o cung', 'storage'] },
+  { category: 'RAM', keywords: ['ram', 'bo nho'] },
+  { category: 'Power Bank', keywords: ['sac du phong', 'power bank'] },
+  { category: 'Charging Cable', keywords: ['cap sac', 'charging cable', 'usb c', 'usb-c'] },
+  { category: 'Charger', keywords: ['charger', 'sac', 'adapter', 'cu sac', 'bo sac'] },
+  { category: 'Router', keywords: ['router', 'wifi', 'modem'] },
+  { category: 'Smartwatch', keywords: ['smartwatch', 'dong ho thong minh'] },
 ]
 
 const PRIORITY_RULES = [
@@ -133,6 +433,37 @@ function parseBudgetFromMessage(message = '') {
 
 function inferCategory(message = '') {
   const normalized = normalizeTextFold(message)
+
+  const familyMatched = FAMILY_RULES.find((rule) =>
+    rule.category && rule.queryKeywords.some((keyword) => normalized.includes(normalizeTextFold(keyword))),
+  )
+
+  if (familyMatched?.category) {
+    return familyMatched.category
+  }
+
+  if (
+    ['may tinh bang', 'tablet', 'ipad'].some((keyword) => normalized.includes(normalizeTextFold(keyword)))
+  ) {
+    return 'Tablet'
+  }
+
+  if (
+    [
+      'laptop',
+      'notebook',
+      'macbook',
+      'may tinh xach tay',
+      'may tinh choi game',
+      'may tinh',
+      'pc',
+      'computer',
+      'gaming pc',
+    ].some((keyword) => normalized.includes(normalizeTextFold(keyword)))
+  ) {
+    return 'Laptop'
+  }
+
   const matchedRule = CATEGORY_RULES.find((rule) =>
     rule.keywords.some((keyword) => normalized.includes(normalizeTextFold(keyword))),
   )
@@ -158,7 +489,22 @@ function inferPriorities(message = '') {
 
 function inferPreferredBrands(message = '') {
   const normalized = normalizeTextFold(message)
-  return KNOWN_BRANDS.filter((brand) => normalized.includes(brand))
+  const inferredBrands = new Set(KNOWN_BRANDS.filter((brand) => normalized.includes(brand)))
+
+  for (const rule of FAMILY_RULES) {
+    if (rule.queryKeywords.some((keyword) => normalized.includes(normalizeTextFold(keyword)))) {
+      inferredBrands.add(rule.brand)
+    }
+  }
+
+  return [...inferredBrands]
+}
+
+function inferPreferredProductFamilies(message = '') {
+  const normalized = normalizeTextFold(message)
+  return FAMILY_RULES.filter((rule) => rule.queryKeywords.some((keyword) => normalized.includes(normalizeTextFold(keyword)))).map(
+    (rule) => rule.family,
+  )
 }
 
 function inferAvoidBrands(message = '') {
@@ -202,6 +548,7 @@ function buildHeuristicIntent(message = '') {
     useCase: inferUseCase(message),
     priorities: sanitizeStringArray(inferPriorities(message), 6),
     preferredBrands: sanitizeStringArray(inferPreferredBrands(message), 6),
+    preferredProductFamilies: sanitizeStringArray(inferPreferredProductFamilies(message), 6),
     avoidBrands: sanitizeStringArray(inferAvoidBrands(message), 6),
     needMoreInfo: false,
     followUpQuestion: '',
@@ -242,6 +589,10 @@ function sanitizeIntent(input = {}, fallback = {}) {
 
   const avoidBrands = sanitizeStringArray(input?.avoidBrands || fallback.avoidBrands || [], 6)
   const preferredBrandsRaw = sanitizeStringArray(input?.preferredBrands || fallback.preferredBrands || [], 6)
+  const preferredProductFamilies = sanitizeStringArray(
+    input?.preferredProductFamilies || fallback.preferredProductFamilies || [],
+    6,
+  )
   const preferredBrands = preferredBrandsRaw.filter(
     (brand) => !avoidBrands.some((avoidBrand) => normalizeTextFold(avoidBrand) === normalizeTextFold(brand)),
   )
@@ -256,6 +607,7 @@ function sanitizeIntent(input = {}, fallback = {}) {
     useCase: normalizedInputUseCase || normalizedFallbackUseCase,
     priorities: sanitizeStringArray(input?.priorities || fallback.priorities || [], 6),
     preferredBrands,
+    preferredProductFamilies,
     avoidBrands,
     needMoreInfo: coerceBoolean(input?.needMoreInfo, false),
     followUpQuestion: normalizedInputFollowUp || normalizedFallbackFollowUp,
@@ -308,6 +660,12 @@ function applyHeuristicOverrides(intent = {}, heuristicIntent = {}) {
   const heuristicUseCase = normalizeText(heuristicIntent?.useCase || '')
   if (heuristicUseCase && !normalizeText(nextIntent?.useCase || '')) {
     nextIntent.useCase = heuristicUseCase
+  }
+
+  const heuristicPreferredBrands = sanitizeStringArray(heuristicIntent?.preferredBrands || [], 6)
+  if (heuristicPreferredBrands.length > 0) {
+    const preferredBrands = sanitizeStringArray(nextIntent?.preferredBrands || [], 6)
+    nextIntent.preferredBrands = [...new Set([...preferredBrands, ...heuristicPreferredBrands])]
   }
 
   return sanitizeIntent(nextIntent, heuristicIntent)

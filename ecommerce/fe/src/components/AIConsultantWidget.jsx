@@ -9,12 +9,19 @@ import { getAIPreferences } from '../services/accountStorage'
 import { chatWithAi } from '../services/aiService'
 import { getProducts } from '../services/productService'
 import { formatCurrency } from '../utils/formatCurrency'
+import { getProductCategoryLabel } from '../utils/product'
+import {
+  canUseStorage,
+  getScopedStorageKey,
+  readScopedStorageJSON,
+  writeScopedStorageJSON,
+} from '../utils/storageScope'
 import StarRating from './StarRating'
 
 const PRODUCT_FALLBACK_IMAGE = 'https://placehold.co/120x120/e5e7eb/111827?text=Nexora'
 const MAX_WIDGET_PRODUCTS = 5
-const AI_WIDGET_MINIMIZED_FLAG_KEY = 'nexora.ai.widget.minimized'
-const AI_CONSULTANT_SESSION_STORAGE_KEY = 'nexora.ai.consultant.session.v1'
+const AI_WIDGET_MINIMIZED_FLAG_KEY_PREFIX = 'nexora.ai.widget.minimized'
+const AI_CONSULTANT_SESSION_STORAGE_KEY_PREFIX = 'nexora.ai.consultant.session.v1'
 const DEFAULT_ASSISTANT_MESSAGE = {
   id: 1,
   role: 'assistant',
@@ -30,28 +37,44 @@ const QUICK_SUGGESTION_CHIPS = [
 ]
 
 const CATEGORY_KEYWORD_RULES = [
-  { category: 'dien thoai', keywords: ['dien thoai', 'phone', 'smartphone', 'mobile'] },
-  { category: 'laptop', keywords: ['laptop', 'notebook', 'may tinh xach tay'] },
-  { category: 'may tinh bang', keywords: ['tablet', 'may tinh bang', 'ipad'] },
-  { category: 'phu kien', keywords: ['phu kien', 'accessory', 'chuot', 'ban phim', 'tai nghe'] },
-  { category: 'man hinh', keywords: ['man hinh', 'monitor', 'display'] },
-  { category: 'am thanh', keywords: ['tai nghe', 'loa', 'audio', 'chong on'] },
+  { category: 'Phone', keywords: ['dien thoai', 'phone', 'smartphone', 'mobile'] },
+  { category: 'Tablet', keywords: ['tablet', 'may tinh bang', 'ipad'] },
+  { category: 'Laptop', keywords: ['laptop', 'notebook', 'may tinh xach tay', 'may tinh', 'pc', 'computer', 'macbook', 'gaming pc'] },
+  { category: 'Headphones', keywords: ['tai nghe', 'headphone', 'earbud', 'audio', 'chong on'] },
+  { category: 'Monitor', keywords: ['man hinh', 'monitor', 'display'] },
+  { category: 'Mouse', keywords: ['chuot', 'mouse'] },
+  { category: 'Keyboard', keywords: ['ban phim', 'keyboard'] },
+  { category: 'SSD', keywords: ['ssd', 'ocung', 'o cung', 'storage'] },
+  { category: 'RAM', keywords: ['ram', 'bo nho'] },
+  { category: 'Power Bank', keywords: ['sac du phong', 'power bank'] },
+  { category: 'Charging Cable', keywords: ['cap sac', 'charging cable', 'usb c', 'usb-c'] },
+  { category: 'Charger', keywords: ['charger', 'sac', 'adapter', 'cu sac', 'bo sac'] },
+  { category: 'Router', keywords: ['router', 'wifi', 'modem'] },
+  { category: 'Smartwatch', keywords: ['smartwatch', 'dong ho thong minh'] },
 ]
 
-function readPersistedConsultantSession() {
-  if (typeof window === 'undefined') {
+function readPersistedConsultantSession(user) {
+  if (!canUseStorage()) {
     return null
   }
 
   try {
-    const rawSession = window.sessionStorage.getItem(AI_CONSULTANT_SESSION_STORAGE_KEY)
+    const parsedSession = readScopedStorageJSON(
+      window.sessionStorage,
+      AI_CONSULTANT_SESSION_STORAGE_KEY_PREFIX,
+      null,
+      user,
+    )
 
-    if (!rawSession) {
+    if (!parsedSession || typeof parsedSession !== 'object') {
       return null
     }
 
-    const parsedSession = JSON.parse(rawSession)
     const question = typeof parsedSession?.question === 'string' ? parsedSession.question : ''
+    const persistedConversationContext =
+      parsedSession?.conversationContext && typeof parsedSession.conversationContext === 'object'
+        ? parsedSession.conversationContext
+        : null
     const rawMessages = Array.isArray(parsedSession?.messages) ? parsedSession.messages : []
     const normalizedMessages = rawMessages
       .map((message, index) => ({
@@ -69,9 +92,45 @@ function readPersistedConsultantSession() {
     return {
       question,
       messages: normalizedMessages,
+      conversationContext: persistedConversationContext,
     }
   } catch {
     return null
+  }
+}
+
+function normalizeConversationContextValue(context = null) {
+  if (!context || typeof context !== 'object') {
+    return null
+  }
+
+  return {
+    category: String(context?.category || ''),
+    budget:
+      context?.budget && typeof context.budget === 'object'
+        ? {
+            min: Number.isFinite(Number(context.budget.min)) ? Number(context.budget.min) : null,
+            max: Number.isFinite(Number(context.budget.max)) ? Number(context.budget.max) : null,
+            currency: 'VND',
+          }
+        : { min: null, max: null, currency: 'VND' },
+    useCase: String(context?.useCase || ''),
+    priorities: Array.isArray(context?.priorities)
+      ? context.priorities.map((item) => String(item || '').trim()).filter(Boolean)
+      : [],
+    preferredBrands: Array.isArray(context?.preferredBrands)
+      ? context.preferredBrands.map((item) => String(item || '').trim()).filter(Boolean)
+      : [],
+    preferredProductFamilies: Array.isArray(context?.preferredProductFamilies)
+      ? context.preferredProductFamilies.map((item) => String(item || '').trim()).filter(Boolean)
+      : [],
+    avoidBrands: Array.isArray(context?.avoidBrands)
+      ? context.avoidBrands.map((item) => String(item || '').trim()).filter(Boolean)
+      : [],
+    lastRecommendedProductIds: Array.isArray(context?.lastRecommendedProductIds)
+      ? context.lastRecommendedProductIds.map((item) => String(item || '').trim()).filter(Boolean)
+      : [],
+    conversationStage: String(context?.conversationStage || 'greeting'),
   }
 }
 
@@ -156,22 +215,37 @@ function AIConsultantWidget() {
   const { showToast } = useToast()
 
   const isConsultantFullPage = location.pathname === '/ai-consultant'
-  const persistedSession = useMemo(() => readPersistedConsultantSession(), [])
+  const persistedSession = useMemo(() => readPersistedConsultantSession(user), [user])
   const messageListRef = useRef(null)
   const messageIdRef = useRef(2)
+  const minimizedStorageKey = useMemo(
+    () => getScopedStorageKey(AI_WIDGET_MINIMIZED_FLAG_KEY_PREFIX, user),
+    [user],
+  )
 
   const [isOpen, setIsOpen] = useState(false)
   const [hasPendingResumeSession, setHasPendingResumeSession] = useState(() => {
-    if (typeof window === 'undefined') {
+    if (!canUseStorage()) {
       return false
     }
 
-    return window.sessionStorage.getItem(AI_WIDGET_MINIMIZED_FLAG_KEY) === '1'
+    return window.sessionStorage.getItem(getScopedStorageKey(AI_WIDGET_MINIMIZED_FLAG_KEY_PREFIX, user)) === '1'
   })
   const [question, setQuestion] = useState(() => persistedSession?.question || '')
   const [messages, setMessages] = useState(() => persistedSession?.messages || [DEFAULT_ASSISTANT_MESSAGE])
+  const [conversationContext, setConversationContext] = useState(() =>
+    normalizeConversationContextValue(persistedSession?.conversationContext),
+  )
   const [isLoading, setIsLoading] = useState(false)
   const [productCatalog, setProductCatalog] = useState([])
+
+  useEffect(() => {
+    queueMicrotask(() => {
+      setQuestion(persistedSession?.question || '')
+      setMessages(persistedSession?.messages || [DEFAULT_ASSISTANT_MESSAGE])
+      setConversationContext(normalizeConversationContextValue(persistedSession?.conversationContext))
+    })
+  }, [persistedSession])
 
   useEffect(() => {
     const nextIdFromMessages =
@@ -187,14 +261,27 @@ function AIConsultantWidget() {
       return
     }
 
-    window.sessionStorage.setItem(
-      AI_CONSULTANT_SESSION_STORAGE_KEY,
-      JSON.stringify({
+    writeScopedStorageJSON(
+      window.sessionStorage,
+      AI_CONSULTANT_SESSION_STORAGE_KEY_PREFIX,
+      {
         question,
         messages,
-      }),
+        conversationContext,
+      },
+      user,
     )
-  }, [messages, question])
+  }, [messages, question, conversationContext, user])
+
+  useEffect(() => {
+    if (!canUseStorage()) {
+      return
+    }
+
+    queueMicrotask(() => {
+      setHasPendingResumeSession(window.sessionStorage.getItem(minimizedStorageKey) === '1')
+    })
+  }, [location.pathname, location.search, minimizedStorageKey])
 
   useEffect(() => {
     if (!isOpen) {
@@ -282,7 +369,9 @@ function AIConsultantWidget() {
       recommendedProducts: [],
     }
 
-    setMessages((currentMessages) => [...currentMessages, userMessage])
+    const nextMessagesForAi = [...messages, userMessage]
+
+    setMessages(nextMessagesForAi)
     setQuestion('')
     setIsLoading(true)
 
@@ -297,6 +386,8 @@ function AIConsultantWidget() {
       const aiResponse = await chatWithAi({
         message: trimmedQuestion,
         context: aiContext,
+        conversationContext,
+        allMessagesForSummary: nextMessagesForAi,
       })
 
       const fallbackProducts = pickFallbackProducts(trimmedQuestion, catalog)
@@ -316,6 +407,7 @@ function AIConsultantWidget() {
           recommendedProducts: nextRecommendedProducts,
         },
       ])
+      setConversationContext(normalizeConversationContextValue(aiResponse.conversationContext) || conversationContext)
     } catch {
       const catalog = await ensureProductCatalogLoaded()
       const fallbackProducts = pickFallbackProducts(trimmedQuestion, catalog)
@@ -341,9 +433,12 @@ function AIConsultantWidget() {
     setQuestion('')
     setIsLoading(false)
     setMessages([DEFAULT_ASSISTANT_MESSAGE])
+    setConversationContext(null)
 
-    if (typeof window !== 'undefined') {
-      window.sessionStorage.removeItem(AI_CONSULTANT_SESSION_STORAGE_KEY)
+    if (canUseStorage()) {
+      window.sessionStorage.removeItem(
+        getScopedStorageKey(AI_CONSULTANT_SESSION_STORAGE_KEY_PREFIX, user),
+      )
     }
 
     showToast({
@@ -358,8 +453,8 @@ function AIConsultantWidget() {
       return
     }
 
-    if (typeof window !== 'undefined') {
-      window.sessionStorage.setItem(AI_WIDGET_MINIMIZED_FLAG_KEY, '1')
+    if (canUseStorage()) {
+      window.sessionStorage.setItem(minimizedStorageKey, '1')
     }
 
     setHasPendingResumeSession(true)
@@ -371,8 +466,8 @@ function AIConsultantWidget() {
     const nextIsOpen = !isOpen
     setIsOpen(nextIsOpen)
 
-    if (nextIsOpen && typeof window !== 'undefined') {
-      window.sessionStorage.removeItem(AI_WIDGET_MINIMIZED_FLAG_KEY)
+    if (nextIsOpen && canUseStorage()) {
+      window.sessionStorage.removeItem(minimizedStorageKey)
       setHasPendingResumeSession(false)
     }
   }
@@ -414,9 +509,10 @@ function AIConsultantWidget() {
               className="ai-widget-toggle"
               onClick={handleClearConversation}
               disabled={isLoading}
-              aria-label="Xóa hội thoại"
+              aria-label="Đặt lại hội thoại"
+              title="Đặt lại hội thoại"
             >
-              <i className="fa-solid fa-trash" aria-hidden="true" />
+              <i className="fa-solid fa-rotate-left" aria-hidden="true" />
             </button>
             <button
               type="button"
@@ -464,7 +560,7 @@ function AIConsultantWidget() {
                       <div className="ai-product-result-body">
                         <div className="ai-product-result-copy">
                           <strong>{product.name}</strong>
-                          <span>{product.category}</span>
+                          <span>{getProductCategoryLabel(product.category)}</span>
                           <StarRating
                             value={product.averageRating}
                             reviewCount={product.totalReviews}

@@ -6,11 +6,12 @@ import { ProductGridSkeleton } from '../components/Skeleton'
 import { useSearch } from '../hooks/useSearch'
 import { getProducts } from '../services/productService'
 import { getOrCreateFlashSaleCampaign } from '../utils/flashSale'
-import { getProductId } from '../utils/product'
+import { getProductCategoryLabel, getProductId, normalizeProductCategory } from '../utils/product'
 import { withMinimumDelay } from '../utils/timing'
 
 const PRODUCTS_PAGE_SIZE = 8
 const ALL_CATEGORIES_LABEL = 'Tất cả'
+const ALL_BRANDS_LABEL = 'Tất cả'
 const SORT_OPTIONS = [
   { value: 'featured', label: 'Nổi bật' },
   { value: 'priceAsc', label: 'Giá tăng dần' },
@@ -28,9 +29,14 @@ function Products() {
   const [openDropdown, setOpenDropdown] = useState('')
   const [searchParams, setSearchParams] = useSearchParams()
   const categoryDropdownRef = useRef(null)
+  const brandDropdownRef = useRef(null)
   const sortDropdownRef = useRef(null)
   const { searchKeyword, setSearchKeyword } = useSearch()
   const rawSelectedCategory = String(searchParams.get('category') || '').trim()
+  const rawSelectedBrand = String(searchParams.get('brand') || '').trim()
+  const selectedCategoryParam = normalizeProductCategory(rawSelectedCategory)
+  const selectedBrandParam = rawSelectedBrand.toLowerCase()
+  const selectedCategoryLabel = selectedCategoryParam ? getProductCategoryLabel(selectedCategoryParam) : ALL_CATEGORIES_LABEL
   const aiIdsParam = String(searchParams.get('aiIds') || '').trim()
   const aiQuery = String(searchParams.get('aiQuery') || '').trim()
   const isAiResultMode = aiIdsParam.length > 0
@@ -87,22 +93,49 @@ function Products() {
 
   const categories = useMemo(() => {
     const normalizedCategories = products
-      .map((product) => String(product?.category || '').trim())
+      .map((product) => normalizeProductCategory(product?.category))
       .filter(Boolean)
 
     return [ALL_CATEGORIES_LABEL, ...new Set(normalizedCategories)]
   }, [products])
 
-  const selectedCategory = categories.includes(rawSelectedCategory)
-    ? rawSelectedCategory
+  const brands = useMemo(() => {
+    const brandCounts = new Map()
+
+    products.forEach((product) => {
+      const brand = String(product?.brand || '').trim()
+      if (!brand) {
+        return
+      }
+
+      const brandKey = brand.toLowerCase()
+      brandCounts.set(brandKey, (brandCounts.get(brandKey) || { value: brand, count: 0 }))
+      const current = brandCounts.get(brandKey)
+      current.value = current.value || brand
+      current.count += 1
+      brandCounts.set(brandKey, current)
+    })
+
+    return [ALL_BRANDS_LABEL, ...[...brandCounts.values()]
+      .sort((firstEntry, secondEntry) => secondEntry.count - firstEntry.count || firstEntry.value.localeCompare(secondEntry.value))
+      .map((entry) => entry.value)]
+  }, [products])
+
+  const selectedCategory = categories.includes(selectedCategoryParam)
+    ? selectedCategoryParam
     : ALL_CATEGORIES_LABEL
+  const selectedBrand =
+    brands.find((brand) => brand.toLowerCase() === selectedBrandParam) || ALL_BRANDS_LABEL
+  const selectedBrandLabel = selectedBrand
 
   const keyword = searchKeyword.trim().toLowerCase()
   const pageTitle = isAiResultMode
     ? 'Kết quả từ AI'
-    : selectedCategory === ALL_CATEGORIES_LABEL
-      ? 'Sản phẩm'
-      : selectedCategory
+    : selectedBrand !== ALL_BRANDS_LABEL
+      ? selectedBrand
+      : selectedCategory === ALL_CATEGORIES_LABEL
+        ? 'Sản phẩm'
+        : selectedCategory
 
   const filteredProducts = useMemo(() => {
     if (isAiResultMode) {
@@ -120,7 +153,16 @@ function Products() {
 
     const nextProducts = products
       .filter((product) => (keyword ? product.name.toLowerCase().includes(keyword) : true))
-      .filter((product) => (selectedCategory === ALL_CATEGORIES_LABEL ? true : product.category === selectedCategory))
+      .filter((product) =>
+        selectedBrand === ALL_BRANDS_LABEL
+          ? true
+          : String(product?.brand || '').trim().toLowerCase() === selectedBrand.toLowerCase(),
+      )
+      .filter((product) =>
+        selectedCategory === ALL_CATEGORIES_LABEL
+          ? true
+          : normalizeProductCategory(product.category) === selectedCategory,
+      )
 
     return [...nextProducts].sort((firstProduct, secondProduct) => {
       if (sortBy === 'priceAsc') {
@@ -137,7 +179,7 @@ function Products() {
 
       return secondProduct.price - firstProduct.price
     })
-  }, [aiIdList, isAiResultMode, keyword, products, selectedCategory, sortBy])
+  }, [aiIdList, isAiResultMode, keyword, products, selectedBrand, selectedCategory, sortBy])
 
   const suggestedProducts = useMemo(
     () =>
@@ -201,14 +243,14 @@ function Products() {
       return
     }
 
-    if (!rawSelectedCategory || categories.includes(rawSelectedCategory)) {
+    if (!rawSelectedCategory || categories.includes(selectedCategoryParam)) {
       return
     }
 
     const nextParams = new URLSearchParams(searchParams)
     nextParams.delete('category')
     setSearchParams(nextParams, { replace: true })
-  }, [categories, loading, rawSelectedCategory, searchParams, setSearchParams])
+  }, [categories, loading, rawSelectedCategory, searchParams, selectedCategoryParam, setSearchParams])
 
   useEffect(() => {
     function handlePointerDown(event) {
@@ -217,12 +259,14 @@ function Products() {
       }
 
       const categoryWrapper = categoryDropdownRef.current
+      const brandWrapper = brandDropdownRef.current
       const sortWrapper = sortDropdownRef.current
       const eventTarget = event.target
       const isInsideCategory = categoryWrapper?.contains(eventTarget)
+      const isInsideBrand = brandWrapper?.contains(eventTarget)
       const isInsideSort = sortWrapper?.contains(eventTarget)
 
-      if (!isInsideCategory && !isInsideSort) {
+      if (!isInsideCategory && !isInsideBrand && !isInsideSort) {
         setOpenDropdown('')
       }
     }
@@ -242,7 +286,7 @@ function Products() {
     }
   }, [openDropdown])
 
-  function updateParams(nextCategory, nextSearch) {
+  function updateParams(nextCategory, nextBrand, nextSearch) {
     const nextParams = new URLSearchParams(searchParams)
     nextParams.delete('aiIds')
     nextParams.delete('aiQuery')
@@ -252,6 +296,12 @@ function Products() {
       nextParams.set('category', nextCategory)
     } else {
       nextParams.delete('category')
+    }
+
+    if (nextBrand && nextBrand !== ALL_BRANDS_LABEL) {
+      nextParams.set('brand', nextBrand)
+    } else {
+      nextParams.delete('brand')
     }
 
     if (nextSearch.trim()) {
@@ -291,7 +341,7 @@ function Products() {
             onChange={(event) => {
               setSearchKeyword(event.target.value)
               setCurrentPage(1)
-              updateParams(selectedCategory, event.target.value)
+              updateParams(selectedCategory, selectedBrand, event.target.value)
             }}
             placeholder="Tìm theo tên sản phẩm"
           />
@@ -307,7 +357,7 @@ function Products() {
               aria-expanded={openDropdown === 'category'}
               aria-label="Lọc theo danh mục"
             >
-              <span>{selectedCategory}</span>
+              <span>{selectedCategoryLabel}</span>
               <i className="fa-solid fa-chevron-down" aria-hidden="true" />
             </button>
 
@@ -320,13 +370,50 @@ function Products() {
                     className={`filter-dropdown-option ${selectedCategory === category ? 'active' : ''}`}
                     onClick={() => {
                       setCurrentPage(1)
-                      updateParams(category, searchKeyword)
+                      updateParams(category, ALL_BRANDS_LABEL, searchKeyword)
                       setOpenDropdown('')
                     }}
                     role="option"
                     aria-selected={selectedCategory === category}
                   >
-                    {category}
+                    {getProductCategoryLabel(category)}
+                  </button>
+                ))}
+              </div>
+            ) : null}
+          </div>
+        </label>
+
+        <label className="filter-field">
+          <span>Hãng</span>
+          <div className="filter-dropdown" ref={brandDropdownRef}>
+            <button
+              type="button"
+              className="filter-dropdown-trigger"
+              onClick={() => setOpenDropdown((current) => (current === 'brand' ? '' : 'brand'))}
+              aria-expanded={openDropdown === 'brand'}
+              aria-label="Lọc theo hãng"
+            >
+              <span>{selectedBrandLabel}</span>
+              <i className="fa-solid fa-chevron-down" aria-hidden="true" />
+            </button>
+
+            {openDropdown === 'brand' ? (
+              <div className="filter-dropdown-menu" role="listbox" aria-label="Hãng sản phẩm">
+                {brands.map((brand) => (
+                  <button
+                    key={brand}
+                    type="button"
+                    className={`filter-dropdown-option ${selectedBrand === brand ? 'active' : ''}`}
+                    onClick={() => {
+                      setCurrentPage(1)
+                      updateParams(ALL_CATEGORIES_LABEL, brand, searchKeyword)
+                      setOpenDropdown('')
+                    }}
+                    role="option"
+                    aria-selected={selectedBrand === brand}
+                  >
+                    {brand}
                   </button>
                 ))}
               </div>

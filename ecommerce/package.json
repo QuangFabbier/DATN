@@ -7,6 +7,7 @@
     "dev:fe": "npm --prefix fe run dev",
     "dev:be": "npm --prefix be run dev",
     "build": "npm --prefix fe run build",
+    "seed": "npm --prefix be run seed",
     "lint": "npm --prefix fe run lint",
     "preview": "npm --prefix fe run preview",
     "start:be": "npm --prefix be run start"

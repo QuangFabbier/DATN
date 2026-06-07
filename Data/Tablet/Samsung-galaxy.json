@@ -1,0 +1,62 @@
+[
+  {
+    "name": "Samsung Galaxy Tab S10 FE Wi-Fi 128GB",
+    "category": "Tablet",
+    "brand": "Samsung",
+    "price": 13990000,
+    "stock": 55,
+    "minStockLevel": 15,
+    "images": [],
+    "description": "Galaxy Tab S10 FE là mẫu máy tính bảng Android phù hợp cho học tập, làm việc và giải trí hằng ngày. Thiết bị được trang bị màn hình lớn giúp đọc tài liệu, ghi chú và xem nội dung đa phương tiện thoải mái. Bút S Pen đi kèm hỗ trợ học tập, vẽ và ghi chú hiệu quả mà không cần mua thêm phụ kiện. Hiệu năng ổn định đáp ứng tốt các tác vụ văn phòng, học trực tuyến và giải trí phổ biến. Đây là lựa chọn phù hợp cho học sinh, sinh viên và người dùng cần một chiếc tablet Android đa năng với mức giá hợp lý.",
+    "specifications": {
+      "processor": "Exynos 1580",
+      "ram": "8GB",
+      "storage": "128GB",
+      "display": "10.9 inch WQXGA 90Hz",
+      "battery": "8000mAh",
+      "operatingSystem": "Android",
+      "connectivity": "Wi-Fi",
+      "weight": "523g"
+    }
+  },
+  {
+    "name": "Samsung Galaxy Tab S10+ Wi-Fi 256GB",
+    "category": "Tablet",
+    "brand": "Samsung",
+    "price": 24990000,
+    "stock": 30,
+    "minStockLevel": 8,
+    "images": [],
+    "description": "Galaxy Tab S10+ là mẫu tablet cao cấp dành cho người dùng cần màn hình lớn và hiệu năng mạnh mẽ cho công việc lẫn giải trí. Màn hình Dynamic AMOLED mang lại màu sắc sống động và độ tương phản cao, phù hợp cho chỉnh sửa hình ảnh và xem nội dung chất lượng cao. Bút S Pen đi kèm giúp ghi chú, phác thảo ý tưởng và làm việc hiệu quả hơn. Thiết bị đáp ứng tốt đa nhiệm, họp trực tuyến và các ứng dụng sáng tạo nội dung. Đây là lựa chọn phù hợp cho sinh viên, nhân viên văn phòng và người dùng chuyên nghiệp.",
+    "specifications": {
+      "processor": "MediaTek Dimensity 9300+",
+      "ram": "12GB",
+      "storage": "256GB",
+      "display": "12.4 inch Dynamic AMOLED 2X 120Hz",
+      "battery": "10090mAh",
+      "operatingSystem": "Android",
+      "connectivity": "Wi-Fi",
+      "weight": "571g"
+    }
+  },
+  {
+    "name": "Samsung Galaxy Tab S10 Ultra Wi-Fi 512GB",
+    "category": "Tablet",
+    "brand": "Samsung",
+    "price": 32990000,
+    "stock": 18,
+    "minStockLevel": 5,
+    "images": [],
+    "description": "Galaxy Tab S10 Ultra là mẫu tablet Android cao cấp nhất của Samsung dành cho người dùng chuyên nghiệp. Màn hình kích thước lớn mang lại không gian làm việc rộng rãi, phù hợp cho chỉnh sửa nội dung, đa nhiệm và giải trí cao cấp. Hiệu năng mạnh mẽ giúp xử lý tốt các tác vụ đồ họa, công việc văn phòng nâng cao và học tập chuyên sâu. Bút S Pen hỗ trợ sáng tạo nội dung và ghi chú hiệu quả. Đây là lựa chọn lý tưởng cho người dùng muốn một thiết bị Android cao cấp có khả năng thay thế laptop trong nhiều tình huống.",
+    "specifications": {
+      "processor": "MediaTek Dimensity 9300+",
+      "ram": "12GB",
+      "storage": "512GB",
+      "display": "14.6 inch Dynamic AMOLED 2X 120Hz",
+      "battery": "11200mAh",
+      "operatingSystem": "Android",
+      "connectivity": "Wi-Fi",
+      "weight": "718g"
+    }
+  }
+]

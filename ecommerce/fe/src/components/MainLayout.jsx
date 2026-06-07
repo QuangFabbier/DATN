@@ -21,6 +21,7 @@ import { useTheme } from "../hooks/useTheme";
 import { getProfile } from "../services/accountStorage";
 import { getProducts } from "../services/productService";
 import { formatCurrency } from "../utils/formatCurrency";
+import { getProductCategoryLabel, normalizeProductCategory } from "../utils/product";
 
 const menuItems = [
   { path: "/", label: "Trang chủ", end: true },
@@ -39,7 +40,7 @@ function MainLayout() {
   const { favoriteItems } = useFavorites();
   const { searchKeyword, setSearchKeyword } = useSearch();
   const { isDarkMode, toggleTheme } = useTheme();
-  const [categories, setCategories] = useState([]);
+  const [categoryHighlights, setCategoryHighlights] = useState([]);
   const [isAccountMenuOpen, setIsAccountMenuOpen] = useState(false);
   const [isCartMenuOpen, setIsCartMenuOpen] = useState(false);
   const [isCategoryMenuOpen, setIsCategoryMenuOpen] = useState(false);
@@ -59,11 +60,24 @@ function MainLayout() {
     async function fetchCategories() {
       try {
         const data = await getProducts();
-        setCategories([
-          ...new Set(data.map((product) => product.category).filter(Boolean)),
-        ]);
+        const categoryCounts = new Map();
+
+        data.forEach((product) => {
+          const category = normalizeProductCategory(product.category);
+
+          if (category) {
+            categoryCounts.set(category, (categoryCounts.get(category) || 0) + 1);
+          }
+        });
+
+        const nextCategoryHighlights = [...categoryCounts.entries()]
+          .sort((firstEntry, secondEntry) => secondEntry[1] - firstEntry[1] || firstEntry[0].localeCompare(secondEntry[0]))
+          .slice(0, 6)
+          .map(([value]) => value);
+
+        setCategoryHighlights(nextCategoryHighlights);
       } catch {
-        setCategories([]);
+        setCategoryHighlights([]);
       }
     }
 
@@ -212,6 +226,8 @@ function MainLayout() {
   }
 
   function handleCategoryNavigate(category) {
+    setIsCategoryMenuOpen(false);
+    setIsMobileMenuOpen(false);
     navigate(`/products?category=${encodeURIComponent(category)}`);
   }
 
@@ -301,11 +317,8 @@ function MainLayout() {
               <button
                 type="button"
                 className={`header-link header-link-badge ${isCartIconAnimated ? "badge-pulse" : ""}`}
-                onClick={() =>
-                  setIsCartMenuOpen((currentState) => !currentState)
-                }
+                onClick={(event) => handleProtectedCartNavigation(event, "/cart")}
                 aria-label={`Giỏ hàng, ${cartItemCount} sản phẩm`}
-                aria-expanded={isCartMenuOpen}
               >
                 <i
                   className="fa-solid fa-cart-shopping header-link-icon"
@@ -351,26 +364,6 @@ function MainLayout() {
                         <span>Tạm tính</span>
                         <strong>{formatCurrency(cartTotal)}</strong>
                       </p>
-                      <div className="mini-cart-actions">
-                        <NavLink
-                          to="/cart"
-                          className="button button-light"
-                          onClick={(event) =>
-                            handleProtectedCartNavigation(event, "/cart")
-                          }
-                        >
-                          Xem giỏ hàng
-                        </NavLink>
-                        <NavLink
-                          to="/orders"
-                          className="button"
-                          onClick={(event) =>
-                            handleProtectedCartNavigation(event, "/orders")
-                          }
-                        >
-                          Thanh toán
-                        </NavLink>
-                      </div>
                     </div>
                   </>
                 ) : (
@@ -532,27 +525,32 @@ function MainLayout() {
                   <p className="eyebrow">Mega menu</p>
                   <h2>Khám phá danh mục nổi bật</h2>
                   <p>
-                    Từ laptop, điện thoại đến góc làm việc tại nhà, mọi nhóm sản
-                    phẩm của Nexora đều được gom rõ ràng để tìm nhanh hơn.
+                    Chọn nhanh nhóm sản phẩm nổi bật để đi thẳng đến bộ lọc phù hợp.
                   </p>
                 </div>
 
-                <div className="mega-menu-grid">
-                  {categories.map((category) => (
-                    <button
-                      key={category}
-                      type="button"
-                      className="mega-menu-card"
-                      onClick={() => handleCategoryNavigate(category)}
-                    >
-                      <span className="mega-menu-icon" aria-hidden="true">
-                        <i className="fa-solid fa-layer-group" />
-                      </span>
-                      <strong>{category}</strong>
-                      <span>Xem danh sách sản phẩm</span>
-                    </button>
-                  ))}
-                </div>
+                <section className="mega-menu-section">
+                  <div className="mega-menu-section-header">
+                    <p className="eyebrow">Danh mục</p>
+                    <h3>Nhóm sản phẩm nổi bật</h3>
+                  </div>
+                  <div className="mega-menu-grid">
+                    {categoryHighlights.map((category) => (
+                      <button
+                        key={category}
+                        type="button"
+                        className="mega-menu-card"
+                        onClick={() => handleCategoryNavigate(category)}
+                      >
+                        <span className="mega-menu-icon" aria-hidden="true">
+                          <i className="fa-solid fa-layer-group" />
+                        </span>
+                        <strong>{getProductCategoryLabel(category)}</strong>
+                        <span>Danh mục sản phẩm</span>
+                      </button>
+                    ))}
+                  </div>
+                </section>
               </div>
             </div>
           </nav>
@@ -602,14 +600,14 @@ function MainLayout() {
 
           <div className="mobile-drawer-group">
             <p className="mobile-drawer-title">Danh mục</p>
-            {categories.map((category) => (
+            {categoryHighlights.map((category) => (
               <button
                 key={category}
                 type="button"
                 className="mobile-drawer-link"
                 onClick={() => handleCategoryNavigate(category)}
               >
-                {category}
+                {getProductCategoryLabel(category)}
               </button>
             ))}
           </div>

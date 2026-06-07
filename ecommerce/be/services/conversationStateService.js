@@ -19,10 +19,28 @@ const EMPTY_CONTEXT = {
   useCase: '',
   priorities: [],
   preferredBrands: [],
+  preferredProductFamilies: [],
   avoidBrands: [],
   lastRecommendedProductIds: [],
   conversationStage: 'greeting',
 }
+
+const CATEGORY_HINT_RULES = [
+  { category: 'Tablet', keywords: ['may tinh bang', 'tablet', 'ipad'] },
+  { category: 'Laptop', keywords: ['laptop', 'notebook', 'may tinh xach tay', 'may tinh', 'pc', 'computer', 'macbook', 'gaming pc'] },
+  { category: 'Phone', keywords: ['dien thoai', 'phone', 'smartphone', 'mobile', 'iphone', 'galaxy', 'redmi'] },
+  { category: 'Headphones', keywords: ['tai nghe', 'headphone', 'earbud', 'airpods', 'audio', 'chong on'] },
+  { category: 'Monitor', keywords: ['man hinh', 'monitor', 'display'] },
+  { category: 'Mouse', keywords: ['chuot', 'mouse'] },
+  { category: 'Keyboard', keywords: ['ban phim', 'keyboard'] },
+  { category: 'SSD', keywords: ['ssd', 'ocung', 'o cung', 'storage'] },
+  { category: 'RAM', keywords: ['ram', 'bo nho'] },
+  { category: 'Power Bank', keywords: ['sac du phong', 'power bank'] },
+  { category: 'Charging Cable', keywords: ['cap sac', 'charging cable', 'usb c', 'usb-c'] },
+  { category: 'Charger', keywords: ['charger', 'sac', 'adapter', 'cu sac', 'bo sac'] },
+  { category: 'Router', keywords: ['router', 'wifi', 'modem'] },
+  { category: 'Smartwatch', keywords: ['smartwatch', 'dong ho thong minh'] },
+]
 
 function normalizeText(value = '') {
   return String(value || '').trim()
@@ -169,6 +187,15 @@ function isFreshSearchMessage(message = '', intent = {}) {
   return hasSearchVerb && hasStrongTarget
 }
 
+function detectExplicitCategoryFromMessage(message = '') {
+  const normalizedMessage = normalizeTextFold(message)
+  const matchedRule = CATEGORY_HINT_RULES.find((rule) =>
+    rule.keywords.some((keyword) => normalizedMessage.includes(normalizeTextFold(keyword))),
+  )
+
+  return matchedRule?.category || ''
+}
+
 function normalizeAIPreferences(rawPreferences = {}) {
   const source = rawPreferences && typeof rawPreferences === 'object' ? rawPreferences : {}
 
@@ -188,6 +215,7 @@ export function normalizeConversationContext(input = {}) {
     useCase: normalizeText(source.useCase),
     priorities: uniqueValues(source.priorities || [], 8),
     preferredBrands: uniqueValues(source.preferredBrands || [], 8),
+    preferredProductFamilies: uniqueValues(source.preferredProductFamilies || [], 8),
     avoidBrands: uniqueValues(source.avoidBrands || [], 8),
     lastRecommendedProductIds: uniqueValues(source.lastRecommendedProductIds || [], 10),
     conversationStage: normalizeStage(source.conversationStage),
@@ -280,13 +308,18 @@ export function mergeConversationContext({ baseContext, intent, message, auxilia
   const safeIntent = intent && typeof intent === 'object' ? intent : {}
   const aiPreferences = normalizeAIPreferences(auxiliaryContext?.aiPreferences || {})
   const freshSearch = isFreshSearchMessage(message, safeIntent)
+  const explicitCategoryFromMessage = detectExplicitCategoryFromMessage(message)
+  const shouldOverrideCategory =
+    freshSearch || !previousContext.category || Boolean(explicitCategoryFromMessage)
 
   const preferredBrandsFromMemory = aiPreferences.preferredBrands
   const prioritiesFromMemory = aiPreferences.shoppingPriorities
 
   const nextContext = {
     ...previousContext,
-    category: normalizeText(safeIntent.category) || previousContext.category,
+    category: shouldOverrideCategory
+      ? normalizeText(explicitCategoryFromMessage || safeIntent.category) || previousContext.category
+      : previousContext.category,
     budget: freshSearch
       ? normalizeBudget(safeIntent.budget, EMPTY_CONTEXT.budget)
       : normalizeBudget(safeIntent.budget, previousContext.budget),
@@ -299,6 +332,10 @@ export function mergeConversationContext({ baseContext, intent, message, auxilia
     preferredBrands: freshSearch
       ? uniqueValues([...preferredBrandsFromMemory, ...(safeIntent.preferredBrands || [])], 8)
       : mergeUniqueValues(previousContext.preferredBrands, preferredBrandsFromMemory, safeIntent.preferredBrands),
+    preferredProductFamilies: mergeUniqueValues(
+      previousContext.preferredProductFamilies,
+      safeIntent.preferredProductFamilies,
+    ),
     avoidBrands: freshSearch
       ? uniqueValues(safeIntent.avoidBrands || [], 8)
       : mergeUniqueValues(previousContext.avoidBrands, safeIntent.avoidBrands),
@@ -348,9 +385,9 @@ export function buildClarificationPayload(context = {}) {
     return {
       type: 'clarification',
       stage: 'needs_discovery',
-      reply: 'Mnh c th t vn rt st. Bn ang cn nhm sn phm no trc?',
-      questions: ['Bn cn nhm sn phm no?'],
-      quickReplies: ['Laptop', 'in thoi', 'Tai nghe', 'My tnh bng'],
+      reply: 'Mình có thể tư vấn rất sát. Bạn đang cần nhóm sản phẩm nào trước?',
+      questions: ['Bạn cần nhóm sản phẩm nào?'],
+      quickReplies: ['Laptop', 'Điện thoại', 'Tai nghe', 'Máy tính bảng'],
     }
   }
 
@@ -358,9 +395,9 @@ export function buildClarificationPayload(context = {}) {
     return {
       type: 'clarification',
       stage: 'clarification',
-      reply: `Mnh  hiu bn ang tm ${safeContext.category}. Bn mun cht mc ch s dng hay ngn sch trc?`,
-      questions: ['Bn dng cho nhu cu g?', 'Bn d kin ngn sch bao nhiu?'],
-      quickReplies: ['Hc lp trnh', 'Gaming', 'Vn phng', 'Di 15 triu', '15-25 triu', 'Trn 25 triu'],
+      reply: `Mình đã hiểu bạn đang tìm ${safeContext.category}. Bạn muốn chốt mục đích sử dụng hay ngân sách trước?`,
+      questions: ['Bạn dùng cho nhu cầu gì?', 'Bạn dự kiến ngân sách bao nhiêu?'],
+      quickReplies: ['Học lập trình', 'Gaming', 'Văn phòng', 'Dưới 15 triệu', '15-25 triệu', 'Trên 25 triệu'],
     }
   }
 
@@ -368,9 +405,9 @@ export function buildClarificationPayload(context = {}) {
     return {
       type: 'clarification',
       stage: 'clarification',
-      reply: ` lc chun hn cho ${safeContext.category}, bn dng ch yu cho mc ch g?`,
-      questions: ['Bn dng cho nhu cu g?'],
-      quickReplies: ['Hc lp trnh', 'Gaming', 'Vn phng', 'Chp nh'],
+      reply: `Để chọn chuẩn hơn cho ${safeContext.category}, bạn dùng chủ yếu cho mục đích gì?`,
+      questions: ['Bạn dùng cho nhu cầu gì?'],
+      quickReplies: ['Học lập trình', 'Gaming', 'Văn phòng', 'Chụp ảnh'],
     }
   }
 
@@ -378,27 +415,27 @@ export function buildClarificationPayload(context = {}) {
     return {
       type: 'clarification',
       stage: 'clarification',
-      reply: `Ok, mnh  nm nhu cu ${safeContext.useCase || 'ca bn'}. Bn c ngn sch khong bao nhiu?`,
-      questions: ['Bn d kin ngn sch bao nhiu?'],
-      quickReplies: ['Di 15 triu', '15-25 triu', 'Trn 25 triu'],
+      reply: `Ok, mình đã nắm nhu cầu ${safeContext.useCase || 'của bạn'}. Bạn có ngân sách khoảng bao nhiêu?`,
+      questions: ['Bạn dự kiến ngân sách bao nhiêu?'],
+      quickReplies: ['Dưới 15 triệu', '15-25 triệu', 'Trên 25 triệu'],
     }
   }
 
   return {
     type: 'general',
     stage: 'needs_discovery',
-    reply: 'Bn chia s thm 1-2 tiu ch u tin  mnh lc chnh xc hn nh.',
+    reply: 'Bạn chia sẻ thêm 1-2 tiêu chí ưu tiên để mình lọc chính xác hơn nhé.',
     questions: [],
-    quickReplies: ['u tin pin', 'u tin hiu nng', 'Nh', 'Gi tt'],
+    quickReplies: ['Ưu tiên pin', 'Ưu tiên hiệu năng', 'Nhẹ', 'Giá tốt'],
   }
 }
 
 export function buildRecommendationQuickReplies() {
-  return ['u tin pin', 'u tin hiu nng', 'So snh 2 ci u', 'C mu no r hn khng']
+  return ['Ưu tiên pin', 'Ưu tiên hiệu năng', 'So sánh 2 cái đầu', 'Có mẫu nào rẻ hơn không']
 }
 
 export function buildComparisonQuickReplies() {
-  return ['u tin pin', 'C mu no r hn khng', 'Gi  thm 2 mu khc']
+  return ['Ưu tiên pin', 'Có mẫu nào rẻ hơn không', 'Giá 3 mẫu khác']
 }
 
 export function updateRecommendedProductsInContext(context = {}, products = []) {

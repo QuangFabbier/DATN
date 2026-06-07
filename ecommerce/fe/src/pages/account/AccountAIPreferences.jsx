@@ -21,10 +21,14 @@ const interestOptions = [
 
 const categoryOptions = [
   { value: 'Laptop', label: 'Laptop' },
-  { value: 'Phones', label: 'Phones' },
-  { value: 'Audio', label: 'Audio' },
-  { value: 'Accessories', label: 'Accessories' },
-  { value: 'Monitor', label: 'Monitor' },
+  { value: 'Phone', label: 'Điện thoại' },
+  { value: 'Tablet', label: 'Máy tính bảng' },
+  { value: 'Headphones', label: 'Tai nghe' },
+  { value: 'Monitor', label: 'Màn hình' },
+  { value: 'Mouse', label: 'Chuột' },
+  { value: 'Keyboard', label: 'Bàn phím' },
+  { value: 'SSD', label: 'SSD' },
+  { value: 'Smartwatch', label: 'Đồng hồ thông minh' },
 ]
 
 const budgetOptions = [

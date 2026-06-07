@@ -1,4 +1,5 @@
 import Product from '../models/Product.js'
+import { normalizeCategory } from '../utils/productDataset.js'
 import { normalizeTextFold } from './aiJsonUtils.js'
 
 const SCORE_WEIGHTS = {
@@ -7,18 +8,8 @@ const SCORE_WEIGHTS = {
   useCase: 20,
   inStock: 15,
   priorities: 10,
-  preferredBrand: 5,
+  preferredBrand: 18,
   rating: 10,
-}
-
-const CANONICAL_CATEGORY_BY_FOLD = {
-  laptop: 'Laptop',
-  'dien thoai': 'Điện thoại',
-  'may tinh bang': 'Máy tính bảng',
-  'am thanh': 'Âm thanh',
-  'man hinh': 'Màn hình',
-  'phu kien': 'Phụ kiện',
-  'noi that': 'Nội thất',
 }
 
 function normalizeText(value = '') {
@@ -26,17 +17,12 @@ function normalizeText(value = '') {
 }
 
 function resolveCanonicalCategory(rawCategory = '') {
-  const foldedCategory = normalizeTextFold(rawCategory)
-  if (!foldedCategory) {
-    return ''
-  }
-
-  return CANONICAL_CATEGORY_BY_FOLD[foldedCategory] || normalizeText(rawCategory)
+  return normalizeCategory(rawCategory)
 }
 
 function isCategoryMatch(productCategory = '', targetCategory = '') {
-  const normalizedProductCategory = normalizeTextFold(productCategory)
-  const normalizedTargetCategory = normalizeTextFold(targetCategory)
+  const normalizedProductCategory = normalizeTextFold(resolveCanonicalCategory(productCategory))
+  const normalizedTargetCategory = normalizeTextFold(resolveCanonicalCategory(targetCategory))
 
   if (!normalizedProductCategory || !normalizedTargetCategory) {
     return false
@@ -76,6 +62,76 @@ function hasAnyKeyword(text, keywords = []) {
   return keywords.some((keyword) => keyword && text.includes(normalizeTextFold(keyword)))
 }
 
+function getFamilyRules() {
+  return [
+    { queryKeywords: ['macbook', 'mac book', 'macos'], productKeywords: ['macbook', 'mac os', 'macos'] },
+    { queryKeywords: ['iphone', 'ios'], productKeywords: ['iphone', 'ios'] },
+    { queryKeywords: ['airpods'], productKeywords: ['airpods'] },
+    { queryKeywords: ['apple watch', 'watch se', 'watch series', 'watch ultra'], productKeywords: ['apple watch'] },
+    { queryKeywords: ['thinkpad'], productKeywords: ['thinkpad'] },
+    { queryKeywords: ['legion'], productKeywords: ['legion'] },
+    { queryKeywords: ['loq'], productKeywords: ['loq'] },
+    { queryKeywords: ['yoga'], productKeywords: ['yoga'] },
+    { queryKeywords: ['xps'], productKeywords: ['xps'] },
+    { queryKeywords: ['inspiron'], productKeywords: ['inspiron'] },
+    { queryKeywords: ['vostro'], productKeywords: ['vostro'] },
+    { queryKeywords: ['zenbook'], productKeywords: ['zenbook'] },
+    { queryKeywords: ['vivobook'], productKeywords: ['vivobook'] },
+    { queryKeywords: ['rog', 'rog strix'], productKeywords: ['rog'] },
+    { queryKeywords: ['tuf'], productKeywords: ['tuf'] },
+    { queryKeywords: ['aspire'], productKeywords: ['aspire'] },
+    { queryKeywords: ['nitro'], productKeywords: ['nitro'] },
+    { queryKeywords: ['predator'], productKeywords: ['predator'] },
+    { queryKeywords: ['pavilion'], productKeywords: ['pavilion'] },
+    { queryKeywords: ['envy'], productKeywords: ['envy'] },
+    { queryKeywords: ['omen'], productKeywords: ['omen'] },
+    { queryKeywords: ['victus'], productKeywords: ['victus'] },
+    { queryKeywords: ['galaxy watch', 'samsung watch', 'watch 7', 'watch ultra'], productKeywords: ['galaxy watch', 'watch'] },
+    { queryKeywords: ['galaxy', 'samsung galaxy', 'galaxy s', 'galaxy z', 'galaxy a'], productKeywords: ['galaxy'] },
+    { queryKeywords: ['pixel', 'google pixel'], productKeywords: ['pixel'] },
+    { queryKeywords: ['redmi', 'redmi note'], productKeywords: ['redmi'] },
+    { queryKeywords: ['poco'], productKeywords: ['poco'] },
+    { queryKeywords: ['xiaomi', 'mi phone'], productKeywords: ['xiaomi'] },
+    { queryKeywords: ['oppo find', 'find x'], productKeywords: ['find'] },
+    { queryKeywords: ['reno'], productKeywords: ['reno'] },
+    { queryKeywords: ['oppo a', 'a series'], productKeywords: ['oppo a'] },
+    { queryKeywords: ['vivo x'], productKeywords: ['vivo x'] },
+    { queryKeywords: ['vivo v'], productKeywords: ['vivo v'] },
+    { queryKeywords: ['vivo y'], productKeywords: ['vivo y'] },
+    { queryKeywords: ['sony wh', 'wh-1000xm', 'wh 1000xm', 'wh1000xm'], productKeywords: ['sony', 'wh-1000xm'] },
+    { queryKeywords: ['sony wf', 'wf-1000xm', 'wf 1000xm', 'wf1000xm'], productKeywords: ['sony', 'wf-1000xm'] },
+    { queryKeywords: ['jbl'], productKeywords: ['jbl'] },
+    { queryKeywords: ['logitech mx', 'mx master', 'mx anywhere'], productKeywords: ['logitech mx', 'mx master', 'mx anywhere'] },
+    { queryKeywords: ['logitech g', 'g pro', 'g102', 'g304', 'lightspeed', 'superlight'], productKeywords: ['logitech g', 'g pro', 'g102', 'g304', 'lightspeed', 'superlight'] },
+    { queryKeywords: ['keychron'], productKeywords: ['keychron'] },
+  ]
+}
+
+function buildQuerySignalText(intent = {}) {
+  return normalizeTextFold(
+    [
+      intent?.category,
+      intent?.useCase,
+      Array.isArray(intent?.priorities) ? intent.priorities.join(' ') : '',
+      Array.isArray(intent?.preferredBrands) ? intent.preferredBrands.join(' ') : '',
+      Array.isArray(intent?.preferredProductFamilies) ? intent.preferredProductFamilies.join(' ') : '',
+      Array.isArray(intent?.avoidBrands) ? intent.avoidBrands.join(' ') : '',
+    ]
+      .filter(Boolean)
+      .join(' '),
+  )
+}
+
+function hasProductFamilyMatch(queryText = '', productText = '') {
+  if (!queryText || !productText) {
+    return false
+  }
+
+  return getFamilyRules().some(
+    (rule) => rule.queryKeywords.some((keyword) => queryText.includes(keyword)) && hasAnyKeyword(productText, rule.productKeywords),
+  )
+}
+
 function findBrandInProductName(name = '') {
   const normalized = normalizeTextFold(name)
   const firstToken = normalized.split(/[^a-z0-9]+/g).find(Boolean)
@@ -109,6 +165,7 @@ function calculateRatingScore(product = {}) {
 function scoreProduct(product, intent = {}) {
   const productCategory = normalizeTextFold(product?.category || '')
   const productText = buildProductSearchText(product)
+  const queryText = buildQuerySignalText(intent)
   const budgetMax = Number(intent?.budget?.max)
   const useCaseTokens = tokenizeText(intent?.useCase || '')
   const priorityTokens = Array.isArray(intent?.priorities)
@@ -167,6 +224,20 @@ function scoreProduct(product, intent = {}) {
   const productBrand = findBrandInProductName(product?.name || '')
   if (preferredBrands.length > 0 && preferredBrands.includes(productBrand)) {
     scoreBreakdown.brand += SCORE_WEIGHTS.preferredBrand
+  }
+
+  if (hasProductFamilyMatch(queryText, productText)) {
+    scoreBreakdown.brand += SCORE_WEIGHTS.preferredBrand + 10
+    if (preferredBrands.length === 0) {
+      scoreBreakdown.priorities += 4
+    }
+  }
+
+  const familyRules = getFamilyRules()
+  const hasFamilyQuery = familyRules.some((rule) => rule.queryKeywords.some((keyword) => queryText.includes(keyword)))
+  const hasFamilyMismatch = hasFamilyQuery && !hasProductFamilyMatch(queryText, productText)
+  if (hasFamilyMismatch) {
+    scoreBreakdown.penalty -= 15
   }
 
   if (avoidBrands.length > 0 && avoidBrands.includes(productBrand)) {
@@ -252,6 +323,9 @@ export async function matchProductsByIntent(intent, { limit = 5 } = {}) {
   const hasCategoryConstraint = Boolean(requestedCategory)
   const budgetMax = Number(intent?.budget?.max)
   const hasBudgetLimit = Number.isFinite(budgetMax) && budgetMax > 0
+  const queryText = buildQuerySignalText(intent)
+  const familyRules = getFamilyRules()
+  const hasFamilyQuery = familyRules.some((rule) => rule.queryKeywords.some((keyword) => queryText.includes(keyword)))
   const query = buildProductQuery(intent)
   const candidates = await Product.find(query)
     .select('name category brand description price stock image specs searchableText createdAt averageRating totalReviews ratingBreakdown reviewSummary')
@@ -295,11 +369,17 @@ export async function matchProductsByIntent(intent, { limit = 5 } = {}) {
       return Number(a.product?.price || 0) - Number(b.product?.price || 0)
     })
 
+  const familyMatchedProducts = hasFamilyQuery
+    ? scoredProducts.filter((item) => hasProductFamilyMatch(queryText, buildProductSearchText(item?.product)))
+    : []
+
   const categoryMatchedProducts = hasCategoryConstraint
     ? scoredProducts.filter((item) => isCategoryMatch(item?.product?.category, requestedCategory))
     : []
 
-  const rankedProducts = hasCategoryConstraint
+  const rankedProducts = familyMatchedProducts.length > 0
+    ? familyMatchedProducts
+    : hasCategoryConstraint
     ? categoryMatchedProducts
     : scoredProducts
 

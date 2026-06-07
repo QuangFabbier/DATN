@@ -1,0 +1,148 @@
+
+[
+  {
+    "name": "Xiaomi 16 256GB",
+    "category": "Điện thoại",
+    "brand": "Xiaomi",
+    "price": 19990000,
+    "stock": 45,
+    "minStockLevel": 10,
+    "images": [],
+    "description": "Xiaomi 16 256GB là mẫu flagship nhỏ gọn dành cho những người dùng yêu thích hiệu năng mạnh mẽ nhưng vẫn ưu tiên sự thuận tiện trong quá trình sử dụng hàng ngày. Thiết bị sở hữu thiết kế hiện đại với các đường nét tinh tế, mang đến cảm giác cầm nắm thoải mái và chắc chắn. Được trang bị vi xử lý Snapdragon 8 Elite kết hợp cùng 12GB RAM, máy đáp ứng tốt mọi nhu cầu từ làm việc, học tập đến chơi game và chỉnh sửa hình ảnh. Màn hình AMOLED 120Hz mang lại trải nghiệm hiển thị sắc nét và mượt mà. Hệ thống camera hợp tác cùng Leica hỗ trợ ghi lại những khoảnh khắc chất lượng cao trong nhiều điều kiện ánh sáng khác nhau. Đây là lựa chọn phù hợp cho người dùng đang tìm kiếm một chiếc flagship Android toàn diện.",
+    "specifications": {
+      "screen": "6.36 inch AMOLED 120Hz",
+      "chip": "Snapdragon 8 Elite",
+      "ram": "12GB",
+      "storage": "256GB",
+      "battery": "5400mAh",
+      "camera": "50MP + 50MP + 50MP"
+    }
+  },
+  {
+    "name": "Xiaomi 16 Pro 512GB",
+    "category": "Điện thoại",
+    "brand": "Xiaomi",
+    "price": 27990000,
+    "stock": 35,
+    "minStockLevel": 10,
+    "images": [],
+    "description": "Xiaomi 16 Pro 512GB hướng đến những người dùng cần một thiết bị có hiệu năng cao, màn hình lớn và khả năng xử lý ổn định trong thời gian dài. Máy được trang bị Snapdragon 8 Elite cùng 16GB RAM, đáp ứng xuất sắc các tác vụ từ đa nhiệm, chỉnh sửa video đến chơi các tựa game đồ họa nặng. Màn hình AMOLED LTPO với tần số quét 120Hz mang lại trải nghiệm hiển thị mượt mà và sống động. Camera Leica hỗ trợ chụp ảnh với độ chi tiết cao và màu sắc chân thực. Với bộ nhớ trong 512GB, sản phẩm phù hợp với những người dùng có nhu cầu lưu trữ lớn.",
+    "specifications": {
+      "screen": "6.73 inch LTPO AMOLED 120Hz",
+      "chip": "Snapdragon 8 Elite",
+      "ram": "16GB",
+      "storage": "512GB",
+      "battery": "5800mAh",
+      "camera": "50MP + 50MP + 50MP"
+    }
+  },
+  {
+    "name": "Xiaomi 16 Ultra 512GB",
+    "category": "Điện thoại",
+    "brand": "Xiaomi",
+    "price": 32990000,
+    "stock": 25,
+    "minStockLevel": 10,
+    "images": [],
+    "description": "Xiaomi 16 Ultra 512GB là mẫu smartphone cao cấp nhất của Xiaomi, được phát triển dành cho người dùng yêu thích nhiếp ảnh di động và hiệu năng hàng đầu. Máy nổi bật với hệ thống camera Leica tiên tiến, mang lại khả năng chụp ảnh chất lượng cao trong nhiều tình huống khác nhau. Vi xử lý Snapdragon 8 Elite cùng 16GB RAM giúp thiết bị xử lý mượt mà mọi tác vụ từ công việc đến giải trí. Màn hình LTPO AMOLED sắc nét kết hợp cùng viên pin dung lượng lớn mang đến trải nghiệm sử dụng trọn vẹn. Đây là lựa chọn đáng cân nhắc cho những người đam mê công nghệ và sáng tạo nội dung.",
+    "specifications": {
+      "screen": "6.73 inch LTPO AMOLED 120Hz",
+      "chip": "Snapdragon 8 Elite",
+      "ram": "16GB",
+      "storage": "512GB",
+      "battery": "6000mAh",
+      "camera": "50MP + 50MP + 50MP + 200MP"
+    }
+  },
+  {
+    "name": "Redmi Note 15 Pro 256GB",
+    "category": "Điện thoại",
+    "brand": "Xiaomi",
+    "price": 8990000,
+    "stock": 70,
+    "minStockLevel": 15,
+    "images": [],
+    "description": "Redmi Note 15 Pro 256GB là mẫu smartphone tầm trung nổi bật với sự cân bằng giữa hiệu năng, thiết kế và mức giá hợp lý. Thiết bị được trang bị vi xử lý Snapdragon 7s Gen 4 cùng 8GB RAM, đáp ứng tốt các nhu cầu học tập, làm việc và giải trí hàng ngày. Màn hình AMOLED 120Hz mang lại trải nghiệm hiển thị mượt mà và màu sắc rực rỡ. Camera độ phân giải cao hỗ trợ ghi lại những khoảnh khắc đáng nhớ với độ chi tiết tốt. Viên pin dung lượng lớn giúp máy có thể hoạt động bền bỉ suốt cả ngày dài.",
+    "specifications": {
+      "screen": "6.67 inch AMOLED 120Hz",
+      "chip": "Snapdragon 7s Gen 4",
+      "ram": "8GB",
+      "storage": "256GB",
+      "battery": "5110mAh",
+      "camera": "200MP + 8MP + 2MP"
+    }
+  },
+  {
+    "name": "Redmi Note 15 Pro+ 512GB",
+    "category": "Điện thoại",
+    "brand": "Xiaomi",
+    "price": 10990000,
+    "stock": 50,
+    "minStockLevel": 15,
+    "images": [],
+    "description": "Redmi Note 15 Pro+ 512GB là phiên bản cao cấp nhất trong dòng Redmi Note, hướng đến người dùng cần cấu hình mạnh và dung lượng lưu trữ lớn. Máy sở hữu thiết kế hiện đại cùng màn hình AMOLED 120Hz cho trải nghiệm giải trí ấn tượng. Snapdragon 7s Gen 4 kết hợp với 12GB RAM giúp xử lý ổn định các tác vụ đa nhiệm và chơi game phổ biến. Camera 200MP hỗ trợ chụp ảnh với độ chi tiết cao, trong khi viên pin lớn mang lại thời gian sử dụng lâu dài. Đây là lựa chọn phù hợp trong phân khúc cận cao cấp.",
+    "specifications": {
+      "screen": "6.67 inch AMOLED 120Hz",
+      "chip": "Snapdragon 7s Gen 4",
+      "ram": "12GB",
+      "storage": "512GB",
+      "battery": "5110mAh",
+      "camera": "200MP + 8MP + 2MP"
+    }
+  },
+  {
+    "name": "Redmi 15 128GB",
+    "category": "Điện thoại",
+    "brand": "Xiaomi",
+    "price": 4990000,
+    "stock": 120,
+    "minStockLevel": 20,
+    "images": [],
+    "description": "Redmi 15 128GB là mẫu smartphone phổ thông phù hợp với học sinh, sinh viên và người dùng có nhu cầu cơ bản. Thiết bị sở hữu màn hình lớn, giao diện thân thiện và thời lượng pin tốt, đáp ứng hiệu quả các tác vụ như gọi điện, nhắn tin, sử dụng mạng xã hội và xem video trực tuyến. Vi xử lý Snapdragon giúp máy hoạt động ổn định trong các nhu cầu hàng ngày. Camera đáp ứng tốt việc lưu giữ những khoảnh khắc đơn giản. Đây là sản phẩm có mức giá dễ tiếp cận nhưng vẫn mang lại trải nghiệm sử dụng đáng tin cậy.",
+    "specifications": {
+      "screen": "6.79 inch IPS LCD 90Hz",
+      "chip": "Snapdragon 6 Gen 1",
+      "ram": "6GB",
+      "storage": "128GB",
+      "battery": "5030mAh",
+      "camera": "50MP + 2MP"
+    }
+  },
+  {
+    "name": "POCO F8 Pro 512GB",
+    "category": "Điện thoại",
+    "brand": "POCO",
+    "price": 14990000,
+    "stock": 35,
+    "minStockLevel": 10,
+    "images": [],
+    "description": "POCO F8 Pro 512GB là mẫu smartphone hiệu năng cao hướng đến game thủ và những người dùng yêu thích công nghệ. Thiết bị được trang bị vi xử lý Snapdragon 8 Gen 4 mạnh mẽ cùng 12GB RAM, mang lại khả năng xử lý xuất sắc trong các tác vụ nặng. Màn hình AMOLED 120Hz giúp nâng cao trải nghiệm chơi game và giải trí. Hệ thống tản nhiệt được tối ưu để duy trì hiệu suất ổn định trong thời gian dài. Với bộ nhớ trong 512GB, người dùng có thể thoải mái lưu trữ dữ liệu và cài đặt nhiều ứng dụng.",
+    "specifications": {
+      "screen": "6.67 inch AMOLED 120Hz",
+      "chip": "Snapdragon 8 Gen 4",
+      "ram": "12GB",
+      "storage": "512GB",
+      "battery": "5500mAh",
+      "camera": "50MP + 8MP + 2MP"
+    }
+  },
+  {
+    "name": "POCO X8 Pro 256GB",
+    "category": "Điện thoại",
+    "brand": "POCO",
+    "price": 9990000,
+    "stock": 60,
+    "minStockLevel": 15,
+    "images": [],
+    "description": "POCO X8 Pro 256GB là mẫu smartphone tầm trung nổi bật nhờ hiệu năng mạnh mẽ và mức giá cạnh tranh. Máy được trang bị vi xử lý Dimensity cao cấp kết hợp cùng 12GB RAM, đáp ứng tốt nhu cầu chơi game, đa nhiệm và giải trí. Màn hình AMOLED 120Hz mang đến trải nghiệm hiển thị mượt mà và sắc nét. Viên pin dung lượng lớn hỗ trợ sử dụng liên tục trong thời gian dài. Đây là sản phẩm phù hợp với người dùng trẻ đang tìm kiếm một thiết bị mạnh mẽ trong tầm giá hợp lý.",
+    "specifications": {
+      "screen": "6.67 inch AMOLED 120Hz",
+      "chip": "Dimensity 9400e",
+      "ram": "12GB",
+      "storage": "256GB",
+      "battery": "6000mAh",
+      "camera": "50MP + 8MP + 2MP"
+    }
+  }
+]
+

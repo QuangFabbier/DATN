@@ -203,7 +203,7 @@ Base URL:
 http://localhost:5000/api/products
 ```
 
-Frontend hien da lay san pham tu backend thay vi JSON. File `src/data/products.json` van con trong project de tham khao, nhung khong con duoc import trong code.
+Frontend hien da lay san pham tu backend thay vi JSON. File `src/data/all-products.json` la snapshot duoc sinh tu `Data/` va duoc dung lam fallback, khong con phai import mock data cu.
 
 ### 4.7 Auth Frontend
 

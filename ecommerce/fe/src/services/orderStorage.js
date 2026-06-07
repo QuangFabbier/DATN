@@ -1,5 +1,12 @@
+import {
+  canUseStorage,
+  readStorageJSON,
+  writeStorageJSON,
+} from '../utils/storageScope'
+
 export const ORDER_STORAGE_KEY = 'nexora_orders'
 export const ORDER_STORAGE_UPDATED_EVENT = 'nexora-orders-updated'
+const ORDER_STORAGE_SCOPE_PREFIX = `${ORDER_STORAGE_KEY}::`
 
 export const ORDER_STATUSES = {
   PENDING: 'pending',
@@ -17,37 +24,6 @@ const ORDER_STATUS_TRANSITIONS = {
   [ORDER_STATUSES.SHIPPING]: [ORDER_STATUSES.COMPLETED],
   [ORDER_STATUSES.COMPLETED]: [],
   [ORDER_STATUSES.CANCELLED]: [],
-}
-
-function canUseStorage() {
-  return typeof window !== 'undefined' && typeof window.localStorage !== 'undefined'
-}
-
-function readStorageJSON(key, fallbackValue) {
-  if (!canUseStorage()) {
-    return fallbackValue
-  }
-
-  const storedValue = window.localStorage.getItem(key)
-
-  if (!storedValue) {
-    return fallbackValue
-  }
-
-  try {
-    return JSON.parse(storedValue)
-  } catch {
-    window.localStorage.removeItem(key)
-    return fallbackValue
-  }
-}
-
-function writeStorageJSON(key, value) {
-  if (!canUseStorage()) {
-    return
-  }
-
-  window.localStorage.setItem(key, JSON.stringify(value))
 }
 
 function dispatchOrderUpdatedEvent(orders, updatedOrder = null) {
@@ -113,8 +89,20 @@ function normalizeOrderItems(items) {
     .filter(Boolean)
 }
 
-function normalizeCustomerInfo(customerInfo) {
+function normalizeCustomerInfo(customerInfo, currentUser = null) {
   const normalizedCustomerInfo = customerInfo && typeof customerInfo === 'object' ? customerInfo : {}
+  const normalizedUser = currentUser && typeof currentUser === 'object' ? currentUser : {}
+  const userId = String(normalizedUser.id || normalizedUser._id || normalizedCustomerInfo.userId || '').trim()
+  const userName = String(
+    normalizedUser.name ||
+      normalizedUser.username ||
+      normalizedCustomerInfo.userName ||
+      normalizedCustomerInfo.fullName ||
+      normalizedCustomerInfo.email ||
+      normalizedUser.email ||
+      '',
+  ).trim()
+  const userEmail = String(normalizedUser.email || normalizedCustomerInfo.userEmail || normalizedCustomerInfo.email || '').trim()
 
   return {
     fullName: String(normalizedCustomerInfo.fullName || normalizedCustomerInfo.fullname || '').trim(),
@@ -122,7 +110,28 @@ function normalizeCustomerInfo(customerInfo) {
     address: String(normalizedCustomerInfo.address || '').trim(),
     note: String(normalizedCustomerInfo.note || '').trim(),
     paymentMethod: String(normalizedCustomerInfo.paymentMethod || 'cod').trim(),
+    userId,
+    userName,
+    userEmail,
   }
+}
+
+function getScopedOrderKeys() {
+  if (!canUseStorage()) {
+    return []
+  }
+
+  const keys = []
+
+  for (let index = 0; index < window.localStorage.length; index += 1) {
+    const key = window.localStorage.key(index)
+
+    if (key && key.startsWith(ORDER_STORAGE_SCOPE_PREFIX)) {
+      keys.push(key)
+    }
+  }
+
+  return keys
 }
 
 function normalizeOrderStatus(status) {
@@ -202,16 +211,48 @@ function normalizeOrderList(orderList) {
   )
 }
 
+function mergeOrderLists(...orderGroups) {
+  const mergedOrderMap = new Map()
+
+  for (const orderGroup of orderGroups) {
+    const normalizedGroup = normalizeOrderList(orderGroup)
+
+    for (const order of normalizedGroup) {
+      mergedOrderMap.set(order.id, order)
+    }
+  }
+
+  return [...mergedOrderMap.values()].sort(
+    (firstOrder, secondOrder) =>
+      new Date(secondOrder.createdAt).getTime() - new Date(firstOrder.createdAt).getTime(),
+  )
+}
+
 function persistOrders(orderList, updatedOrder = null) {
   const normalizedOrders = normalizeOrderList(orderList)
-  writeStorageJSON(ORDER_STORAGE_KEY, normalizedOrders)
+  if (canUseStorage()) {
+    writeStorageJSON(window.localStorage, ORDER_STORAGE_KEY, normalizedOrders)
+  }
   dispatchOrderUpdatedEvent(normalizedOrders, updatedOrder)
   return normalizedOrders
 }
 
 export function getOrders() {
-  const storedOrders = readStorageJSON(ORDER_STORAGE_KEY, [])
-  return normalizeOrderList(storedOrders)
+  if (!canUseStorage()) {
+    return []
+  }
+
+  const baseOrders = readStorageJSON(window.localStorage, ORDER_STORAGE_KEY, [])
+  const scopedOrders = getScopedOrderKeys()
+    .flatMap((key) => readStorageJSON(window.localStorage, key, []))
+
+  const mergedOrders = mergeOrderLists(scopedOrders, baseOrders)
+
+  if (scopedOrders.length > 0 || JSON.stringify(mergedOrders) !== JSON.stringify(normalizeOrderList(baseOrders))) {
+    writeStorageJSON(window.localStorage, ORDER_STORAGE_KEY, mergedOrders)
+  }
+
+  return mergedOrders
 }
 
 export function getOrderById(orderId) {
@@ -222,7 +263,7 @@ export function getAvailableStatusTransitions(currentStatus) {
   return ORDER_STATUS_TRANSITIONS[normalizeOrderStatus(currentStatus)] || []
 }
 
-export function createOrderRecord(orderInput) {
+export function createOrderRecord(orderInput, currentUser = null) {
   const currentOrders = getOrders()
   const createdAt = new Date().toISOString()
   const id = createOrderId()
@@ -237,7 +278,7 @@ export function createOrderRecord(orderInput) {
   const nextOrder = {
     id,
     code: id,
-    customerInfo: normalizeCustomerInfo(orderInput?.customerInfo),
+    customerInfo: normalizeCustomerInfo(orderInput?.customerInfo, currentUser),
     items,
     subtotal,
     shippingFee,

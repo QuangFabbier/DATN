@@ -1,12 +1,15 @@
-import { useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import CheckoutSteps from '../components/CheckoutSteps'
 import EmptyState from '../components/EmptyState'
+import PaymentSuccessDialog from '../components/PaymentSuccessDialog'
 import { OrderFormSkeleton } from '../components/Skeleton'
 import { ButtonSpinner } from '../components/Spinner'
+import { useAuth } from '../hooks/useAuth'
 import { useCart } from '../hooks/useCart'
 import { useInitialRender } from '../hooks/useInitialRender'
 import { useToast } from '../hooks/useToast'
+import { getProfile } from '../services/accountStorage'
 import { createOrderRecord } from '../services/orderStorage'
 import { getActiveFlashSaleCampaign } from '../utils/flashSale'
 import { buildProductPricing } from '../utils/product'
@@ -32,21 +35,24 @@ const paymentMethodOptions = [
 
 function Orders() {
   const navigate = useNavigate()
+  const { user } = useAuth()
   const { cartItems, cartTotal, clearCart } = useCart()
   const isInitialRenderReady = useInitialRender()
   const { showToast } = useToast()
+  const userProfile = useMemo(() => getProfile(user), [user])
   const [checkoutStage, setCheckoutStage] = useState('info')
   const [formData, setFormData] = useState({
-    fullname: '',
-    phone: '',
+    fullname: userProfile.fullName || '',
+    phone: userProfile.phone || '',
     address: '',
     note: '',
   })
   const [paymentMethod, setPaymentMethod] = useState('qr')
   const [errors, setErrors] = useState({})
-  const [successMessage, setSuccessMessage] = useState('')
+  const [paymentSuccess, setPaymentSuccess] = useState(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const flashSaleCampaign = getActiveFlashSaleCampaign()
+  const redirectTimerRef = useRef(null)
 
   const cartTotalOriginal = cartItems.reduce((total, item) => {
     const { originalPrice } = buildProductPricing(item, flashSaleCampaign)
@@ -56,12 +62,32 @@ function Orders() {
   const shippingFee = cartItems.length > 0 ? SHIPPING_FEE : 0
   const total = cartTotal + shippingFee
 
+  useEffect(
+    () => () => {
+      if (redirectTimerRef.current) {
+        window.clearTimeout(redirectTimerRef.current)
+      }
+    },
+    [],
+  )
+
+  useEffect(() => {
+    queueMicrotask(() => {
+      setFormData((currentData) => ({
+        ...currentData,
+        fullname: userProfile.fullName || currentData.fullname || '',
+        phone: userProfile.phone || currentData.phone || '',
+        address: userProfile.defaultAddress || currentData.address || '',
+      }))
+    })
+  }, [userProfile.fullName, userProfile.phone, userProfile.defaultAddress])
+
   function handleChange(event) {
     const { name, value } = event.target
 
     setFormData((currentData) => ({ ...currentData, [name]: value }))
     setErrors((currentErrors) => ({ ...currentErrors, [name]: '' }))
-    setSuccessMessage('')
+    setPaymentSuccess(null)
   }
 
   function validateInfoForm() {
@@ -165,10 +191,9 @@ function Orders() {
       subtotal: cartTotal,
       shippingFee,
       total,
-    })
+    }, user)
     const createdOrder = createdOrderResult?.order
 
-    setSuccessMessage('Đặt hàng thành công. Chúng tôi sẽ liên hệ xác nhận sớm.')
     showToast({
       type: 'success',
       title: 'Đặt hàng thành công',
@@ -186,10 +211,18 @@ function Orders() {
     setPaymentMethod('qr')
     setCheckoutStage('info')
     setIsSubmitting(false)
+    setPaymentSuccess({
+      orderCode: createdOrder?.id || '',
+      description: 'Thanh toán hoàn tất. Đơn hàng của bạn đã được ghi nhận thành công.',
+    })
 
-    window.setTimeout(() => {
-      navigate('/products')
-    }, 1400)
+    if (redirectTimerRef.current) {
+      window.clearTimeout(redirectTimerRef.current)
+    }
+
+    redirectTimerRef.current = window.setTimeout(() => {
+      navigate('/')
+    }, 3000)
   }
 
   if (!isInitialRenderReady) {
@@ -201,26 +234,7 @@ function Orders() {
     )
   }
 
-  if (successMessage) {
-    return (
-      <section className="page-section">
-        <CheckoutSteps currentStep={4} />
-        <EmptyState
-          title="Đặt hàng thành công"
-          description={successMessage}
-          icon="fa-circle-check"
-          tone="success"
-          action={
-            <Link to="/products" className="button">
-              Tiếp tục mua sắm
-            </Link>
-          }
-        />
-      </section>
-    )
-  }
-
-  if (cartItems.length === 0) {
+  if (cartItems.length === 0 && !paymentSuccess) {
     return (
       <section className="page-section">
         <CheckoutSteps currentStep={1} />
@@ -233,6 +247,27 @@ function Orders() {
               Quay lại mua sắm
             </Link>
           }
+        />
+      </section>
+    )
+  }
+
+  if (paymentSuccess) {
+    return (
+      <section className="page-section">
+        <PaymentSuccessDialog
+          open
+          title="Thanh toán hoàn tất"
+          description={paymentSuccess.description}
+          orderCode={paymentSuccess.orderCode || ''}
+          onClose={() => {
+            if (redirectTimerRef.current) {
+              window.clearTimeout(redirectTimerRef.current)
+              redirectTimerRef.current = null
+            }
+
+            navigate('/')
+          }}
         />
       </section>
     )

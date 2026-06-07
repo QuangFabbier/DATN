@@ -1,0 +1,58 @@
+
+[
+  {
+    "name": "Google Pixel 10 128GB",
+    "category": "Điện thoại",
+    "brand": "Google",
+    "price": 20990000,
+    "stock": 25,
+    "minStockLevel": 8,
+    "images": [],
+    "description": "Google Pixel 10 128GB là mẫu smartphone cao cấp hướng đến những người dùng yêu thích trải nghiệm Android nguyên bản và khả năng xử lý hình ảnh bằng trí tuệ nhân tạo. Máy sở hữu thiết kế tối giản nhưng hiện đại, mang đến cảm giác cao cấp và khác biệt. Chip Tensor G6 kết hợp cùng 12GB RAM giúp thiết bị hoạt động mượt mà trong các tác vụ hàng ngày và tận dụng tốt các tính năng AI. Màn hình OLED 120Hz mang lại trải nghiệm hiển thị sắc nét và sống động. Hệ thống camera nổi tiếng của Pixel hỗ trợ chụp ảnh chất lượng cao với khả năng xử lý hậu kỳ thông minh. Đây là lựa chọn phù hợp cho những người dùng yêu thích hệ điều hành Android thuần khiết.",
+    "specifications": {
+      "screen": "6.3 inch OLED 120Hz",
+      "chip": "Google Tensor G6",
+      "ram": "12GB",
+      "storage": "128GB",
+      "battery": "5000mAh",
+      "camera": "50MP + 48MP"
+    }
+  },
+  {
+    "name": "Google Pixel 10 Pro 256GB",
+    "category": "Điện thoại",
+    "brand": "Google",
+    "price": 26990000,
+    "stock": 20,
+    "minStockLevel": 8,
+    "images": [],
+    "description": "Google Pixel 10 Pro 256GB được phát triển dành cho người dùng mong muốn trải nghiệm những tính năng AI tiên tiến nhất của Google trên một thiết bị mạnh mẽ và cao cấp. Máy được trang bị chip Tensor G6 cùng 16GB RAM, đáp ứng tốt các nhu cầu từ công việc đến giải trí. Màn hình LTPO OLED với tần số quét thích ứng 120Hz mang lại trải nghiệm hiển thị mượt mà và tiết kiệm pin. Hệ thống camera đa ống kính giúp người dùng ghi lại những bức ảnh chất lượng cao với màu sắc tự nhiên. Bộ nhớ trong 256GB đáp ứng tốt nhu cầu lưu trữ lâu dài.",
+    "specifications": {
+      "screen": "6.7 inch LTPO OLED 120Hz",
+      "chip": "Google Tensor G6",
+      "ram": "16GB",
+      "storage": "256GB",
+      "battery": "5300mAh",
+      "camera": "50MP + 48MP + 48MP"
+    }
+  },
+  {
+    "name": "Google Pixel 10 Pro XL 512GB",
+    "category": "Điện thoại",
+    "brand": "Google",
+    "price": 31990000,
+    "stock": 15,
+    "minStockLevel": 5,
+    "images": [],
+    "description": "Google Pixel 10 Pro XL 512GB là mẫu smartphone cao cấp nhất của Google, mang đến trải nghiệm Android nguyên bản kết hợp cùng sức mạnh của trí tuệ nhân tạo. Thiết bị được trang bị màn hình lớn, cấu hình mạnh mẽ và hệ thống camera tiên tiến nhằm phục vụ tốt cho cả nhu cầu công việc lẫn sáng tạo nội dung. Chip Tensor G6 cùng 16GB RAM giúp xử lý hiệu quả các tác vụ AI và đa nhiệm. Camera Pixel nổi tiếng với khả năng tái tạo màu sắc chân thực và xử lý ảnh thông minh. Với bộ nhớ trong 512GB, đây là lựa chọn phù hợp cho những người dùng chuyên nghiệp cần không gian lưu trữ lớn.",
+    "specifications": {
+      "screen": "6.8 inch LTPO OLED 120Hz",
+      "chip": "Google Tensor G6",
+      "ram": "16GB",
+      "storage": "512GB",
+      "battery": "5500mAh",
+      "camera": "50MP + 48MP + 48MP"
+    }
+  }
+]
+

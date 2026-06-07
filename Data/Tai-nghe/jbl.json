@@ -1,0 +1,50 @@
+[
+  {
+    "name": "JBL Tune Beam",
+    "category": "Headphones",
+    "brand": "JBL",
+    "price": 2490000,
+    "stock": 70,
+    "minStockLevel": 15,
+    "images": [],
+    "description": "JBL Tune Beam là tai nghe true wireless phổ thông với âm bass mạnh, phù hợp nghe nhạc và gọi điện hằng ngày.",
+    "specifications": {
+      "type": "In-ear",
+      "connection": "Bluetooth",
+      "battery": "Up to 48h with case",
+      "features": "ANC"
+    }
+  },
+  {
+    "name": "JBL Live Pro 2",
+    "category": "Headphones",
+    "brand": "JBL",
+    "price": 3290000,
+    "stock": 55,
+    "minStockLevel": 12,
+    "images": [],
+    "description": "JBL Live Pro 2 mang lại âm thanh mạnh mẽ, đàm thoại tốt và chống ồn chủ động cho nhu cầu di chuyển.",
+    "specifications": {
+      "type": "In-ear",
+      "connection": "Bluetooth",
+      "battery": "Up to 40h with case",
+      "features": "ANC, Multipoint"
+    }
+  },
+  {
+    "name": "JBL Tour Pro 2",
+    "category": "Headphones",
+    "brand": "JBL",
+    "price": 4990000,
+    "stock": 35,
+    "minStockLevel": 8,
+    "images": [],
+    "description": "JBL Tour Pro 2 là mẫu tai nghe cao cấp với hộp sạc màn hình cảm ứng và nhiều tính năng thông minh.",
+    "specifications": {
+      "type": "In-ear",
+      "connection": "Bluetooth",
+      "battery": "Up to 40h with case",
+      "features": "ANC, Smart case"
+    }
+  }
+]

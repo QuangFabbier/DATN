@@ -1,0 +1,53 @@
+[
+  {
+    "name": "AirPods 4",
+    "category": "Headphones",
+    "brand": "Apple",
+    "price": 3990000,
+    "stock": 80,
+    "minStockLevel": 15,
+    "images": [],
+    "description": "AirPods 4 mang đến trải nghiệm âm thanh chất lượng cao với khả năng kết nối nhanh trong hệ sinh thái Apple. Thiết kế nhỏ gọn, đeo thoải mái trong thời gian dài và phù hợp cho học tập, làm việc cũng như giải trí hằng ngày. Thiết bị hỗ trợ điều khiển cảm ứng tiện lợi và thời lượng pin đủ đáp ứng nhu cầu sử dụng cả ngày.",
+    "specifications": {
+      "type": "True Wireless",
+      "connectivity": "Bluetooth 5.3",
+      "battery": "Up to 30 hours with case",
+      "noiseCancellation": "No",
+      "waterResistance": "IP54"
+    }
+  },
+  {
+    "name": "AirPods 4 ANC",
+    "category": "Headphones",
+    "brand": "Apple",
+    "price": 5490000,
+    "stock": 60,
+    "minStockLevel": 12,
+    "images": [],
+    "description": "AirPods 4 ANC được trang bị công nghệ chống ồn chủ động giúp tập trung hơn khi học tập và làm việc. Chất lượng âm thanh cân bằng, khả năng kết nối ổn định và tích hợp sâu với hệ sinh thái Apple mang lại trải nghiệm sử dụng thuận tiện.",
+    "specifications": {
+      "type": "True Wireless",
+      "connectivity": "Bluetooth 5.3",
+      "battery": "Up to 30 hours with case",
+      "noiseCancellation": "Active Noise Cancellation",
+      "waterResistance": "IP54"
+    }
+  },
+  {
+    "name": "AirPods Pro 2 USB-C",
+    "category": "Headphones",
+    "brand": "Apple",
+    "price": 6290000,
+    "stock": 45,
+    "minStockLevel": 10,
+    "images": [],
+    "description": "AirPods Pro 2 là mẫu tai nghe cao cấp với khả năng chống ồn chủ động mạnh mẽ, chế độ xuyên âm thông minh và chất lượng âm thanh chi tiết. Đây là lựa chọn phù hợp cho người dùng iPhone muốn trải nghiệm âm thanh cao cấp và tiện lợi.",
+    "specifications": {
+      "type": "True Wireless",
+      "connectivity": "Bluetooth 5.3",
+      "battery": "Up to 30 hours with case",
+      "noiseCancellation": "Adaptive ANC",
+      "waterResistance": "IP54"
+    }
+  }
+]

@@ -13,10 +13,14 @@ import ThemeProvider from './context/ThemeProvider'
 import ToastProvider from './context/ToastProvider'
 import AdminDashboard from './pages/admin/AdminDashboard'
 import AdminAccess from './pages/admin/AdminAccess'
+import AdminExports from './pages/admin/AdminExports'
+import AdminImports from './pages/admin/AdminImports'
 import AdminOrders from './pages/admin/AdminOrders'
+import AdminInventoryDashboard from './pages/admin/AdminInventoryDashboard'
 import AdminPaymentSettings from './pages/admin/AdminPaymentSettings'
 import AdminProducts from './pages/admin/AdminProducts'
 import AdminReviews from './pages/admin/AdminReviews'
+import AdminTransactions from './pages/admin/AdminTransactions'
 import AIConsultant from './pages/AIConsultant'
 import Cart from './pages/Cart'
 import Favorites from './pages/Favorites'
@@ -84,6 +88,10 @@ function App() {
                         <Route path="register" element={<Register />} />
                         <Route path="admin" element={<AdminLayout />}>
                           <Route index element={<AdminDashboard />} />
+                          <Route path="inventory" element={<AdminInventoryDashboard />} />
+                          <Route path="inventory/imports" element={<AdminImports />} />
+                          <Route path="inventory/exports" element={<AdminExports />} />
+                          <Route path="inventory/transactions" element={<AdminTransactions />} />
                           <Route path="products" element={<AdminProducts />} />
                           <Route path="reviews" element={<AdminReviews />} />
                           <Route path="orders" element={<AdminOrders />} />

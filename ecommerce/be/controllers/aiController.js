@@ -2,6 +2,13 @@
 import { compareProductsWithAi } from '../services/aiCompareService.js'
 import { analyzeCartWithAi, explainProductWithAi } from '../services/aiProductService.js'
 import { buildRecommendationExplanation } from '../services/aiRecommendationService.js'
+import {
+  buildClarificationPayload,
+  mergeConversationContext,
+  normalizeConversationContext,
+  updateRecommendedProductsInContext,
+} from '../services/conversationStateService.js'
+import { buildInventoryInsights } from '../services/inventoryAiService.js'
 import { mapProductForResponse, matchProductsByIntent } from '../services/productMatchingService.js'
 
 function normalizeContext(context) {
@@ -33,9 +40,12 @@ function buildNoMatchReply(intent) {
 export async function chatWithAi(req, res) {
   try {
     const message = String(req.body?.message || '').trim()
+    const conversationContext = normalizeConversationContext(
+      req.body?.conversationContext || req.body?.context?.conversationContext || {},
+    )
     const context = {
       ...normalizeContext(req.body?.context),
-      conversationContext: normalizeContext(req.body?.conversationContext),
+      conversationContext,
       recentMessages: normalizeRecentMessages(req.body?.recentMessages),
       conversationSummary: String(req.body?.conversationSummary || '').trim().slice(0, 420),
     }
@@ -45,25 +55,53 @@ export async function chatWithAi(req, res) {
     }
 
     const intent = await analyzeShoppingIntent({ message, context })
+    const mergedConversationContext = mergeConversationContext({
+      baseContext: conversationContext,
+      intent,
+      message,
+      auxiliaryContext: context,
+    })
+    const effectiveIntent = {
+      ...intent,
+      category: mergedConversationContext.category || intent.category,
+      budget: mergedConversationContext.budget || intent.budget,
+      useCase: mergedConversationContext.useCase || intent.useCase,
+      priorities: Array.isArray(mergedConversationContext.priorities)
+        ? mergedConversationContext.priorities
+        : intent.priorities,
+      preferredBrands: Array.isArray(mergedConversationContext.preferredBrands)
+        ? mergedConversationContext.preferredBrands
+        : intent.preferredBrands,
+      preferredProductFamilies: Array.isArray(mergedConversationContext.preferredProductFamilies)
+        ? mergedConversationContext.preferredProductFamilies
+        : intent.preferredProductFamilies,
+      avoidBrands: Array.isArray(mergedConversationContext.avoidBrands)
+        ? mergedConversationContext.avoidBrands
+        : intent.avoidBrands,
+    }
 
     // Ask clarification first when category is still missing to avoid irrelevant recommendations.
-    if (intent?.needMoreInfo && !intent?.category) {
+    if (intent?.needMoreInfo && !effectiveIntent?.category) {
+      const clarification = buildClarificationPayload(mergedConversationContext)
       return res.json({
-        reply: intent.followUpQuestion || 'Bạn cần nhóm sản phẩm nào để mình tư vấn đúng hơn?',
-        intent,
+        ...clarification,
+        intent: effectiveIntent,
+        conversationContext: mergedConversationContext,
         recommendedProducts: [],
         needMoreInfo: true,
-        followUpQuestion: intent.followUpQuestion || '',
+        followUpQuestion: clarification.followUpQuestion || intent.followUpQuestion || '',
       })
     }
 
-    const matching = await matchProductsByIntent(intent, { limit: 5 })
+    const matching = await matchProductsByIntent(effectiveIntent, { limit: 5 })
     const topProducts = matching.matches.map((item) => mapProductForResponse(item.product))
 
     if (topProducts.length === 0) {
+      const nextConversationContext = updateRecommendedProductsInContext(mergedConversationContext, [])
       return res.json({
-        reply: buildNoMatchReply(intent),
-        intent,
+        reply: buildNoMatchReply(effectiveIntent),
+        intent: effectiveIntent,
+        conversationContext: nextConversationContext,
         recommendedProducts: [],
         needMoreInfo: Boolean(intent?.needMoreInfo),
         followUpQuestion: intent.followUpQuestion || '',
@@ -72,16 +110,18 @@ export async function chatWithAi(req, res) {
 
     const recommendation = await buildRecommendationExplanation({
       message,
-      intent,
+      intent: effectiveIntent,
       topProducts,
     })
 
-    const needMoreInfo = Boolean(recommendation.needMoreInfo || intent?.needMoreInfo)
-    const followUpQuestion = recommendation.followUpQuestion || intent.followUpQuestion || ''
+    const needMoreInfo = Boolean(recommendation.needMoreInfo)
+    const followUpQuestion = recommendation.followUpQuestion || ''
+    const nextConversationContext = updateRecommendedProductsInContext(mergedConversationContext, topProducts)
 
     return res.json({
-      reply: recommendation.reply || buildNoMatchReply(intent),
-      intent,
+      reply: recommendation.reply || buildNoMatchReply(effectiveIntent),
+      intent: effectiveIntent,
+      conversationContext: nextConversationContext,
       recommendedProducts: topProducts,
       bestProductId: recommendation.bestProductId || '',
       needMoreInfo,
@@ -160,6 +200,26 @@ export async function analyzeCartWithAiHandler(req, res) {
         statusCode >= 500
           ? 'Không thể phân tích giỏ hàng bằng AI lúc này. Vui lòng thử lại sau.'
           : error.message || 'Yêu cầu phân tích giỏ hàng không hợp lệ.',
+    })
+  }
+}
+
+export async function getInventoryInsightsHandler(req, res) {
+  try {
+    const result = await buildInventoryInsights({
+      userId: req.user?.id || '',
+      role: req.user?.role || '',
+      query: req.query || {},
+    })
+
+    return res.json(result)
+  } catch (error) {
+    const statusCode = error.statusCode || 500
+    return res.status(statusCode).json({
+      message:
+        statusCode >= 500
+          ? 'Không thể tạo gợi ý inventory bằng AI lúc này. Vui lòng thử lại sau.'
+          : error.message || 'Yêu cầu inventory AI không hợp lệ.',
     })
   }
 }

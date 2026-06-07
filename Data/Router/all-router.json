@@ -1,0 +1,92 @@
+[
+  {
+    "name": "TP-Link Archer AX23 AX1800",
+    "category": "Router",
+    "brand": "TP-Link",
+    "price": 1290000,
+    "stock": 60,
+    "minStockLevel": 12,
+    "images": [],
+    "description": "TP-Link Archer AX23 là router WiFi 6 phổ thông phù hợp cho gia đình và căn hộ nhỏ. Thiết bị hỗ trợ nhiều thiết bị kết nối đồng thời, cải thiện tốc độ truyền tải và độ ổn định khi học tập, làm việc từ xa hoặc giải trí trực tuyến. Đây là lựa chọn phù hợp cho người dùng muốn nâng cấp từ router WiFi 5 với chi phí hợp lý.",
+    "specifications": {
+      "wifiStandard": "WiFi 6 (802.11ax)",
+      "speed": "AX1800",
+      "bands": "Dual Band",
+      "ports": "1 WAN + 4 LAN Gigabit",
+      "antennas": "4 External Antennas",
+      "coverage": "120-150m²"
+    }
+  },
+  {
+    "name": "TP-Link Archer AX55 AX3000",
+    "category": "Router",
+    "brand": "TP-Link",
+    "price": 2290000,
+    "stock": 45,
+    "minStockLevel": 10,
+    "images": [],
+    "description": "TP-Link Archer AX55 là router WiFi 6 hiệu năng cao dành cho gia đình có nhiều thiết bị kết nối. Thiết bị hỗ trợ xem video 4K, chơi game trực tuyến và làm việc từ xa với độ ổn định cao. Hệ thống bảo mật tích hợp giúp tăng cường an toàn cho mạng gia đình.",
+    "specifications": {
+      "wifiStandard": "WiFi 6 (802.11ax)",
+      "speed": "AX3000",
+      "bands": "Dual Band",
+      "ports": "1 WAN + 4 LAN Gigabit",
+      "antennas": "4 High Gain Antennas",
+      "coverage": "150-200m²"
+    }
+  },
+  {
+    "name": "ASUS RT-AX58U AX3000",
+    "category": "Router",
+    "brand": "ASUS",
+    "price": 3190000,
+    "stock": 30,
+    "minStockLevel": 8,
+    "images": [],
+    "description": "ASUS RT-AX58U là router WiFi 6 dành cho người dùng nâng cao, game thủ và gia đình có nhu cầu sử dụng mạng ổn định. Thiết bị hỗ trợ nhiều tính năng quản lý mạng, bảo mật AiProtection và khả năng hoạt động ổn định trong thời gian dài.",
+    "specifications": {
+      "wifiStandard": "WiFi 6 (802.11ax)",
+      "speed": "AX3000",
+      "bands": "Dual Band",
+      "ports": "1 WAN + 4 LAN Gigabit",
+      "antennas": "4 External Antennas",
+      "coverage": "200m²"
+    }
+  },
+  {
+    "name": "Xiaomi Router AX3000T",
+    "category": "Router",
+    "brand": "Xiaomi",
+    "price": 990000,
+    "stock": 70,
+    "minStockLevel": 15,
+    "images": [],
+    "description": "Xiaomi Router AX3000T là router WiFi 6 giá tốt dành cho hộ gia đình, sinh viên và người dùng phổ thông. Thiết bị có khả năng phủ sóng ổn định, giao diện quản lý đơn giản và hỗ trợ nhiều thiết bị kết nối cùng lúc.",
+    "specifications": {
+      "wifiStandard": "WiFi 6 (802.11ax)",
+      "speed": "AX3000",
+      "bands": "Dual Band",
+      "ports": "1 WAN + 3 LAN Gigabit",
+      "antennas": "4 External Antennas",
+      "coverage": "120-180m²"
+    }
+  },
+  {
+    "name": "TP-Link Deco X20 Mesh WiFi 6",
+    "category": "Router",
+    "brand": "TP-Link",
+    "price": 3990000,
+    "stock": 25,
+    "minStockLevel": 6,
+    "images": [],
+    "description": "TP-Link Deco X20 là hệ thống Mesh WiFi 6 dành cho nhà nhiều tầng, văn phòng nhỏ hoặc không gian rộng. Công nghệ Mesh giúp thiết bị tự động chuyển vùng liền mạch, đảm bảo kết nối ổn định trong toàn bộ khu vực sử dụng.",
+    "specifications": {
+      "wifiStandard": "WiFi 6 (802.11ax)",
+      "speed": "AX1800",
+      "bands": "Dual Band Mesh",
+      "ports": "2 Gigabit Ports mỗi node",
+      "antennas": "Internal Antennas",
+      "coverage": "350-500m²"
+    }
+  }
+]

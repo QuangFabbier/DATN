@@ -1,7 +1,8 @@
-import mockProducts from '../data/products.json'
+import allProducts from '../data/all-products.json'
 import { getProductId, getProductImages, normalizeProduct } from '../utils/product'
 
-export const PRODUCT_STORAGE_KEY = 'datn_products'
+export const PRODUCT_STORAGE_KEY = 'datn_products_v2'
+const LEGACY_PRODUCT_STORAGE_KEYS = ['datn_products']
 export const PRODUCT_PLACEHOLDER_IMAGE =
   'https://placehold.co/600x400/e2e8f0/475569?text=No+Image'
 
@@ -37,15 +38,18 @@ function sanitizeProductRecord(product, index = 0) {
   const now = Date.now()
   const fallbackTimestamp = now - index * 1000
   const productId = getProductId(normalizedProduct) || createProductId()
-  const name = String(product?.name || '').trim()
-  const category = String(product?.category || '').trim()
-  const image = String(product?.image || '').trim() || PRODUCT_PLACEHOLDER_IMAGE
-  const images = getProductImages({
-    ...product,
-    image,
-    images: Array.isArray(product?.images) ? product.images : undefined,
-  })
-  const description = String(product?.description || '').trim()
+  const name = String(normalizedProduct.name || '').trim()
+  const category = String(normalizedProduct.category || '').trim()
+  const brand = String(normalizedProduct.brand || '').trim()
+  const image = String(normalizedProduct.image || '').trim() || PRODUCT_PLACEHOLDER_IMAGE
+  const images = Array.isArray(normalizedProduct.images) && normalizedProduct.images.length > 0
+    ? normalizedProduct.images
+    : getProductImages({
+        ...product,
+        image,
+        images: Array.isArray(product?.images) ? product.images : undefined,
+      })
+  const description = String(normalizedProduct.description || '').trim()
   const price = Math.max(0, Number(normalizedProduct.price) || 0)
   const stock = Math.max(0, Number(normalizedProduct.stock) || 0)
 
@@ -54,6 +58,7 @@ function sanitizeProductRecord(product, index = 0) {
     id: productId,
     name,
     category,
+    brand,
     image,
     images,
     description,
@@ -65,13 +70,25 @@ function sanitizeProductRecord(product, index = 0) {
 }
 
 function getSeedProducts() {
-  return mockProducts.map((product, index) => sanitizeProductRecord(product, index)).filter(Boolean)
+  return allProducts.map((product, index) => sanitizeProductRecord(product, index)).filter(Boolean)
+}
+
+function clearLegacyProductStorage() {
+  if (!canUseStorage()) {
+    return
+  }
+
+  for (const key of LEGACY_PRODUCT_STORAGE_KEYS) {
+    window.localStorage.removeItem(key)
+  }
 }
 
 function readStoredProducts() {
   if (!canUseStorage()) {
     return getSeedProducts()
   }
+
+  clearLegacyProductStorage()
 
   const storedProducts = window.localStorage.getItem(PRODUCT_STORAGE_KEY)
 

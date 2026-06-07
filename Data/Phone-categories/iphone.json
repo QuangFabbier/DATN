@@ -1,0 +1,148 @@
+
+[
+  {
+    "name": "iPhone 16 128GB",
+    "category": "Điện thoại",
+    "brand": "Apple",
+    "price": 22990000,
+    "stock": 50,
+    "minStockLevel": 10,
+    "images": [],
+    "description": "iPhone 16 128GB là lựa chọn phù hợp dành cho người dùng yêu thích hệ sinh thái Apple và mong muốn sở hữu một chiếc điện thoại cao cấp với mức giá dễ tiếp cận hơn so với các phiên bản Pro. Sản phẩm nổi bật với thiết kế hiện đại, hoàn thiện chắc chắn và khả năng hoạt động ổn định trong thời gian dài. Được trang bị chip Apple A18 mạnh mẽ cùng 8GB RAM, thiết bị đáp ứng mượt mà các nhu cầu từ học tập, làm việc đến giải trí và chơi game. Màn hình Super Retina XDR mang lại chất lượng hiển thị sắc nét, màu sắc trung thực và trải nghiệm xem nội dung ấn tượng. Camera 48MP hỗ trợ ghi lại những khoảnh khắc đáng nhớ với độ chi tiết cao trong nhiều điều kiện ánh sáng khác nhau. Với bộ nhớ trong 128GB, đây là lựa chọn phù hợp cho người dùng đang tìm kiếm một chiếc iPhone cân bằng giữa hiệu năng, tính năng và chi phí đầu tư.",
+    "specifications": {
+      "screen": "6.1 inch Super Retina XDR OLED",
+      "chip": "Apple A18",
+      "ram": "8GB",
+      "storage": "128GB",
+      "battery": "3561mAh",
+      "camera": "48MP + 12MP"
+    }
+  },
+  {
+    "name": "iPhone 16 Plus 128GB",
+    "category": "Điện thoại",
+    "brand": "Apple",
+    "price": 25990000,
+    "stock": 40,
+    "minStockLevel": 10,
+    "images": [],
+    "description": "iPhone 16 Plus 128GB mang đến trải nghiệm sử dụng thoải mái nhờ màn hình lớn cùng thời lượng pin ấn tượng. Đây là lựa chọn phù hợp cho người dùng thường xuyên xem phim, làm việc trên điện thoại hoặc cần một thiết bị có khả năng hoạt động bền bỉ suốt cả ngày. Chip Apple A18 kết hợp cùng dung lượng RAM tối ưu giúp xử lý tốt các tác vụ đa nhiệm, chỉnh sửa hình ảnh và giải trí. Màn hình Super Retina XDR kích thước 6.7 inch mang lại không gian hiển thị rộng rãi và sắc nét. Hệ thống camera hỗ trợ chụp ảnh chất lượng cao và quay video ổn định. Với thiết kế sang trọng và hiệu năng mạnh mẽ, iPhone 16 Plus là lựa chọn đáng cân nhắc trong phân khúc cao cấp.",
+    "specifications": {
+      "screen": "6.7 inch Super Retina XDR OLED",
+      "chip": "Apple A18",
+      "ram": "8GB",
+      "storage": "128GB",
+      "battery": "4674mAh",
+      "camera": "48MP + 12MP"
+    }
+  },
+  {
+    "name": "iPhone 16 Pro 256GB",
+    "category": "Điện thoại",
+    "brand": "Apple",
+    "price": 31990000,
+    "stock": 35,
+    "minStockLevel": 10,
+    "images": [],
+    "description": "iPhone 16 Pro 256GB được thiết kế dành cho những người dùng yêu cầu cao về hiệu năng, chất lượng camera và độ hoàn thiện của sản phẩm. Máy sở hữu khung Titanium cao cấp cùng thiết kế hiện đại, mang lại cảm giác cầm nắm chắc chắn và sang trọng. Chip Apple A18 Pro cung cấp hiệu suất vượt trội trong các tác vụ từ công việc chuyên môn đến chơi game đồ họa cao. Màn hình LTPO OLED 120Hz giúp mọi thao tác trở nên mượt mà hơn. Hệ thống camera chuyên nghiệp hỗ trợ chụp ảnh chi tiết và quay video chất lượng cao. Bộ nhớ trong 256GB đáp ứng tốt nhu cầu lưu trữ dữ liệu, hình ảnh và ứng dụng của người dùng.",
+    "specifications": {
+      "screen": "6.3 inch LTPO OLED 120Hz",
+      "chip": "Apple A18 Pro",
+      "ram": "8GB",
+      "storage": "256GB",
+      "battery": "3582mAh",
+      "camera": "48MP + 48MP + 12MP"
+    }
+  },
+  {
+    "name": "iPhone 16 Pro Max 256GB",
+    "category": "Điện thoại",
+    "brand": "Apple",
+    "price": 34990000,
+    "stock": 50,
+    "minStockLevel": 10,
+    "images": [],
+    "description": "iPhone 16 Pro Max 256GB là mẫu điện thoại cao cấp nhất của Apple, hướng đến người dùng yêu cầu hiệu năng mạnh mẽ, thiết kế sang trọng và trải nghiệm sử dụng ổn định trong thời gian dài. Sản phẩm nổi bật với khung Titanium cao cấp, mang lại cảm giác chắc chắn nhưng vẫn đảm bảo sự thoải mái khi cầm nắm. Thiết bị được trang bị chip Apple A18 Pro kết hợp cùng 8GB RAM và bộ nhớ trong 256GB, đáp ứng xuất sắc từ các tác vụ thường ngày cho đến chỉnh sửa video, xử lý hình ảnh hay chơi các tựa game đồ họa cao. Màn hình LTPO OLED 120Hz mang lại trải nghiệm hiển thị sắc nét và mượt mà. Hệ thống camera tiên tiến giúp người dùng ghi lại những khoảnh khắc chất lượng cao trong nhiều điều kiện khác nhau.",
+    "specifications": {
+      "screen": "6.9 inch LTPO OLED 120Hz",
+      "chip": "Apple A18 Pro",
+      "ram": "8GB",
+      "storage": "256GB",
+      "battery": "4685mAh",
+      "camera": "48MP + 48MP + 12MP"
+    }
+  },
+  {
+    "name": "iPhone 15 128GB",
+    "category": "Điện thoại",
+    "brand": "Apple",
+    "price": 18990000,
+    "stock": 60,
+    "minStockLevel": 10,
+    "images": [],
+    "description": "iPhone 15 128GB vẫn là một trong những lựa chọn đáng giá trong hệ sinh thái Apple nhờ thiết kế hiện đại và hiệu năng ổn định. Máy được trang bị chip Apple A16 Bionic mạnh mẽ, đáp ứng tốt các nhu cầu sử dụng hàng ngày như học tập, làm việc, giải trí và chơi game. Dynamic Island mang đến trải nghiệm tương tác trực quan hơn trong quá trình sử dụng. Camera 48MP hỗ trợ chụp ảnh sắc nét với độ chi tiết cao, trong khi màn hình OLED giúp hiển thị màu sắc sống động. Đây là sản phẩm phù hợp với những người muốn trải nghiệm iPhone thế hệ mới với mức chi phí hợp lý hơn.",
+    "specifications": {
+      "screen": "6.1 inch OLED",
+      "chip": "Apple A16 Bionic",
+      "ram": "6GB",
+      "storage": "128GB",
+      "battery": "3349mAh",
+      "camera": "48MP + 12MP"
+    }
+  },
+  {
+    "name": "iPhone 15 Plus 128GB",
+    "category": "Điện thoại",
+    "brand": "Apple",
+    "price": 21990000,
+    "stock": 45,
+    "minStockLevel": 10,
+    "images": [],
+    "description": "iPhone 15 Plus 128GB là lựa chọn phù hợp dành cho những người yêu thích màn hình lớn và thời lượng pin dài. Máy sở hữu thiết kế cao cấp cùng khả năng hoạt động ổn định nhờ chip Apple A16 Bionic. Màn hình OLED kích thước 6.7 inch mang lại trải nghiệm giải trí ấn tượng, phù hợp với nhu cầu xem phim và làm việc. Camera 48MP hỗ trợ ghi lại những khoảnh khắc hàng ngày với chất lượng hình ảnh sắc nét. Với bộ nhớ 128GB, thiết bị đáp ứng tốt nhu cầu lưu trữ cơ bản của đa số người dùng.",
+    "specifications": {
+      "screen": "6.7 inch OLED",
+      "chip": "Apple A16 Bionic",
+      "ram": "6GB",
+      "storage": "128GB",
+      "battery": "4383mAh",
+      "camera": "48MP + 12MP"
+    }
+  },
+  {
+    "name": "iPhone 15 Pro 256GB",
+    "category": "Điện thoại",
+    "brand": "Apple",
+    "price": 28990000,
+    "stock": 30,
+    "minStockLevel": 10,
+    "images": [],
+    "description": "iPhone 15 Pro 256GB là mẫu smartphone cao cấp dành cho người dùng yêu cầu hiệu suất mạnh mẽ và khả năng chụp ảnh chuyên nghiệp. Thiết bị sử dụng khung Titanium nhẹ nhưng bền bỉ, kết hợp cùng chip Apple A17 Pro mang lại hiệu năng ấn tượng trong nhiều tác vụ khác nhau. Màn hình ProMotion 120Hz giúp mọi thao tác trở nên mượt mà hơn. Hệ thống camera đa tiêu cự hỗ trợ sáng tạo nội dung chất lượng cao. Bộ nhớ 256GB đáp ứng tốt nhu cầu lưu trữ lâu dài.",
+    "specifications": {
+      "screen": "6.1 inch LTPO OLED 120Hz",
+      "chip": "Apple A17 Pro",
+      "ram": "8GB",
+      "storage": "256GB",
+      "battery": "3274mAh",
+      "camera": "48MP + 12MP + 12MP"
+    }
+  },
+  {
+    "name": "iPhone 15 Pro Max 256GB",
+    "category": "Điện thoại",
+    "brand": "Apple",
+    "price": 30990000,
+    "stock": 25,
+    "minStockLevel": 10,
+    "images": [],
+    "description": "iPhone 15 Pro Max 256GB hướng đến người dùng cao cấp cần một thiết bị mạnh mẽ và linh hoạt trong công việc cũng như giải trí. Máy sở hữu màn hình lớn, hiệu năng mạnh mẽ từ chip Apple A17 Pro và khả năng quay chụp ấn tượng. Hệ thống camera hỗ trợ zoom quang học chất lượng cao, giúp người dùng dễ dàng ghi lại những khoảnh khắc từ khoảng cách xa. Đây là sản phẩm phù hợp với những ai thường xuyên sáng tạo nội dung hoặc mong muốn trải nghiệm công nghệ hàng đầu của Apple.",
+    "specifications": {
+      "screen": "6.7 inch LTPO OLED 120Hz",
+      "chip": "Apple A17 Pro",
+      "ram": "8GB",
+      "storage": "256GB",
+      "battery": "4422mAh",
+      "camera": "48MP + 12MP + 12MP"
+    }
+  }
+]
+

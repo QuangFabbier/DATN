@@ -117,7 +117,7 @@ async function ensureProductExists(productId) {
   }
 
   const product = await Product.findById(normalizedProductId).select(
-    'name category averageRating totalReviews ratingBreakdown reviewSummary',
+    'name category price stock image averageRating totalReviews ratingBreakdown reviewSummary',
   )
 
   if (!product) {
@@ -239,6 +239,9 @@ export async function getProductReviews(productId, { page = 1, limit = DEFAULT_P
       name: product.name,
       averageRating: Number(product.averageRating || 0),
       totalReviews: Number(product.totalReviews || 0),
+      price: Number(product.price || 0),
+      stock: Number(product.stock || 0),
+      image: String(product.image || ''),
       ratingBreakdown: product.ratingBreakdown || buildDefaultRatingBreakdown(),
     },
     reviews: reviewDocs.map((review) => mapReviewForResponse(review, currentUser)),
@@ -415,7 +418,7 @@ export async function getAdminReviewList({
 
   const productIds = [...new Set(reviewDocs.map((review) => String(review.productId || '')).filter(Boolean))]
   const productDocs = await Product.find({ _id: { $in: productIds } })
-    .select('name category image averageRating totalReviews')
+    .select('name category image price stock averageRating totalReviews')
     .lean()
   const productMap = new Map(productDocs.map((product) => [String(product._id), product]))
 
@@ -432,6 +435,8 @@ export async function getAdminReviewList({
               name: product.name,
               category: product.category,
               image: product.image,
+              price: Number(product.price || 0),
+              stock: Number(product.stock || 0),
               averageRating: Number(product.averageRating || 0),
               totalReviews: Number(product.totalReviews || 0),
             }

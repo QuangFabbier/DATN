@@ -1,0 +1,172 @@
+[
+  {
+    "name": "Apple USB-C to USB-C Cable 1m",
+    "category": "Charging Cable",
+    "brand": "Apple",
+    "price": 490000,
+    "stock": 150,
+    "minStockLevel": 30,
+    "images": [],
+    "description": "Cáp USB-C to USB-C chính hãng Apple hỗ trợ sạc nhanh và truyền dữ liệu ổn định cho iPhone, iPad, MacBook và các thiết bị USB-C tương thích.",
+    "specifications": {
+      "connector": "USB-C to USB-C",
+      "length": "1m",
+      "maxPower": "240W",
+      "dataTransfer": "USB 2.0",
+      "material": "Braided"
+    }
+  },
+  {
+    "name": "Apple USB-C to Lightning Cable 1m",
+    "category": "Charging Cable",
+    "brand": "Apple",
+    "price": 590000,
+    "stock": 120,
+    "minStockLevel": 25,
+    "images": [],
+    "description": "Cáp USB-C to Lightning chính hãng dành cho các dòng iPhone sử dụng cổng Lightning, hỗ trợ sạc nhanh Power Delivery.",
+    "specifications": {
+      "connector": "USB-C to Lightning",
+      "length": "1m",
+      "maxPower": "27W",
+      "dataTransfer": "USB 2.0",
+      "material": "PVC"
+    }
+  },
+  {
+    "name": "Anker 322 USB-C Cable 1m",
+    "category": "Charging Cable",
+    "brand": "Anker",
+    "price": 190000,
+    "stock": 200,
+    "minStockLevel": 40,
+    "images": [],
+    "description": "Anker 322 là cáp USB-C phổ biến với độ bền cao, phù hợp cho điện thoại Android, tablet và laptop hỗ trợ USB-C.",
+    "specifications": {
+      "connector": "USB-C to USB-C",
+      "length": "1m",
+      "maxPower": "60W",
+      "dataTransfer": "480Mbps",
+      "material": "Braided"
+    }
+  },
+  {
+    "name": "Anker 333 USB-C Cable 100W 1.8m",
+    "category": "Charging Cable",
+    "brand": "Anker",
+    "price": 290000,
+    "stock": 180,
+    "minStockLevel": 35,
+    "images": [],
+    "description": "Anker 333 hỗ trợ sạc nhanh công suất cao cho laptop, tablet và smartphone với độ bền vượt trội.",
+    "specifications": {
+      "connector": "USB-C to USB-C",
+      "length": "1.8m",
+      "maxPower": "100W",
+      "dataTransfer": "480Mbps",
+      "material": "Braided"
+    }
+  },
+  {
+    "name": "UGREEN USB-C to USB-C 100W 2m",
+    "category": "Charging Cable",
+    "brand": "UGREEN",
+    "price": 250000,
+    "stock": 160,
+    "minStockLevel": 30,
+    "images": [],
+    "description": "Cáp UGREEN 100W hỗ trợ sạc nhanh cho MacBook, ultrabook và các thiết bị USB-C hiện đại.",
+    "specifications": {
+      "connector": "USB-C to USB-C",
+      "length": "2m",
+      "maxPower": "100W",
+      "dataTransfer": "480Mbps",
+      "material": "Braided"
+    }
+  },
+  {
+    "name": "Baseus Crystal Shine USB-C Cable 100W",
+    "category": "Charging Cable",
+    "brand": "Baseus",
+    "price": 180000,
+    "stock": 190,
+    "minStockLevel": 35,
+    "images": [],
+    "description": "Baseus Crystal Shine là cáp sạc nhanh USB-C được thiết kế bền bỉ và phù hợp với nhiều thiết bị hiện đại.",
+    "specifications": {
+      "connector": "USB-C to USB-C",
+      "length": "1.2m",
+      "maxPower": "100W",
+      "dataTransfer": "480Mbps",
+      "material": "Braided"
+    }
+  },
+  {
+    "name": "Samsung USB-C Cable 5A 1.8m",
+    "category": "Charging Cable",
+    "brand": "Samsung",
+    "price": 250000,
+    "stock": 140,
+    "minStockLevel": 25,
+    "images": [],
+    "description": "Cáp USB-C chính hãng Samsung hỗ trợ Super Fast Charging cho các thiết bị Galaxy tương thích.",
+    "specifications": {
+      "connector": "USB-C to USB-C",
+      "length": "1.8m",
+      "maxPower": "100W",
+      "dataTransfer": "USB 2.0",
+      "material": "PVC"
+    }
+  },
+  {
+    "name": "Belkin BoostCharge USB-C to Lightning",
+    "category": "Charging Cable",
+    "brand": "Belkin",
+    "price": 390000,
+    "stock": 120,
+    "minStockLevel": 25,
+    "images": [],
+    "description": "Belkin BoostCharge đạt chứng nhận MFi của Apple, phù hợp cho các dòng iPhone Lightning.",
+    "specifications": {
+      "connector": "USB-C to Lightning",
+      "length": "1m",
+      "maxPower": "27W",
+      "dataTransfer": "USB 2.0",
+      "material": "Braided"
+    }
+  },
+  {
+    "name": "Xiaomi Type-C Fast Charging Cable 6A",
+    "category": "Charging Cable",
+    "brand": "Xiaomi",
+    "price": 99000,
+    "stock": 220,
+    "minStockLevel": 50,
+    "images": [],
+    "description": "Cáp sạc nhanh Xiaomi phù hợp cho smartphone Xiaomi, Redmi và POCO hỗ trợ sạc công suất cao.",
+    "specifications": {
+      "connector": "USB-A to USB-C",
+      "length": "1m",
+      "maxPower": "67W",
+      "dataTransfer": "480Mbps",
+      "material": "PVC"
+    }
+  },
+  {
+    "name": "UGREEN USB-A to Lightning Cable MFi",
+    "category": "Charging Cable",
+    "brand": "UGREEN",
+    "price": 220000,
+    "stock": 130,
+    "minStockLevel": 25,
+    "images": [],
+    "description": "Cáp Lightning đạt chứng nhận MFi dành cho iPhone, đảm bảo khả năng tương thích và độ bền cao.",
+    "specifications": {
+      "connector": "USB-A to Lightning",
+      "length": "1m",
+      "maxPower": "12W",
+      "dataTransfer": "480Mbps",
+      "material": "Braided"
+    }
+  }
+]

@@ -12,6 +12,7 @@ import {
   getProductId,
   getProductSalesProgress,
   getProductStock,
+  getProductCategoryLabel,
 } from '../utils/product'
 import { wait } from '../utils/timing'
 
@@ -143,7 +144,7 @@ function ProductCard({ product, flashSaleCampaign = null }) {
       </div>
 
       <div className="product-card-body">
-        <p className="product-category-tag">{product.category}</p>
+        <p className="product-category-tag">{getProductCategoryLabel(product.category)}</p>
         <h3>{product.name}</h3>
         <StarRating
           value={product.averageRating}

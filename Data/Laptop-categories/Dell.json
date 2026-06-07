@@ -1,0 +1,82 @@
+[
+  {
+    "name": "Dell Inspiron 15 3530 i5 16GB 512GB",
+    "category": "Laptop",
+    "brand": "Dell",
+    "price": 17990000,
+    "stock": 70,
+    "minStockLevel": 15,
+    "images": [],
+    "description": "Dell Inspiron 15 3530 là mẫu laptop văn phòng đáng tin cậy dành cho sinh viên, nhân viên văn phòng và người dùng gia đình. Bộ vi xử lý Intel Core i5 kết hợp RAM 16GB mang lại hiệu năng ổn định cho các tác vụ làm việc, học tập trực tuyến, quản lý dữ liệu và giải trí hằng ngày. Màn hình 15.6 inch rộng rãi giúp làm việc thoải mái với bảng tính, tài liệu và các ứng dụng đa nhiệm. Thiết kế bền bỉ, bàn phím dễ sử dụng cùng khả năng nâng cấp linh hoạt giúp tăng tuổi thọ sử dụng. Đây là lựa chọn phù hợp cho người dùng cần một chiếc laptop thực dụng với mức giá hợp lý.",
+    "specifications": {
+      "cpu": "Intel Core i5-1334U",
+      "gpu": "Intel Iris Xe Graphics",
+      "ram": "16GB DDR4",
+      "storage": "512GB SSD",
+      "display": "15.6 inch Full HD",
+      "battery": "54Wh",
+      "operatingSystem": "Windows 11 Home",
+      "weight": "1.65kg"
+    }
+  },
+  {
+    "name": "Dell Inspiron 14 Plus Ultra 7 16GB 1TB",
+    "category": "Laptop",
+    "brand": "Dell",
+    "price": 29990000,
+    "stock": 45,
+    "minStockLevel": 10,
+    "images": [],
+    "description": "Dell Inspiron 14 Plus là mẫu laptop cao cấp hướng đến người dùng văn phòng chuyên nghiệp và sinh viên kỹ thuật cần hiệu năng mạnh mẽ trong thiết kế gọn nhẹ. Intel Core Ultra 7 giúp xử lý hiệu quả các tác vụ đa nhiệm, lập trình, chỉnh sửa ảnh và làm việc với dữ liệu lớn. Màn hình độ phân giải cao mang lại trải nghiệm hiển thị sắc nét và chính xác. Thiết kế hiện đại cùng thời lượng pin tốt giúp người dùng làm việc linh hoạt ở nhiều môi trường khác nhau. Đây là lựa chọn phù hợp cho những ai muốn cân bằng giữa hiệu năng, tính di động và độ bền thương hiệu Dell.",
+    "specifications": {
+      "cpu": "Intel Core Ultra 7 155H",
+      "gpu": "Intel Arc Graphics",
+      "ram": "16GB LPDDR5X",
+      "storage": "1TB SSD",
+      "display": "14 inch 2.5K",
+      "battery": "64Wh",
+      "operatingSystem": "Windows 11 Home",
+      "weight": "1.55kg"
+    }
+  },
+  {
+    "name": "Dell XPS 13 Ultra 7 16GB 512GB",
+    "category": "Laptop",
+    "brand": "Dell",
+    "price": 42990000,
+    "stock": 30,
+    "minStockLevel": 8,
+    "images": [],
+    "description": "Dell XPS 13 là dòng ultrabook cao cấp nổi tiếng với thiết kế sang trọng, màn hình viền mỏng và chất lượng hoàn thiện xuất sắc. Intel Core Ultra 7 cung cấp hiệu năng mạnh mẽ cho công việc văn phòng nâng cao, lập trình và sáng tạo nội dung. Màn hình độ phân giải cao mang lại hình ảnh sắc nét và trải nghiệm sử dụng hiện đại. Trọng lượng nhẹ giúp dễ dàng mang theo trong các chuyến công tác hoặc học tập. Đây là lựa chọn lý tưởng cho doanh nhân, kỹ sư phần mềm và người dùng yêu cầu cao về tính thẩm mỹ cũng như hiệu suất làm việc.",
+    "specifications": {
+      "cpu": "Intel Core Ultra 7 155H",
+      "gpu": "Intel Arc Graphics",
+      "ram": "16GB LPDDR5X",
+      "storage": "512GB SSD",
+      "display": "13.4 inch QHD+",
+      "battery": "55Wh",
+      "operatingSystem": "Windows 11 Home",
+      "weight": "1.20kg"
+    }
+  },
+  {
+    "name": "Dell XPS 14 Ultra 7 RTX 4050",
+    "category": "Laptop",
+    "brand": "Dell",
+    "price": 55990000,
+    "stock": 18,
+    "minStockLevel": 5,
+    "images": [],
+    "description": "Dell XPS 14 là mẫu laptop cao cấp dành cho người dùng chuyên nghiệp cần sức mạnh xử lý đồ họa trong một thiết kế sang trọng. Intel Core Ultra 7 kết hợp RTX 4050 giúp xử lý tốt các công việc thiết kế đồ họa, dựng video, lập trình AI và mô phỏng kỹ thuật. Màn hình độ phân giải cao với màu sắc chính xác hỗ trợ hiệu quả cho các dự án sáng tạo nội dung. Thiết kế nhôm nguyên khối và chất lượng hoàn thiện cao tạo cảm giác cao cấp khi sử dụng. Đây là lựa chọn phù hợp cho nhà thiết kế, kỹ sư và người sáng tạo nội dung chuyên nghiệp.",
+    "specifications": {
+      "cpu": "Intel Core Ultra 7 155H",
+      "gpu": "NVIDIA GeForce RTX 4050 6GB",
+      "ram": "32GB LPDDR5X",
+      "storage": "1TB SSD",
+      "display": "14.5 inch 3.2K OLED",
+      "battery": "69Wh",
+      "operatingSystem": "Windows 11 Home",
+      "weight": "1.68kg"
+    }
+  }
+]   
