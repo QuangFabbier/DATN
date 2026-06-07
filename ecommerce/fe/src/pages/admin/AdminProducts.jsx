@@ -6,7 +6,7 @@ import { useAuth } from '../../hooks/useAuth'
 import { useToast } from '../../hooks/useToast'
 import { createProduct, deleteProduct, getProducts, updateProduct } from '../../services/productService'
 import { formatCurrency } from '../../utils/formatCurrency'
-import { getProductId, PRODUCT_PLACEHOLDER_IMAGE } from '../../utils/product'
+import { getProductId, normalizeProductCategory, PRODUCT_PLACEHOLDER_IMAGE } from '../../utils/product'
 import { withMinimumDelay } from '../../utils/timing'
 
 const initialFormData = {
@@ -15,7 +15,6 @@ const initialFormData = {
   price: '',
   image: '',
   description: '',
-  stock: '',
 }
 
 function AdminProducts() {
@@ -74,7 +73,7 @@ function AdminProducts() {
   }, [isFormOpen])
 
   const categories = useMemo(
-    () => ['Tất cả', ...new Set(products.map((product) => product.category).filter(Boolean))],
+    () => ['Tất cả', ...new Set(products.map((product) => normalizeProductCategory(product.category)).filter(Boolean))],
     [products],
   )
 
@@ -85,7 +84,11 @@ function AdminProducts() {
       .filter((product) =>
         normalizedKeyword ? product.name.toLowerCase().includes(normalizedKeyword) : true,
       )
-      .filter((product) => (selectedCategory === 'Tất cả' ? true : product.category === selectedCategory))
+      .filter((product) =>
+        selectedCategory === 'Tất cả'
+          ? true
+          : normalizeProductCategory(product.category) === selectedCategory,
+      )
       .filter((product) => {
         if (selectedStatus === 'Tất cả') {
           return true
@@ -235,8 +238,6 @@ function AdminProducts() {
   function validateForm() {
     const nextErrors = {}
     const price = Number(formData.price)
-    const stock = Number(formData.stock)
-
     if (!formData.name.trim()) {
       nextErrors.name = 'Vui lòng nhập tên sản phẩm.'
     }
@@ -249,12 +250,6 @@ function AdminProducts() {
       nextErrors.price = 'Vui lòng nhập giá.'
     } else if (!Number.isFinite(price) || price < 0) {
       nextErrors.price = 'Giá phải lớn hơn hoặc bằng 0.'
-    }
-
-    if (formData.stock === '') {
-      nextErrors.stock = 'Vui lòng nhập tồn kho.'
-    } else if (!Number.isFinite(stock) || stock < 0) {
-      nextErrors.stock = 'Tồn kho phải lớn hơn hoặc bằng 0.'
     }
 
     setFormErrors(nextErrors)
@@ -278,7 +273,6 @@ function AdminProducts() {
         price: Number(formData.price),
         image: formData.image.trim(),
         description: formData.description.trim(),
-        stock: Number(formData.stock),
       }
 
       if (editingProductId) {
@@ -350,7 +344,6 @@ function AdminProducts() {
       price: String(product.price ?? ''),
       image: product.image === PRODUCT_PLACEHOLDER_IMAGE ? '' : product.image || '',
       description: product.description || '',
-      stock: String(product.stock ?? ''),
     })
   }
 
@@ -647,12 +640,6 @@ function AdminProducts() {
                   {formErrors.price ? <span className="field-error">{formErrors.price}</span> : null}
                 </label>
 
-                <label>
-                  Tồn kho
-                  <input name="stock" type="number" min="0" value={formData.stock} onChange={handleFormChange} />
-                  {formErrors.stock ? <span className="field-error">{formErrors.stock}</span> : null}
-                </label>
-
                 <label className="admin-form-full">
                   Ảnh URL
                   <input
@@ -712,6 +699,10 @@ function AdminProducts() {
                   />
                 </label>
               </div>
+
+              <p className="section-heading-meta">
+                Tồn kho hiện được quản lý tại module Inventory, không chỉnh trực tiếp trong Product CRUD.
+              </p>
 
               <div className="admin-form-actions">
                 <button type="submit" className="button" disabled={isSubmitting}>

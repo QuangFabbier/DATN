@@ -1,10 +1,13 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import CheckoutSteps from '../components/CheckoutSteps'
 import EmptyState from '../components/EmptyState'
+import PaymentSuccessDialog from '../components/PaymentSuccessDialog'
 import { ButtonSpinner } from '../components/Spinner'
+import { useAuth } from '../hooks/useAuth'
 import { useCart } from '../hooks/useCart'
 import { useToast } from '../hooks/useToast'
+import { getProfile } from '../services/accountStorage'
 import { createOrderRecord } from '../services/orderStorage'
 import { getPaymentSettings } from '../services/paymentSettingService'
 import { formatCurrency } from '../utils/formatCurrency'
@@ -15,13 +18,17 @@ const SHIPPING_FEE = 30000
 function OrderQrPayment() {
   const navigate = useNavigate()
   const location = useLocation()
+  const { user } = useAuth()
   const { cartItems, cartTotal, clearCart } = useCart()
   const { showToast } = useToast()
+  const userProfile = useMemo(() => getProfile(user), [user])
   const [paymentSettings, setPaymentSettings] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isQrZoomOpen, setIsQrZoomOpen] = useState(false)
+  const [paymentSuccess, setPaymentSuccess] = useState(null)
+  const redirectTimerRef = useRef(null)
 
   const customerInfo = location.state?.customerInfo || null
   const shippingFee = cartItems.length > 0 ? SHIPPING_FEE : 0
@@ -60,6 +67,15 @@ function OrderQrPayment() {
       isMounted = false
     }
   }, [])
+
+  useEffect(
+    () => () => {
+      if (redirectTimerRef.current) {
+        window.clearTimeout(redirectTimerRef.current)
+      }
+    },
+    [],
+  )
 
   useEffect(() => {
     if (!isQrZoomOpen) {
@@ -101,9 +117,9 @@ function OrderQrPayment() {
 
     const createdOrderResult = createOrderRecord({
       customerInfo: {
-        fullName: customerInfo.fullName,
-        phone: customerInfo.phone,
-        address: customerInfo.address,
+        fullName: customerInfo.fullName || userProfile.fullName,
+        phone: customerInfo.phone || userProfile.phone,
+        address: customerInfo.address || userProfile.defaultAddress,
         note: customerInfo.note || '',
         paymentMethod: 'qr',
       },
@@ -111,7 +127,7 @@ function OrderQrPayment() {
       subtotal: cartTotal,
       shippingFee,
       total,
-    })
+    }, user)
     const createdOrder = createdOrderResult?.order
 
     showToast({
@@ -121,7 +137,18 @@ function OrderQrPayment() {
     })
 
     clearCart()
-    navigate('/products')
+    setPaymentSuccess({
+      orderCode: createdOrder?.id || '',
+      description: 'Thanh toán hoàn tất. Cảm ơn bạn đã hoàn thành giao dịch bằng QR.',
+    })
+
+    if (redirectTimerRef.current) {
+      window.clearTimeout(redirectTimerRef.current)
+    }
+
+    redirectTimerRef.current = window.setTimeout(() => {
+      navigate('/')
+    }, 3000)
   }
 
   if (!customerInfo) {
@@ -143,7 +170,7 @@ function OrderQrPayment() {
     )
   }
 
-  if (cartItems.length === 0) {
+  if (cartItems.length === 0 && !paymentSuccess) {
     return (
       <section className="page-section">
         <CheckoutSteps currentStep={3} />
@@ -319,6 +346,21 @@ function OrderQrPayment() {
           </div>
         </div>
       ) : null}
+
+      <PaymentSuccessDialog
+        open={Boolean(paymentSuccess)}
+        title="Thanh toán hoàn tất"
+        description={paymentSuccess?.description || 'Thanh toán của bạn đã được xử lý thành công.'}
+        orderCode={paymentSuccess?.orderCode || ''}
+        onClose={() => {
+          if (redirectTimerRef.current) {
+            window.clearTimeout(redirectTimerRef.current)
+            redirectTimerRef.current = null
+          }
+
+          navigate('/')
+        }}
+      />
     </section>
   )
 }

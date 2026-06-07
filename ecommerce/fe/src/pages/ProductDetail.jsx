@@ -23,9 +23,11 @@ import { getActiveFlashSaleCampaign } from '../utils/flashSale'
 import { formatCurrency } from '../utils/formatCurrency'
 import {
   buildProductPricing,
+  getProductCategoryLabel,
   getProductId,
   getProductImages,
   getProductStock,
+  getProductSpecifications,
   normalizeProduct,
 } from '../utils/product'
 import { wait, withMinimumDelay } from '../utils/timing'
@@ -58,6 +60,18 @@ function buildReviewSummaryPayload(rawSummary = {}) {
     text: String(rawSummary?.text || ''),
     highlights: Array.isArray(rawSummary?.highlights) ? rawSummary.highlights : [],
     sourceReviewCount: Number(rawSummary?.sourceReviewCount || 0),
+  }
+}
+
+function buildReviewProductPatch(source = {}) {
+  return {
+    averageRating: Number(source?.averageRating || 0),
+    totalReviews: Number(source?.totalReviews || 0),
+    ratingBreakdown:
+      source?.ratingBreakdown && typeof source.ratingBreakdown === 'object'
+        ? source.ratingBreakdown
+        : { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 },
+    reviewSummary: source?.reviewSummary ? source.reviewSummary : undefined,
   }
 }
 
@@ -155,7 +169,7 @@ function ProductDetail() {
         currentProduct
           ? normalizeProduct({
               ...currentProduct,
-              ...response.product,
+              ...buildReviewProductPatch(response.product),
               reviewSummary: response.reviewSummary,
             })
           : currentProduct,
@@ -189,7 +203,7 @@ function ProductDetail() {
           currentProduct
             ? normalizeProduct({
                 ...currentProduct,
-                ...response.product,
+                ...buildReviewProductPatch(response.product),
                 reviewSummary: response.reviewSummary,
               })
             : currentProduct,
@@ -217,6 +231,7 @@ function ProductDetail() {
   const isProductFavorite = productId ? isFavorite(productId) : false
   const isProductCompared = productId ? isCompared(productId) : false
   const productImages = useMemo(() => getProductImages(product), [product])
+  const productSpecifications = useMemo(() => getProductSpecifications(product), [product])
   const { discountPercent, originalPrice, discountAmount } = buildProductPricing(product, flashSaleCampaign)
   const hasDiscount = discountPercent > 0
   const ratingBreakdown = useMemo(() => buildRatingBreakdown(product), [product])
@@ -239,7 +254,12 @@ function ProductDetail() {
   const breadcrumbs = [
     { label: 'Trang chủ', to: '/' },
     { label: 'Sản phẩm', to: '/products' },
-    product?.category ? { label: product.category, to: `/products?category=${encodeURIComponent(product.category)}` } : null,
+    product?.category
+      ? {
+          label: getProductCategoryLabel(product.category),
+          to: `/products?category=${encodeURIComponent(product.category)}`,
+        }
+      : null,
     { label: product?.name || 'Chi tiết sản phẩm' },
   ].filter(Boolean)
 
@@ -388,7 +408,7 @@ function ProductDetail() {
       currentProduct
         ? normalizeProduct({
             ...currentProduct,
-            ...nextAggregate,
+            ...buildReviewProductPatch(nextAggregate),
           })
         : currentProduct,
     )
@@ -539,7 +559,7 @@ function ProductDetail() {
         <ProductGallery images={productImages} enableZoom name={product.name} />
 
         <div className="detail-content">
-          <p className="eyebrow">{product.category}</p>
+          <p className="eyebrow">{getProductCategoryLabel(product.category)}</p>
           <h1>{product.name}</h1>
 
           <div className="product-rating-inline">
@@ -567,6 +587,26 @@ function ProductDetail() {
           ) : null}
           <p className="detail-description">{product.description}</p>
 
+          {productSpecifications.length > 0 ? (
+            <div className="product-specs-card">
+              <div className="section-heading compact product-specs-heading">
+                <div>
+                  <p className="eyebrow">Specifications</p>
+                  <h2>Thông số kỹ thuật</h2>
+                </div>
+              </div>
+
+              <div className="product-specs-grid">
+                {productSpecifications.map((spec, index) => (
+                  <div key={`${spec.label || 'spec'}-${spec.value || index}`} className="product-spec-item">
+                    <span>{spec.label || 'Thông số'}</span>
+                    <strong>{spec.value || 'Đang cập nhật'}</strong>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ) : null}
+
           <div className="detail-meta-grid">
             <div>
               <span>Tồn kho</span>
@@ -574,7 +614,7 @@ function ProductDetail() {
             </div>
             <div>
               <span>Danh mục</span>
-              <strong>{product.category}</strong>
+              <strong>{getProductCategoryLabel(product.category)}</strong>
             </div>
             <div>
               <span>Trạng thái</span>

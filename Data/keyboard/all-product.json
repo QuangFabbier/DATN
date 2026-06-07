@@ -1,0 +1,257 @@
+[
+  {
+    "name": "Logitech K120",
+    "category": "Keyboard",
+    "brand": "Logitech",
+    "price": 249000,
+    "stock": 120,
+    "minStockLevel": 25,
+    "images": [],
+    "description": "Logitech K120 là bàn phím có dây phổ thông dành cho văn phòng, trường học và sử dụng gia đình. Thiết kế đầy đủ phím chức năng, độ bền cao và cảm giác gõ ổn định giúp đáp ứng tốt nhu cầu nhập liệu hằng ngày.",
+    "specifications": {
+      "type": "Membrane",
+      "layout": "Full Size",
+      "connection": "USB",
+      "backlight": "No",
+      "switch": "Membrane"
+    }
+  },
+  {
+    "name": "Logitech K380 Multi-Device",
+    "category": "Keyboard",
+    "brand": "Logitech",
+    "price": 799000,
+    "stock": 90,
+    "minStockLevel": 18,
+    "images": [],
+    "description": "Logitech K380 là bàn phím Bluetooth nhỏ gọn hỗ trợ kết nối nhiều thiết bị cùng lúc. Thiết kế tối giản, dễ mang theo và tương thích với Windows, macOS, Android và iPadOS.",
+    "specifications": {
+      "type": "Wireless Keyboard",
+      "layout": "Compact",
+      "connection": "Bluetooth",
+      "backlight": "No",
+      "switch": "Scissor"
+    }
+  },
+  {
+    "name": "Logitech MX Keys S",
+    "category": "Keyboard",
+    "brand": "Logitech",
+    "price": 2690000,
+    "stock": 45,
+    "minStockLevel": 10,
+    "images": [],
+    "description": "Logitech MX Keys S là bàn phím cao cấp dành cho lập trình viên, designer và nhân viên văn phòng chuyên nghiệp. Phím bấm êm, có đèn nền thông minh và hỗ trợ kết nối đa thiết bị.",
+    "specifications": {
+      "type": "Premium Wireless",
+      "layout": "Full Size",
+      "connection": "Bluetooth, Logi Bolt",
+      "backlight": "Smart Backlight",
+      "switch": "Scissor"
+    }
+  },
+  {
+    "name": "Apple Magic Keyboard USB-C",
+    "category": "Keyboard",
+    "brand": "Apple",
+    "price": 2590000,
+    "stock": 55,
+    "minStockLevel": 12,
+    "images": [],
+    "description": "Apple Magic Keyboard USB-C là bàn phím không dây tối ưu cho người dùng MacBook, iMac và iPad. Thiết kế mỏng nhẹ, cảm giác gõ chính xác và thời lượng pin dài.",
+    "specifications": {
+      "type": "Wireless Keyboard",
+      "layout": "Compact",
+      "connection": "Bluetooth",
+      "backlight": "No",
+      "switch": "Scissor"
+    }
+  },
+  {
+    "name": "Keychron K2 Pro",
+    "category": "Keyboard",
+    "brand": "Keychron",
+    "price": 2290000,
+    "stock": 70,
+    "minStockLevel": 15,
+    "images": [],
+    "description": "Keychron K2 Pro là bàn phím cơ không dây được yêu thích bởi lập trình viên và người dùng MacBook. Thiết bị hỗ trợ hotswap, Bluetooth và tương thích đa nền tảng.",
+    "specifications": {
+      "type": "Mechanical Keyboard",
+      "layout": "75%",
+      "connection": "Bluetooth, USB-C",
+      "backlight": "RGB",
+      "switch": "Gateron Red"
+    }
+  },
+  {
+    "name": "Keychron K8 Pro",
+    "category": "Keyboard",
+    "brand": "Keychron",
+    "price": 2490000,
+    "stock": 60,
+    "minStockLevel": 12,
+    "images": [],
+    "description": "Keychron K8 Pro là bàn phím cơ TKL phù hợp cho lập trình, làm việc văn phòng và gaming nhẹ. Thiết kế cân bằng giữa tính di động và trải nghiệm gõ.",
+    "specifications": {
+      "type": "Mechanical Keyboard",
+      "layout": "TKL",
+      "connection": "Bluetooth, USB-C",
+      "backlight": "RGB",
+      "switch": "Gateron Brown"
+    }
+  },
+  {
+    "name": "Keychron Q1 Max",
+    "category": "Keyboard",
+    "brand": "Keychron",
+    "price": 4990000,
+    "stock": 30,
+    "minStockLevel": 8,
+    "images": [],
+    "description": "Keychron Q1 Max là bàn phím cơ cao cấp với khung nhôm CNC, hỗ trợ wireless và trải nghiệm gõ chất lượng cao dành cho người dùng chuyên nghiệp.",
+    "specifications": {
+      "type": "Mechanical Keyboard",
+      "layout": "75%",
+      "connection": "2.4GHz, Bluetooth, USB-C",
+      "backlight": "RGB",
+      "switch": "Gateron Jupiter Red"
+    }
+  },
+  {
+    "name": "Razer BlackWidow V4",
+    "category": "Keyboard",
+    "brand": "Razer",
+    "price": 3490000,
+    "stock": 40,
+    "minStockLevel": 10,
+    "images": [],
+    "description": "Razer BlackWidow V4 là bàn phím cơ gaming cao cấp với đèn RGB Chroma và switch cơ học tối ưu cho game thủ chuyên nghiệp.",
+    "specifications": {
+      "type": "Gaming Mechanical",
+      "layout": "Full Size",
+      "connection": "USB",
+      "backlight": "RGB Chroma",
+      "switch": "Razer Green"
+    }
+  },
+  {
+    "name": "Razer Huntsman Mini",
+    "category": "Keyboard",
+    "brand": "Razer",
+    "price": 2690000,
+    "stock": 50,
+    "minStockLevel": 12,
+    "images": [],
+    "description": "Razer Huntsman Mini là bàn phím cơ 60% nhỏ gọn dành cho game thủ FPS cần nhiều không gian rê chuột và tốc độ phản hồi cao.",
+    "specifications": {
+      "type": "Gaming Mechanical",
+      "layout": "60%",
+      "connection": "USB-C",
+      "backlight": "RGB Chroma",
+      "switch": "Optical Red"
+    }
+  },
+  {
+    "name": "Logitech G Pro X TKL Lightspeed",
+    "category": "Keyboard",
+    "brand": "Logitech",
+    "price": 4590000,
+    "stock": 35,
+    "minStockLevel": 8,
+    "images": [],
+    "description": "Logitech G Pro X TKL Lightspeed là bàn phím gaming không dây dành cho eSports với độ trễ thấp, thiết kế nhỏ gọn và độ bền cao.",
+    "specifications": {
+      "type": "Gaming Mechanical",
+      "layout": "TKL",
+      "connection": "Lightspeed Wireless",
+      "backlight": "RGB",
+      "switch": "GX Brown"
+    }
+  },
+  {
+    "name": "Akko 3087 V2",
+    "category": "Keyboard",
+    "brand": "Akko",
+    "price": 1490000,
+    "stock": 80,
+    "minStockLevel": 15,
+    "images": [],
+    "description": "Akko 3087 V2 là bàn phím cơ TKL phổ biến với mức giá dễ tiếp cận, phù hợp cho học tập, làm việc và chơi game.",
+    "specifications": {
+      "type": "Mechanical Keyboard",
+      "layout": "TKL",
+      "connection": "USB-C",
+      "backlight": "RGB",
+      "switch": "Akko CS Jelly Pink"
+    }
+  },
+  {
+    "name": "Akko 5075B Plus",
+    "category": "Keyboard",
+    "brand": "Akko",
+    "price": 1990000,
+    "stock": 70,
+    "minStockLevel": 15,
+    "images": [],
+    "description": "Akko 5075B Plus là bàn phím cơ wireless hỗ trợ nhiều chế độ kết nối, thiết kế hiện đại và trải nghiệm gõ tốt trong tầm giá.",
+    "specifications": {
+      "type": "Mechanical Keyboard",
+      "layout": "75%",
+      "connection": "Bluetooth, 2.4GHz, USB-C",
+      "backlight": "RGB",
+      "switch": "Akko Cream Yellow"
+    }
+  },
+  {
+    "name": "DareU EK87",
+    "category": "Keyboard",
+    "brand": "DareU",
+    "price": 699000,
+    "stock": 110,
+    "minStockLevel": 20,
+    "images": [],
+    "description": "DareU EK87 là bàn phím cơ giá rẻ phù hợp cho học sinh, sinh viên và game thủ mới bắt đầu muốn trải nghiệm bàn phím cơ.",
+    "specifications": {
+      "type": "Mechanical Keyboard",
+      "layout": "TKL",
+      "connection": "USB",
+      "backlight": "Rainbow LED",
+      "switch": "DareU Blue"
+    }
+  },
+  {
+    "name": "Royal Kludge RK84",
+    "category": "Keyboard",
+    "brand": "Royal Kludge",
+    "price": 1590000,
+    "stock": 75,
+    "minStockLevel": 15,
+    "images": [],
+    "description": "Royal Kludge RK84 là bàn phím cơ wireless 75% được nhiều người dùng lựa chọn nhờ thiết kế nhỏ gọn và hỗ trợ hotswap.",
+    "specifications": {
+      "type": "Mechanical Keyboard",
+      "layout": "75%",
+      "connection": "Bluetooth, 2.4GHz, USB-C",
+      "backlight": "RGB",
+      "switch": "RK Red"
+    }
+  },
+  {
+    "name": "SteelSeries Apex Pro TKL",
+    "category": "Keyboard",
+    "brand": "SteelSeries",
+    "price": 4990000,
+    "stock": 25,
+    "minStockLevel": 6,
+    "images": [],
+    "description": "SteelSeries Apex Pro TKL là bàn phím gaming cao cấp sử dụng switch từ tính có thể tùy chỉnh độ nhạy, phù hợp cho game thủ chuyên nghiệp.",
+    "specifications": {
+      "type": "Gaming Mechanical",
+      "layout": "TKL",
+      "connection": "USB",
+      "backlight": "RGB",
+      "switch": "OmniPoint 2.0"
+    }
+  }
+]

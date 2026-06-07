@@ -7,7 +7,7 @@ function normalizeText(value = '') {
   return String(value || '').trim()
 }
 
-function normalizeId(value) {
+function normalizeId(value = '') {
   return String(value || '').trim()
 }
 
@@ -49,6 +49,7 @@ Phong cách trả lời:
 - Giống tech reviewer assistant.
 - Tập trung theo nhu cầu thực tế: học tập, gaming, pin, cơ động, value for money.
 - Ưu tiên ngắn gọn, lý do rõ ràng.
+- Tất cả câu trả lời phải viết bằng tiếng Việt có dấu đầy đủ.
 
 Trả về JSON theo schema:
 {

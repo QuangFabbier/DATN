@@ -38,6 +38,19 @@ const statusActionLabelMap = {
   [ORDER_STATUSES.CANCELLED]: "Hủy đơn",
 };
 
+function getOrderCustomerName(order) {
+  return (
+    order?.customerInfo?.userName ||
+    order?.customerInfo?.fullName ||
+    order?.customerInfo?.email ||
+    "Khách vãng lai"
+  );
+}
+
+function getOrderCustomerPhone(order) {
+  return order?.customerInfo?.phone || "Chưa có";
+}
+
 function formatOrderDate(dateValue) {
   return new Date(dateValue).toLocaleString("vi-VN");
 }
@@ -52,6 +65,7 @@ function AdminOrders() {
   const [sortBy, setSortBy] = useState("newest");
   const [selectedOrder, setSelectedOrder] = useState(null);
   const [updatingOrderId, setUpdatingOrderId] = useState("");
+  const [pendingStatusUpdate, setPendingStatusUpdate] = useState(null);
 
   useEffect(() => {
     let isMounted = true;
@@ -126,6 +140,7 @@ function AdminOrders() {
         const searchableText = [
           String(order.id || ""),
           String(order.code || ""),
+          String(order.customerInfo?.userName || ""),
           String(order.customerInfo?.fullName || ""),
           String(order.customerInfo?.phone || ""),
         ]
@@ -145,14 +160,31 @@ function AdminOrders() {
     });
   }, [orders, searchKeyword, selectedStatus, sortBy]);
 
-  async function handleUpdateOrderStatus(order, nextStatus) {
-    const shouldUpdate = window.confirm(
-      `Xác nhận đổi trạng thái đơn ${order.id} từ "${statusLabelMap[order.status]}" sang "${statusLabelMap[nextStatus]}"?`,
-    );
-
-    if (!shouldUpdate || updatingOrderId) {
+  function requestUpdateOrderStatus(order, nextStatus) {
+    if (updatingOrderId) {
       return;
     }
+
+    setPendingStatusUpdate({
+      order,
+      nextStatus,
+    });
+  }
+
+  function closePendingStatusUpdate() {
+    if (updatingOrderId) {
+      return;
+    }
+
+    setPendingStatusUpdate(null);
+  }
+
+  async function confirmUpdateOrderStatus() {
+    if (!pendingStatusUpdate || updatingOrderId) {
+      return;
+    }
+
+    const { order, nextStatus } = pendingStatusUpdate;
 
     try {
       setUpdatingOrderId(order.id);
@@ -178,6 +210,8 @@ function AdminOrders() {
         title: "Đã cập nhật trạng thái đơn hàng",
         message: `Đơn ${order.id} hiện ở trạng thái "${statusLabelMap[nextStatus]}".`,
       });
+
+      setPendingStatusUpdate(null);
     } catch (error) {
       showToast({
         type: "error",
@@ -287,9 +321,9 @@ function AdminOrders() {
                           <strong>{order.id}</strong>
                         </td>
                         <td>
-                          {order.customerInfo?.fullName || "Khách vãng lai"}
+                          {getOrderCustomerName(order)}
                         </td>
-                        <td>{order.customerInfo?.phone || "Chưa có"}</td>
+                        <td>{getOrderCustomerPhone(order)}</td>
                         <td>{formatCurrency(order.total)}</td>
                         <td>{itemCount}</td>
                         <td>
@@ -348,11 +382,11 @@ function AdminOrders() {
                 <h3>Thông tin khách hàng</h3>
                 <p>
                   <span>Họ tên:</span>{" "}
-                  {selectedOrder.customerInfo?.fullName || "Chưa có"}
+                  {getOrderCustomerName(selectedOrder)}
                 </p>
                 <p>
                   <span>Số điện thoại:</span>{" "}
-                  {selectedOrder.customerInfo?.phone || "Chưa có"}
+                  {getOrderCustomerPhone(selectedOrder)}
                 </p>
                 <p>
                   <span>Địa chỉ:</span>{" "}
@@ -445,15 +479,13 @@ function AdminOrders() {
                   ) : (
                     getAvailableStatusTransitions(selectedOrder.status).map(
                       (nextStatus) => (
-                        <button
-                          key={`${selectedOrder.id}-${nextStatus}`}
-                          type="button"
-                          className={`button ${nextStatus === ORDER_STATUSES.CANCELLED ? "admin-danger-button" : ""}`}
-                          onClick={() =>
-                            handleUpdateOrderStatus(selectedOrder, nextStatus)
-                          }
-                          disabled={updatingOrderId === selectedOrder.id}
-                        >
+                          <button
+                            key={`${selectedOrder.id}-${nextStatus}`}
+                            type="button"
+                            className={`button ${nextStatus === ORDER_STATUSES.CANCELLED ? "admin-danger-button" : ""}`}
+                            onClick={() => requestUpdateOrderStatus(selectedOrder, nextStatus)}
+                            disabled={updatingOrderId === selectedOrder.id}
+                          >
                           {updatingOrderId === selectedOrder.id ? (
                             <>
                               <ButtonSpinner size="sm" />
@@ -468,6 +500,73 @@ function AdminOrders() {
                   )}
                 </div>
               </article>
+            </div>
+          </section>
+        </div>
+      ) : null}
+
+      {pendingStatusUpdate ? (
+        <div
+          className="admin-modal-backdrop"
+          onClick={closePendingStatusUpdate}
+        >
+          <section
+            className="admin-modal admin-confirm-modal"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <header className="admin-modal-header">
+              <div>
+                <p className="eyebrow">Xác nhận thay đổi</p>
+                <h2>{pendingStatusUpdate.order.id}</h2>
+              </div>
+              <button
+                type="button"
+                className="icon-button"
+                onClick={closePendingStatusUpdate}
+                aria-label="Đóng hộp xác nhận"
+                disabled={Boolean(updatingOrderId)}
+              >
+                <i className="fa-solid fa-xmark" aria-hidden="true" />
+              </button>
+            </header>
+
+            <div className="admin-confirm-content">
+              <p>
+                Bạn có chắc muốn đổi trạng thái đơn{" "}
+                <strong>{pendingStatusUpdate.order.id}</strong> từ{" "}
+                <strong>{statusLabelMap[pendingStatusUpdate.order.status]}</strong>{" "}
+                sang{" "}
+                <strong>{statusLabelMap[pendingStatusUpdate.nextStatus]}</strong>?
+              </p>
+              <p className="section-heading-meta">
+                Thao tác này sẽ cập nhật timeline trạng thái trong admin.
+              </p>
+            </div>
+
+            <div className="admin-form-actions">
+              <button
+                type="button"
+                className="button button-light"
+                onClick={closePendingStatusUpdate}
+                disabled={Boolean(updatingOrderId)}
+              >
+                Hủy
+              </button>
+              <button
+                type="button"
+                className={`button ${pendingStatusUpdate.nextStatus === ORDER_STATUSES.CANCELLED ? "admin-danger-button" : ""}`}
+                onClick={confirmUpdateOrderStatus}
+                disabled={Boolean(updatingOrderId)}
+              >
+                {updatingOrderId ? (
+                  <>
+                    <ButtonSpinner size="sm" />
+                    <span>Đang cập nhật...</span>
+                  </>
+                ) : (
+                  statusActionLabelMap[pendingStatusUpdate.nextStatus]
+                )}
+              </button>
             </div>
           </section>
         </div>

@@ -1,4 +1,5 @@
 import mongoose from 'mongoose'
+import { normalizeCategory, normalizeSpecifications } from '../utils/productDataset.js'
 
 const specSchema = new mongoose.Schema(
   {
@@ -87,6 +88,11 @@ const productSchema = new mongoose.Schema(
       required: [true, 'Product stock is required'],
       min: [0, 'Stock must be greater than or equal to 0'],
       default: 0,
+    },
+    minStockLevel: {
+      type: Number,
+      default: 10,
+      min: [0, 'Minimum stock level must be greater than or equal to 0'],
     },
     image: {
       type: String,
@@ -182,9 +188,17 @@ function buildSearchableText(product = {}) {
   )
 }
 
-productSchema.pre('save', function normalizeProductMetadata(next) {
+productSchema.pre('save', function normalizeProductMetadata() {
+  if (this.category) {
+    this.category = normalizeCategory(this.category)
+  }
+
   if (!this.brand) {
     this.brand = inferBrandFromName(this.name)
+  }
+
+  if (Array.isArray(this.specs)) {
+    this.specs = normalizeSpecifications(this.specs)
   }
 
   this.tags = Array.isArray(this.tags)
@@ -196,7 +210,6 @@ productSchema.pre('save', function normalizeProductMetadata(next) {
     : []
 
   this.searchableText = buildSearchableText(this)
-  next()
 })
 
 const Product = mongoose.model('Product', productSchema)

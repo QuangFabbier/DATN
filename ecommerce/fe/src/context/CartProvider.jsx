@@ -1,59 +1,82 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { CartContext } from './CartContext'
+import { useAuth } from '../hooks/useAuth'
 import { getProductStock, normalizeProduct } from '../utils/product'
+import {
+  canUseStorage,
+  getScopedStorageKey,
+  readScopedStorageJSON,
+  writeScopedStorageJSON,
+} from '../utils/storageScope'
 
-const CART_STORAGE_KEY = 'cartItems'
+const CART_STORAGE_KEY_PREFIX = 'cartItems'
 export const CART_ITEM_ADDED_EVENT = 'nexora-cart-item-added'
 
-function getStoredCartItems() {
-  const storedCartItems = localStorage.getItem(CART_STORAGE_KEY)
+function resolveCartStorageKey(user) {
+  return getScopedStorageKey(CART_STORAGE_KEY_PREFIX, user)
+}
 
-  if (!storedCartItems) {
+function getStoredCartItems(storageKey, user) {
+  if (!canUseStorage()) {
     return []
   }
 
-  try {
-    const parsedItems = JSON.parse(storedCartItems)
+  const storedCartItems = readScopedStorageJSON(localStorage, CART_STORAGE_KEY_PREFIX, [], user)
 
-    if (!Array.isArray(parsedItems)) {
-      localStorage.removeItem(CART_STORAGE_KEY)
-      return []
-    }
-
-    return parsedItems
-      .map((item) => {
-        const normalizedItem = normalizeProduct(item)
-        const quantity = Number(item?.quantity)
-
-        if (!normalizedItem?.id || !Number.isFinite(quantity) || quantity < 1) {
-          return null
-        }
-
-        const stock = getProductStock(normalizedItem)
-        if (stock === 0) {
-          return null
-        }
-
-        const normalizedQuantity = stock === null ? quantity : Math.min(quantity, stock)
-
-        return {
-          ...normalizedItem,
-          quantity: Math.max(1, normalizedQuantity),
-        }
-      })
-      .filter(Boolean)
-  } catch {
-    localStorage.removeItem(CART_STORAGE_KEY)
+  if (!Array.isArray(storedCartItems)) {
+    localStorage.removeItem(storageKey)
     return []
   }
+
+  return storedCartItems
+    .map((item) => {
+      const normalizedItem = normalizeProduct(item)
+      const quantity = Number(item?.quantity)
+
+      if (!normalizedItem?.id || !Number.isFinite(quantity) || quantity < 1) {
+        return null
+      }
+
+      const stock = getProductStock(normalizedItem)
+      if (stock === 0) {
+        return null
+      }
+
+      const normalizedQuantity = stock === null ? quantity : Math.min(quantity, stock)
+
+      return {
+        ...normalizedItem,
+        quantity: Math.max(1, normalizedQuantity),
+      }
+    })
+    .filter(Boolean)
 }
 
 function CartProvider({ children }) {
-  const [cartItems, setCartItems] = useState(getStoredCartItems)
+  const { user } = useAuth()
+  const cartStorageKey = useMemo(() => resolveCartStorageKey(user), [user])
+  const skipNextPersistRef = useRef(false)
+  const [cartItems, setCartItems] = useState(() => getStoredCartItems(cartStorageKey, user))
 
   useEffect(() => {
-    localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cartItems))
-  }, [cartItems])
+    queueMicrotask(() => {
+      skipNextPersistRef.current = true
+      setCartItems(getStoredCartItems(cartStorageKey, user))
+    })
+  }, [cartStorageKey, user])
+
+  useEffect(() => {
+    if (!canUseStorage()) {
+      return
+    }
+
+    if (skipNextPersistRef.current) {
+      skipNextPersistRef.current = false
+      return
+    }
+
+    writeScopedStorageJSON(localStorage, CART_STORAGE_KEY_PREFIX, cartItems, user)
+  }, [cartItems, cartStorageKey, user])
 
   function getClampedQuantity(product, quantity) {
     const stock = getProductStock(product)
@@ -150,6 +173,26 @@ function CartProvider({ children }) {
   function clearCart() {
     setCartItems([])
   }
+
+  useEffect(() => {
+    if (!canUseStorage()) {
+      return
+    }
+
+    const handleStorageChange = (event) => {
+      if (event.key !== cartStorageKey) {
+        return
+      }
+
+      setCartItems(getStoredCartItems(cartStorageKey, user))
+    }
+
+    window.addEventListener('storage', handleStorageChange)
+
+    return () => {
+      window.removeEventListener('storage', handleStorageChange)
+    }
+  }, [cartStorageKey, user])
 
   const cartItemCount = useMemo(
     () => cartItems.reduce((total, item) => total + item.quantity, 0),

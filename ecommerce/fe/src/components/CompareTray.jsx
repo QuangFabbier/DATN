@@ -2,7 +2,9 @@ import { useRef, useState } from 'react'
 import { compareProductsWithAi } from '../services/aiService'
 import { useCompare } from '../hooks/useCompare'
 import { useToast } from '../hooks/useToast'
+import { formatCompareAssistantMessage } from '../utils/aiConversation'
 import { formatCurrency } from '../utils/formatCurrency'
+import { getProductCategoryLabel } from '../utils/product'
 import StarRating from './StarRating'
 
 const AI_ACTION_COOLDOWN_MS = 2000
@@ -192,7 +194,7 @@ function CompareTray() {
                   <tr>
                     <td>Danh mục</td>
                     {compareItems.map((item) => (
-                      <td key={`${item.id}-category`}>{item.category}</td>
+                      <td key={`${item.id}-category`}>{getProductCategoryLabel(item.category)}</td>
                     ))}
                   </tr>
                   <tr>
@@ -239,20 +241,7 @@ function CompareTray() {
 
               {aiCompareResult ? (
                 <div className="ai-answer compare-ai-answer">
-                  <p>{aiCompareResult.summary || 'AI đã hoàn tất phân tích so sánh.'}</p>
-                  <p>
-                    <strong>Best for study:</strong>{' '}
-                    {aiCompareResult.bestForStudyText || aiCompareResult.bestForStudy?.reason || 'Chưa đủ dữ liệu'}
-                  </p>
-                  <p>
-                    <strong>Best for gaming:</strong>{' '}
-                    {aiCompareResult.bestForGamingText || aiCompareResult.bestForGaming?.reason || 'Chưa đủ dữ liệu'}
-                  </p>
-                  <p>
-                    <strong>Best value:</strong>{' '}
-                    {aiCompareResult.bestValueText || aiCompareResult.bestValue?.reason || 'Chưa đủ dữ liệu'}
-                  </p>
-                  <p>{aiCompareResult.recommendation || ''}</p>
+                  <pre className="compare-ai-formatted">{formatCompareAssistantMessage(aiCompareResult)}</pre>
                 </div>
               ) : null}
             </div>

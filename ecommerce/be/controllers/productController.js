@@ -1,6 +1,7 @@
 import mongoose from 'mongoose'
 import Product from '../models/Product.js'
 import { deleteReviewsByProductId } from '../services/productReviewService.js'
+import { normalizeCategory } from '../utils/productDataset.js'
 import asyncHandler from '../utils/asyncHandler.js'
 
 function normalizeImageList(images, fallbackImage = '') {
@@ -93,7 +94,7 @@ function buildProductPayload(body = {}) {
   }
 
   if (Object.prototype.hasOwnProperty.call(body, 'category')) {
-    payload.category = String(body.category || '').trim()
+    payload.category = normalizeCategory(body.category)
   }
 
   if (Object.prototype.hasOwnProperty.call(body, 'description')) {
@@ -106,10 +107,6 @@ function buildProductPayload(body = {}) {
 
   if (Object.prototype.hasOwnProperty.call(body, 'price')) {
     payload.price = Number(body.price)
-  }
-
-  if (Object.prototype.hasOwnProperty.call(body, 'stock')) {
-    payload.stock = Number(body.stock)
   }
 
   if (Object.prototype.hasOwnProperty.call(body, 'image')) {

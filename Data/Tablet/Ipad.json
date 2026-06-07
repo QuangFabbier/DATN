@@ -1,0 +1,102 @@
+[
+  {
+    "name": "iPad Gen 11 Wi-Fi 128GB",
+    "category": "Tablet",
+    "brand": "Apple",
+    "price": 11990000,
+    "stock": 60,
+    "minStockLevel": 15,
+    "images": [],
+    "description": "iPad Gen 11 là mẫu máy tính bảng đa năng phù hợp cho học tập, giải trí và làm việc cơ bản. Chip Apple thế hệ mới mang lại hiệu năng ổn định cho các ứng dụng văn phòng, học trực tuyến, ghi chú và chỉnh sửa nội dung nhẹ. Màn hình Liquid Retina sắc nét giúp hiển thị nội dung rõ ràng và sống động. Thiết bị hỗ trợ Apple Pencil giúp nâng cao trải nghiệm học tập và sáng tạo. Với thời lượng pin dài, thiết kế bền bỉ và hệ sinh thái iPadOS tối ưu, đây là lựa chọn phù hợp cho học sinh, sinh viên và người dùng phổ thông.",
+    "specifications": {
+      "processor": "Apple A16",
+      "ram": "6GB",
+      "storage": "128GB",
+      "display": "11 inch Liquid Retina",
+      "battery": "28.9Wh",
+      "operatingSystem": "iPadOS",
+      "connectivity": "Wi-Fi",
+      "weight": "477g"
+    }
+  },
+  {
+    "name": "iPad Air 11 M3 Wi-Fi 128GB",
+    "category": "Tablet",
+    "brand": "Apple",
+    "price": 17990000,
+    "stock": 45,
+    "minStockLevel": 10,
+    "images": [],
+    "description": "iPad Air 11 M3 mang đến sự cân bằng giữa hiệu năng mạnh mẽ và tính di động cao. Chip Apple M3 giúp xử lý mượt mà các tác vụ học tập, làm việc, chỉnh sửa ảnh và sáng tạo nội dung. Thiết kế mỏng nhẹ giúp người dùng dễ dàng mang theo trong quá trình di chuyển. Màn hình Liquid Retina chất lượng cao mang lại trải nghiệm hiển thị sắc nét và màu sắc chính xác. Đây là lựa chọn phù hợp cho sinh viên, nhân viên văn phòng và người dùng muốn sở hữu một chiếc tablet cao cấp với hiệu năng vượt trội.",
+    "specifications": {
+      "processor": "Apple M3",
+      "ram": "8GB",
+      "storage": "128GB",
+      "display": "11 inch Liquid Retina",
+      "battery": "28.9Wh",
+      "operatingSystem": "iPadOS",
+      "connectivity": "Wi-Fi",
+      "weight": "462g"
+    }
+  },
+  {
+    "name": "iPad Air 13 M3 Wi-Fi 256GB",
+    "category": "Tablet",
+    "brand": "Apple",
+    "price": 24990000,
+    "stock": 35,
+    "minStockLevel": 10,
+    "images": [],
+    "description": "iPad Air 13 M3 sở hữu màn hình lớn giúp nâng cao trải nghiệm học tập, làm việc và giải trí. Chip Apple M3 mang lại hiệu năng mạnh mẽ cho đa nhiệm, chỉnh sửa ảnh và các ứng dụng sáng tạo nội dung. Không gian hiển thị rộng rãi giúp thao tác thuận tiện với nhiều cửa sổ cùng lúc. Thiết bị hỗ trợ Apple Pencil và Magic Keyboard giúp thay thế laptop trong nhiều tình huống. Đây là lựa chọn phù hợp cho người dùng chuyên nghiệp cần một chiếc tablet mạnh mẽ và linh hoạt.",
+    "specifications": {
+      "processor": "Apple M3",
+      "ram": "8GB",
+      "storage": "256GB",
+      "display": "13 inch Liquid Retina",
+      "battery": "36.6Wh",
+      "operatingSystem": "iPadOS",
+      "connectivity": "Wi-Fi",
+      "weight": "617g"
+    }
+  },
+  {
+    "name": "iPad Pro 11 M4 Wi-Fi 256GB",
+    "category": "Tablet",
+    "brand": "Apple",
+    "price": 29990000,
+    "stock": 25,
+    "minStockLevel": 8,
+    "images": [],
+    "description": "iPad Pro 11 M4 là mẫu tablet cao cấp dành cho người dùng sáng tạo nội dung, nhà thiết kế và chuyên gia cần hiệu năng hàng đầu. Chip Apple M4 mang lại sức mạnh xử lý vượt trội cho đồ họa, chỉnh sửa video và các ứng dụng chuyên nghiệp. Màn hình Ultra Retina XDR cho chất lượng hiển thị xuất sắc với độ sáng cao và màu sắc chính xác. Thiết kế siêu mỏng cùng trọng lượng nhẹ giúp tăng tính cơ động. Đây là lựa chọn lý tưởng cho người dùng muốn sở hữu một thiết bị mạnh mẽ trong hệ sinh thái Apple.",
+    "specifications": {
+      "processor": "Apple M4",
+      "ram": "8GB",
+      "storage": "256GB",
+      "display": "11 inch Ultra Retina XDR OLED",
+      "battery": "31.3Wh",
+      "operatingSystem": "iPadOS",
+      "connectivity": "Wi-Fi",
+      "weight": "444g"
+    }
+  },
+  {
+    "name": "iPad Pro 13 M4 Wi-Fi 512GB",
+    "category": "Tablet",
+    "brand": "Apple",
+    "price": 42990000,
+    "stock": 15,
+    "minStockLevel": 5,
+    "images": [],
+    "description": "iPad Pro 13 M4 là mẫu máy tính bảng cao cấp nhất của Apple với hiệu năng vượt trội và màn hình lớn phục vụ công việc chuyên nghiệp. Chip M4 giúp xử lý hiệu quả các dự án thiết kế đồ họa, dựng video, mô hình 3D và các tác vụ AI hiện đại. Màn hình Ultra Retina XDR OLED mang lại trải nghiệm hình ảnh đẳng cấp với độ chi tiết và độ tương phản cao. Thiết bị hỗ trợ Apple Pencil Pro và Magic Keyboard giúp thay thế laptop trong nhiều tình huống. Đây là lựa chọn hàng đầu cho người dùng chuyên nghiệp.",
+    "specifications": {
+      "processor": "Apple M4",
+      "ram": "16GB",
+      "storage": "512GB",
+      "display": "13 inch Ultra Retina XDR OLED",
+      "battery": "38.9Wh",
+      "operatingSystem": "iPadOS",
+      "connectivity": "Wi-Fi",
+      "weight": "579g"
+    }
+  }
+]

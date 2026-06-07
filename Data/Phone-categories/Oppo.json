@@ -1,0 +1,94 @@
+
+[
+  {
+    "name": "OPPO Find X9 256GB",
+    "category": "Điện thoại",
+    "brand": "OPPO",
+    "price": 24990000,
+    "stock": 35,
+    "minStockLevel": 10,
+    "images": [],
+    "description": "OPPO Find X9 256GB là mẫu flagship cao cấp hướng đến những người dùng yêu thích thiết kế sang trọng, hiệu năng mạnh mẽ và khả năng chụp ảnh ấn tượng. Sản phẩm sở hữu ngoại hình hiện đại với độ hoàn thiện cao, mang lại cảm giác cầm nắm chắc chắn và thoải mái trong quá trình sử dụng. Được trang bị vi xử lý Dimensity 9500 kết hợp cùng 12GB RAM, thiết bị đáp ứng mượt mà các tác vụ từ công việc hàng ngày đến giải trí và chơi game đồ họa cao. Màn hình AMOLED 120Hz mang đến trải nghiệm hiển thị sắc nét và màu sắc sống động. Hệ thống camera được tinh chỉnh nhằm hỗ trợ người dùng ghi lại những khoảnh khắc đáng nhớ với chất lượng tốt. Đây là lựa chọn phù hợp cho người dùng muốn trải nghiệm smartphone cao cấp của OPPO.",
+    "specifications": {
+      "screen": "6.78 inch AMOLED 120Hz",
+      "chip": "Dimensity 9500",
+      "ram": "12GB",
+      "storage": "256GB",
+      "battery": "5700mAh",
+      "camera": "50MP + 50MP + 50MP"
+    }
+  },
+  {
+    "name": "OPPO Find X9 Pro 512GB",
+    "category": "Điện thoại",
+    "brand": "OPPO",
+    "price": 31990000,
+    "stock": 25,
+    "minStockLevel": 10,
+    "images": [],
+    "description": "OPPO Find X9 Pro 512GB là phiên bản cao cấp nhất trong dòng Find X, được phát triển dành cho những người dùng yêu cầu cao về hiệu năng, nhiếp ảnh và trải nghiệm sử dụng. Máy được trang bị cấu hình mạnh mẽ với vi xử lý Dimensity 9500 và 16GB RAM, đáp ứng tốt nhu cầu xử lý công việc chuyên sâu, chỉnh sửa hình ảnh và chơi game nặng. Màn hình AMOLED LTPO với tần số quét 120Hz mang lại trải nghiệm hiển thị mượt mà. Hệ thống camera cao cấp hỗ trợ chụp ảnh chi tiết trong nhiều điều kiện khác nhau. Với bộ nhớ trong 512GB, sản phẩm đáp ứng tốt nhu cầu lưu trữ dữ liệu lớn của người dùng.",
+    "specifications": {
+      "screen": "6.82 inch LTPO AMOLED 120Hz",
+      "chip": "Dimensity 9500",
+      "ram": "16GB",
+      "storage": "512GB",
+      "battery": "6000mAh",
+      "camera": "50MP + 50MP + 50MP + 50MP"
+    }
+  },
+  {
+    "name": "OPPO Reno 15 256GB",
+    "category": "Điện thoại",
+    "brand": "OPPO",
+    "price": 11990000,
+    "stock": 60,
+    "minStockLevel": 15,
+    "images": [],
+    "description": "OPPO Reno 15 256GB là mẫu smartphone tầm trung hướng đến người dùng trẻ yêu thích thiết kế thời trang và khả năng chụp ảnh đẹp. Thiết bị sở hữu ngoại hình mỏng nhẹ cùng nhiều tùy chọn màu sắc hiện đại, phù hợp với xu hướng sử dụng hiện nay. Vi xử lý Dimensity 8400 kết hợp cùng 8GB RAM giúp máy hoạt động ổn định trong các tác vụ học tập, làm việc và giải trí hàng ngày. Màn hình AMOLED 120Hz mang đến trải nghiệm vuốt chạm mượt mà. Camera được tối ưu cho nhu cầu chụp chân dung và chia sẻ nội dung lên mạng xã hội. Đây là sản phẩm cân bằng tốt giữa hiệu năng, thiết kế và mức giá.",
+    "specifications": {
+      "screen": "6.7 inch AMOLED 120Hz",
+      "chip": "Dimensity 8400",
+      "ram": "8GB",
+      "storage": "256GB",
+      "battery": "5600mAh",
+      "camera": "50MP + 8MP + 2MP"
+    }
+  },
+  {
+    "name": "OPPO Reno 15 Pro 512GB",
+    "category": "Điện thoại",
+    "brand": "OPPO",
+    "price": 15990000,
+    "stock": 45,
+    "minStockLevel": 15,
+    "images": [],
+    "description": "OPPO Reno 15 Pro 512GB là phiên bản nâng cấp dành cho những người dùng cần nhiều không gian lưu trữ và hiệu năng mạnh mẽ hơn. Máy được trang bị vi xử lý Dimensity 8450 cùng 12GB RAM, đáp ứng tốt nhu cầu đa nhiệm, chỉnh sửa ảnh và giải trí. Màn hình AMOLED chất lượng cao giúp nâng tầm trải nghiệm xem phim và chơi game. Hệ thống camera hỗ trợ chụp ảnh sắc nét và quay video ổn định. Bộ nhớ trong 512GB mang lại không gian lưu trữ rộng rãi cho hình ảnh, video và ứng dụng. Đây là lựa chọn phù hợp cho người dùng muốn sở hữu một chiếc smartphone tầm trung cao cấp.",
+    "specifications": {
+      "screen": "6.74 inch AMOLED 120Hz",
+      "chip": "Dimensity 8450",
+      "ram": "12GB",
+      "storage": "512GB",
+      "battery": "5800mAh",
+      "camera": "50MP + 50MP + 8MP"
+    }
+  },
+  {
+    "name": "OPPO A5 Pro 128GB",
+    "category": "Điện thoại",
+    "brand": "OPPO",
+    "price": 6490000,
+    "stock": 90,
+    "minStockLevel": 20,
+    "images": [],
+    "description": "OPPO A5 Pro 128GB là mẫu điện thoại phổ thông phù hợp với học sinh, sinh viên và người dùng có nhu cầu sử dụng cơ bản. Thiết bị sở hữu thiết kế trẻ trung cùng giao diện thân thiện, giúp người dùng dễ dàng làm quen và sử dụng. Vi xử lý Snapdragon kết hợp với 8GB RAM đáp ứng tốt các tác vụ hàng ngày như gọi điện, nhắn tin, lướt web và sử dụng mạng xã hội. Màn hình lớn mang lại không gian hiển thị thoải mái, trong khi viên pin dung lượng cao giúp kéo dài thời gian sử dụng. Đây là lựa chọn đáng cân nhắc trong phân khúc giá phổ thông nhờ sự cân bằng giữa độ bền, tính ổn định và chi phí đầu tư.",
+    "specifications": {
+      "screen": "6.67 inch IPS LCD 120Hz",
+      "chip": "Snapdragon 6s Gen 3",
+      "ram": "8GB",
+      "storage": "128GB",
+      "battery": "5800mAh",
+      "camera": "50MP + 2MP"
+    }
+  }
+]
+

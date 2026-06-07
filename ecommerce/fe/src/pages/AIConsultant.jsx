@@ -9,6 +9,8 @@ import { getAIPreferences } from '../services/accountStorage'
 import { chatWithAi, compareProductsWithAi } from '../services/aiService'
 import { getProducts } from '../services/productService'
 import { formatCurrency } from '../utils/formatCurrency'
+import { formatCompareAssistantMessage, isCompareIntent, resolveCompareCandidates } from '../utils/aiConversation'
+import { getProductCategoryLabel } from '../utils/product'
 import StarRating from '../components/StarRating'
 
 const PRODUCT_FALLBACK_IMAGE = 'https://placehold.co/120x120/e5e7eb/111827?text=Nexora'
@@ -22,12 +24,20 @@ const QUICK_SUGGESTION_CHIPS = [
 ]
 
 const CATEGORY_KEYWORD_RULES = [
-  { category: 'dien thoai', keywords: ['dien thoai', 'phone', 'smartphone', 'mobile'] },
-  { category: 'laptop', keywords: ['laptop', 'notebook', 'may tinh xach tay'] },
-  { category: 'may tinh bang', keywords: ['tablet', 'may tinh bang', 'ipad'] },
-  { category: 'phu kien', keywords: ['phu kien', 'accessory', 'chuot', 'ban phim', 'tai nghe'] },
-  { category: 'man hinh', keywords: ['man hinh', 'monitor', 'display'] },
-  { category: 'am thanh', keywords: ['tai nghe', 'loa', 'audio', 'chong on'] },
+  { category: 'Phone', keywords: ['dien thoai', 'phone', 'smartphone', 'mobile'] },
+  { category: 'Tablet', keywords: ['tablet', 'may tinh bang', 'ipad'] },
+  { category: 'Laptop', keywords: ['laptop', 'notebook', 'may tinh xach tay', 'may tinh', 'pc', 'computer', 'macbook', 'gaming pc'] },
+  { category: 'Headphones', keywords: ['tai nghe', 'headphone', 'earbud', 'audio', 'chong on'] },
+  { category: 'Monitor', keywords: ['man hinh', 'monitor', 'display'] },
+  { category: 'Mouse', keywords: ['chuot', 'mouse'] },
+  { category: 'Keyboard', keywords: ['ban phim', 'keyboard'] },
+  { category: 'SSD', keywords: ['ssd', 'ocung', 'o cung', 'storage'] },
+  { category: 'RAM', keywords: ['ram', 'bo nho'] },
+  { category: 'Power Bank', keywords: ['sac du phong', 'power bank'] },
+  { category: 'Charging Cable', keywords: ['cap sac', 'charging cable', 'usb c', 'usb-c'] },
+  { category: 'Charger', keywords: ['charger', 'sac', 'adapter', 'cu sac', 'bo sac'] },
+  { category: 'Router', keywords: ['router', 'wifi', 'modem'] },
+  { category: 'Smartwatch', keywords: ['smartwatch', 'dong ho thong minh'] },
 ]
 
 function normalizeContextProducts(items = []) {
@@ -59,11 +69,6 @@ function isViewProductsIntent(question = '') {
   const intentKeywords = ['xem', 'danh sach', 'list', 'show', 'co gi', 'san pham', 'hang', 'shop co']
 
   return intentKeywords.some((keyword) => normalizedQuestion.includes(keyword))
-}
-
-function isCompareIntent(question = '') {
-  const normalizedQuestion = normalizeSearchText(question)
-  return normalizedQuestion.includes('so sanh') || normalizedQuestion.includes('compare')
 }
 
 function pickFallbackProducts(question = '', catalog = []) {
@@ -106,6 +111,41 @@ function pickFallbackProducts(question = '', catalog = []) {
     }))
 }
 
+function normalizeConversationContextValue(context = null) {
+  if (!context || typeof context !== 'object') {
+    return null
+  }
+
+  return {
+    category: String(context?.category || ''),
+    budget:
+      context?.budget && typeof context.budget === 'object'
+        ? {
+            min: Number.isFinite(Number(context.budget.min)) ? Number(context.budget.min) : null,
+            max: Number.isFinite(Number(context.budget.max)) ? Number(context.budget.max) : null,
+            currency: 'VND',
+          }
+        : { min: null, max: null, currency: 'VND' },
+    useCase: String(context?.useCase || ''),
+    priorities: Array.isArray(context?.priorities)
+      ? context.priorities.map((item) => String(item || '').trim()).filter(Boolean)
+      : [],
+    preferredBrands: Array.isArray(context?.preferredBrands)
+      ? context.preferredBrands.map((item) => String(item || '').trim()).filter(Boolean)
+      : [],
+    preferredProductFamilies: Array.isArray(context?.preferredProductFamilies)
+      ? context.preferredProductFamilies.map((item) => String(item || '').trim()).filter(Boolean)
+      : [],
+    avoidBrands: Array.isArray(context?.avoidBrands)
+      ? context.avoidBrands.map((item) => String(item || '').trim()).filter(Boolean)
+      : [],
+    lastRecommendedProductIds: Array.isArray(context?.lastRecommendedProductIds)
+      ? context.lastRecommendedProductIds.map((item) => String(item || '').trim()).filter(Boolean)
+      : [],
+    conversationStage: String(context?.conversationStage || 'greeting'),
+  }
+}
+
 function AIConsultant() {
   const { user } = useAuth()
   const { addToCart, cartItems } = useCart()
@@ -116,6 +156,7 @@ function AIConsultant() {
   const [question, setQuestion] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [productCatalog, setProductCatalog] = useState([])
+  const [conversationContext, setConversationContext] = useState(null)
   const messageIdRef = useRef(2)
   const [messages, setMessages] = useState([
     {
@@ -149,53 +190,6 @@ function AIConsultant() {
       setProductCatalog([])
       return []
     }
-  }
-
-  function pickCompareCandidates(questionText) {
-    const normalizedQuestion = normalizeSearchText(questionText)
-    const askCompareTray = normalizedQuestion.includes('compare') || normalizedQuestion.includes('danh sach compare')
-    const askCart = normalizedQuestion.includes('gio')
-
-    if (askCompareTray && compareItems.length >= 2) {
-      return compareItems
-    }
-
-    if (askCart && cartItems.length >= 2) {
-      return cartItems
-    }
-
-    if (compareItems.length >= 2) {
-      return compareItems
-    }
-
-    if (cartItems.length >= 2) {
-      return cartItems
-    }
-
-    return []
-  }
-
-  function resolvePickLabel(compareResult, pick = { productId: '' }) {
-    const matched = compareResult.comparedProducts.find((item) => item.id === pick.productId)
-    return matched ? matched.name : 'Chưa đủ dữ liệu'
-  }
-
-  function formatCompareAssistantMessage(compareResult) {
-    const bestForStudyName = resolvePickLabel(compareResult, compareResult.bestForStudy)
-    const bestForGamingName = resolvePickLabel(compareResult, compareResult.bestForGaming)
-    const bestValueName = resolvePickLabel(compareResult, compareResult.bestValue)
-
-    return [
-      compareResult.summary,
-      '',
-      `Phù hợp học tập: ${bestForStudyName} - ${compareResult.bestForStudy.reason}`,
-      `Phù hợp gaming: ${bestForGamingName} - ${compareResult.bestForGaming.reason}`,
-      `Giá trị tốt: ${bestValueName} - ${compareResult.bestValue.reason}`,
-      '',
-      compareResult.recommendation,
-    ]
-      .filter(Boolean)
-      .join('\n')
   }
 
   function notifyCompareResult(result, productName) {
@@ -245,13 +239,21 @@ function AIConsultant() {
       recommendedProducts: [],
     }
 
-    setMessages((currentMessages) => [...currentMessages, userMessage])
+    const nextMessagesForAi = [...messages, userMessage]
+
+    setMessages(nextMessagesForAi)
     setQuestion('')
     setIsLoading(true)
 
     try {
       if (isCompareIntent(trimmedQuestion)) {
-        const compareCandidates = pickCompareCandidates(trimmedQuestion)
+        const compareCandidates = resolveCompareCandidates({
+          question: trimmedQuestion,
+          messages: nextMessagesForAi,
+          compareItems,
+          cartItems,
+          max: 5,
+        })
 
         if (compareCandidates.length >= 2) {
           const compareResult = await compareProductsWithAi({
@@ -292,6 +294,8 @@ function AIConsultant() {
       const aiResponse = await chatWithAi({
         message: trimmedQuestion,
         context: aiContext,
+        conversationContext,
+        allMessagesForSummary: nextMessagesForAi,
       })
 
       const fallbackProducts = pickFallbackProducts(trimmedQuestion, catalog)
@@ -311,6 +315,7 @@ function AIConsultant() {
           recommendedProducts: nextRecommendedProducts,
         },
       ])
+      setConversationContext(normalizeConversationContextValue(aiResponse.conversationContext) || conversationContext)
     } catch {
       const catalog = await ensureProductCatalogLoaded()
       const fallbackProducts = pickFallbackProducts(trimmedQuestion, catalog)
@@ -346,6 +351,23 @@ function AIConsultant() {
     submitQuestion(question)
   }
 
+  function handleResetConversation() {
+    setQuestion('')
+    setIsLoading(false)
+    setProductCatalog([])
+    setConversationContext(null)
+    setMessages([
+      {
+        id: 1,
+        role: 'assistant',
+        content:
+          'Xin chào. Đây là AI Shopping Assistant toàn màn hình. Bạn cứ mô tả nhu cầu, mình sẽ lọc sản phẩm từ kho Nexora và tư vấn chi tiết.',
+        recommendedProducts: [],
+      },
+    ])
+    messageIdRef.current = 2
+  }
+
   function handleQuickChipSelect(suggestion) {
     setQuestion(suggestion)
     submitQuestion(suggestion)
@@ -370,6 +392,17 @@ function AIConsultant() {
         <div>
           <p className="eyebrow">AI Shopping Assistant</p>
           <h1>Tư vấn toàn màn hình</h1>
+        </div>
+
+        <div className="ai-consultant-actions">
+          <button
+            type="button"
+            className="button button-secondary button-small ai-consultant-reset"
+            onClick={handleResetConversation}
+            disabled={isLoading && messages.length <= 1}
+          >
+            Đặt lại hội thoại
+          </button>
         </div>
       </div>
 
@@ -402,7 +435,7 @@ function AIConsultant() {
                           <div className="ai-product-result-body">
                             <div className="ai-product-result-copy">
                               <strong>{product.name}</strong>
-                              <span>{product.category}</span>
+                              <span>{getProductCategoryLabel(product.category)}</span>
                               <StarRating
                                 value={product.averageRating}
                                 reviewCount={product.totalReviews}

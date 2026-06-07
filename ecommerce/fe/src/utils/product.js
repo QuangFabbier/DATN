@@ -3,6 +3,175 @@ import { getFlashSaleDiscountPercent } from './flashSale'
 export const PRODUCT_PLACEHOLDER_IMAGE =
   'https://placehold.co/600x400/e2e8f0/475569?text=No+Image'
 
+const CATEGORY_ALIASES = new Map(
+  Object.entries({
+    laptop: 'Laptop',
+    'dien thoai': 'Phone',
+    phone: 'Phone',
+    smartphone: 'Phone',
+    mobile: 'Phone',
+    'may tinh bang': 'Tablet',
+    tablet: 'Tablet',
+    smartwatch: 'Smartwatch',
+    'tai nghe': 'Headphones',
+    headphone: 'Headphones',
+    headphones: 'Headphones',
+    earbud: 'Headphones',
+    audio: 'Headphones',
+    'am thanh': 'Headphones',
+    mouse: 'Mouse',
+    keyboard: 'Keyboard',
+    monitor: 'Monitor',
+    'man hinh': 'Monitor',
+    ssd: 'SSD',
+    ram: 'RAM',
+    charger: 'Charger',
+    'charging cable': 'Charging Cable',
+    'charging-cable': 'Charging Cable',
+    charging_cable: 'Charging Cable',
+    'charger wire': 'Charging Cable',
+    'charger-wire': 'Charging Cable',
+    'charger_wire': 'Charging Cable',
+    'cap sac': 'Charging Cable',
+    'sac du phong': 'Power Bank',
+    'power bank': 'Power Bank',
+    router: 'Router',
+    tai_nghe: 'Headphones',
+    tainghe: 'Headphones',
+  }),
+)
+
+const CATEGORY_LABELS_VI = new Map(
+  Object.entries({
+    Laptop: 'Laptop',
+    Phone: 'Điện thoại',
+    Tablet: 'Máy tính bảng',
+    Smartwatch: 'Đồng hồ thông minh',
+    Headphones: 'Tai nghe',
+    Monitor: 'Màn hình',
+    Mouse: 'Chuột',
+    Keyboard: 'Bàn phím',
+    SSD: 'SSD',
+    RAM: 'RAM',
+    Charger: 'Củ sạc',
+    'Charging Cable': 'Cáp sạc',
+    'Power Bank': 'Sạc dự phòng',
+    Router: 'Router',
+  }),
+)
+
+function normalizeText(value = '') {
+  return String(value || '').trim()
+}
+
+function normalizeTextFold(value = '') {
+  return normalizeText(value)
+    .replace(/đ/g, 'd')
+    .replace(/Đ/g, 'D')
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/\p{Diacritic}/gu, '')
+    .replace(/[^a-z0-9\s-]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+}
+
+function normalizeCategory(value = '') {
+  const normalizedValue = normalizeText(value)
+  if (!normalizedValue) {
+    return ''
+  }
+
+  return CATEGORY_ALIASES.get(normalizeTextFold(normalizedValue)) || normalizedValue
+}
+
+export function normalizeProductCategory(value = '') {
+  return normalizeCategory(value)
+}
+
+export function getProductCategoryLabel(value = '') {
+  const normalizedCategory = normalizeCategory(value)
+  if (!normalizedCategory) {
+    return ''
+  }
+
+  return CATEGORY_LABELS_VI.get(normalizedCategory) || normalizedCategory
+}
+
+function normalizeSpecLabel(label = '') {
+  const normalizedLabel = normalizeText(label)
+  if (!normalizedLabel) {
+    return ''
+  }
+
+  const overrides = {
+    cpu: 'CPU',
+    gpu: 'GPU',
+    ram: 'RAM',
+    ssd: 'SSD',
+    hdd: 'HDD',
+    storage: 'Storage',
+    display: 'Display',
+    screen: 'Screen',
+    'refresh rate': 'Refresh Rate',
+    battery: 'Battery',
+    chip: 'Chip',
+    camera: 'Camera',
+    weight: 'Weight',
+    'operating system': 'Operating System',
+    os: 'Operating System',
+    color: 'Color',
+    bluetooth: 'Bluetooth',
+    wifi: 'Wi-Fi',
+    ports: 'Ports',
+    dimensions: 'Dimensions',
+  }
+
+  const humanizedLabel = normalizedLabel.replace(/([a-z])([A-Z])/g, '$1 $2').replace(/[_-]+/g, ' ')
+  const foldedLabel = normalizeTextFold(humanizedLabel)
+
+  if (overrides[foldedLabel]) {
+    return overrides[foldedLabel]
+  }
+
+  return humanizedLabel
+    .split(/\s+/g)
+    .filter(Boolean)
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ')
+}
+
+function normalizeSpecifications(specifications = {}) {
+  if (Array.isArray(specifications)) {
+    return specifications
+      .map((spec) => ({
+        label: normalizeSpecLabel(spec?.label),
+        value: normalizeText(spec?.value),
+      }))
+      .filter((spec) => spec.label || spec.value)
+  }
+
+  if (!specifications || typeof specifications !== 'object') {
+    return []
+  }
+
+  return Object.entries(specifications)
+    .map(([label, value]) => ({
+      label: normalizeSpecLabel(label),
+      value: normalizeText(Array.isArray(value) ? value.join(', ') : value),
+    }))
+    .filter((spec) => spec.label || spec.value)
+}
+
+export function getProductSpecifications(product) {
+  if (!product || typeof product !== 'object') {
+    return []
+  }
+
+  const sourceSpecifications = Array.isArray(product.specs) && product.specs.length > 0 ? product.specs : product.specifications
+  return normalizeSpecifications(sourceSpecifications)
+}
+
 export function getProductId(product) {
   if (!product || typeof product !== 'object') {
     return ''
@@ -132,16 +301,28 @@ export function normalizeProduct(product) {
   const price = Number(product.price)
   const normalizedImages = getProductImages(product)
   const primaryImage = normalizedImages[0] || PRODUCT_PLACEHOLDER_IMAGE
+  const name = normalizeText(product.name)
+  const category = normalizeCategory(product.category)
+  const brand = normalizeText(product.brand) || name.split(/\s+/g).find(Boolean) || ''
+  const description = normalizeText(product.description) || (name ? `Sản phẩm ${name} thuộc danh mục ${category || 'chính hãng'}.` : '')
+  const specs = getProductSpecifications(product)
 
   return {
     ...product,
     id: productId || product.id,
+    name,
+    category,
+    brand,
     image: primaryImage,
     images: normalizedImages,
+    description,
     stock,
     price: Number.isFinite(price) ? price : 0,
     averageRating: Number.isFinite(Number(product.averageRating)) ? Number(product.averageRating) : 0,
     totalReviews: Number.isFinite(Number(product.totalReviews)) ? Number(product.totalReviews) : 0,
+    minStockLevel: Number.isFinite(Number(product.minStockLevel)) ? Number(product.minStockLevel) : 10,
+    specs,
+    specifications: Array.isArray(product.specifications) ? product.specifications : product.specifications || {},
     ratingBreakdown:
       product.ratingBreakdown && typeof product.ratingBreakdown === 'object'
         ? {

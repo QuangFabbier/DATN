@@ -10,7 +10,7 @@ import { useFavorites } from '../../hooks/useFavorites'
 import { useInitialRender } from '../../hooks/useInitialRender'
 import { useToast } from '../../hooks/useToast'
 import { formatCurrency } from '../../utils/formatCurrency'
-import { getProductId, getProductStock } from '../../utils/product'
+import { getProductCategoryLabel, getProductId, getProductStock } from '../../utils/product'
 
 function AccountWishlist() {
   const isInitialRenderReady = useInitialRender()
@@ -92,7 +92,7 @@ function AccountWishlist() {
                   <p className="product-price">{formatCurrency(product.price)}</p>
                 </div>
                 <div className="account-wishlist-meta">
-                  <span>{product.category}</span>
+                  <span>{getProductCategoryLabel(product.category)}</span>
                   <span>{stock === null ? 'Tồn kho cập nhật' : stock === 0 ? 'Hết hàng' : `Kho: ${stock}`}</span>
                 </div>
 

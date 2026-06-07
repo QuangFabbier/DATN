@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react'
 import { AuthContext } from './AuthContext'
 import { getMe } from '../services/authService'
 
+export const AUTH_STORAGE_UPDATED_EVENT = 'nexora-auth-updated'
+
 function getStoredUser() {
   const storedUser = localStorage.getItem('user')
 
@@ -47,11 +49,13 @@ function AuthProvider({ children }) {
 
         localStorage.setItem('user', JSON.stringify(syncedUser))
         setUser(syncedUser)
+        window.dispatchEvent(new Event(AUTH_STORAGE_UPDATED_EVENT))
       } catch {
         localStorage.removeItem('token')
         localStorage.removeItem('user')
         setToken(null)
         setUser(null)
+        window.dispatchEvent(new Event(AUTH_STORAGE_UPDATED_EVENT))
       }
     }
 
@@ -66,6 +70,7 @@ function AuthProvider({ children }) {
     localStorage.setItem('user', JSON.stringify(normalizedUser))
     setToken(userToken)
     setUser(normalizedUser)
+    window.dispatchEvent(new Event(AUTH_STORAGE_UPDATED_EVENT))
   }
 
   function logout() {
@@ -73,6 +78,7 @@ function AuthProvider({ children }) {
     localStorage.removeItem('user')
     setToken(null)
     setUser(null)
+    window.dispatchEvent(new Event(AUTH_STORAGE_UPDATED_EVENT))
   }
 
   return (

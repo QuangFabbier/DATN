@@ -125,6 +125,9 @@ function AdminDashboard() {
       <Link to="/admin/orders" className="button button-light">
         Mở quản lý đơn hàng
       </Link>
+      <Link to="/admin/inventory" className="button button-light">
+        Mở quản lý kho
+      </Link>
     </div>
   )
 }

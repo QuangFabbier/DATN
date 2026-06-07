@@ -1,39 +1,81 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { CompareContext } from './CompareContext'
+import { useAuth } from '../hooks/useAuth'
 import { normalizeProduct } from '../utils/product'
+import {
+  canUseStorage,
+  getScopedStorageKey,
+  readScopedStorageJSON,
+  writeScopedStorageJSON,
+} from '../utils/storageScope'
 
-const COMPARE_STORAGE_KEY = 'compareItems'
+const COMPARE_STORAGE_KEY_PREFIX = 'compareItems'
 const MAX_COMPARE_ITEMS = 3
 
-function getStoredCompareItems() {
-  const storedCompareItems = localStorage.getItem(COMPARE_STORAGE_KEY)
-
-  if (!storedCompareItems) {
+function getStoredCompareItems(storageKey, user) {
+  if (!canUseStorage()) {
     return []
   }
 
-  try {
-    const parsedItems = JSON.parse(storedCompareItems)
+  const storedCompareItems = readScopedStorageJSON(localStorage, COMPARE_STORAGE_KEY_PREFIX, [], user)
 
-    if (!Array.isArray(parsedItems)) {
-      localStorage.removeItem(COMPARE_STORAGE_KEY)
-      return []
-    }
-
-    return parsedItems.map((item) => normalizeProduct(item)).filter((item) => item?.id)
-  } catch {
-    localStorage.removeItem(COMPARE_STORAGE_KEY)
+  if (!Array.isArray(storedCompareItems)) {
+    localStorage.removeItem(storageKey)
     return []
   }
+
+  return storedCompareItems.map((item) => normalizeProduct(item)).filter((item) => item?.id)
 }
 
 function CompareProvider({ children }) {
-  const [compareItems, setCompareItems] = useState(getStoredCompareItems)
+  const { user } = useAuth()
+  const compareStorageKey = useMemo(
+    () => getScopedStorageKey(COMPARE_STORAGE_KEY_PREFIX, user),
+    [user],
+  )
+  const skipNextPersistRef = useRef(false)
+  const [compareItems, setCompareItems] = useState(() => getStoredCompareItems(compareStorageKey, user))
   const [isCompareOpen, setIsCompareOpen] = useState(false)
 
   useEffect(() => {
-    localStorage.setItem(COMPARE_STORAGE_KEY, JSON.stringify(compareItems))
-  }, [compareItems])
+    queueMicrotask(() => {
+      skipNextPersistRef.current = true
+      setCompareItems(getStoredCompareItems(compareStorageKey, user))
+    })
+  }, [compareStorageKey, user])
+
+  useEffect(() => {
+    if (!canUseStorage()) {
+      return
+    }
+
+    if (skipNextPersistRef.current) {
+      skipNextPersistRef.current = false
+      return
+    }
+
+    writeScopedStorageJSON(localStorage, COMPARE_STORAGE_KEY_PREFIX, compareItems, user)
+  }, [compareItems, compareStorageKey, user])
+
+  useEffect(() => {
+    if (!canUseStorage()) {
+      return
+    }
+
+    const handleStorageChange = (event) => {
+      if (event.key !== compareStorageKey) {
+        return
+      }
+
+      setCompareItems(getStoredCompareItems(compareStorageKey, user))
+    }
+
+    window.addEventListener('storage', handleStorageChange)
+
+    return () => {
+      window.removeEventListener('storage', handleStorageChange)
+    }
+  }, [compareStorageKey, user])
 
   function isCompared(productId) {
     return compareItems.some((item) => item.id === String(productId))

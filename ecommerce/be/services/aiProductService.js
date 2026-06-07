@@ -329,7 +329,7 @@ function buildFallbackCartHints({ cartProducts, suggestionProducts, userNeed }) 
   const missingAccessories = []
 
   const hasLaptop = categoryText.includes('laptop')
-  const hasPhone = categoryText.includes('dien thoai')
+  const hasPhone = categoryText.includes('phone') || categoryText.includes('dien thoai')
   const hasMouseOrKeyboard = cartProducts.some((item) => {
     const text = normalizeTextFold([item.name, item.category].join(' '))
     return text.includes('chuot') || text.includes('ban phim')

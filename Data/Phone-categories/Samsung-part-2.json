@@ -1,0 +1,76 @@
+
+[
+  {
+    "name": "Samsung Galaxy Z Flip 8 256GB",
+    "category": "Điện thoại",
+    "brand": "Samsung",
+    "price": 28990000,
+    "stock": 20,
+    "minStockLevel": 8,
+    "images": [],
+    "description": "Samsung Galaxy Z Flip 8 256GB là mẫu smartphone màn hình gập thời trang hướng đến những người dùng yêu thích sự khác biệt và tính linh hoạt trong thiết kế. Với kiểu dáng nhỏ gọn khi gập lại, thiết bị dễ dàng mang theo trong túi quần hoặc túi xách mà vẫn giữ được vẻ ngoài sang trọng và hiện đại. Máy được trang bị vi xử lý Snapdragon 8 Elite kết hợp cùng 12GB RAM, đáp ứng tốt nhu cầu sử dụng hàng ngày, xử lý đa nhiệm và giải trí với các tựa game phổ biến. Màn hình Dynamic AMOLED 2X 120Hz mang đến trải nghiệm hiển thị mượt mà, màu sắc sống động và độ sáng cao. Camera được tối ưu cho nhu cầu chụp ảnh nhanh và sáng tạo nội dung trên mạng xã hội. Đây là lựa chọn phù hợp cho những người dùng trẻ yêu thích công nghệ và phong cách cá nhân.",
+    "specifications": {
+      "screen": "6.8 inch Dynamic AMOLED 2X 120Hz",
+      "chip": "Snapdragon 8 Elite",
+      "ram": "12GB",
+      "storage": "256GB",
+      "battery": "4000mAh",
+      "camera": "50MP + 12MP"
+    }
+  },
+  {
+    "name": "Samsung Galaxy A56 256GB",
+    "category": "Điện thoại",
+    "brand": "Samsung",
+    "price": 10990000,
+    "stock": 80,
+    "minStockLevel": 15,
+    "images": [],
+    "description": "Samsung Galaxy A56 256GB là mẫu smartphone tầm trung nổi bật của Samsung, phù hợp với học sinh, sinh viên và người dùng văn phòng đang tìm kiếm một thiết bị có thiết kế hiện đại cùng hiệu năng ổn định. Máy được trang bị vi xử lý Exynos 1580 kết hợp với 8GB RAM và bộ nhớ trong 256GB, đáp ứng tốt nhu cầu sử dụng hàng ngày như lướt web, xem phim, sử dụng mạng xã hội và chơi các tựa game phổ biến ở mức thiết lập phù hợp. Màn hình Super AMOLED 120Hz mang lại trải nghiệm hiển thị mượt mà và màu sắc rực rỡ. Viên pin 5000mAh giúp thiết bị hoạt động bền bỉ suốt cả ngày. Đây là lựa chọn đáng cân nhắc trong phân khúc tầm trung nhờ sự cân bằng giữa giá bán và tính năng.",
+    "specifications": {
+      "screen": "6.7 inch Super AMOLED 120Hz",
+      "chip": "Exynos 1580",
+      "ram": "8GB",
+      "storage": "256GB",
+      "battery": "5000mAh",
+      "camera": "50MP + 12MP + 5MP"
+    }
+  },
+  {
+    "name": "Samsung Galaxy A36 128GB",
+    "category": "Điện thoại",
+    "brand": "Samsung",
+    "price": 7990000,
+    "stock": 90,
+    "minStockLevel": 15,
+    "images": [],
+    "description": "Samsung Galaxy A36 128GB được thiết kế dành cho người dùng phổ thông cần một chiếc điện thoại có mức giá hợp lý nhưng vẫn đáp ứng tốt nhu cầu sử dụng hàng ngày. Máy sở hữu màn hình Super AMOLED 120Hz mang lại chất lượng hiển thị tốt trong phân khúc, phù hợp cho việc xem phim, học tập trực tuyến và sử dụng mạng xã hội. Bộ vi xử lý Snapdragon 6 Gen 3 kết hợp với 8GB RAM giúp xử lý ổn định các tác vụ cơ bản và đa nhiệm nhẹ. Camera có khả năng chụp ảnh sắc nét trong điều kiện đủ sáng, đáp ứng nhu cầu lưu giữ những khoảnh khắc hàng ngày. Đây là sản phẩm phù hợp với học sinh, sinh viên hoặc người dùng lần đầu chuyển sang smartphone Samsung.",
+    "specifications": {
+      "screen": "6.6 inch Super AMOLED 120Hz",
+      "chip": "Snapdragon 6 Gen 3",
+      "ram": "8GB",
+      "storage": "128GB",
+      "battery": "5000mAh",
+      "camera": "50MP + 8MP + 2MP"
+    }
+  },
+  {
+    "name": "Samsung Galaxy A26 128GB",
+    "category": "Điện thoại",
+    "brand": "Samsung",
+    "price": 5990000,
+    "stock": 100,
+    "minStockLevel": 20,
+    "images": [],
+    "description": "Samsung Galaxy A26 128GB là mẫu điện thoại phổ thông hướng đến người dùng cần một thiết bị ổn định với chi phí đầu tư hợp lý. Thiết kế trẻ trung cùng giao diện thân thiện giúp máy dễ dàng tiếp cận với nhiều nhóm khách hàng khác nhau, đặc biệt là học sinh, sinh viên và người lớn tuổi. Vi xử lý Exynos kết hợp với 6GB RAM đáp ứng tốt các nhu cầu cơ bản như gọi điện, nhắn tin, sử dụng mạng xã hội và xem video trực tuyến. Màn hình lớn mang lại không gian hiển thị thoải mái, trong khi viên pin dung lượng cao giúp kéo dài thời gian sử dụng. Đây là lựa chọn phù hợp cho những người dùng ưu tiên tính thực dụng và độ bền trong quá trình sử dụng.",
+    "specifications": {
+      "screen": "6.7 inch PLS LCD 90Hz",
+      "chip": "Exynos 1380",
+      "ram": "6GB",
+      "storage": "128GB",
+      "battery": "5000mAh",
+      "camera": "50MP + 5MP + 2MP"
+    }
+  }
+]
+

@@ -1,0 +1,53 @@
+[
+  {
+    "name": "Sony WF-C700N",
+    "category": "Headphones",
+    "brand": "Sony",
+    "price": 2490000,
+    "stock": 70,
+    "minStockLevel": 15,
+    "images": [],
+    "description": "Sony WF-C700N là tai nghe không dây chống ồn phù hợp cho học tập, làm việc và giải trí. Thiết kế nhỏ gọn, âm thanh cân bằng và thời lượng pin tốt.",
+    "specifications": {
+      "type": "True Wireless",
+      "connectivity": "Bluetooth 5.2",
+      "battery": "Up to 15 hours",
+      "noiseCancellation": "ANC",
+      "waterResistance": "IPX4"
+    }
+  },
+  {
+    "name": "Sony LinkBuds S",
+    "category": "Headphones",
+    "brand": "Sony",
+    "price": 3990000,
+    "stock": 50,
+    "minStockLevel": 12,
+    "images": [],
+    "description": "Sony LinkBuds S sở hữu thiết kế nhẹ, chống ồn hiệu quả và chất lượng âm thanh cao, phù hợp cho người dùng cần đeo trong thời gian dài.",
+    "specifications": {
+      "type": "True Wireless",
+      "connectivity": "Bluetooth 5.2",
+      "battery": "Up to 20 hours",
+      "noiseCancellation": "ANC",
+      "waterResistance": "IPX4"
+    }
+  },
+  {
+    "name": "Sony WF-1000XM5",
+    "category": "Headphones",
+    "brand": "Sony",
+    "price": 6990000,
+    "stock": 30,
+    "minStockLevel": 8,
+    "images": [],
+    "description": "WF-1000XM5 là mẫu tai nghe flagship của Sony với khả năng chống ồn hàng đầu, âm thanh chất lượng cao và nhiều tính năng thông minh.",
+    "specifications": {
+      "type": "True Wireless",
+      "connectivity": "Bluetooth 5.3",
+      "battery": "Up to 24 hours",
+      "noiseCancellation": "Premium ANC",
+      "waterResistance": "IPX4"
+    }
+  }
+]

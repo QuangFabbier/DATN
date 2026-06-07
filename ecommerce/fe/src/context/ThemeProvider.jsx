@@ -1,6 +1,12 @@
 import { useEffect, useMemo, useState } from 'react'
 import { ThemeContext } from './ThemeContext'
+import { AUTH_STORAGE_UPDATED_EVENT } from './AuthProvider'
 import { getAppearancePreferences } from '../services/accountStorage'
+import {
+  canUseStorage,
+  readScopedStorageJSON,
+  writeScopedStorageJSON,
+} from '../utils/storageScope'
 
 const THEME_STORAGE_KEY = 'nexora_theme'
 const SYSTEM_THEME = 'system'
@@ -15,11 +21,11 @@ function resolveSystemTheme() {
 }
 
 function getStoredTheme() {
-  if (typeof window === 'undefined') {
+  if (!canUseStorage()) {
     return 'light'
   }
 
-  const storedTheme = window.localStorage.getItem(THEME_STORAGE_KEY)
+  const storedTheme = readScopedStorageJSON(window.localStorage, THEME_STORAGE_KEY, 'light')
 
   if (VALID_THEMES.includes(storedTheme)) {
     return storedTheme
@@ -39,7 +45,9 @@ function ThemeProvider({ children }) {
 
   useEffect(() => {
     document.documentElement.dataset.theme = resolvedTheme
-    window.localStorage.setItem(THEME_STORAGE_KEY, theme)
+    if (canUseStorage()) {
+      writeScopedStorageJSON(window.localStorage, THEME_STORAGE_KEY, theme)
+    }
   }, [resolvedTheme, theme])
 
   useEffect(() => {
@@ -57,6 +65,19 @@ function ThemeProvider({ children }) {
       mediaQuery.removeEventListener('change', handleSystemThemeChange)
     }
   }, [theme])
+
+  useEffect(() => {
+    function handleAuthScopeChange() {
+      setTheme(getStoredTheme())
+      setAppearancePreferences(getAppearancePreferences())
+    }
+
+    window.addEventListener(AUTH_STORAGE_UPDATED_EVENT, handleAuthScopeChange)
+
+    return () => {
+      window.removeEventListener(AUTH_STORAGE_UPDATED_EVENT, handleAuthScopeChange)
+    }
+  }, [])
 
   useEffect(() => {
     document.documentElement.dataset.density = appearancePreferences.compactMode

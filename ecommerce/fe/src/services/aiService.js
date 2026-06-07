@@ -1,8 +1,14 @@
 import axios from 'axios'
+import {
+  canUseStorage,
+  resolveUserStorageScope,
+  readScopedStorageJSON,
+  writeScopedStorageJSON,
+} from '../utils/storageScope'
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api'
 const AI_API_URL = `${API_BASE_URL}/ai`
-const AI_CLIENT_CACHE_STORAGE_KEY = 'nexora_ai_response_cache_v1'
+const AI_CLIENT_CACHE_STORAGE_KEY = 'nexora_ai_response_cache_v2'
 const DEFAULT_CACHE_TTL_MS = 10 * 60 * 1000
 const SHORT_CACHE_TTL_MS = 5 * 60 * 1000
 const AI_REQUEST_TIMEOUT_MS = 30_000
@@ -51,34 +57,26 @@ function stableStringify(value) {
 }
 
 function createRequestKey(endpoint, payload) {
-  return `${endpoint}::${stableStringify(payload || {})}`
+  const cacheScope = resolveUserStorageScope().key
+  return `${cacheScope}::${endpoint}::${stableStringify(payload || {})}`
 }
 
 function readPersistedCache() {
-  if (typeof window === 'undefined') {
+  if (!canUseStorage()) {
     return {}
   }
 
-  try {
-    const rawValue = window.localStorage.getItem(AI_CLIENT_CACHE_STORAGE_KEY)
-    if (!rawValue) {
-      return {}
-    }
-
-    const parsed = JSON.parse(rawValue)
-    return parsed && typeof parsed === 'object' ? parsed : {}
-  } catch {
-    return {}
-  }
+  const storedCache = readScopedStorageJSON(window.localStorage, AI_CLIENT_CACHE_STORAGE_KEY, {})
+  return storedCache && typeof storedCache === 'object' ? storedCache : {}
 }
 
 function writePersistedCache(cacheObject) {
-  if (typeof window === 'undefined') {
+  if (!canUseStorage()) {
     return
   }
 
   try {
-    window.localStorage.setItem(AI_CLIENT_CACHE_STORAGE_KEY, JSON.stringify(cacheObject))
+    writeScopedStorageJSON(window.localStorage, AI_CLIENT_CACHE_STORAGE_KEY, cacheObject)
   } catch {
     // Ignore localStorage quota errors.
   }
@@ -339,6 +337,7 @@ function normalizeConversationContext(context) {
     useCase: String(source?.useCase || '').trim(),
     priorities: normalizeTextArray(source?.priorities, 8),
     preferredBrands: normalizeTextArray(source?.preferredBrands, 8),
+    preferredProductFamilies: normalizeTextArray(source?.preferredProductFamilies, 8),
     avoidBrands: normalizeTextArray(source?.avoidBrands, 8),
     lastRecommendedProductIds: normalizeIdArray(source?.lastRecommendedProductIds, 10),
     conversationStage: String(source?.conversationStage || 'greeting').trim() || 'greeting',

@@ -1,38 +1,80 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { FavoritesContext } from './FavoritesContext'
+import { useAuth } from '../hooks/useAuth'
 import { normalizeProduct } from '../utils/product'
+import {
+  canUseStorage,
+  getScopedStorageKey,
+  readScopedStorageJSON,
+  writeScopedStorageJSON,
+} from '../utils/storageScope'
 
-const FAVORITES_STORAGE_KEY = 'favoriteItems'
+const FAVORITES_STORAGE_KEY_PREFIX = 'favoriteItems'
 export const FAVORITE_TOGGLED_EVENT = 'nexora-favorite-toggled'
 
-function getStoredFavoriteItems() {
-  const storedFavoriteItems = localStorage.getItem(FAVORITES_STORAGE_KEY)
-
-  if (!storedFavoriteItems) {
+function getStoredFavoriteItems(storageKey, user) {
+  if (!canUseStorage()) {
     return []
   }
 
-  try {
-    const parsedItems = JSON.parse(storedFavoriteItems)
+  const storedFavoriteItems = readScopedStorageJSON(localStorage, FAVORITES_STORAGE_KEY_PREFIX, [], user)
 
-    if (!Array.isArray(parsedItems)) {
-      localStorage.removeItem(FAVORITES_STORAGE_KEY)
-      return []
-    }
-
-    return parsedItems.map((item) => normalizeProduct(item)).filter((item) => item?.id)
-  } catch {
-    localStorage.removeItem(FAVORITES_STORAGE_KEY)
+  if (!Array.isArray(storedFavoriteItems)) {
+    localStorage.removeItem(storageKey)
     return []
   }
+
+  return storedFavoriteItems.map((item) => normalizeProduct(item)).filter((item) => item?.id)
 }
 
 function FavoritesProvider({ children }) {
-  const [favoriteItems, setFavoriteItems] = useState(getStoredFavoriteItems)
+  const { user } = useAuth()
+  const favoriteStorageKey = useMemo(
+    () => getScopedStorageKey(FAVORITES_STORAGE_KEY_PREFIX, user),
+    [user],
+  )
+  const skipNextPersistRef = useRef(false)
+  const [favoriteItems, setFavoriteItems] = useState(() => getStoredFavoriteItems(favoriteStorageKey, user))
 
   useEffect(() => {
-    localStorage.setItem(FAVORITES_STORAGE_KEY, JSON.stringify(favoriteItems))
-  }, [favoriteItems])
+    queueMicrotask(() => {
+      skipNextPersistRef.current = true
+      setFavoriteItems(getStoredFavoriteItems(favoriteStorageKey, user))
+    })
+  }, [favoriteStorageKey, user])
+
+  useEffect(() => {
+    if (!canUseStorage()) {
+      return
+    }
+
+    if (skipNextPersistRef.current) {
+      skipNextPersistRef.current = false
+      return
+    }
+
+    writeScopedStorageJSON(localStorage, FAVORITES_STORAGE_KEY_PREFIX, favoriteItems, user)
+  }, [favoriteItems, favoriteStorageKey, user])
+
+  useEffect(() => {
+    if (!canUseStorage()) {
+      return
+    }
+
+    const handleStorageChange = (event) => {
+      if (event.key !== favoriteStorageKey) {
+        return
+      }
+
+      setFavoriteItems(getStoredFavoriteItems(favoriteStorageKey, user))
+    }
+
+    window.addEventListener('storage', handleStorageChange)
+
+    return () => {
+      window.removeEventListener('storage', handleStorageChange)
+    }
+  }, [favoriteStorageKey, user])
 
   function isFavorite(productId) {
     const normalizedProductId = String(productId)

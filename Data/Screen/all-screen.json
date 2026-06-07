@@ -1,0 +1,272 @@
+[
+  {
+    "name": "Dell E2225H 22 Inch FHD 75Hz",
+    "category": "Monitor",
+    "brand": "Dell",
+    "price": 2590000,
+    "stock": 60,
+    "minStockLevel": 15,
+    "images": [],
+    "description": "Dell E2225H là màn hình văn phòng phù hợp cho học tập, làm việc và sử dụng hằng ngày. Thiết kế đơn giản, độ bền cao và chất lượng hiển thị ổn định giúp đáp ứng tốt nhu cầu cơ bản.",
+    "specifications": {
+      "size": "22 inch",
+      "resolution": "1920x1080",
+      "panel": "VA",
+      "refreshRate": "75Hz",
+      "responseTime": "5ms",
+      "ports": "HDMI, VGA"
+    }
+  },
+  {
+    "name": "Dell P2425H 24 Inch FHD 100Hz",
+    "category": "Monitor",
+    "brand": "Dell",
+    "price": 4590000,
+    "stock": 45,
+    "minStockLevel": 10,
+    "images": [],
+    "description": "Dell P2425H là màn hình văn phòng cao cấp với chân đế công thái học và khả năng hiển thị màu sắc ổn định. Phù hợp cho nhân viên văn phòng và lập trình viên.",
+    "specifications": {
+      "size": "24 inch",
+      "resolution": "1920x1080",
+      "panel": "IPS",
+      "refreshRate": "100Hz",
+      "responseTime": "5ms",
+      "ports": "HDMI, DisplayPort, USB Hub"
+    }
+  },
+  {
+    "name": "Dell UltraSharp U2724D 27 Inch QHD",
+    "category": "Monitor",
+    "brand": "Dell",
+    "price": 9990000,
+    "stock": 25,
+    "minStockLevel": 6,
+    "images": [],
+    "description": "Dell UltraSharp U2724D là màn hình chuyên nghiệp dành cho designer, lập trình viên và người dùng văn phòng cao cấp cần chất lượng hiển thị tốt.",
+    "specifications": {
+      "size": "27 inch",
+      "resolution": "2560x1440",
+      "panel": "IPS Black",
+      "refreshRate": "120Hz",
+      "responseTime": "5ms",
+      "ports": "HDMI, DisplayPort, USB-C"
+    }
+  },
+  {
+    "name": "LG 24MR400-B 24 Inch FHD 100Hz",
+    "category": "Monitor",
+    "brand": "LG",
+    "price": 2890000,
+    "stock": 70,
+    "minStockLevel": 15,
+    "images": [],
+    "description": "LG 24MR400-B là màn hình phổ thông phù hợp cho học tập, làm việc văn phòng và giải trí hằng ngày.",
+    "specifications": {
+      "size": "24 inch",
+      "resolution": "1920x1080",
+      "panel": "IPS",
+      "refreshRate": "100Hz",
+      "responseTime": "5ms",
+      "ports": "HDMI, VGA"
+    }
+  },
+  {
+    "name": "LG 27UP850-W 27 Inch 4K USB-C",
+    "category": "Monitor",
+    "brand": "LG",
+    "price": 11990000,
+    "stock": 20,
+    "minStockLevel": 5,
+    "images": [],
+    "description": "LG 27UP850-W là màn hình 4K dành cho designer, editor và người dùng MacBook cần hiển thị sắc nét và hỗ trợ USB-C.",
+    "specifications": {
+      "size": "27 inch",
+      "resolution": "3840x2160",
+      "panel": "IPS",
+      "refreshRate": "60Hz",
+      "responseTime": "5ms",
+      "ports": "HDMI, DisplayPort, USB-C"
+    }
+  },
+  {
+    "name": "LG UltraGear 27GP850-B 27 Inch QHD 180Hz",
+    "category": "Monitor",
+    "brand": "LG",
+    "price": 8990000,
+    "stock": 30,
+    "minStockLevel": 8,
+    "images": [],
+    "description": "LG UltraGear 27GP850-B là màn hình gaming QHD tốc độ cao dành cho game thủ cần hình ảnh mượt mà và độ chính xác cao.",
+    "specifications": {
+      "size": "27 inch",
+      "resolution": "2560x1440",
+      "panel": "Nano IPS",
+      "refreshRate": "180Hz",
+      "responseTime": "1ms",
+      "ports": "HDMI, DisplayPort"
+    }
+  },
+  {
+    "name": "ASUS TUF Gaming VG249Q3A",
+    "category": "Monitor",
+    "brand": "ASUS",
+    "price": 3990000,
+    "stock": 55,
+    "minStockLevel": 12,
+    "images": [],
+    "description": "ASUS TUF Gaming VG249Q3A là màn hình gaming phổ biến với tần số quét cao và mức giá dễ tiếp cận.",
+    "specifications": {
+      "size": "24 inch",
+      "resolution": "1920x1080",
+      "panel": "Fast IPS",
+      "refreshRate": "180Hz",
+      "responseTime": "1ms",
+      "ports": "HDMI, DisplayPort"
+    }
+  },
+  {
+    "name": "ASUS ProArt PA279CRV",
+    "category": "Monitor",
+    "brand": "ASUS",
+    "price": 14990000,
+    "stock": 15,
+    "minStockLevel": 5,
+    "images": [],
+    "description": "ASUS ProArt PA279CRV là màn hình chuyên nghiệp dành cho thiết kế đồ họa, chỉnh sửa ảnh và dựng video.",
+    "specifications": {
+      "size": "27 inch",
+      "resolution": "3840x2160",
+      "panel": "IPS",
+      "refreshRate": "60Hz",
+      "responseTime": "5ms",
+      "ports": "HDMI, DisplayPort, USB-C"
+    }
+  },
+  {
+    "name": "Samsung Odyssey G4 25 Inch 240Hz",
+    "category": "Monitor",
+    "brand": "Samsung",
+    "price": 6490000,
+    "stock": 40,
+    "minStockLevel": 10,
+    "images": [],
+    "description": "Samsung Odyssey G4 là màn hình gaming tốc độ cao dành cho game thủ FPS và eSports.",
+    "specifications": {
+      "size": "25 inch",
+      "resolution": "1920x1080",
+      "panel": "IPS",
+      "refreshRate": "240Hz",
+      "responseTime": "1ms",
+      "ports": "HDMI, DisplayPort"
+    }
+  },
+  {
+    "name": "Samsung Odyssey G6 27 Inch QHD 240Hz",
+    "category": "Monitor",
+    "brand": "Samsung",
+    "price": 12990000,
+    "stock": 20,
+    "minStockLevel": 5,
+    "images": [],
+    "description": "Samsung Odyssey G6 là màn hình gaming cao cấp với độ phân giải QHD và tần số quét 240Hz.",
+    "specifications": {
+      "size": "27 inch",
+      "resolution": "2560x1440",
+      "panel": "VA",
+      "refreshRate": "240Hz",
+      "responseTime": "1ms",
+      "ports": "HDMI, DisplayPort"
+    }
+  },
+  {
+    "name": "AOC 24G4E",
+    "category": "Monitor",
+    "brand": "AOC",
+    "price": 3790000,
+    "stock": 65,
+    "minStockLevel": 15,
+    "images": [],
+    "description": "AOC 24G4E là màn hình gaming phổ thông với hiệu năng tốt trong phân khúc giá dễ tiếp cận.",
+    "specifications": {
+      "size": "24 inch",
+      "resolution": "1920x1080",
+      "panel": "IPS",
+      "refreshRate": "180Hz",
+      "responseTime": "1ms",
+      "ports": "HDMI, DisplayPort"
+    }
+  },
+  {
+    "name": "MSI MAG 274QRF-QD E2",
+    "category": "Monitor",
+    "brand": "MSI",
+    "price": 9990000,
+    "stock": 25,
+    "minStockLevel": 6,
+    "images": [],
+    "description": "MSI MAG 274QRF-QD E2 là màn hình gaming QHD dành cho game thủ và streamer cần chất lượng hiển thị cao.",
+    "specifications": {
+      "size": "27 inch",
+      "resolution": "2560x1440",
+      "panel": "Rapid IPS",
+      "refreshRate": "180Hz",
+      "responseTime": "1ms",
+      "ports": "HDMI, DisplayPort, USB-C"
+    }
+  },
+  {
+    "name": "Gigabyte M27Q Rev 2.0",
+    "category": "Monitor",
+    "brand": "Gigabyte",
+    "price": 7990000,
+    "stock": 30,
+    "minStockLevel": 8,
+    "images": [],
+    "description": "Gigabyte M27Q là màn hình gaming QHD nổi tiếng với tính năng KVM và chất lượng hiển thị tốt.",
+    "specifications": {
+      "size": "27 inch",
+      "resolution": "2560x1440",
+      "panel": "IPS",
+      "refreshRate": "170Hz",
+      "responseTime": "1ms",
+      "ports": "HDMI, DisplayPort, USB-C"
+    }
+  },
+  {
+    "name": "ViewSonic VX2479-HD-PRO",
+    "category": "Monitor",
+    "brand": "ViewSonic",
+    "price": 3590000,
+    "stock": 55,
+    "minStockLevel": 12,
+    "images": [],
+    "description": "ViewSonic VX2479-HD-PRO là màn hình gaming giá tốt dành cho học sinh, sinh viên và game thủ phổ thông.",
+    "specifications": {
+      "size": "24 inch",
+      "resolution": "1920x1080",
+      "panel": "IPS",
+      "refreshRate": "180Hz",
+      "responseTime": "1ms",
+      "ports": "HDMI, DisplayPort"
+    }
+  },
+  {
+    "name": "BenQ PD2705U 27 Inch 4K Designer",
+    "category": "Monitor",
+    "brand": "BenQ",
+    "price": 13990000,
+    "stock": 18,
+    "minStockLevel": 5,
+    "images": [],
+    "description": "BenQ PD2705U là màn hình 4K chuyên nghiệp dành cho thiết kế đồ họa, dựng phim và sáng tạo nội dung.",
+    "specifications": {
+      "size": "27 inch",
+      "resolution": "3840x2160",
+      "panel": "IPS",
+      "refreshRate": "60Hz",
+      "responseTime": "5ms",
+      "ports": "HDMI, DisplayPort, USB-C"
+    }
+  }
+]

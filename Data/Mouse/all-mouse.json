@@ -1,0 +1,272 @@
+[
+  {
+    "name": "Logitech M185 Wireless Mouse",
+    "category": "Mouse",
+    "brand": "Logitech",
+    "price": 299000,
+    "stock": 120,
+    "minStockLevel": 25,
+    "images": [],
+    "description": "Logitech M185 là mẫu chuột không dây phổ thông phù hợp cho học tập, làm việc văn phòng và sử dụng hằng ngày. Thiết kế nhỏ gọn, dễ cầm nắm và kết nối ổn định qua USB receiver giúp người dùng thao tác thuận tiện trên laptop hoặc máy tính để bàn. Thời lượng pin dài giúp giảm nhu cầu thay pin thường xuyên. Đây là lựa chọn hợp lý cho người dùng cần một chiếc chuột bền, dễ sử dụng và có mức giá tiết kiệm.",
+    "specifications": {
+      "type": "Wireless Mouse",
+      "connection": "USB Receiver",
+      "dpi": "1000 DPI",
+      "battery": "AA Battery",
+      "buttons": "3",
+      "compatibility": "Windows, macOS, Linux"
+    }
+  },
+  {
+    "name": "Logitech M331 Silent Plus",
+    "category": "Mouse",
+    "brand": "Logitech",
+    "price": 399000,
+    "stock": 110,
+    "minStockLevel": 25,
+    "images": [],
+    "description": "Logitech M331 Silent Plus là mẫu chuột không dây yên tĩnh, phù hợp cho văn phòng, thư viện và không gian học tập cần hạn chế tiếng ồn. Công nghệ giảm tiếng click giúp thao tác thoải mái mà không làm ảnh hưởng đến người xung quanh. Thiết kế công thái học cho tay phải mang lại cảm giác cầm chắc chắn trong thời gian dài. Đây là lựa chọn phù hợp cho nhân viên văn phòng và sinh viên cần một chiếc chuột bền, êm và dễ sử dụng.",
+    "specifications": {
+      "type": "Wireless Mouse",
+      "connection": "USB Receiver",
+      "dpi": "1000 DPI",
+      "battery": "AA Battery",
+      "buttons": "3",
+      "compatibility": "Windows, macOS, Linux"
+    }
+  },
+  {
+    "name": "Logitech M650 Signature",
+    "category": "Mouse",
+    "brand": "Logitech",
+    "price": 799000,
+    "stock": 90,
+    "minStockLevel": 20,
+    "images": [],
+    "description": "Logitech M650 Signature là mẫu chuột không dây cao cấp cho văn phòng với thiết kế thoải mái và thao tác yên tĩnh. Chuột hỗ trợ kết nối Bluetooth hoặc USB receiver, phù hợp cho nhiều thiết bị khác nhau. Con lăn SmartWheel giúp cuộn trang chính xác khi làm việc với tài liệu, bảng tính hoặc trang web dài. Thiết kế hiện đại, độ bền cao và khả năng sử dụng linh hoạt khiến sản phẩm phù hợp cho người dùng laptop, nhân viên văn phòng và người làm việc từ xa.",
+    "specifications": {
+      "type": "Wireless Mouse",
+      "connection": "Bluetooth, USB Receiver",
+      "dpi": "400-4000 DPI",
+      "battery": "AA Battery",
+      "buttons": "5",
+      "compatibility": "Windows, macOS, ChromeOS, Linux"
+    }
+  },
+  {
+    "name": "Logitech MX Master 3S",
+    "category": "Mouse",
+    "brand": "Logitech",
+    "price": 2490000,
+    "stock": 45,
+    "minStockLevel": 10,
+    "images": [],
+    "description": "Logitech MX Master 3S là mẫu chuột cao cấp dành cho người dùng chuyên nghiệp, lập trình viên, designer và nhân viên văn phòng làm việc đa nhiệm. Cảm biến độ chính xác cao hoạt động tốt trên nhiều bề mặt, kể cả mặt kính. Con lăn MagSpeed giúp cuộn nhanh và chính xác trong tài liệu dài hoặc timeline chỉnh sửa. Thiết kế công thái học giúp giảm mỏi tay khi sử dụng liên tục. Đây là lựa chọn lý tưởng cho người dùng cần hiệu suất làm việc cao và khả năng kết nối nhiều thiết bị.",
+    "specifications": {
+      "type": "Wireless Mouse",
+      "connection": "Bluetooth, Logi Bolt",
+      "dpi": "200-8000 DPI",
+      "battery": "Rechargeable USB-C",
+      "buttons": "7",
+      "compatibility": "Windows, macOS, Linux"
+    }
+  },
+  {
+    "name": "Apple Magic Mouse USB-C",
+    "category": "Mouse",
+    "brand": "Apple",
+    "price": 1990000,
+    "stock": 55,
+    "minStockLevel": 12,
+    "images": [],
+    "description": "Apple Magic Mouse USB-C là mẫu chuột không dây tối ưu cho người dùng MacBook, iMac và hệ sinh thái Apple. Thiết kế tối giản, bề mặt cảm ứng đa điểm giúp thao tác cuộn, vuốt và chuyển trang trực quan. Kết nối Bluetooth ổn định và pin sạc tích hợp giúp sử dụng thuận tiện trong công việc hằng ngày. Đây là lựa chọn phù hợp cho người dùng yêu thích thiết kế gọn đẹp, đồng bộ với macOS và cần trải nghiệm thao tác mượt mà.",
+    "specifications": {
+      "type": "Wireless Mouse",
+      "connection": "Bluetooth",
+      "dpi": "Multi-touch sensor",
+      "battery": "Rechargeable USB-C",
+      "buttons": "Multi-touch surface",
+      "compatibility": "macOS, iPadOS"
+    }
+  },
+  {
+    "name": "Microsoft Bluetooth Mouse",
+    "category": "Mouse",
+    "brand": "Microsoft",
+    "price": 590000,
+    "stock": 95,
+    "minStockLevel": 20,
+    "images": [],
+    "description": "Microsoft Bluetooth Mouse là mẫu chuột không dây gọn nhẹ phù hợp cho laptop Windows và người dùng văn phòng. Kết nối Bluetooth giúp không cần USB receiver, thuận tiện cho các thiết bị mỏng nhẹ có ít cổng kết nối. Thiết kế đơn giản, dễ sử dụng và cảm giác cầm thoải mái giúp đáp ứng tốt nhu cầu học tập, làm việc và di chuyển. Đây là lựa chọn phù hợp cho người dùng cần chuột Bluetooth ổn định, giá hợp lý và thương hiệu đáng tin cậy.",
+    "specifications": {
+      "type": "Wireless Mouse",
+      "connection": "Bluetooth",
+      "dpi": "1000 DPI",
+      "battery": "AA Battery",
+      "buttons": "3",
+      "compatibility": "Windows, macOS"
+    }
+  },
+  {
+    "name": "Rapoo M100 Silent",
+    "category": "Mouse",
+    "brand": "Rapoo",
+    "price": 250000,
+    "stock": 130,
+    "minStockLevel": 25,
+    "images": [],
+    "description": "Rapoo M100 Silent là mẫu chuột không dây giá tốt với thiết kế nhỏ gọn và tiếng click êm. Sản phẩm phù hợp cho học sinh, sinh viên và nhân viên văn phòng cần một chiếc chuột cơ bản để sử dụng hằng ngày. Chuột hỗ trợ kết nối không dây ổn định, thao tác nhẹ nhàng và dễ mang theo cùng laptop. Với mức giá tiết kiệm, đây là lựa chọn hợp lý cho người dùng cần phụ kiện đơn giản, bền và tiện lợi.",
+    "specifications": {
+      "type": "Wireless Mouse",
+      "connection": "Bluetooth, USB Receiver",
+      "dpi": "1300 DPI",
+      "battery": "AA Battery",
+      "buttons": "3",
+      "compatibility": "Windows, macOS"
+    }
+  },
+  {
+    "name": "Rapoo MT750S Multi-mode",
+    "category": "Mouse",
+    "brand": "Rapoo",
+    "price": 899000,
+    "stock": 70,
+    "minStockLevel": 15,
+    "images": [],
+    "description": "Rapoo MT750S Multi-mode là mẫu chuột không dây đa kết nối dành cho người dùng làm việc với nhiều thiết bị. Chuột hỗ trợ Bluetooth và USB receiver, cho phép chuyển đổi nhanh giữa laptop, PC và tablet. Thiết kế công thái học giúp cầm nắm thoải mái khi làm việc lâu. Cảm biến chính xác hỗ trợ thao tác tốt với tài liệu, bảng tính và phần mềm văn phòng. Đây là lựa chọn phù hợp cho người dùng cần chuột đa năng với chi phí hợp lý.",
+    "specifications": {
+      "type": "Wireless Mouse",
+      "connection": "Bluetooth, USB Receiver",
+      "dpi": "600-3200 DPI",
+      "battery": "Rechargeable",
+      "buttons": "7",
+      "compatibility": "Windows, macOS"
+    }
+  },
+  {
+    "name": "Razer DeathAdder Essential",
+    "category": "Mouse",
+    "brand": "Razer",
+    "price": 690000,
+    "stock": 80,
+    "minStockLevel": 18,
+    "images": [],
+    "description": "Razer DeathAdder Essential là mẫu chuột gaming có dây nổi bật với thiết kế công thái học và độ bền cao. Cảm biến quang học chính xác giúp thao tác tốt trong các tựa game phổ biến cũng như công việc hằng ngày. Thiết kế ôm tay phù hợp cho người dùng chơi game trong thời gian dài. Đây là lựa chọn hợp lý cho game thủ mới bắt đầu hoặc người dùng cần một chiếc chuột gaming bền, dễ sử dụng và có giá phải chăng.",
+    "specifications": {
+      "type": "Gaming Mouse",
+      "connection": "Wired USB",
+      "dpi": "6400 DPI",
+      "battery": "No battery",
+      "buttons": "5",
+      "compatibility": "Windows, macOS"
+    }
+  },
+  {
+    "name": "Razer Basilisk V3",
+    "category": "Mouse",
+    "brand": "Razer",
+    "price": 1590000,
+    "stock": 55,
+    "minStockLevel": 12,
+    "images": [],
+    "description": "Razer Basilisk V3 là mẫu chuột gaming hiệu năng cao dành cho game thủ cần độ chính xác và khả năng tùy biến tốt. Cảm biến quang học độ phân giải cao, hệ thống nút lập trình và con lăn thông minh giúp tối ưu thao tác trong nhiều thể loại game. Thiết kế công thái học cho tay phải mang lại cảm giác cầm chắc chắn. Đây là lựa chọn phù hợp cho game thủ muốn nâng cấp trải nghiệm chơi game và kiểm soát thao tác tốt hơn.",
+    "specifications": {
+      "type": "Gaming Mouse",
+      "connection": "Wired USB",
+      "dpi": "26000 DPI",
+      "battery": "No battery",
+      "buttons": "11",
+      "compatibility": "Windows"
+    }
+  },
+  {
+    "name": "Razer Viper V3 HyperSpeed",
+    "category": "Mouse",
+    "brand": "Razer",
+    "price": 1890000,
+    "stock": 45,
+    "minStockLevel": 10,
+    "images": [],
+    "description": "Razer Viper V3 HyperSpeed là mẫu chuột gaming không dây dành cho người chơi cần tốc độ phản hồi nhanh và trọng lượng nhẹ. Thiết kế đối xứng phù hợp nhiều kiểu cầm, cảm biến chính xác hỗ trợ tốt trong các tựa game FPS và eSports. Kết nối không dây ổn định giúp giảm vướng víu khi thao tác. Đây là lựa chọn phù hợp cho game thủ muốn một chiếc chuột gaming hiệu năng cao, linh hoạt và dễ kiểm soát.",
+    "specifications": {
+      "type": "Gaming Mouse",
+      "connection": "Wireless HyperSpeed",
+      "dpi": "30000 DPI",
+      "battery": "AA Battery",
+      "buttons": "6",
+      "compatibility": "Windows"
+    }
+  },
+  {
+    "name": "Logitech G102 Lightsync",
+    "category": "Mouse",
+    "brand": "Logitech",
+    "price": 490000,
+    "stock": 100,
+    "minStockLevel": 20,
+    "images": [],
+    "description": "Logitech G102 Lightsync là mẫu chuột gaming phổ thông được nhiều game thủ lựa chọn nhờ thiết kế gọn, độ bền tốt và hiệu năng ổn định. Cảm biến chính xác đáp ứng tốt các tựa game eSports, học tập và làm việc hằng ngày. Hệ thống đèn RGB Lightsync giúp tăng tính thẩm mỹ cho góc máy. Với mức giá dễ tiếp cận, đây là lựa chọn phù hợp cho học sinh, sinh viên và người mới bắt đầu chơi game.",
+    "specifications": {
+      "type": "Gaming Mouse",
+      "connection": "Wired USB",
+      "dpi": "8000 DPI",
+      "battery": "No battery",
+      "buttons": "6",
+      "compatibility": "Windows, macOS"
+    }
+  },
+  {
+    "name": "Logitech G304 Lightspeed",
+    "category": "Mouse",
+    "brand": "Logitech",
+    "price": 890000,
+    "stock": 85,
+    "minStockLevel": 18,
+    "images": [],
+    "description": "Logitech G304 Lightspeed là mẫu chuột gaming không dây có hiệu năng cao trong tầm giá. Công nghệ Lightspeed mang lại độ trễ thấp, phù hợp cho các tựa game FPS, MOBA và eSports. Cảm biến HERO tiết kiệm pin nhưng vẫn đảm bảo độ chính xác khi thao tác. Thiết kế nhỏ gọn, dễ mang theo và phù hợp với nhiều kiểu cầm. Đây là lựa chọn tốt cho game thủ cần chuột không dây ổn định, bền và giá hợp lý.",
+    "specifications": {
+      "type": "Gaming Mouse",
+      "connection": "Wireless Lightspeed",
+      "dpi": "12000 DPI",
+      "battery": "AA Battery",
+      "buttons": "6",
+      "compatibility": "Windows, macOS"
+    }
+  },
+  {
+    "name": "Logitech G Pro X Superlight 2",
+    "category": "Mouse",
+    "brand": "Logitech",
+    "price": 3490000,
+    "stock": 35,
+    "minStockLevel": 8,
+    "images": [],
+    "description": "Logitech G Pro X Superlight 2 là mẫu chuột gaming cao cấp dành cho game thủ chuyên nghiệp cần trọng lượng siêu nhẹ và độ chính xác tối đa. Cảm biến HERO 2 mang lại khả năng tracking chính xác trong các tựa game FPS và eSports. Kết nối không dây Lightspeed có độ trễ thấp giúp thao tác nhanh và ổn định. Thiết kế tối giản, pin sạc USB-C và độ hoàn thiện cao khiến sản phẩm phù hợp cho người dùng muốn hiệu năng thi đấu chuyên nghiệp.",
+    "specifications": {
+      "type": "Gaming Mouse",
+      "connection": "Wireless Lightspeed",
+      "dpi": "32000 DPI",
+      "battery": "Rechargeable USB-C",
+      "buttons": "5",
+      "compatibility": "Windows, macOS"
+    }
+  },
+  {
+    "name": "SteelSeries Rival 3 Wireless",
+    "category": "Mouse",
+    "brand": "SteelSeries",
+    "price": 1290000,
+    "stock": 60,
+    "minStockLevel": 12,
+    "images": [],
+    "description": "SteelSeries Rival 3 Wireless là mẫu chuột gaming không dây có thiết kế bền bỉ, thời lượng pin dài và hiệu năng ổn định. Chuột phù hợp cho game thủ cần sự linh hoạt khi chơi game hoặc làm việc. Cảm biến chính xác, kết nối không dây ổn định và thiết kế thoải mái giúp sử dụng tốt trong thời gian dài. Đây là lựa chọn phù hợp cho người dùng muốn chuột gaming không dây có thương hiệu tốt và mức giá hợp lý.",
+    "specifications": {
+      "type": "Gaming Mouse",
+      "connection": "Bluetooth, 2.4GHz Wireless",
+      "dpi": "18000 DPI",
+      "battery": "AAA Batteries",
+      "buttons": "6",
+      "compatibility": "Windows, macOS"
+    }
+  }
+]

@@ -1,10 +1,12 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import OrderCard from '../../components/account/OrderCard'
 import SettingsSection from '../../components/account/SettingsSection'
 import EmptyState from '../../components/EmptyState'
 import { Skeleton } from '../../components/Skeleton'
+import { useAuth } from '../../hooks/useAuth'
 import { formatCurrency } from '../../utils/formatCurrency'
 import { useInitialRender } from '../../hooks/useInitialRender'
+import { getProfile } from '../../services/accountStorage'
 import { getOrders, ORDER_STORAGE_KEY, ORDER_STORAGE_UPDATED_EVENT } from '../../services/orderStorage'
 
 const orderStatusOptions = [
@@ -18,13 +20,35 @@ const orderStatusOptions = [
 
 function AccountOrders() {
   const isInitialRenderReady = useInitialRender(220)
+  const { user } = useAuth()
+  const userProfile = useMemo(() => getProfile(user), [user])
   const [statusFilter, setStatusFilter] = useState('all')
   const [orderList, setOrderList] = useState([])
   const [selectedOrder, setSelectedOrder] = useState(null)
 
+  const isCurrentUsersOrder = useCallback((order) => {
+    if (!user) {
+      return true
+    }
+
+    const userId = String(user.id || user._id || '').trim()
+    const userEmail = String(user.email || '').trim().toLowerCase()
+    const fullName = String(userProfile.fullName || '').trim().toLowerCase()
+    const orderUserId = String(order?.customerInfo?.userId || '').trim()
+    const orderUserEmail = String(order?.customerInfo?.userEmail || '').trim().toLowerCase()
+    const orderUserName = String(order?.customerInfo?.userName || '').trim().toLowerCase()
+    const orderFullName = String(order?.customerInfo?.fullName || '').trim().toLowerCase()
+
+    return (
+      (userId && orderUserId === userId) ||
+      (userEmail && orderUserEmail === userEmail) ||
+      (fullName && (orderUserName === fullName || orderFullName === fullName))
+    )
+  }, [user, userProfile.fullName])
+
   useEffect(() => {
     function syncOrders() {
-      setOrderList(getOrders())
+      setOrderList(getOrders().filter(isCurrentUsersOrder))
     }
 
     function handleStorageSync(event) {
@@ -41,7 +65,7 @@ function AccountOrders() {
       window.removeEventListener(ORDER_STORAGE_UPDATED_EVENT, syncOrders)
       window.removeEventListener('storage', handleStorageSync)
     }
-  }, [])
+  }, [isCurrentUsersOrder])
 
   const filteredOrders = useMemo(() => {
     return statusFilter === 'all'

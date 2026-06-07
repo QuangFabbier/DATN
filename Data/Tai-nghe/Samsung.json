@@ -1,0 +1,53 @@
+[
+  {
+    "name": "Samsung Galaxy Buds FE",
+    "category": "Headphones",
+    "brand": "Samsung",
+    "price": 1490000,
+    "stock": 90,
+    "minStockLevel": 20,
+    "images": [],
+    "description": "Galaxy Buds FE là mẫu tai nghe không dây phù hợp cho người dùng Android cần chất lượng âm thanh tốt với mức giá dễ tiếp cận. Thiết bị hỗ trợ chống ồn chủ động và thời lượng pin dài.",
+    "specifications": {
+      "type": "True Wireless",
+      "connectivity": "Bluetooth 5.2",
+      "battery": "Up to 30 hours",
+      "noiseCancellation": "ANC",
+      "waterResistance": "IPX2"
+    }
+  },
+  {
+    "name": "Samsung Galaxy Buds 3",
+    "category": "Headphones",
+    "brand": "Samsung",
+    "price": 3490000,
+    "stock": 60,
+    "minStockLevel": 12,
+    "images": [],
+    "description": "Galaxy Buds 3 mang đến thiết kế hiện đại cùng chất lượng âm thanh được tối ưu cho hệ sinh thái Galaxy. Thiết bị phù hợp cho học tập, làm việc và giải trí hằng ngày.",
+    "specifications": {
+      "type": "True Wireless",
+      "connectivity": "Bluetooth 5.4",
+      "battery": "Up to 30 hours",
+      "noiseCancellation": "ANC",
+      "waterResistance": "IP57"
+    }
+  },
+  {
+    "name": "Samsung Galaxy Buds 3 Pro",
+    "category": "Headphones",
+    "brand": "Samsung",
+    "price": 5490000,
+    "stock": 40,
+    "minStockLevel": 10,
+    "images": [],
+    "description": "Galaxy Buds 3 Pro là dòng tai nghe cao cấp với khả năng chống ồn nâng cao, âm thanh chi tiết và hỗ trợ nhiều tính năng AI trong hệ sinh thái Samsung.",
+    "specifications": {
+      "type": "True Wireless",
+      "connectivity": "Bluetooth 5.4",
+      "battery": "Up to 30 hours",
+      "noiseCancellation": "Adaptive ANC",
+      "waterResistance": "IP57"
+    }
+  }
+]
