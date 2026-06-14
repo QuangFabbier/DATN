@@ -499,6 +499,7 @@ export async function recordOrderCompletionInventory(order = {}, performedBy = n
 
       const stockAfter = stockBefore - item.quantity
       product.stock = stockAfter
+      product.sold = Number(product.sold || 0) + item.quantity
       await product.save({ session: activeSession })
 
       await createTransactionRecord({

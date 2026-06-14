@@ -11,6 +11,7 @@ import { useInitialRender } from '../hooks/useInitialRender'
 import { useToast } from '../hooks/useToast'
 import { getProfile } from '../services/accountStorage'
 import { createOrderRecord } from '../services/orderStorage'
+import { consumeOrderStock } from '../services/orderInventoryService'
 import { getActiveFlashSaleCampaign } from '../utils/flashSale'
 import { buildProductPricing } from '../utils/product'
 import { formatCurrency } from '../utils/formatCurrency'
@@ -35,7 +36,7 @@ const paymentMethodOptions = [
 
 function Orders() {
   const navigate = useNavigate()
-  const { user } = useAuth()
+  const { user, token } = useAuth()
   const { cartItems, cartTotal, clearCart } = useCart()
   const isInitialRenderReady = useInitialRender()
   const { showToast } = useToast()
@@ -177,44 +178,65 @@ function Orders() {
     }
 
     setIsSubmitting(true)
-    await wait(900)
 
-    const createdOrderResult = createOrderRecord({
-      customerInfo: {
-        fullName: formData.fullname,
-        phone: formData.phone,
-        address: formData.address,
-        note: formData.note,
-        paymentMethod,
-      },
-      items: cartItems,
-      subtotal: cartTotal,
-      shippingFee,
-      total,
-    }, user)
-    const createdOrder = createdOrderResult?.order
+    try {
+      await wait(900)
 
-    showToast({
-      type: 'success',
-      title: 'Đặt hàng thành công',
-      message: `Đơn hàng demo đã được tạo với phương thức ${
-        paymentMethod === 'qr' ? 'thanh toán QR' : 'thanh toán khi nhận hàng'
-      }${createdOrder?.id ? ` (Mã: ${createdOrder.id}).` : '.'}`,
-    })
-    clearCart()
-    setFormData({
-      fullname: '',
-      phone: '',
-      address: '',
-      note: '',
-    })
-    setPaymentMethod('qr')
-    setCheckoutStage('info')
-    setIsSubmitting(false)
-    setPaymentSuccess({
-      orderCode: createdOrder?.id || '',
-      description: 'Thanh toán hoàn tất. Đơn hàng của bạn đã được ghi nhận thành công.',
-    })
+      await consumeOrderStock(
+        {
+          id: `ORDER-TEMP-${Date.now()}`,
+          items: cartItems.map((item) => ({
+            productId: item.id,
+            quantity: item.quantity,
+          })),
+        },
+        token,
+      )
+
+      const createdOrderResult = createOrderRecord({
+        customerInfo: {
+          fullName: formData.fullname,
+          phone: formData.phone,
+          address: formData.address,
+          note: formData.note,
+          paymentMethod,
+        },
+        items: cartItems,
+        subtotal: cartTotal,
+        shippingFee,
+        total,
+      }, user)
+      const createdOrder = createdOrderResult?.order
+
+      showToast({
+        type: 'success',
+        title: 'Đặt hàng thành công',
+        message: `Đơn hàng demo đã được tạo với phương thức ${
+          paymentMethod === 'qr' ? 'thanh toán QR' : 'thanh toán khi nhận hàng'
+        }${createdOrder?.id ? ` (Mã: ${createdOrder.id}).` : '.'}`,
+      })
+      clearCart()
+      setFormData({
+        fullname: '',
+        phone: '',
+        address: '',
+        note: '',
+      })
+      setPaymentMethod('qr')
+      setCheckoutStage('info')
+      setPaymentSuccess({
+        orderCode: createdOrder?.id || '',
+        description: 'Thanh toán hoàn tất. Đơn hàng của bạn đã được ghi nhận thành công.',
+      })
+    } catch (error) {
+      showToast({
+        type: 'error',
+        title: 'Không thể tạo đơn hàng',
+        message: error?.message || 'Vui lòng kiểm tra tồn kho và thử lại.',
+      })
+    } finally {
+      setIsSubmitting(false)
+    }
 
     if (redirectTimerRef.current) {
       window.clearTimeout(redirectTimerRef.current)

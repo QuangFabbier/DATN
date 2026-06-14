@@ -1,15 +1,11 @@
 import { formatCurrency } from '../../utils/formatCurrency'
-
-const orderStatusMap = {
-  pending: { label: 'Chờ xác nhận', tone: 'pending' },
-  confirmed: { label: 'Đã xác nhận', tone: 'confirmed' },
-  shipping: { label: 'Đang giao', tone: 'shipping' },
-  completed: { label: 'Hoàn thành', tone: 'completed' },
-  cancelled: { label: 'Đã hủy', tone: 'cancelled' },
-}
+import { getOrderStatusLabel, getOrderStatusTone } from '../../services/orderStorage'
 
 function OrderCard({ onOpen, order }) {
-  const status = orderStatusMap[order.status] || { label: 'Đang xử lý', tone: 'pending' }
+  const status = {
+    label: getOrderStatusLabel(order),
+    tone: getOrderStatusTone(order),
+  }
   const orderDate = new Date(order.date).toLocaleDateString('vi-VN')
   const itemCount = order.items.reduce((total, item) => total + item.quantity, 0)
 

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+﻿import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import EmptyState from '../../components/EmptyState'
 import { AdminDashboardSkeleton } from '../../components/Skeleton'
@@ -57,8 +57,8 @@ function AdminDashboard() {
   }, [])
 
   const totalProducts = products.length
-  const inStockProducts = products.filter((product) => (product.stock || 0) > 0).length
   const outOfStockProducts = products.filter((product) => (product.stock || 0) === 0).length
+  const totalStockQuantity = products.reduce((sum, product) => sum + (Number(product.stock) || 0), 0)
   const totalCategories = new Set(
     products.map((product) => product.category).filter((category) => Boolean(category)),
   ).size
@@ -93,8 +93,8 @@ function AdminDashboard() {
           <strong>{totalProducts}</strong>
         </article>
         <article className="admin-stat-card">
-          <span>Sản phẩm còn hàng</span>
-          <strong>{inStockProducts}</strong>
+          <span>Tổng số lượng còn hàng</span>
+          <strong>{totalStockQuantity}</strong>
         </article>
         <article className="admin-stat-card">
           <span>Sản phẩm hết hàng</span>
@@ -113,11 +113,11 @@ function AdminDashboard() {
           <strong>{orderStats.pendingOrders}</strong>
         </article>
         <article className="admin-stat-card">
-          <span>Đơn hoàn thành</span>
+          <span>Đơn hoàn tất xử lý</span>
           <strong>{orderStats.completedOrders}</strong>
         </article>
         <article className="admin-stat-card admin-stat-card-currency">
-          <span>Doanh thu (đơn hoàn thành)</span>
+          <span>Doanh thu (đã thanh toán)</span>
           <strong>{formatCurrency(orderStats.revenue)}</strong>
         </article>
       </div>

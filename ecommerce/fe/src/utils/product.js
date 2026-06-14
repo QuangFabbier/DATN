@@ -192,14 +192,40 @@ function buildProductGalleryImage(product, index) {
   return `https://placehold.co/800x800/${background}/${foreground}?text=${label}+${index + 1}`
 }
 
+function normalizeImageEntries(images = []) {
+  const normalizedImages = Array.isArray(images)
+    ? images.map((image) => String(image || '').trim()).filter(Boolean)
+    : []
+
+  const mergedImages = []
+
+  for (let index = 0; index < normalizedImages.length; index += 1) {
+    const currentImage = normalizedImages[index]
+    const nextImage = normalizedImages[index + 1]
+
+    if (
+      currentImage.startsWith('data:') &&
+      !currentImage.includes(',') &&
+      nextImage &&
+      !nextImage.startsWith('data:')
+    ) {
+      mergedImages.push(`${currentImage},${nextImage}`)
+      index += 1
+      continue
+    }
+
+    mergedImages.push(currentImage)
+  }
+
+  return [...new Set(mergedImages)].filter(Boolean)
+}
+
 export function getProductImages(product) {
   if (!product || typeof product !== 'object') {
     return [PRODUCT_PLACEHOLDER_IMAGE]
   }
 
-  const explicitImages = Array.isArray(product.images)
-    ? product.images.map((image) => String(image || '').trim()).filter(Boolean)
-    : []
+  const explicitImages = normalizeImageEntries(product.images)
 
   if (explicitImages.length > 0) {
     return explicitImages

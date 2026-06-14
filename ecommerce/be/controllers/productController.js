@@ -13,8 +13,28 @@ function normalizeImageList(images, fallbackImage = '') {
     .map((image) => String(image || '').trim())
     .filter(Boolean)
 
-  if (normalizedImages.length > 0) {
-    return normalizedImages
+  const mergedImages = []
+
+  for (let index = 0; index < normalizedImages.length; index += 1) {
+    const currentImage = normalizedImages[index]
+    const nextImage = normalizedImages[index + 1]
+
+    if (
+      currentImage.startsWith('data:') &&
+      !currentImage.includes(',') &&
+      nextImage &&
+      !nextImage.startsWith('data:')
+    ) {
+      mergedImages.push(`${currentImage},${nextImage}`)
+      index += 1
+      continue
+    }
+
+    mergedImages.push(currentImage)
+  }
+
+  if (mergedImages.length > 0) {
+    return mergedImages
   }
 
   return fallbackImage ? [fallbackImage] : []
@@ -119,6 +139,10 @@ function buildProductPayload(body = {}) {
     payload.images = normalizeImageList([], payload.image)
   }
 
+  if (!payload.image && Array.isArray(payload.images) && payload.images.length > 0) {
+    payload.image = payload.images[0]
+  }
+
   if (Object.prototype.hasOwnProperty.call(body, 'specs')) {
     payload.specs = normalizeSpecs(body.specs)
   }
@@ -183,6 +207,10 @@ const createProduct = asyncHandler(async (req, res) => {
       payload.images = [payload.image]
     }
 
+    if (!payload.image && payload.images?.length) {
+      payload.image = payload.images[0]
+    }
+
     if (!payload.brand) {
       payload.brand = inferBrandFromName(payload.name)
     }
@@ -218,6 +246,10 @@ const updateProduct = asyncHandler(async (req, res) => {
 
     if (!payload.images && Object.prototype.hasOwnProperty.call(payload, 'image')) {
       payload.images = normalizeImageList(existingProduct.images, payload.image)
+    }
+
+    if (!payload.image && payload.images?.length) {
+      payload.image = payload.images[0]
     }
 
     if (Object.prototype.hasOwnProperty.call(payload, 'name') || Object.prototype.hasOwnProperty.call(payload, 'brand')) {

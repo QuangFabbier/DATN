@@ -14,7 +14,28 @@ const initialFormData = {
   category: '',
   price: '',
   image: '',
+  imagesText: '',
   description: '',
+}
+
+function normalizeImageListFromText(primaryImage, imagesText) {
+  return [
+    String(primaryImage || '').trim(),
+    ...String(imagesText || '')
+      .split(/\n+/g)
+      .map((item) => String(item || '').trim())
+      .filter(Boolean),
+  ].filter(Boolean)
+}
+
+function readFileAsDataUrl(file) {
+  return new Promise((resolve, reject) => {
+    const fileReader = new FileReader()
+
+    fileReader.onload = () => resolve(String(fileReader.result || ''))
+    fileReader.onerror = () => reject(new Error('Không thể đọc file ảnh.'))
+    fileReader.readAsDataURL(file)
+  })
 }
 
 function AdminProducts() {
@@ -39,7 +60,7 @@ function AdminProducts() {
   const [deletingProductId, setDeletingProductId] = useState('')
   const [pendingDeleteProduct, setPendingDeleteProduct] = useState(null)
   const hasAdminAccess = isAuthenticated && user?.role === 'admin'
-  const hasImagePreview = Boolean(formData.image)
+  const hasImagePreview = Boolean(formData.image || formData.imagesText.trim())
   const imageInputRef = useRef(null)
 
   useEffect(() => {
@@ -134,55 +155,42 @@ function AdminProducts() {
 
     setFormData((currentData) => ({ ...currentData, [name]: value }))
     setFormErrors((currentErrors) => ({ ...currentErrors, [name]: '' }))
-    if (name === 'image') {
+    if (name === 'image' || name === 'imagesText') {
       setImageUploadError('')
     }
     setError('')
   }
 
-  function processImageFile(selectedFile) {
-    const fileReader = new FileReader()
-    setIsReadingImage(true)
-    setImageUploadError('')
+  async function handleImageFileChange(event) {
+    const selectedFiles = Array.from(event.target.files || [])
 
-    fileReader.onload = () => {
-      const imageDataUrl = String(fileReader.result || '')
-
-      setFormData((currentData) => ({
-        ...currentData,
-        image: imageDataUrl,
-      }))
-      setIsReadingImage(false)
-    }
-
-    fileReader.onerror = () => {
-      setImageUploadError('Không thể đọc file ảnh. Vui lòng thử lại.')
-      setIsReadingImage(false)
-    }
-
-    fileReader.readAsDataURL(selectedFile)
-  }
-
-  function handleImageFileChange(event) {
-    const selectedFile = event.target.files?.[0]
-
-    if (!selectedFile) {
+    if (selectedFiles.length === 0) {
       return
     }
 
-    if (!selectedFile.type.startsWith('image/')) {
+    if (selectedFiles.some((file) => !file.type.startsWith('image/'))) {
       setImageUploadError('Chỉ hỗ trợ upload file ảnh (jpg, png, webp, gif, ...).')
+      event.target.value = ''
       return
     }
 
     const maxImageSizeInBytes = 4 * 1024 * 1024
-    if (selectedFile.size > maxImageSizeInBytes) {
+    if (selectedFiles.some((file) => file.size > maxImageSizeInBytes)) {
       setImageUploadError('Ảnh quá lớn. Vui lòng chọn ảnh tối đa 4MB.')
+      event.target.value = ''
       return
     }
 
-    processImageFile(selectedFile)
-    event.target.value = ''
+    try {
+      setIsReadingImage(true)
+      setImageUploadError('')
+      await processImageFiles(selectedFiles)
+    } catch {
+      setImageUploadError('Không thể đọc file ảnh. Vui lòng thử lại.')
+    } finally {
+      setIsReadingImage(false)
+      event.target.value = ''
+    }
   }
 
   function handleImageDrop(event) {
@@ -209,7 +217,7 @@ function AdminProducts() {
       return
     }
 
-    processImageFile(selectedFile)
+    void processImageFiles([selectedFile])
   }
 
   function handleImageDragOver(event) {
@@ -227,10 +235,27 @@ function AdminProducts() {
     imageInputRef.current?.click()
   }
 
+  async function processImageFiles(selectedFiles) {
+    const imageDataUrls = await Promise.all(selectedFiles.map((file) => readFileAsDataUrl(file)))
+
+    setFormData((currentData) => {
+      const nextImages = normalizeImageListFromText(currentData.image, currentData.imagesText)
+      const mergedImages = [...nextImages, ...imageDataUrls].filter(Boolean)
+      const uniqueImages = [...new Set(mergedImages)]
+
+      return {
+        ...currentData,
+        image: uniqueImages[0] || '',
+        imagesText: uniqueImages.slice(1).join('\n'),
+      }
+    })
+  }
+
   function handleClearImage() {
     setFormData((currentData) => ({
       ...currentData,
       image: '',
+      imagesText: '',
     }))
     setImageUploadError('')
   }
@@ -272,8 +297,11 @@ function AdminProducts() {
         category: formData.category.trim(),
         price: Number(formData.price),
         image: formData.image.trim(),
+        images: normalizeImageListFromText(formData.image, formData.imagesText),
         description: formData.description.trim(),
       }
+
+      payload.image = payload.images[0] || payload.image
 
       if (editingProductId) {
         const updatedProduct = await withMinimumDelay(updateProduct(editingProductId, payload, token), 280)
@@ -343,6 +371,7 @@ function AdminProducts() {
       category: product.category || '',
       price: String(product.price ?? ''),
       image: product.image === PRODUCT_PLACEHOLDER_IMAGE ? '' : product.image || '',
+      imagesText: Array.isArray(product.images) ? product.images.slice(1).join('\n') : '',
       description: product.description || '',
     })
   }
@@ -646,13 +675,24 @@ function AdminProducts() {
                     name="image"
                     value={formData.image}
                     onChange={handleFormChange}
-                    placeholder="Dán URL ảnh hoặc dùng nút upload bên dưới"
+                    placeholder="Ảnh đại diện hoặc URL ảnh đầu tiên"
+                  />
+                </label>
+
+                <label className="admin-form-full">
+                  Ảnh phụ URL
+                  <textarea
+                    name="imagesText"
+                    rows="3"
+                    value={formData.imagesText}
+                    onChange={handleFormChange}
+                    placeholder="Dán các URL ảnh phụ, mỗi dòng một ảnh hoặc ngăn cách bằng dấu phẩy"
                   />
                 </label>
 
                 <div className="admin-form-full admin-image-upload-block">
                   <label htmlFor="admin-product-image-upload">
-                    Upload ảnh từ máy
+                    Upload nhiều ảnh từ máy
                   </label>
                   <button
                     type="button"
@@ -671,6 +711,7 @@ function AdminProducts() {
                     id="admin-product-image-upload"
                     type="file"
                     accept="image/*"
+                    multiple
                     onChange={handleImageFileChange}
                     disabled={isReadingImage}
                   />
@@ -678,11 +719,15 @@ function AdminProducts() {
                     <span className="section-heading-meta">Đang đọc ảnh...</span>
                   ) : null}
                   {imageUploadError ? <span className="field-error">{imageUploadError}</span> : null}
-                  {formData.image ? (
-                    <div className="admin-image-preview">
-                      <img src={formData.image} alt="Xem trước ảnh sản phẩm" />
+                  {normalizeImageListFromText(formData.image, formData.imagesText).length > 0 ? (
+                    <div className="admin-image-preview-grid">
+                      {normalizeImageListFromText(formData.image, formData.imagesText).map((image, index) => (
+                        <div key={`${image}-${index}`} className="admin-image-preview">
+                          <img src={image} alt={`Xem trước ảnh ${index + 1}`} />
+                        </div>
+                      ))}
                       <button type="button" className="button button-danger" onClick={handleClearImage}>
-                        Xóa ảnh
+                        Xóa toàn bộ ảnh
                       </button>
                     </div>
                   ) : null}

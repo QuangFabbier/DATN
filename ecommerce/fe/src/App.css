@@ -1758,6 +1758,7 @@ button:disabled {
   display: block;
   width: 100%;
   object-fit: cover;
+  object-position: center center;
 }
 
 .product-image,
@@ -2105,6 +2106,7 @@ button:disabled {
 
 .detail-image {
   min-height: 480px;
+  object-position: center center;
 }
 
 .detail-image-zoom-layer {
@@ -3636,6 +3638,9 @@ button:disabled {
   border: 1px solid var(--color-border);
   border-radius: 16px;
   background: var(--color-bg-muted);
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
 }
 
 .admin-orders-panel h3 {
@@ -3656,6 +3661,20 @@ button:disabled {
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+
+.admin-orders-item-list {
+  max-height: 240px;
+  overflow-y: auto;
+  padding-right: 6px;
+  min-height: 0;
+}
+
+.admin-order-timeline {
+  max-height: 300px;
+  overflow-y: auto;
+  padding-right: 6px;
+  min-height: 0;
 }
 
 .admin-orders-item-row {
@@ -3702,6 +3721,10 @@ button:disabled {
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
+}
+
+.admin-orders-panel.admin-orders-full-width {
+  gap: 12px;
 }
 
 /* =========================

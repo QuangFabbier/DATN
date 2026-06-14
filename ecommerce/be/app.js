@@ -4,6 +4,7 @@ import express from 'express'
 import aiRoutes from './routes/aiRoutes.js'
 import authRoutes from './routes/authRoutes.js'
 import inventoryRoutes from './routes/inventoryRoutes.js'
+import orderRoutes from './routes/orderRoutes.js'
 import paymentSettingRoutes from './routes/paymentSettingRoutes.js'
 import productRoutes from './routes/productRoutes.js'
 import reviewRoutes from './routes/reviewRoutes.js'
@@ -24,6 +25,7 @@ app.use(express.json({ limit: '5mb' }))
 app.use('/api/test', testRoutes)
 app.use('/api/auth', authRoutes)
 app.use('/api/products', productRoutes)
+app.use('/api/orders', orderRoutes)
 app.use('/api/payment-settings', paymentSettingRoutes)
 app.use('/api/reviews', reviewRoutes)
 app.use('/api/inventory', inventoryRoutes)
