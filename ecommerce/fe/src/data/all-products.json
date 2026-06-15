@@ -13262,8 +13262,12 @@
     "price": 11990000,
     "stock": 60,
     "minStockLevel": 15,
-    "image": "",
-    "images": [],
+    "image": "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/ipad-compare-header-202405?.v=bk5Ha2llcUlIczRSRUt0WDVzK2I3a3d5S3MwalZ0KzJYUzlaTEovR3lnM0JzNjk4alZXc1V3QlppSlJEdDY5eVJmWkRLbnF4V0o4MC80MUErK0tHaS82WXdLZXN4NXdtV2c5K0Z4cHFIU0E&fmt=png-alpha&hei=398&wid=392",
+    "images": [
+      "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/ipad-compare-header-202405?.v=bk5Ha2llcUlIczRSRUt0WDVzK2I3a3d5S3MwalZ0KzJYUzlaTEovR3lnM0JzNjk4alZXc1V3QlppSlJEdDY5eVJmWkRLbnF4V0o4MC80MUErK0tHaS82WXdLZXN4NXdtV2c5K0Z4cHFIU0E&fmt=png-alpha&hei=398&wid=392",
+      "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/ipad-compare-header-202405?.v=bk5Ha2llcUlIczRSRUt0WDVzK2I3a3d5S3MwalZ0KzJYUzlaTEovR3lnM0JzNjk4alZXc1V3QlppSlJEdDY5eVJmWkRLbnF4V0o4MC80MUErK0tHaS82WXdLZXN4NXdtV2c5K0Z4cHFIU0E&fmt=png-alpha&hei=720&wid=720",
+      "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/ipad-compare-swatches-gen10-202410?.v=VTllekV2RktMMEtYZm91K21zcE81WldTZ01FUzgydWdPK1dDTkxyNytTTStraHdEZ2VXTzRDSkZXWUJuM0tRZlZjUGxaZ2kzUjFwZGVzZThSeTdBdTRhU0FMNkVWZUtodWFPQXNaS01OQ1orYWpGdS9XeFgvbS9ITnNYOEhYaG4&fmt=png-alpha&hei=26&wid=134"
+    ],
     "description": "iPad Gen 11 là mẫu máy tính bảng đa năng phù hợp cho học tập, giải trí và làm việc cơ bản. Chip Apple thế hệ mới mang lại hiệu năng ổn định cho các ứng dụng văn phòng, học trực tuyến, ghi chú và chỉnh sửa nội dung nhẹ. Màn hình Liquid Retina sắc nét giúp hiển thị nội dung rõ ràng và sống động. Thiết bị hỗ trợ Apple Pencil giúp nâng cao trải nghiệm học tập và sáng tạo. Với thời lượng pin dài, thiết kế bền bỉ và hệ sinh thái iPadOS tối ưu, đây là lựa chọn phù hợp cho học sinh, sinh viên và người dùng phổ thông.",
     "specifications": [
       {
@@ -13356,8 +13360,12 @@
     "price": 17990000,
     "stock": 45,
     "minStockLevel": 10,
-    "image": "",
-    "images": [],
+    "image": "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/ipad-compare-header-air-202405?.v=bk5Ha2llcUlIczRSRUt0WDVzK2I3aEp0T1lvbEU5VzVUeFMyYUl3ZjA1RVk2Q3FubUg5cC93VlMzQkExanhMSzAzOVFHb3N0MkVmS01ZcFh0d1Y4R2hvR0JUOE5DanRnclpMbkNkbll4VFE&fmt=png-alpha&hei=398&wid=392",
+    "images": [
+      "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/ipad-compare-header-air-202405?.v=bk5Ha2llcUlIczRSRUt0WDVzK2I3aEp0T1lvbEU5VzVUeFMyYUl3ZjA1RVk2Q3FubUg5cC93VlMzQkExanhMSzAzOVFHb3N0MkVmS01ZcFh0d1Y4R2hvR0JUOE5DanRnclpMbkNkbll4VFE&fmt=png-alpha&hei=398&wid=392",
+      "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/ipad-compare-header-air-202405?.v=bk5Ha2llcUlIczRSRUt0WDVzK2I3aEp0T1lvbEU5VzVUeFMyYUl3ZjA1RVk2Q3FubUg5cC93VlMzQkExanhMSzAzOVFHb3N0MkVmS01ZcFh0d1Y4R2hvR0JUOE5DanRnclpMbkNkbll4VFE&fmt=png-alpha&hei=720&wid=720",
+      "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/ipad-compare-swatches-air-202410?.v=VTllekV2RktMMEtYZm91K21zcE81ZklpTlQzZFhQVGE0SXN5TXVVd0tsTStqNVNMUE5kWkM0SlBMVUVFRW5rM215d1FhSDJ0bkR0ZGZtUjZJNmFveFlubjdwNjI2STBFYk5icVZWN1RpamM&fmt=png-alpha&hei=26&wid=134"
+    ],
     "description": "iPad Air 11 M3 mang đến sự cân bằng giữa hiệu năng mạnh mẽ và tính di động cao. Chip Apple M3 giúp xử lý mượt mà các tác vụ học tập, làm việc, chỉnh sửa ảnh và sáng tạo nội dung. Thiết kế mỏng nhẹ giúp người dùng dễ dàng mang theo trong quá trình di chuyển. Màn hình Liquid Retina chất lượng cao mang lại trải nghiệm hiển thị sắc nét và màu sắc chính xác. Đây là lựa chọn phù hợp cho sinh viên, nhân viên văn phòng và người dùng muốn sở hữu một chiếc tablet cao cấp với hiệu năng vượt trội.",
     "specifications": [
       {
@@ -13450,8 +13458,12 @@
     "price": 24990000,
     "stock": 35,
     "minStockLevel": 10,
-    "image": "",
-    "images": [],
+    "image": "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/ipad-compare-header-air-202405?.v=bk5Ha2llcUlIczRSRUt0WDVzK2I3aEp0T1lvbEU5VzVUeFMyYUl3ZjA1RVk2Q3FubUg5cC93VlMzQkExanhMSzAzOVFHb3N0MkVmS01ZcFh0d1Y4R2hvR0JUOE5DanRnclpMbkNkbll4VFE&fmt=png-alpha&hei=398&wid=392",
+    "images": [
+      "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/ipad-compare-header-air-202405?.v=bk5Ha2llcUlIczRSRUt0WDVzK2I3aEp0T1lvbEU5VzVUeFMyYUl3ZjA1RVk2Q3FubUg5cC93VlMzQkExanhMSzAzOVFHb3N0MkVmS01ZcFh0d1Y4R2hvR0JUOE5DanRnclpMbkNkbll4VFE&fmt=png-alpha&hei=398&wid=392",
+      "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/ipad-compare-header-air-202405?.v=bk5Ha2llcUlIczRSRUt0WDVzK2I3aEp0T1lvbEU5VzVUeFMyYUl3ZjA1RVk2Q3FubUg5cC93VlMzQkExanhMSzAzOVFHb3N0MkVmS01ZcFh0d1Y4R2hvR0JUOE5DanRnclpMbkNkbll4VFE&fmt=png-alpha&hei=720&wid=720",
+      "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/ipad-compare-swatches-air-202410?.v=VTllekV2RktMMEtYZm91K21zcE81ZklpTlQzZFhQVGE0SXN5TXVVd0tsTStqNVNMUE5kWkM0SlBMVUVFRW5rM215d1FhSDJ0bkR0ZGZtUjZJNmFveFlubjdwNjI2STBFYk5icVZWN1RpamM&fmt=png-alpha&hei=26&wid=134"
+    ],
     "description": "iPad Air 13 M3 sở hữu màn hình lớn giúp nâng cao trải nghiệm học tập, làm việc và giải trí. Chip Apple M3 mang lại hiệu năng mạnh mẽ cho đa nhiệm, chỉnh sửa ảnh và các ứng dụng sáng tạo nội dung. Không gian hiển thị rộng rãi giúp thao tác thuận tiện với nhiều cửa sổ cùng lúc. Thiết bị hỗ trợ Apple Pencil và Magic Keyboard giúp thay thế laptop trong nhiều tình huống. Đây là lựa chọn phù hợp cho người dùng chuyên nghiệp cần một chiếc tablet mạnh mẽ và linh hoạt.",
     "specifications": [
       {
@@ -13544,8 +13556,12 @@
     "price": 29990000,
     "stock": 25,
     "minStockLevel": 8,
-    "image": "",
-    "images": [],
+    "image": "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/ipad-compare-header-pro-202405?.v=bk5Ha2llcUlIczRSRUt0WDVzK2I3aEpsdjhCN0cycWFLRklRalhsdmV1Y1k2Q3FubUg5cC93VlMzQkExanhMSzAzOVFHb3N0MkVmS01ZcFh0d1Y4R21yc3hpVFRmZnBDMzlsazg4c2M0Vk0&fmt=png-alpha&hei=398&wid=392",
+    "images": [
+      "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/ipad-compare-header-pro-202405?.v=bk5Ha2llcUlIczRSRUt0WDVzK2I3aEpsdjhCN0cycWFLRklRalhsdmV1Y1k2Q3FubUg5cC93VlMzQkExanhMSzAzOVFHb3N0MkVmS01ZcFh0d1Y4R21yc3hpVFRmZnBDMzlsazg4c2M0Vk0&fmt=png-alpha&hei=398&wid=392",
+      "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/ipad-compare-header-pro-202405?.v=bk5Ha2llcUlIczRSRUt0WDVzK2I3aEpsdjhCN0cycWFLRklRalhsdmV1Y1k2Q3FubUg5cC93VlMzQkExanhMSzAzOVFHb3N0MkVmS01ZcFh0d1Y4R21yc3hpVFRmZnBDMzlsazg4c2M0Vk0&fmt=png-alpha&hei=720&wid=720",
+      "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/ipad-compare-swatches-pro-202410?.v=VTllekV2RktMMEtYZm91K21zcE81YzlMaTNEK3FqdHk4VjVjd1laSDJPWmFWTUZXWmpVL0pSSHl0dEdINzRUVzAzOVFHb3N0MkVmS01ZcFh0d1Y4R3RKd3NvcEs3Z0t6VkdpY0VPb0dOUFE&fmt=png-alpha&hei=26&wid=62"
+    ],
     "description": "iPad Pro 11 M4 là mẫu tablet cao cấp dành cho người dùng sáng tạo nội dung, nhà thiết kế và chuyên gia cần hiệu năng hàng đầu. Chip Apple M4 mang lại sức mạnh xử lý vượt trội cho đồ họa, chỉnh sửa video và các ứng dụng chuyên nghiệp. Màn hình Ultra Retina XDR cho chất lượng hiển thị xuất sắc với độ sáng cao và màu sắc chính xác. Thiết kế siêu mỏng cùng trọng lượng nhẹ giúp tăng tính cơ động. Đây là lựa chọn lý tưởng cho người dùng muốn sở hữu một thiết bị mạnh mẽ trong hệ sinh thái Apple.",
     "specifications": [
       {
@@ -13638,8 +13654,12 @@
     "price": 42990000,
     "stock": 15,
     "minStockLevel": 5,
-    "image": "",
-    "images": [],
+    "image": "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/ipad-compare-header-pro-202405?.v=bk5Ha2llcUlIczRSRUt0WDVzK2I3aEpsdjhCN0cycWFLRklRalhsdmV1Y1k2Q3FubUg5cC93VlMzQkExanhMSzAzOVFHb3N0MkVmS01ZcFh0d1Y4R21yc3hpVFRmZnBDMzlsazg4c2M0Vk0&fmt=png-alpha&hei=398&wid=392",
+    "images": [
+      "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/ipad-compare-header-pro-202405?.v=bk5Ha2llcUlIczRSRUt0WDVzK2I3aEpsdjhCN0cycWFLRklRalhsdmV1Y1k2Q3FubUg5cC93VlMzQkExanhMSzAzOVFHb3N0MkVmS01ZcFh0d1Y4R21yc3hpVFRmZnBDMzlsazg4c2M0Vk0&fmt=png-alpha&hei=398&wid=392",
+      "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/ipad-compare-header-pro-202405?.v=bk5Ha2llcUlIczRSRUt0WDVzK2I3aEpsdjhCN0cycWFLRklRalhsdmV1Y1k2Q3FubUg5cC93VlMzQkExanhMSzAzOVFHb3N0MkVmS01ZcFh0d1Y4R21yc3hpVFRmZnBDMzlsazg4c2M0Vk0&fmt=png-alpha&hei=720&wid=720",
+      "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/ipad-compare-swatches-pro-202410?.v=VTllekV2RktMMEtYZm91K21zcE81YzlMaTNEK3FqdHk4VjVjd1laSDJPWmFWTUZXWmpVL0pSSHl0dEdINzRUVzAzOVFHb3N0MkVmS01ZcFh0d1Y4R3RKd3NvcEs3Z0t6VkdpY0VPb0dOUFE&fmt=png-alpha&hei=26&wid=62"
+    ],
     "description": "iPad Pro 13 M4 là mẫu máy tính bảng cao cấp nhất của Apple với hiệu năng vượt trội và màn hình lớn phục vụ công việc chuyên nghiệp. Chip M4 giúp xử lý hiệu quả các dự án thiết kế đồ họa, dựng video, mô hình 3D và các tác vụ AI hiện đại. Màn hình Ultra Retina XDR OLED mang lại trải nghiệm hình ảnh đẳng cấp với độ chi tiết và độ tương phản cao. Thiết bị hỗ trợ Apple Pencil Pro và Magic Keyboard giúp thay thế laptop trong nhiều tình huống. Đây là lựa chọn hàng đầu cho người dùng chuyên nghiệp.",
     "specifications": [
       {
@@ -13732,8 +13752,12 @@
     "price": 13990000,
     "stock": 55,
     "minStockLevel": 15,
-    "image": "",
-    "images": [],
+    "image": "https://shop.samsung.com/latin/ecu/pub/media/catalog/product/cache/a69170b4a4f0666a52473c2224ba9220/s/m/sm-x520n_galaxy-tab-s10-fe_blue_product-image_set-cut-all-1.png",
+    "images": [
+      "https://shop.samsung.com/latin/ecu/pub/media/catalog/product/cache/a69170b4a4f0666a52473c2224ba9220/s/m/sm-x520n_galaxy-tab-s10-fe_blue_product-image_set-cut-all-1.png",
+      "https://shop.samsung.com/latin/ecu/pub/media/catalog/product/s/m/sm-x520n_galaxy-tab-s10-fe_blue_product-image_set-cut-all-1.png",
+      "https://shop.samsung.com/latin/ecu/pub/media/catalog/product/s/m/sm-x520n_galaxy-tab-s10-fe_blue_product-image_set-cut-all-1_thumb.png"
+    ],
     "description": "Galaxy Tab S10 FE là mẫu máy tính bảng Android phù hợp cho học tập, làm việc và giải trí hằng ngày. Thiết bị được trang bị màn hình lớn giúp đọc tài liệu, ghi chú và xem nội dung đa phương tiện thoải mái. Bút S Pen đi kèm hỗ trợ học tập, vẽ và ghi chú hiệu quả mà không cần mua thêm phụ kiện. Hiệu năng ổn định đáp ứng tốt các tác vụ văn phòng, học trực tuyến và giải trí phổ biến. Đây là lựa chọn phù hợp cho học sinh, sinh viên và người dùng cần một chiếc tablet Android đa năng với mức giá hợp lý.",
     "specifications": [
       {
@@ -13826,9 +13850,11 @@
     "price": 24990000,
     "stock": 30,
     "minStockLevel": 8,
-    "image": "https://shop.samsung.com/latin/pub/media/catalog/product/s/m/sm-x820n_galaxy-tab-s10_00_thumb_2_1.png",
+    "image": "https://images.samsung.com/is/image/samsung/p6pim/us/sm-x820nzaaxar/gallery/us-galaxy-tab-s10-plus-sm-x820-sm-x820nzaaxar-551218671?$product-details-jpg$",
     "images": [
-      "https://shop.samsung.com/latin/pub/media/catalog/product/s/m/sm-x820n_galaxy-tab-s10_00_thumb_2_1.png"
+      "https://images.samsung.com/is/image/samsung/p6pim/us/sm-x820nzaaxar/gallery/us-galaxy-tab-s10-plus-sm-x820-sm-x820nzaaxar-551218671?$product-details-jpg$",
+      "https://images.samsung.com/is/image/samsung/p6pim/us/sm-x820nzaaxar/gallery/us-galaxy-tab-s10-plus-sm-x820-sm-x820nzaaxar-551218672?$product-details-jpg$",
+      "https://images.samsung.com/is/image/samsung/p6pim/us/sm-x820nzaaxar/gallery/us-galaxy-tab-s10-plus-sm-x820-sm-x820nzaaxar-551218673?$product-details-jpg$"
     ],
     "description": "Galaxy Tab S10+ là mẫu tablet cao cấp dành cho người dùng cần màn hình lớn và hiệu năng mạnh mẽ cho công việc lẫn giải trí. Màn hình Dynamic AMOLED mang lại màu sắc sống động và độ tương phản cao, phù hợp cho chỉnh sửa hình ảnh và xem nội dung chất lượng cao. Bút S Pen đi kèm giúp ghi chú, phác thảo ý tưởng và làm việc hiệu quả hơn. Thiết bị đáp ứng tốt đa nhiệm, họp trực tuyến và các ứng dụng sáng tạo nội dung. Đây là lựa chọn phù hợp cho sinh viên, nhân viên văn phòng và người dùng chuyên nghiệp.",
     "specifications": [
@@ -13922,8 +13948,12 @@
     "price": 32990000,
     "stock": 18,
     "minStockLevel": 5,
-    "image": "",
-    "images": [],
+    "image": "https://shop.samsung.com/latin/cac/pub/media/catalog/product/s/m/sm-x920n_galaxy-tab-s10ultra_00_thumb_2.png",
+    "images": [
+      "https://shop.samsung.com/latin/cac/pub/media/catalog/product/s/m/sm-x920n_galaxy-tab-s10ultra_00_thumb_2.png",
+      "https://shop.samsung.com/latin/cac/pub/media/catalog/product/cache/a69170b4a4f0666a52473c2224ba9220/s/m/sm-x920n_galaxy-tab-s10ultra_00_2.png",
+      "https://shop.samsung.com/latin/cac/pub/media/catalog/product/s/m/sm-x920n_galaxy-tab-s10ultra_00_thumb_3.png"
+    ],
     "description": "Galaxy Tab S10 Ultra là mẫu tablet Android cao cấp nhất của Samsung dành cho người dùng chuyên nghiệp. Màn hình kích thước lớn mang lại không gian làm việc rộng rãi, phù hợp cho chỉnh sửa nội dung, đa nhiệm và giải trí cao cấp. Hiệu năng mạnh mẽ giúp xử lý tốt các tác vụ đồ họa, công việc văn phòng nâng cao và học tập chuyên sâu. Bút S Pen hỗ trợ sáng tạo nội dung và ghi chú hiệu quả. Đây là lựa chọn lý tưởng cho người dùng muốn một thiết bị Android cao cấp có khả năng thay thế laptop trong nhiều tình huống.",
     "specifications": [
       {
@@ -14016,8 +14046,12 @@
     "price": 9990000,
     "stock": 65,
     "minStockLevel": 15,
-    "image": "",
-    "images": [],
+    "image": "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-pad-7/pc/3569ebdf7939e29319357ac306de16ab.jpg",
+    "images": [
+      "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-pad-7/pc/3569ebdf7939e29319357ac306de16ab.jpg",
+      "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-pad-7/pc/1155e849d1ff953f47d71dd69b7bd2be.jpg",
+      "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-pad-7/pc/bf327e40bdcbd276c7cbdd1742bcedad.png"
+    ],
     "description": "Xiaomi Pad 7 là mẫu máy tính bảng Android cân bằng giữa hiệu năng, màn hình chất lượng và mức giá cạnh tranh. Thiết bị phù hợp cho học tập, xem phim, đọc tài liệu và làm việc văn phòng cơ bản. Màn hình độ phân giải cao cùng tần số quét mượt mà mang lại trải nghiệm sử dụng dễ chịu trong thời gian dài. Hiệu năng ổn định giúp đáp ứng các ứng dụng học tập, giải trí và đa nhiệm hằng ngày. Đây là lựa chọn phù hợp cho học sinh, sinh viên và người dùng phổ thông cần một chiếc tablet có giá trị sử dụng cao.",
     "specifications": [
       {
@@ -14110,8 +14144,12 @@
     "price": 13990000,
     "stock": 45,
     "minStockLevel": 12,
-    "image": "",
-    "images": [],
+    "image": "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-pad-7-pro/pc/5484effe86e2b64e1bf9d0235e7bd126.jpg",
+    "images": [
+      "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-pad-7-pro/pc/5484effe86e2b64e1bf9d0235e7bd126.jpg",
+      "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-pad-7-pro/pc/ffd31f63a43b5695e899b52982a7db93.png",
+      "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-pad-7-pro/pc/6b078656b64450aa4860cd4b4148aa5c.jpg"
+    ],
     "description": "Xiaomi Pad 7 Pro được thiết kế cho người dùng cần hiệu năng mạnh mẽ hơn để học tập, làm việc và giải trí. Bộ xử lý Snapdragon cao cấp giúp thiết bị vận hành mượt mà với đa nhiệm, chỉnh sửa hình ảnh và các ứng dụng năng suất. Màn hình 3.2K sắc nét cùng tần số quét cao mang lại trải nghiệm hiển thị ấn tượng khi xem phim hoặc làm việc. Thiết kế kim loại cao cấp, pin lớn và hệ điều hành tối ưu giúp nâng cao trải nghiệm sử dụng. Đây là lựa chọn phù hợp cho người dùng muốn một chiếc tablet Android mạnh mẽ trong tầm giá hợp lý.",
     "specifications": [
       {
