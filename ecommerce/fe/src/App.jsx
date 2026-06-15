@@ -18,6 +18,7 @@ import AdminImports from './pages/admin/AdminImports'
 import AdminOrders from './pages/admin/AdminOrders'
 import AdminInventoryDashboard from './pages/admin/AdminInventoryDashboard'
 import AdminPaymentSettings from './pages/admin/AdminPaymentSettings'
+import AdminProductCatalog from './pages/admin/AdminProductCatalog'
 import AdminProducts from './pages/admin/AdminProducts'
 import AdminReviews from './pages/admin/AdminReviews'
 import AdminTransactions from './pages/admin/AdminTransactions'
@@ -93,6 +94,7 @@ function App() {
                           <Route path="inventory/exports" element={<AdminExports />} />
                           <Route path="inventory/transactions" element={<AdminTransactions />} />
                           <Route path="products" element={<AdminProducts />} />
+                          <Route path="product-catalog" element={<AdminProductCatalog />} />
                           <Route path="reviews" element={<AdminReviews />} />
                           <Route path="orders" element={<AdminOrders />} />
                           <Route path="payment" element={<AdminPaymentSettings />} />

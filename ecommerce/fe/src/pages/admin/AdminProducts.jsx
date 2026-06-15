@@ -720,12 +720,14 @@ function AdminProducts() {
                   ) : null}
                   {imageUploadError ? <span className="field-error">{imageUploadError}</span> : null}
                   {normalizeImageListFromText(formData.image, formData.imagesText).length > 0 ? (
-                    <div className="admin-image-preview-grid">
-                      {normalizeImageListFromText(formData.image, formData.imagesText).map((image, index) => (
-                        <div key={`${image}-${index}`} className="admin-image-preview">
-                          <img src={image} alt={`Xem trước ảnh ${index + 1}`} />
-                        </div>
-                      ))}
+                    <div className="admin-image-preview-block">
+                      <div className="admin-image-preview-row">
+                        {normalizeImageListFromText(formData.image, formData.imagesText).map((image, index) => (
+                          <div key={`${image}-${index}`} className="admin-image-preview">
+                            <img src={image} alt={`Xem trước ảnh ${index + 1}`} />
+                          </div>
+                        ))}
+                      </div>
                       <button type="button" className="button button-danger" onClick={handleClearImage}>
                         Xóa toàn bộ ảnh
                       </button>

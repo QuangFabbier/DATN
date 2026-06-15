@@ -13826,8 +13826,10 @@
     "price": 24990000,
     "stock": 30,
     "minStockLevel": 8,
-    "image": "",
-    "images": [],
+    "image": "https://shop.samsung.com/latin/pub/media/catalog/product/s/m/sm-x820n_galaxy-tab-s10_00_thumb_2_1.png",
+    "images": [
+      "https://shop.samsung.com/latin/pub/media/catalog/product/s/m/sm-x820n_galaxy-tab-s10_00_thumb_2_1.png"
+    ],
     "description": "Galaxy Tab S10+ là mẫu tablet cao cấp dành cho người dùng cần màn hình lớn và hiệu năng mạnh mẽ cho công việc lẫn giải trí. Màn hình Dynamic AMOLED mang lại màu sắc sống động và độ tương phản cao, phù hợp cho chỉnh sửa hình ảnh và xem nội dung chất lượng cao. Bút S Pen đi kèm giúp ghi chú, phác thảo ý tưởng và làm việc hiệu quả hơn. Thiết bị đáp ứng tốt đa nhiệm, họp trực tuyến và các ứng dụng sáng tạo nội dung. Đây là lựa chọn phù hợp cho sinh viên, nhân viên văn phòng và người dùng chuyên nghiệp.",
     "specifications": [
       {
