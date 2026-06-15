@@ -442,6 +442,7 @@ describe('Inventory module', () => {
 
     const updatedMouse = await Product.findById(mouseProduct._id)
     assert.equal(updatedMouse.stock, 0)
+    assert.equal(updatedMouse.sold, 1)
 
     const orderTransaction = await InventoryTransaction.findOne({
       referenceType: 'ORDER',
@@ -451,6 +452,30 @@ describe('Inventory module', () => {
     assert.ok(orderTransaction)
     assert.equal(orderTransaction.stockBefore, 1)
     assert.equal(orderTransaction.stockAfter, 0)
+  })
+
+  it('deducts stock and increases sold through the public order consume endpoint', async () => {
+    const response = await request('/api/orders/consume-stock', {
+      method: 'POST',
+      token: customerToken,
+      body: {
+        id: 'ORDER-20260607-002',
+        items: [
+          {
+            productId: thinkPadProduct._id,
+            quantity: 2,
+          },
+        ],
+      },
+    })
+
+    assert.equal(response.status, 200)
+    const payload = await response.json()
+    assert.equal(payload.deducted, true)
+
+    const updatedProduct = await Product.findById(thinkPadProduct._id)
+    assert.equal(updatedProduct.stock, 6)
+    assert.equal(updatedProduct.sold, 2)
   })
 
   it('rolls back order completion when stock is insufficient', async () => {

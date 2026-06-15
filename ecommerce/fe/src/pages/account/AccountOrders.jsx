@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react'
+﻿import { useCallback, useEffect, useMemo, useState } from 'react'
 import OrderCard from '../../components/account/OrderCard'
 import SettingsSection from '../../components/account/SettingsSection'
 import EmptyState from '../../components/EmptyState'
@@ -14,7 +14,7 @@ const orderStatusOptions = [
   { value: 'pending', label: 'Chờ xác nhận' },
   { value: 'confirmed', label: 'Đã xác nhận' },
   { value: 'shipping', label: 'Đang giao' },
-  { value: 'completed', label: 'Hoàn thành' },
+  { value: 'completed', label: 'Hoàn thành đơn' },
   { value: 'cancelled', label: 'Đã hủy' },
 ]
 

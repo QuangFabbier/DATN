@@ -8,7 +8,8 @@ import { useAuth } from '../hooks/useAuth'
 import { useCart } from '../hooks/useCart'
 import { useToast } from '../hooks/useToast'
 import { getProfile } from '../services/accountStorage'
-import { createOrderRecord } from '../services/orderStorage'
+import { consumeOrderStock } from '../services/orderInventoryService'
+import { createOrderRecord, ORDER_STATUSES, PAYMENT_STATUSES } from '../services/orderStorage'
 import { getPaymentSettings } from '../services/paymentSettingService'
 import { formatCurrency } from '../utils/formatCurrency'
 import { wait } from '../utils/timing'
@@ -18,7 +19,7 @@ const SHIPPING_FEE = 30000
 function OrderQrPayment() {
   const navigate = useNavigate()
   const location = useLocation()
-  const { user } = useAuth()
+  const { user, token } = useAuth()
   const { cartItems, cartTotal, clearCart } = useCart()
   const { showToast } = useToast()
   const userProfile = useMemo(() => getProfile(user), [user])
@@ -113,42 +114,66 @@ function OrderQrPayment() {
     }
 
     setIsSubmitting(true)
-    await wait(900)
+    try {
+      await wait(900)
 
-    const createdOrderResult = createOrderRecord({
-      customerInfo: {
-        fullName: customerInfo.fullName || userProfile.fullName,
-        phone: customerInfo.phone || userProfile.phone,
-        address: customerInfo.address || userProfile.defaultAddress,
-        note: customerInfo.note || '',
-        paymentMethod: 'qr',
-      },
-      items: cartItems,
-      subtotal: cartTotal,
-      shippingFee,
-      total,
-    }, user)
-    const createdOrder = createdOrderResult?.order
+      await consumeOrderStock(
+        {
+          id: `ORDER-TEMP-${Date.now()}`,
+          items: cartItems.map((item) => ({
+            productId: item.id,
+            quantity: item.quantity,
+          })),
+        },
+        token,
+      )
 
-    showToast({
-      type: 'success',
-      title: 'Đặt hàng thành công',
-      message: `Đơn hàng QR đã được tạo${createdOrder?.id ? ` (Mã: ${createdOrder.id}).` : '.'}`,
-    })
+      const createdOrderResult = createOrderRecord({
+        customerInfo: {
+          fullName: customerInfo.fullName || userProfile.fullName,
+          phone: customerInfo.phone || userProfile.phone,
+          address: customerInfo.address || userProfile.defaultAddress,
+          note: customerInfo.note || '',
+          paymentMethod: 'qr',
+        },
+        items: cartItems,
+        subtotal: cartTotal,
+        shippingFee,
+        total,
+        status: ORDER_STATUSES.CONFIRMED,
+        paymentStatus: PAYMENT_STATUSES.COMPLETED,
+        statusNote: 'Đã xác nhận thanh toán QR, đơn hàng sẵn sàng được xử lý tiếp.',
+      }, user)
+      const createdOrder = createdOrderResult?.order
 
-    clearCart()
-    setPaymentSuccess({
-      orderCode: createdOrder?.id || '',
-      description: 'Thanh toán hoàn tất. Cảm ơn bạn đã hoàn thành giao dịch bằng QR.',
-    })
+      showToast({
+        type: 'success',
+        title: 'Đặt hàng thành công',
+        message: `Đơn hàng QR đã được tạo${createdOrder?.id ? ` (Mã: ${createdOrder.id}).` : '.'}`,
+      })
 
-    if (redirectTimerRef.current) {
-      window.clearTimeout(redirectTimerRef.current)
+      clearCart()
+      setPaymentSuccess({
+        orderCode: createdOrder?.id || '',
+        description: 'Thanh toán hoàn tất. Cảm ơn bạn đã hoàn thành giao dịch bằng QR.',
+      })
+
+      if (redirectTimerRef.current) {
+        window.clearTimeout(redirectTimerRef.current)
+      }
+
+      redirectTimerRef.current = window.setTimeout(() => {
+        navigate('/')
+      }, 3000)
+    } catch (error) {
+      showToast({
+        type: 'error',
+        title: 'Không thể tạo đơn hàng',
+        message: error?.message || 'Vui lòng kiểm tra tồn kho và thử lại.',
+      })
+    } finally {
+      setIsSubmitting(false)
     }
-
-    redirectTimerRef.current = window.setTimeout(() => {
-      navigate('/')
-    }, 3000)
   }
 
   if (!customerInfo) {

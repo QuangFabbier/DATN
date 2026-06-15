@@ -16,6 +16,11 @@ export const ORDER_STATUSES = {
   CANCELLED: 'cancelled',
 }
 
+export const PAYMENT_STATUSES = {
+  PENDING: 'pending',
+  COMPLETED: 'completed',
+}
+
 const VALID_STATUSES = new Set(Object.values(ORDER_STATUSES))
 
 const ORDER_STATUS_TRANSITIONS = {
@@ -138,6 +143,10 @@ function normalizeOrderStatus(status) {
   return VALID_STATUSES.has(status) ? status : ORDER_STATUSES.PENDING
 }
 
+function normalizePaymentStatus(paymentStatus, fallback = PAYMENT_STATUSES.PENDING) {
+  return Object.values(PAYMENT_STATUSES).includes(paymentStatus) ? paymentStatus : fallback
+}
+
 function normalizeStatusHistory(statusHistory, fallbackStatus, fallbackDate) {
   if (Array.isArray(statusHistory) && statusHistory.length > 0) {
     const normalizedStatusHistory = statusHistory
@@ -177,6 +186,12 @@ function normalizeStoredOrder(order, index = 0) {
   const createdAt = normalizeDate(order.createdAt || order.date, fallbackDate)
   const status = normalizeOrderStatus(order.status)
   const items = normalizeOrderItems(order.items)
+  const paymentStatus = normalizePaymentStatus(
+    order.paymentStatus,
+    order.customerInfo?.paymentMethod === 'qr' && status === ORDER_STATUSES.COMPLETED
+      ? PAYMENT_STATUSES.COMPLETED
+      : PAYMENT_STATUSES.PENDING,
+  )
 
   const subtotalFromItems = items.reduce((sum, item) => sum + item.price * item.quantity, 0)
   const subtotal = Math.max(0, Number(order.subtotal) || subtotalFromItems)
@@ -194,6 +209,7 @@ function normalizeStoredOrder(order, index = 0) {
     shippingFee,
     total,
     status,
+    paymentStatus,
     createdAt,
     date: createdAt,
     statusHistory: normalizeStatusHistory(order.statusHistory, status, createdAt),
@@ -267,7 +283,18 @@ export function createOrderRecord(orderInput, currentUser = null) {
   const currentOrders = getOrders()
   const createdAt = new Date().toISOString()
   const id = createOrderId()
-  const status = ORDER_STATUSES.PENDING
+  const status = normalizeOrderStatus(orderInput?.status)
+  const paymentStatus = normalizePaymentStatus(
+    orderInput?.paymentStatus,
+    orderInput?.customerInfo?.paymentMethod === 'qr'
+      ? PAYMENT_STATUSES.COMPLETED
+      : PAYMENT_STATUSES.PENDING,
+  )
+  const statusNote =
+    String(orderInput?.statusNote || '').trim() ||
+    (paymentStatus === PAYMENT_STATUSES.COMPLETED
+      ? 'Thanh toán đã hoàn tất và đơn hàng được ghi nhận thành công.'
+      : 'Đơn hàng được tạo từ checkout storefront.')
 
   const items = normalizeOrderItems(orderInput?.items)
   const subtotalFromItems = items.reduce((sum, item) => sum + item.price * item.quantity, 0)
@@ -284,13 +311,14 @@ export function createOrderRecord(orderInput, currentUser = null) {
     shippingFee,
     total,
     status,
+    paymentStatus,
     createdAt,
     date: createdAt,
     statusHistory: [
       {
         status,
         at: createdAt,
-        note: 'Đơn hàng được tạo từ checkout storefront.',
+        note: statusNote,
       },
     ],
   }
@@ -349,13 +377,46 @@ export function updateOrderStatus(orderId, nextStatus, statusNote = '') {
 
 export function getOrderStats() {
   const orders = getOrders()
+  const revenueOrders = orders.filter(
+    (order) =>
+      order.paymentStatus === PAYMENT_STATUSES.COMPLETED || order.status === ORDER_STATUSES.COMPLETED,
+  )
 
   return {
     totalOrders: orders.length,
     pendingOrders: orders.filter((order) => order.status === ORDER_STATUSES.PENDING).length,
     completedOrders: orders.filter((order) => order.status === ORDER_STATUSES.COMPLETED).length,
-    revenue: orders
-      .filter((order) => order.status === ORDER_STATUSES.COMPLETED)
-      .reduce((sum, order) => sum + Number(order.total || 0), 0),
+    revenue: revenueOrders.reduce((sum, order) => sum + Number(order.total || 0), 0),
   }
+}
+
+export function getOrderStatusLabel(orderOrStatus = '', order = null) {
+  const status = typeof orderOrStatus === 'string' ? orderOrStatus : String(orderOrStatus?.status || '')
+  const paymentMethod = String(
+    order?.customerInfo?.paymentMethod || orderOrStatus?.customerInfo?.paymentMethod || '',
+  ).trim()
+  const paymentStatus = String(order?.paymentStatus || orderOrStatus?.paymentStatus || '').trim()
+
+  if (
+    paymentStatus === PAYMENT_STATUSES.COMPLETED &&
+    paymentMethod === 'qr' &&
+    status !== ORDER_STATUSES.COMPLETED
+  ) {
+    return 'Thanh toán hoàn tất'
+  }
+
+  if (status === ORDER_STATUSES.PENDING) return 'Chờ xác nhận'
+  if (status === ORDER_STATUSES.CONFIRMED) return 'Đã xác nhận'
+  if (status === ORDER_STATUSES.SHIPPING) return 'Đang giao'
+  if (status === ORDER_STATUSES.COMPLETED) return 'Hoàn thành đơn'
+  if (status === ORDER_STATUSES.CANCELLED) return 'Đã hủy'
+  return 'Đang xử lý'
+}
+
+export function getOrderStatusTone(orderOrStatus = '') {
+  const status = typeof orderOrStatus === 'string' ? orderOrStatus : String(orderOrStatus?.status || '')
+  if (status === ORDER_STATUSES.COMPLETED || (orderOrStatus?.paymentStatus === PAYMENT_STATUSES.COMPLETED && String(orderOrStatus?.customerInfo?.paymentMethod || '') === 'qr')) {
+    return 'completed'
+  }
+  return status || 'pending'
 }

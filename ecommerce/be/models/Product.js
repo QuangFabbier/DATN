@@ -89,6 +89,11 @@ const productSchema = new mongoose.Schema(
       min: [0, 'Stock must be greater than or equal to 0'],
       default: 0,
     },
+    sold: {
+      type: Number,
+      default: 0,
+      min: [0, 'Sold quantity must be greater than or equal to 0'],
+    },
     minStockLevel: {
       type: Number,
       default: 10,

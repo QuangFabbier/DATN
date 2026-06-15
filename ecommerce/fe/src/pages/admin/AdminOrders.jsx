@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+﻿import { useEffect, useMemo, useState } from "react";
 import EmptyState from "../../components/EmptyState";
 import { AdminOrdersSkeleton } from "../../components/Skeleton";
 import { ButtonSpinner } from "../../components/Spinner";
@@ -6,6 +6,8 @@ import { useToast } from "../../hooks/useToast";
 import {
   getAvailableStatusTransitions,
   getOrders,
+  getOrderStatusLabel,
+  getOrderStatusTone,
   ORDER_STATUSES,
   ORDER_STORAGE_KEY,
   ORDER_STORAGE_UPDATED_EVENT,
@@ -19,7 +21,7 @@ const statusOptions = [
   { value: ORDER_STATUSES.PENDING, label: "Chờ xác nhận" },
   { value: ORDER_STATUSES.CONFIRMED, label: "Đã xác nhận" },
   { value: ORDER_STATUSES.SHIPPING, label: "Đang giao" },
-  { value: ORDER_STATUSES.COMPLETED, label: "Hoàn thành" },
+  { value: ORDER_STATUSES.COMPLETED, label: "Hoàn thành đơn" },
   { value: ORDER_STATUSES.CANCELLED, label: "Đã hủy" },
 ];
 
@@ -27,7 +29,7 @@ const statusLabelMap = {
   [ORDER_STATUSES.PENDING]: "Chờ xác nhận",
   [ORDER_STATUSES.CONFIRMED]: "Đã xác nhận",
   [ORDER_STATUSES.SHIPPING]: "Đang giao",
-  [ORDER_STATUSES.COMPLETED]: "Hoàn thành",
+  [ORDER_STATUSES.COMPLETED]: "Hoàn thành đơn",
   [ORDER_STATUSES.CANCELLED]: "Đã hủy",
 };
 
@@ -328,9 +330,9 @@ function AdminOrders() {
                         <td>{itemCount}</td>
                         <td>
                           <span
-                            className={`admin-status-badge order-${order.status}`}
+                            className={`admin-status-badge order-${getOrderStatusTone(order)}`}
                           >
-                            {statusLabelMap[order.status] || "Đang xử lý"}
+                            {getOrderStatusLabel(order)}
                           </span>
                         </td>
                         <td>{formatOrderDate(order.createdAt)}</td>
@@ -459,7 +461,7 @@ function AdminOrders() {
                         <span
                           className={`admin-status-badge order-${statusLog.status}`}
                         >
-                          {statusLabelMap[statusLog.status]}
+                          {statusLabelMap[statusLog.status] || "Đang xử lý"}
                         </span>
                         <p>{formatOrderDate(statusLog.at)}</p>
                         {statusLog.note ? (
