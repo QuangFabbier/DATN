@@ -41,6 +41,7 @@ function MainLayout() {
   const { searchKeyword, setSearchKeyword } = useSearch();
   const { isDarkMode, toggleTheme } = useTheme();
   const [categoryHighlights, setCategoryHighlights] = useState([]);
+  const [brandHighlights, setBrandHighlights] = useState([]);
   const [isAccountMenuOpen, setIsAccountMenuOpen] = useState(false);
   const [isCartMenuOpen, setIsCartMenuOpen] = useState(false);
   const [isCategoryMenuOpen, setIsCategoryMenuOpen] = useState(false);
@@ -61,23 +62,41 @@ function MainLayout() {
       try {
         const data = await getProducts();
         const categoryCounts = new Map();
+        const brandCounts = new Map();
 
         data.forEach((product) => {
           const category = normalizeProductCategory(product.category);
+          const brand = String(product?.brand || '').trim();
 
           if (category) {
             categoryCounts.set(category, (categoryCounts.get(category) || 0) + 1);
+          }
+
+          if (brand) {
+            const brandKey = brand.toLowerCase();
+            brandCounts.set(brandKey, (brandCounts.get(brandKey) || { value: brand, count: 0 }));
+            const currentBrand = brandCounts.get(brandKey);
+            currentBrand.value = currentBrand.value || brand;
+            currentBrand.count += 1;
+            brandCounts.set(brandKey, currentBrand);
           }
         });
 
         const nextCategoryHighlights = [...categoryCounts.entries()]
           .sort((firstEntry, secondEntry) => secondEntry[1] - firstEntry[1] || firstEntry[0].localeCompare(secondEntry[0]))
-          .slice(0, 6)
+          .slice(0, 14)
           .map(([value]) => value);
 
+        const nextBrandHighlights = [...brandCounts.values()]
+          .sort((firstEntry, secondEntry) => secondEntry.count - firstEntry.count || firstEntry.value.localeCompare(secondEntry.value))
+          .slice(0, 8)
+          .map((entry) => entry.value);
+
         setCategoryHighlights(nextCategoryHighlights);
+        setBrandHighlights(nextBrandHighlights);
       } catch {
         setCategoryHighlights([]);
+        setBrandHighlights([]);
       }
     }
 
@@ -229,6 +248,12 @@ function MainLayout() {
     setIsCategoryMenuOpen(false);
     setIsMobileMenuOpen(false);
     navigate(`/products?category=${encodeURIComponent(category)}`);
+  }
+
+  function handleBrandNavigate(brand) {
+    setIsCategoryMenuOpen(false);
+    setIsMobileMenuOpen(false);
+    navigate(`/products?brand=${encodeURIComponent(brand)}`);
   }
 
   function handleProtectedCartNavigation(event, targetPath) {
@@ -527,6 +552,28 @@ function MainLayout() {
                   <p>
                     Chọn nhanh nhóm sản phẩm nổi bật để đi thẳng đến bộ lọc phù hợp.
                   </p>
+
+                  <div className="mega-menu-brand-section">
+                    <div className="mega-menu-section-header">
+                      <p className="eyebrow">Hãng</p>
+                      <h3>Thương hiệu nổi bật</h3>
+                    </div>
+                    <div className="mega-menu-brand-list">
+                      {brandHighlights.map((brand) => (
+                        <button
+                          key={brand}
+                          type="button"
+                          className="mega-menu-brand-card"
+                          onClick={() => handleBrandNavigate(brand)}
+                        >
+                          <span className="mega-menu-brand-icon" aria-hidden="true">
+                            <i className="fa-solid fa-tag" />
+                          </span>
+                          <strong>{brand}</strong>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
                 </div>
 
                 <section className="mega-menu-section">
@@ -608,6 +655,20 @@ function MainLayout() {
                 onClick={() => handleCategoryNavigate(category)}
               >
                 {getProductCategoryLabel(category)}
+              </button>
+            ))}
+          </div>
+
+          <div className="mobile-drawer-group">
+            <p className="mobile-drawer-title">Hãng</p>
+            {brandHighlights.map((brand) => (
+              <button
+                key={brand}
+                type="button"
+                className="mobile-drawer-link"
+                onClick={() => handleBrandNavigate(brand)}
+              >
+                {brand}
               </button>
             ))}
           </div>

@@ -840,13 +840,14 @@ button:disabled {
   top: calc(100% + 16px);
   left: 0;
   right: auto;
-  width: min(920px, calc(100vw - 32px));
-  max-height: 520px;
+  width: min(1080px, calc(100vw - 32px));
+  max-height: min(720px, calc(100vh - 160px));
   padding: 22px;
   display: grid;
-  grid-template-columns: minmax(220px, 0.86fr) minmax(0, 1fr);
+  grid-template-columns: minmax(240px, 0.9fr) minmax(0, 1.15fr);
   gap: 20px;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
   overscroll-behavior: contain;
   background: color-mix(in srgb, var(--color-bg-panel) 98%, var(--color-bg) 2%);
 }
@@ -869,6 +870,56 @@ button:disabled {
 .ai-message p {
   color: var(--color-text-soft);
   line-height: 1.7;
+}
+
+.mega-menu-brand-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid var(--color-border);
+}
+
+.mega-menu-brand-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  min-width: 0;
+}
+
+.mega-menu-brand-card {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  padding: 14px 16px;
+  border: 1px solid var(--color-border);
+  border-radius: 18px;
+  background: var(--color-bg-panel);
+  color: var(--color-text);
+  font: inherit;
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+}
+
+.mega-menu-brand-card strong {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mega-menu-brand-icon {
+  width: 36px;
+  height: 36px;
+  flex: 0 0 36px;
+  display: inline-grid;
+  place-items: center;
+  border-radius: 14px;
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
 }
 
 .mega-menu-sections {
@@ -945,11 +996,21 @@ button:disabled {
 
 @media (max-width: 1080px) {
   .mega-menu-panel {
-    width: min(860px, calc(100vw - 32px));
+    width: min(980px, calc(100vw - 32px));
+  }
+
+  .mega-menu-brand-list {
+    grid-template-columns: 1fr;
   }
 
   .mega-menu-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 860px) {
+  .mega-menu-grid {
+    grid-template-columns: 1fr;
   }
 }
 
