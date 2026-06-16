@@ -8,7 +8,8 @@ import {
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api'
 const AI_API_URL = `${API_BASE_URL}/ai`
-const AI_CLIENT_CACHE_STORAGE_KEY = 'nexora_ai_response_cache_v2'
+const AI_CLIENT_CACHE_STORAGE_KEY = 'nexora_ai_response_cache_v3'
+const LEGACY_AI_CACHE_KEYS = ['nexora_ai_response_cache_v2']
 const DEFAULT_CACHE_TTL_MS = 10 * 60 * 1000
 const SHORT_CACHE_TTL_MS = 5 * 60 * 1000
 const AI_REQUEST_TIMEOUT_MS = 30_000
@@ -70,6 +71,20 @@ function readPersistedCache() {
   return storedCache && typeof storedCache === 'object' ? storedCache : {}
 }
 
+function clearLegacyAiCaches() {
+  if (!canUseStorage()) {
+    return
+  }
+
+  try {
+    for (const legacyKey of LEGACY_AI_CACHE_KEYS) {
+      window.localStorage.removeItem(legacyKey)
+    }
+  } catch {
+    // Ignore storage cleanup issues.
+  }
+}
+
 function writePersistedCache(cacheObject) {
   if (!canUseStorage()) {
     return
@@ -81,6 +96,8 @@ function writePersistedCache(cacheObject) {
     // Ignore localStorage quota errors.
   }
 }
+
+clearLegacyAiCaches()
 
 function logAiClientEvent(eventName, payload = {}) {
   if (!IS_AI_DEBUG_ENABLED) {

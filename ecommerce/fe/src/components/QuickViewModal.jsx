@@ -48,7 +48,7 @@ function QuickViewModal({ onClose, product, flashSaleCampaign = null }) {
       type: added ? 'success' : 'warning',
       title: added ? 'Đã thêm vào giỏ hàng' : 'Chưa thể thêm sản phẩm',
       message: added
-        ? `${product.name} đã xuất hiện trong giỏ hàng của bạn.`
+        ? `${product.name} đã nằm trong giỏ hàng của bạn.`
         : 'Sản phẩm đã đạt giới hạn số lượng hoặc đang hết hàng.',
     })
   }
@@ -65,7 +65,7 @@ function QuickViewModal({ onClose, product, flashSaleCampaign = null }) {
 
     showToast({
       type: added ? 'success' : 'info',
-      title: added ? 'Đã lưu yêu thích' : 'Đã bỏ yêu thích',
+      title: added ? 'Đã lưu vào yêu thích' : 'Đã bỏ khỏi yêu thích',
       message: added
         ? `${product.name} đã được thêm vào danh sách yêu thích.`
         : `${product.name} đã được xóa khỏi danh sách yêu thích.`,
@@ -102,7 +102,7 @@ function QuickViewModal({ onClose, product, flashSaleCampaign = null }) {
             <p className="eyebrow">Xem nhanh</p>
             <h2>{product.name}</h2>
           </div>
-          <button type="button" className="icon-button" onClick={onClose} aria-label="Đóng xem nhanh">
+            <button type="button" className="icon-button" onClick={onClose} aria-label="Đóng xem nhanh">
             <i className="fa-solid fa-xmark" aria-hidden="true" />
           </button>
         </div>
@@ -156,7 +156,7 @@ function QuickViewModal({ onClose, product, flashSaleCampaign = null }) {
                 {isAddingToCart ? (
                   <>
                     <ButtonSpinner size="sm" />
-                    <span>Đang thêm...</span>
+                <span>Đang thêm...</span>
                   </>
                 ) : (
                   <>

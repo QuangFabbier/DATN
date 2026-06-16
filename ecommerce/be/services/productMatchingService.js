@@ -1,6 +1,7 @@
 import Product from '../models/Product.js'
 import { normalizeCategory } from '../utils/productDataset.js'
 import { normalizeTextFold } from './aiJsonUtils.js'
+import { detectUseCaseProfile, scoreUseCaseFit } from './aiUseCaseCriteriaService.js'
 
 const SCORE_WEIGHTS = {
   category: 30,
@@ -110,6 +111,7 @@ function getFamilyRules() {
 function buildQuerySignalText(intent = {}) {
   return normalizeTextFold(
     [
+      intent?.queryText,
       intent?.category,
       intent?.useCase,
       Array.isArray(intent?.priorities) ? intent.priorities.join(' ') : '',
@@ -120,6 +122,10 @@ function buildQuerySignalText(intent = {}) {
       .filter(Boolean)
       .join(' '),
   )
+}
+
+function getUseCaseScoreProfile(intent = {}, queryText = '') {
+  return detectUseCaseProfile(intent, queryText)
 }
 
 function hasProductFamilyMatch(queryText = '', productText = '') {
@@ -187,6 +193,7 @@ function scoreProduct(product, intent = {}) {
     inStock: 0,
     priorities: 0,
     brand: 0,
+    study: 0,
     rating: 0,
     penalty: 0,
   }
@@ -217,6 +224,15 @@ function scoreProduct(product, intent = {}) {
 
   if (priorityTokens.length > 0 && hasAnyKeyword(productText, priorityTokens)) {
     scoreBreakdown.priorities = SCORE_WEIGHTS.priorities
+  }
+
+  const useCaseProfile = getUseCaseScoreProfile(intent, queryText)
+  if (useCaseProfile) {
+    const useCaseFit = scoreUseCaseFit(product, useCaseProfile)
+    scoreBreakdown.useCase = Math.max(scoreBreakdown.useCase, Math.round(useCaseFit.score * 0.5))
+    if (useCaseProfile === 'study') {
+      scoreBreakdown.study = Math.round(useCaseFit.score * 0.4)
+    }
   }
 
   scoreBreakdown.rating = calculateRatingScore(product)

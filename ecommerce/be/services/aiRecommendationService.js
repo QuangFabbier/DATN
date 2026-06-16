@@ -1,5 +1,10 @@
 import { generateGeminiJson } from './geminiService.js'
 import { normalizeTextFold } from './aiJsonUtils.js'
+import {
+  buildUseCaseFitText,
+  detectUseCaseProfile,
+  scoreUseCaseFit,
+} from './aiUseCaseCriteriaService.js'
 
 function normalizeText(value = '') {
   return String(value || '').trim()
@@ -30,7 +35,7 @@ function toGeminiProductBrief(product = {}) {
   }
 }
 
-function buildProductReasons(product = {}, intent = {}) {
+function buildProductReasons(product = {}, intent = {}, message = '') {
   const reasons = []
   const productPrice = Number(product?.price || 0)
   const productStock = Number(product?.stock || 0)
@@ -75,6 +80,16 @@ function buildProductReasons(product = {}, intent = {}) {
     reasons.push(`đúng nhóm ${product.category}`)
   }
 
+  const useCaseProfile = detectUseCaseProfile(intent, message)
+  if (useCaseProfile) {
+    const fit = scoreUseCaseFit(product, useCaseProfile)
+    if (fit.reasons.length > 0) {
+      reasons.push(`hợp ${useCaseProfile} vì ${fit.reasons.slice(0, 2).join(', ')}`)
+    } else if (fit.score > 0) {
+      reasons.push(buildUseCaseFitText(product, useCaseProfile))
+    }
+  }
+
   return [...new Set(reasons)].slice(0, 3)
 }
 
@@ -92,6 +107,10 @@ Mục tiêu trả lời:
 - Nếu còn thiếu dữ liệu, hỏi đúng 1 câu ngắn để làm rõ.
 - Tất cả câu trả lời phải viết bằng tiếng Việt có dấu đầy đủ.
 - Nếu câu người dùng hỏi "tại sao", "vì sao", "why" hoặc "lý do", bắt buộc giải thích ngắn gọn lý do chọn sản phẩm, không chỉ liệt kê tên sản phẩm.
+- Nếu câu đang hỏi về học tập thì phải bám thêm tiêu chí: laptop/tablet phù hợp, RAM đủ dùng, SSD ổn định, pin tốt, máy gọn nhẹ và mô tả thật rõ vì sao hợp học tập.
+- Nếu câu đang hỏi về gaming thì bám thêm GPU, tản nhiệt, màn hình mượt, RAM và hiệu năng tổng thể.
+- Nếu câu đang hỏi về chụp ảnh thì bám thêm camera, OIS, zoom, night mode, màu sắc và khả năng quay video.
+- Nếu câu đang hỏi về pin hoặc di động thì bám thêm thời lượng pin, sạc nhanh, trọng lượng và độ tiện mang theo.
 
 Bắt buộc trả về JSON hợp lệ:
 {
@@ -139,7 +158,7 @@ function buildFallbackReply(intent, topProducts, message = '') {
     .map((product) => product.name)
     .join(', ')
   const whyFocus = isWhyQuestion(message)
-  const reasons = buildProductReasons(topOne, intent)
+  const reasons = buildProductReasons(topOne, intent, message)
 
   const reply = whyFocus
     ? `Mình nghiêng về ${topOne.name} vì ${reasons.join(', ') || 'đây là lựa chọn cân bằng nhất trong nhóm hiện tại'}. Các mẫu còn lại trong shortlist vẫn ổn, nhưng ${topOne.name} phù hợp hơn theo tiêu chí bạn đang hỏi.`
@@ -167,7 +186,7 @@ export async function buildRecommendationExplanation({ message, intent, topProdu
     const aiJson = await generateGeminiJson(prompt, { temperature: 0.12, route: 'chat.recommendation' })
     const whyFocus = isWhyQuestion(message)
     const replyFromAi = normalizeText(aiJson?.reply || fallback.reply)
-    const fallbackReasons = whyFocus ? buildProductReasons(topProducts[0], intent) : []
+    const fallbackReasons = whyFocus ? buildProductReasons(topProducts[0], intent, message) : []
     const normalizedReply = normalizeTextFold(replyFromAi)
     const hasReasonMarker =
       normalizedReply.includes('vi sao') ||

@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from 'react'
+﻿import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../hooks/useAuth'
 import { useCart } from '../hooks/useCart'
@@ -8,6 +8,21 @@ import { useToast } from '../hooks/useToast'
 import { getAIPreferences } from '../services/accountStorage'
 import { chatWithAi, compareProductsWithAi } from '../services/aiService'
 import { getProducts } from '../services/productService'
+import {
+  clearPersistedConsultantSession,
+  readPersistedConsultantSession,
+  writePersistedConsultantSession,
+} from '../utils/aiConsultantSession'
+import {
+  buildConsultantSessionTitle,
+  clearActiveConsultantSessionId,
+  createConsultantSessionId,
+  readActiveConsultantSessionId,
+  readConsultantHistory,
+  removeConsultantHistorySession,
+  upsertConsultantHistorySession,
+  writeActiveConsultantSessionId,
+} from '../utils/aiConsultantHistory'
 import { formatCurrency } from '../utils/formatCurrency'
 import { formatCompareAssistantMessage, isCompareIntent, resolveCompareCandidates } from '../utils/aiConversation'
 import { getProductCategoryLabel } from '../utils/product'
@@ -15,6 +30,20 @@ import StarRating from '../components/StarRating'
 
 const PRODUCT_FALLBACK_IMAGE = 'https://placehold.co/120x120/e5e7eb/111827?text=Nexora'
 const MAX_WIDGET_PRODUCTS = 5
+const DEFAULT_ASSISTANT_MESSAGE = {
+  id: 1,
+  role: 'assistant',
+  content: 'Xin chào, mình là Nexora. Bạn cứ mô tả nhu cầu, mình sẽ lọc sản phẩm từ kho Nexora và tư vấn chi tiết.',
+  recommendedProducts: [],
+}
+
+function normalizeAssistantCopy(value = '') {
+  return String(value || '')
+    .replace(/\bAI Shopping Assistant\b/g, 'Nexora')
+    .replace(/\bAI đang soạn tư vấn\.\.\./g, 'Nexora đang suy nghĩ...')
+    .replace(/\bAI dang so?n tu v?n\.\.\./g, 'Nexora đang suy nghĩ...')
+    .replace(/\bAI\b/g, 'Nexora')
+}
 
 const QUICK_SUGGESTION_CHIPS = [
   'Laptop học lập trình dưới 25 triệu',
@@ -146,29 +175,106 @@ function normalizeConversationContextValue(context = null) {
   }
 }
 
-function AIConsultant() {
+function getConsultantTimestamp() {
+  return Date.now()
+}
+
+function NexoraConsultant() {
   const { user } = useAuth()
   const { addToCart, cartItems } = useCart()
   const { compareItems, toggleCompare } = useCompare()
   const { favoriteItems } = useFavorites()
   const { showToast } = useToast()
 
-  const [question, setQuestion] = useState('')
+  const persistedSession = useMemo(() => readPersistedConsultantSession(user), [user])
+  const storedSessions = useMemo(() => readConsultantHistory(user), [user])
+  const persistedActiveSessionId = useMemo(() => readActiveConsultantSessionId(user), [user])
+  const initialPersistedSession = useMemo(() => {
+    if (!persistedSession) {
+      return null
+    }
+
+    const normalizedMessages = Array.isArray(persistedSession.messages) && persistedSession.messages.length > 0
+      ? persistedSession.messages
+      : [DEFAULT_ASSISTANT_MESSAGE]
+
+    return {
+      id: persistedActiveSessionId || createConsultantSessionId(),
+      title: buildConsultantSessionTitle(normalizedMessages),
+      question: persistedSession.question || '',
+      messages: normalizedMessages,
+      conversationContext: normalizeConversationContextValue(persistedSession.conversationContext),
+      updatedAt: 0,
+    }
+  }, [persistedSession, persistedActiveSessionId])
+
+  const [historySessions, setHistorySessions] = useState(() => {
+    const mergedSessions = [...storedSessions]
+
+    if (initialPersistedSession) {
+      mergedSessions.unshift(initialPersistedSession)
+    }
+
+    return mergedSessions.filter(
+      (session, index, allSessions) => index === allSessions.findIndex((candidate) => candidate.id === session.id),
+    )
+  })
+
+  const [activeSessionId, setActiveSessionId] = useState(() => {
+    return persistedActiveSessionId || initialPersistedSession?.id || storedSessions[0]?.id || createConsultantSessionId()
+  })
+  const [question, setQuestion] = useState(() => persistedSession?.question || initialPersistedSession?.question || '')
+  const [messages, setMessages] = useState(() =>
+    persistedSession?.messages || initialPersistedSession?.messages || [DEFAULT_ASSISTANT_MESSAGE],
+  )
+  const [conversationContext, setConversationContext] = useState(() =>
+    normalizeConversationContextValue(persistedSession?.conversationContext || initialPersistedSession?.conversationContext),
+  )
   const [isLoading, setIsLoading] = useState(false)
   const [productCatalog, setProductCatalog] = useState([])
-  const [conversationContext, setConversationContext] = useState(null)
   const messageIdRef = useRef(2)
-  const [messages, setMessages] = useState([
-    {
-      id: 1,
-      role: 'assistant',
-      content:
-        'Xin chào. Đây là AI Shopping Assistant toàn màn hình. Bạn cứ mô tả nhu cầu, mình sẽ lọc sản phẩm từ kho Nexora và tư vấn chi tiết.',
-      recommendedProducts: [],
-    },
-  ])
 
   const hasMessages = useMemo(() => messages.length > 0, [messages.length])
+  const sortedHistorySessions = useMemo(
+    () => [...historySessions].sort((first, second) => Number(second.updatedAt) - Number(first.updatedAt)),
+    [historySessions],
+  )
+
+  useEffect(() => {
+    const nextIdFromMessages =
+      messages.reduce(
+        (maxId, message) => (Number.isFinite(Number(message?.id)) ? Math.max(maxId, Number(message.id)) : maxId),
+        1,
+      ) + 1
+
+    messageIdRef.current = Math.max(2, nextIdFromMessages)
+  }, [messages])
+
+  useEffect(() => {
+    if (typeof window === 'undefined') {
+      return
+    }
+
+    const sessionId = activeSessionId || createConsultantSessionId()
+    const nextSession = {
+      id: sessionId,
+      title: buildConsultantSessionTitle(messages),
+      question,
+      messages,
+      conversationContext,
+      updatedAt: getConsultantTimestamp(),
+    }
+
+    queueMicrotask(() => {
+      setHistorySessions((currentSessions) => upsertConsultantHistorySession(user, nextSession) || currentSessions)
+    })
+    writeActiveConsultantSessionId(user, sessionId)
+    writePersistedConsultantSession(user, {
+      question,
+      messages,
+      conversationContext,
+    })
+  }, [messages, question, conversationContext, user, activeSessionId])
 
   function nextMessageId() {
     const nextId = messageIdRef.current
@@ -225,6 +331,102 @@ function AIConsultant() {
     notifyCompareResult(result, product.name)
   }
 
+  function applySession(session) {
+    if (!session) {
+      return
+    }
+
+    setActiveSessionId(session.id)
+    setQuestion(session.question || '')
+    setMessages(session.messages?.length > 0 ? session.messages : [DEFAULT_ASSISTANT_MESSAGE])
+    setConversationContext(normalizeConversationContextValue(session.conversationContext))
+    setIsLoading(false)
+    setProductCatalog([])
+    writeActiveConsultantSessionId(user, session.id)
+    writePersistedConsultantSession(user, {
+      question: session.question || '',
+      messages: session.messages?.length > 0 ? session.messages : [DEFAULT_ASSISTANT_MESSAGE],
+      conversationContext: normalizeConversationContextValue(session.conversationContext),
+    })
+  }
+
+  function handleStartNewChat() {
+    const newSessionId = createConsultantSessionId()
+    const blankSession = {
+      id: newSessionId,
+      title: 'Cuộc trò chuyện mới',
+      question: '',
+      messages: [DEFAULT_ASSISTANT_MESSAGE],
+      conversationContext: null,
+      updatedAt: getConsultantTimestamp(),
+    }
+
+    setActiveSessionId(newSessionId)
+    setQuestion('')
+    setIsLoading(false)
+    setProductCatalog([])
+    setConversationContext(null)
+    setMessages([DEFAULT_ASSISTANT_MESSAGE])
+    setHistorySessions((currentSessions) => [blankSession, ...currentSessions.filter((item) => item.id !== newSessionId)])
+    clearPersistedConsultantSession(user)
+    clearActiveConsultantSessionId(user)
+    writeActiveConsultantSessionId(user, newSessionId)
+  }
+
+  function handleSelectSession(sessionId) {
+    const session = historySessions.find((item) => String(item.id) === String(sessionId))
+    if (!session) {
+      return
+    }
+
+    applySession(session)
+  }
+
+  function handleDeleteSession(sessionId) {
+    const normalizedSessionId = String(sessionId || '').trim()
+    if (!normalizedSessionId) {
+      return
+    }
+
+    const nextSessions = removeConsultantHistorySession(user, normalizedSessionId)
+    const isDeletingActiveSession = String(activeSessionId) === normalizedSessionId
+
+    if (!isDeletingActiveSession) {
+      setHistorySessions(nextSessions)
+      return
+    }
+
+    const nextSession = nextSessions[0]
+
+    if (nextSession) {
+      setHistorySessions(nextSessions)
+      applySession(nextSession)
+      return
+    }
+
+    const newSessionId = createConsultantSessionId()
+    const freshSession = {
+      id: newSessionId,
+      title: 'Cuộc trò chuyện mới',
+      question: '',
+      messages: [DEFAULT_ASSISTANT_MESSAGE],
+      conversationContext: null,
+      updatedAt: getConsultantTimestamp(),
+    }
+
+    setHistorySessions([])
+    setActiveSessionId(newSessionId)
+    setQuestion('')
+    setIsLoading(false)
+    setProductCatalog([])
+    setConversationContext(null)
+    setMessages([DEFAULT_ASSISTANT_MESSAGE])
+    clearPersistedConsultantSession(user)
+    clearActiveConsultantSessionId(user)
+    writeActiveConsultantSessionId(user, newSessionId)
+    setHistorySessions((currentSessions) => [freshSession, ...currentSessions.filter((item) => item.id !== newSessionId)])
+  }
+
   async function submitQuestion(rawQuestion) {
     const trimmedQuestion = String(rawQuestion || '').trim()
 
@@ -277,7 +479,7 @@ function AIConsultant() {
           {
             id: nextMessageId(),
             role: 'assistant',
-            content: 'Mình cần ít nhất 2 sản phẩm hợp lệ trong giỏ hoặc danh sách compare để so sánh.',
+            content: 'Mình cần ít nhất 2 sản phẩm hợp lệ trong giỏ hoặc danh sách so sánh để so sánh.',
             recommendedProducts: [],
           },
         ])
@@ -327,8 +529,8 @@ function AIConsultant() {
           role: 'assistant',
           content:
             fallbackProducts.length > 0
-              ? 'Hệ thống AI đang bận, mình hiển thị nhanh các sản phẩm có thể phù hợp cho bạn.'
-              : 'Hiện tại mình chưa tư vấn tự động được. Bạn thử mô tả rõ hơn theo dạng: loại sản phẩm + ngân sách + ưu tiên nhé.',
+              ? 'Mình đang lọc thêm vài mẫu hợp với nhu cầu của bạn.'
+              : 'Mình chưa lấy được dữ liệu kho Nexora lúc này. Bạn thử gửi lại sau hoặc đổi 1-2 tiêu chí chính nhé.',
           recommendedProducts: fallbackProducts,
         },
       ])
@@ -351,35 +553,13 @@ function AIConsultant() {
     submitQuestion(question)
   }
 
-  function handleResetConversation() {
-    setQuestion('')
-    setIsLoading(false)
-    setProductCatalog([])
-    setConversationContext(null)
-    setMessages([
-      {
-        id: 1,
-        role: 'assistant',
-        content:
-          'Xin chào. Đây là AI Shopping Assistant toàn màn hình. Bạn cứ mô tả nhu cầu, mình sẽ lọc sản phẩm từ kho Nexora và tư vấn chi tiết.',
-        recommendedProducts: [],
-      },
-    ])
-    messageIdRef.current = 2
-  }
-
-  function handleQuickChipSelect(suggestion) {
-    setQuestion(suggestion)
-    submitQuestion(suggestion)
-  }
-
   const renderedMessages = isLoading
     ? [
         ...messages,
         {
           id: 'typing-indicator',
           role: 'assistant',
-          content: 'AI đang soạn tư vấn...',
+          content: normalizeAssistantCopy('Nexora đang suy nghĩ...'),
           isTyping: true,
           recommendedProducts: [],
         },
@@ -390,125 +570,196 @@ function AIConsultant() {
     <section className="page-section ai-consultant-page">
       <div className="section-heading">
         <div>
-          <p className="eyebrow">AI Shopping Assistant</p>
+          <p className="eyebrow">Nexora</p>
           <h1>Tư vấn toàn màn hình</h1>
+          <p className="section-subtitle">Bấm vào một phiên bên trái để mở lại đúng cuộc trò chuyện cũ.</p>
         </div>
 
-        <div className="ai-consultant-actions">
-          <button
-            type="button"
-            className="button button-secondary button-small ai-consultant-reset"
-            onClick={handleResetConversation}
-            disabled={isLoading && messages.length <= 1}
-          >
-            Đặt lại hội thoại
-          </button>
-        </div>
       </div>
 
-      <div className="ai-consultant-shell">
-        <div className="ai-consultant-messages">
-          {hasMessages
-            ? renderedMessages.map((message) => (
-                <article
-                  key={message.id}
-                  className={`ai-message ${message.role === 'user' ? 'user' : 'assistant'} ${
-                    message.isTyping ? 'typing' : ''
-                  } ${
-                    message.role === 'assistant' &&
-                    Array.isArray(message.recommendedProducts) &&
-                    message.recommendedProducts.length > 0
-                      ? 'has-products'
-                      : ''
-                  }`}
-                >
-                  <span className="ai-message-role">{message.role === 'user' ? 'Bạn' : 'AI'}</span>
-                  <p style={{ whiteSpace: 'pre-line' }}>{message.content}</p>
-
-                  {message.role === 'assistant' &&
-                  Array.isArray(message.recommendedProducts) &&
-                  message.recommendedProducts.length > 0 ? (
-                    <div className="ai-product-results">
-                      {message.recommendedProducts.slice(0, 5).map((product) => (
-                        <article key={`${message.id}-${product.id}`} className="ai-product-result-item">
-                          <img src={product.image || PRODUCT_FALLBACK_IMAGE} alt={product.name} loading="lazy" />
-                          <div className="ai-product-result-body">
-                            <div className="ai-product-result-copy">
-                              <strong>{product.name}</strong>
-                              <span>{getProductCategoryLabel(product.category)}</span>
-                              <StarRating
-                                value={product.averageRating}
-                                reviewCount={product.totalReviews}
-                                readonly
-                                size="xs"
-                                showValue={product.totalReviews > 0}
-                                ariaLabel={`Đánh giá của ${product.name}`}
-                              />
-                              <p>{formatCurrency(product.price)}</p>
-                              <small>{product.stock > 0 ? `Còn hàng: ${product.stock}` : 'Tạm hết hàng'}</small>
-                            </div>
-                            <div className="ai-product-result-actions">
-                              <Link to={`/products/${product.id}`} className="button button-small">
-                                Xem chi tiết
-                              </Link>
-                              <button
-                                type="button"
-                                className="button button-small"
-                                onClick={() => handleAddProductToCart(product)}
-                              >
-                                Thêm vào giỏ
-                              </button>
-                              <button
-                                type="button"
-                                className="button button-small button-secondary"
-                                onClick={() => handleAddProductToCompare(product)}
-                              >
-                                So sánh
-                              </button>
-                            </div>
-                          </div>
-                        </article>
-                      ))}
-                    </div>
-                  ) : null}
-                </article>
-              ))
-            : null}
-        </div>
-
-        <form className="ai-consultant-form" onSubmit={handleSubmit}>
-          <div className="ai-quick-chips" aria-label="Gợi ý nhanh">
-            {QUICK_SUGGESTION_CHIPS.map((suggestion) => (
-              <button
-                key={suggestion}
-                type="button"
-                className="ai-quick-chip"
-                onClick={() => handleQuickChipSelect(suggestion)}
-                disabled={isLoading}
-              >
-                {suggestion}
-              </button>
-            ))}
-          </div>
-
-          <textarea
-            rows="4"
-            value={question}
-            onChange={(event) => setQuestion(event.target.value)}
-            onKeyDown={handleQuestionKeyDown}
-            placeholder="Ví dụ: Tôi cần laptop học lập trình dưới 25 triệu, pin tốt, nhẹ"
-            disabled={isLoading}
-          />
-
-          <div className="ai-consultant-form-actions">
-            <button type="submit" className="button" disabled={isLoading}>
-              {isLoading ? 'Đang tư vấn...' : 'Gửi tư vấn'}
+      <div className="ai-consultant-layout">
+        <aside className="ai-consultant-history">
+          <div className="ai-consultant-history-header">
+            <div>
+              <p className="eyebrow">Lịch sử chat</p>
+              <h2>Phiên gần đây</h2>
+            </div>
+            <button
+              type="button"
+              className="ai-consultant-history-new"
+              onClick={handleStartNewChat}
+              aria-label="Tạo hội thoại mới"
+              title="Tạo hội thoại mới"
+            >
+              <i className="fa-solid fa-plus" aria-hidden="true" />
             </button>
           </div>
-        </form>
+
+          <div className="ai-consultant-history-list">
+            {sortedHistorySessions.length > 0 ? (
+              sortedHistorySessions.map((session) => {
+                const isActive = String(session.id) === String(activeSessionId)
+                return (
+                  <div
+                    key={session.id}
+                    className={`ai-consultant-history-item ${isActive ? 'active' : ''}`}
+                    role="button"
+                    tabIndex={0}
+                    onClick={() => handleSelectSession(session.id)}
+                    onKeyDown={(event) => {
+                      if (event.key !== 'Enter' && event.key !== ' ') {
+                        return
+                      }
+
+                      event.preventDefault()
+                      handleSelectSession(session.id)
+                    }}
+                  >
+                    <strong>{session.title || 'Cuộc trò chuyện mới'}</strong>
+                    <button
+                      type="button"
+                      className="ai-consultant-history-delete"
+                      aria-label={`Xóa ${session.title || 'cuộc trò chuyện'}`}
+                      title="Xóa đoạn hội thoại"
+                      onClick={(event) => {
+                        event.preventDefault()
+                        event.stopPropagation()
+                        handleDeleteSession(session.id)
+                      }}
+                    >
+                      <i className="fa-solid fa-xmark" aria-hidden="true" />
+                    </button>
+                  </div>
+                )
+              })
+            ) : (
+              <div className="ai-consultant-history-empty">Chưa có lịch sử chat nào.</div>
+            )}
+          </div>
+        </aside>
+
+        <div className="ai-consultant-shell">
+          <div className="ai-consultant-shell-header">
+            <div>
+              <p className="eyebrow">Nexora</p>
+              <h2>Hội thoại hiện tại</h2>
+            </div>
+            <button
+              type="button"
+              className="button button-secondary button-small ai-consultant-reset"
+              onClick={handleStartNewChat}
+              disabled={isLoading && messages.length <= 1}
+            >
+              Đặt lại hội thoại
+            </button>
+          </div>
+
+          <div className="ai-consultant-messages">
+            {hasMessages
+              ? renderedMessages.map((message) => (
+                  <article
+                    key={message.id}
+                    className={`ai-message ${message.role === 'user' ? 'user' : 'assistant'} ${
+                      message.isTyping ? 'typing' : ''
+                    } ${
+                      message.role === 'assistant' &&
+                      Array.isArray(message.recommendedProducts) &&
+                      message.recommendedProducts.length > 0
+                        ? 'has-products'
+                        : ''
+                    }`}
+                  >
+                    <span className="ai-message-role">{message.role === 'user' ? 'Bạn' : 'Nexora'}</span>
+                    <p style={{ whiteSpace: 'pre-line' }}>{message.content}</p>
+
+                    {message.role === 'assistant' &&
+                    Array.isArray(message.recommendedProducts) &&
+                    message.recommendedProducts.length > 0 ? (
+                      <div className="ai-product-results">
+                        {message.recommendedProducts.slice(0, 5).map((product) => (
+                          <article key={`${message.id}-${product.id}`} className="ai-product-result-item">
+                            <img src={product.image || PRODUCT_FALLBACK_IMAGE} alt={product.name} loading="lazy" />
+                            <div className="ai-product-result-body">
+                              <div className="ai-product-result-copy">
+                                <strong>{product.name}</strong>
+                                <span>{getProductCategoryLabel(product.category)}</span>
+                                <StarRating
+                                  value={product.averageRating}
+                                  reviewCount={product.totalReviews}
+                                  readonly
+                                  size="xs"
+                                  showValue={product.totalReviews > 0}
+                                  ariaLabel={`Đánh giá của ${product.name}`}
+                                />
+                                <p>{formatCurrency(product.price)}</p>
+                                <small>{product.stock > 0 ? `Còn hàng: ${product.stock}` : 'Tạm hết hàng'}</small>
+                              </div>
+                              <div className="ai-product-result-actions">
+                                <Link to={`/products/${product.id}`} className="button button-small">
+                                  Xem chi tiết
+                                </Link>
+                                <button
+                                  type="button"
+                                  className="button button-small"
+                                  onClick={() => handleAddProductToCart(product)}
+                                >
+                                  Thêm vào giỏ
+                                </button>
+                                <button
+                                  type="button"
+                                  className="button button-small button-secondary"
+                                  onClick={() => handleAddProductToCompare(product)}
+                                >
+                                  So sánh
+                                </button>
+                              </div>
+                            </div>
+                          </article>
+                        ))}
+                      </div>
+                    ) : null}
+                  </article>
+                ))
+              : null}
+          </div>
+
+          <form className="ai-consultant-form" onSubmit={handleSubmit}>
+            <div className="ai-quick-chips" aria-label="Gợi ý nhanh">
+              {QUICK_SUGGESTION_CHIPS.map((suggestion) => (
+                <button
+                  key={suggestion}
+                  type="button"
+                  className="ai-quick-chip"
+                  onClick={() => {
+                    setQuestion(suggestion)
+                    submitQuestion(suggestion)
+                  }}
+                  disabled={isLoading}
+                >
+                  {suggestion}
+                </button>
+              ))}
+            </div>
+
+            <textarea
+              rows="4"
+              value={question}
+              onChange={(event) => setQuestion(event.target.value)}
+              onKeyDown={handleQuestionKeyDown}
+              placeholder="Ví dụ: Tôi cần laptop học lập trình dưới 25 triệu, pin tốt, nhẹ"
+              disabled={isLoading}
+            />
+
+            <div className="ai-consultant-form-actions">
+              <button type="submit" className="button" disabled={isLoading || !question.trim()}>
+                {isLoading ? 'Đang tư vấn...' : 'Gửi tư vấn'}
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     </section>
   )
 }
 
-export default AIConsultant
+export default NexoraConsultant

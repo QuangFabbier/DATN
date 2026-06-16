@@ -1,4 +1,3 @@
-
 [
   {
     "name": "Google Pixel 10 128GB",
@@ -7,7 +6,12 @@
     "price": 20990000,
     "stock": 25,
     "minStockLevel": 8,
-    "images": [],
+    "images": [
+      "https://lh3.googleusercontent.com/iJZlOVuNzjHQEt49dPzgnl-m1FnH9iOqqoUq95UFqXl-XAmsgLJMLutdyfvTyvCCRP00hvZrU_18ZB-QXzmWj3uRKd-TBiWLsw=s3000-w3000-e365-rw-v0-nu",
+      "https://lh3.googleusercontent.com/KPpoHAWlPoXtQf1NYwEM2qu3btzDa93FriuoEqZ7DVF75lpg-FEOLgHxWSBK9m0VxkgM34dnOGMAwvwYMU3x39Pb_uJ1HMLk5w=s3000-w3000-e365-rw-v0-nu",
+      "https://lh3.googleusercontent.com/hNPedyGt4zmtmhchMf3VLz0iSqSPbX3KMGRPw5WPsl2P2eXdOM0tKK-GB_kek2FabXyJjwhZe_ZeSfpqorAD8a6tfR7secM5zg=s3000-w3000-e365-rw-v0-nu",
+      "https://lh3.googleusercontent.com/6BW_pqhtFwQx83kww0_oS6VT6mlfS5yiT27BqpzJql5zKQyjXMmqbMmOovxWQScjOvXBAL0kVAPbBzrox-Ew188mdjnkHTIGPQI=s3000-w3000-e365-rw-v0-nu"
+    ],
     "description": "Google Pixel 10 128GB là mẫu smartphone cao cấp hướng đến những người dùng yêu thích trải nghiệm Android nguyên bản và khả năng xử lý hình ảnh bằng trí tuệ nhân tạo. Máy sở hữu thiết kế tối giản nhưng hiện đại, mang đến cảm giác cao cấp và khác biệt. Chip Tensor G6 kết hợp cùng 12GB RAM giúp thiết bị hoạt động mượt mà trong các tác vụ hàng ngày và tận dụng tốt các tính năng AI. Màn hình OLED 120Hz mang lại trải nghiệm hiển thị sắc nét và sống động. Hệ thống camera nổi tiếng của Pixel hỗ trợ chụp ảnh chất lượng cao với khả năng xử lý hậu kỳ thông minh. Đây là lựa chọn phù hợp cho những người dùng yêu thích hệ điều hành Android thuần khiết.",
     "specifications": {
       "screen": "6.3 inch OLED 120Hz",
@@ -16,7 +20,8 @@
       "storage": "128GB",
       "battery": "5000mAh",
       "camera": "50MP + 48MP"
-    }
+    },
+    "image": "https://lh3.googleusercontent.com/iJZlOVuNzjHQEt49dPzgnl-m1FnH9iOqqoUq95UFqXl-XAmsgLJMLutdyfvTyvCCRP00hvZrU_18ZB-QXzmWj3uRKd-TBiWLsw=s3000-w3000-e365-rw-v0-nu"
   },
   {
     "name": "Google Pixel 10 Pro 256GB",
@@ -25,7 +30,12 @@
     "price": 26990000,
     "stock": 20,
     "minStockLevel": 8,
-    "images": [],
+    "images": [
+      "https://lh3.googleusercontent.com/k_JL8G9XNxlS5z8NxBcTvYTx7xyRkg2C5VoqgERK4uGt-CoZUG5wybmA2qkMzmGOURqfGkoKhemxYhyX5Q562NYSLx_zHG7JmCs=s3000-w3000-e365-rw-v0-nu",
+      "https://lh3.googleusercontent.com/lD5KwCdw9so1SsUg0wIKUAIRqFqNLq8I56iWWXDMKd7uojW9xr-LYOvCaRJQUBUFcXOrcY_Y13rAc2NdmU8309TNlCnJuT8tZg=s3000-w3000-e365-rw-v0-nu",
+      "https://lh3.googleusercontent.com/1F2jQCa6eV8DQpFkAeCipsm3U8RoC6xShfcYFm2w0Eksnl3-QxTiIHBK-2HiHsD9F3R8jYgFgY-vNyPXdH_BZ3j3Uuy2Wg4DHrA=s3000-w3000-e365-rw-v0-nu",
+      "https://lh3.googleusercontent.com/99O-NNN6AbXSfPLW05S81yiTHg3saZY53OpxeEIkwm-nY_fmyqRX7Nk556gvapAyILndhCt7T2No6GaXkm_TK2vMHNXnuaW1a_0=s3000-w3000-e365-rw-v0-nu"
+    ],
     "description": "Google Pixel 10 Pro 256GB được phát triển dành cho người dùng mong muốn trải nghiệm những tính năng AI tiên tiến nhất của Google trên một thiết bị mạnh mẽ và cao cấp. Máy được trang bị chip Tensor G6 cùng 16GB RAM, đáp ứng tốt các nhu cầu từ công việc đến giải trí. Màn hình LTPO OLED với tần số quét thích ứng 120Hz mang lại trải nghiệm hiển thị mượt mà và tiết kiệm pin. Hệ thống camera đa ống kính giúp người dùng ghi lại những bức ảnh chất lượng cao với màu sắc tự nhiên. Bộ nhớ trong 256GB đáp ứng tốt nhu cầu lưu trữ lâu dài.",
     "specifications": {
       "screen": "6.7 inch LTPO OLED 120Hz",
@@ -34,7 +44,8 @@
       "storage": "256GB",
       "battery": "5300mAh",
       "camera": "50MP + 48MP + 48MP"
-    }
+    },
+    "image": "https://lh3.googleusercontent.com/k_JL8G9XNxlS5z8NxBcTvYTx7xyRkg2C5VoqgERK4uGt-CoZUG5wybmA2qkMzmGOURqfGkoKhemxYhyX5Q562NYSLx_zHG7JmCs=s3000-w3000-e365-rw-v0-nu"
   },
   {
     "name": "Google Pixel 10 Pro XL 512GB",
@@ -43,7 +54,12 @@
     "price": 31990000,
     "stock": 15,
     "minStockLevel": 5,
-    "images": [],
+    "images": [
+      "https://lh3.googleusercontent.com/DnJ0csj1DFQRVwYw5dMvX0V0qswZYtixZrQc5scm79FpHWJ2NHpyviHKIPq6_0CRvVnKrSPK7mCWh9OfCt_HRuZjXHAGIKHeNctx=s3000-w3000-e365-rw-v0-nu",
+      "https://lh3.googleusercontent.com/L7VyigCF2k3jt7QXMeFOSYqMNgxGHuZeh7QADEQ8GGRHbfpWYB4s1rP9B-gkaEkO8uR1AF52xI_Ybm5W4pehfTq2YVw_RBJ4Pg=s3000-w3000-e365-rw-v0-nu",
+      "https://lh3.googleusercontent.com/MR6x7xbHpex7Ck07eBYogsuIQYPyDHxLFXxlcMmtWWKmGYEogp0-ziwistdEOp1kODy63HBDV7RQsvWGWBajOmyIvLPWaHMvUx8=s3000-w3000-e365-rw-v0-nu",
+      "https://lh3.googleusercontent.com/xAfThg-V51jGB66Yw7DdENy-9NUX84TUJqfOJyDDMcW4oAfmOmRbfrmpwvEEoMK5ZqabAoUcXE6ZJ1U87ZcW2GPVGs77sakzBg=s3000-w3000-e365-rw-v0-nu"
+    ],
     "description": "Google Pixel 10 Pro XL 512GB là mẫu smartphone cao cấp nhất của Google, mang đến trải nghiệm Android nguyên bản kết hợp cùng sức mạnh của trí tuệ nhân tạo. Thiết bị được trang bị màn hình lớn, cấu hình mạnh mẽ và hệ thống camera tiên tiến nhằm phục vụ tốt cho cả nhu cầu công việc lẫn sáng tạo nội dung. Chip Tensor G6 cùng 16GB RAM giúp xử lý hiệu quả các tác vụ AI và đa nhiệm. Camera Pixel nổi tiếng với khả năng tái tạo màu sắc chân thực và xử lý ảnh thông minh. Với bộ nhớ trong 512GB, đây là lựa chọn phù hợp cho những người dùng chuyên nghiệp cần không gian lưu trữ lớn.",
     "specifications": {
       "screen": "6.8 inch LTPO OLED 120Hz",
@@ -52,7 +68,7 @@
       "storage": "512GB",
       "battery": "5500mAh",
       "camera": "50MP + 48MP + 48MP"
-    }
+    },
+    "image": "https://lh3.googleusercontent.com/DnJ0csj1DFQRVwYw5dMvX0V0qswZYtixZrQc5scm79FpHWJ2NHpyviHKIPq6_0CRvVnKrSPK7mCWh9OfCt_HRuZjXHAGIKHeNctx=s3000-w3000-e365-rw-v0-nu"
   }
 ]
-

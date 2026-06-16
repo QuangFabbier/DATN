@@ -6,8 +6,13 @@
     "price": 249000,
     "stock": 120,
     "minStockLevel": 25,
-    "images": [],
-    "description": "Logitech K120 là bàn phím có dây phổ thông dành cho văn phòng, trường học và sử dụng gia đình. Thiết kế đầy đủ phím chức năng, độ bền cao và cảm giác gõ ổn định giúp đáp ứng tốt nhu cầu nhập liệu hằng ngày.",
+    "image": "https://resource.logitech.com/w_544%2Ch_466%2Car_7%3A6%2Cc_pad%2Cq_auto%2Cf_auto%2Cdpr_1.0/d_transparent.gif/content/dam/logitech/en/products/keyboards/k120/gallery/k120-gallery-01-new.png",
+    "images": [
+      "https://resource.logitech.com/w_544%2Ch_466%2Car_7%3A6%2Cc_pad%2Cq_auto%2Cf_auto%2Cdpr_1.0/d_transparent.gif/content/dam/logitech/en/products/keyboards/k120/gallery/k120-gallery-01-new.png",
+      "https://resource.logitech.com/w_544%2Ch_466%2Car_7%3A6%2Cc_pad%2Cq_auto%2Cf_auto%2Cdpr_1.0/d_transparent.gif/content/dam/logitech/en/products/keyboards/k120/gallery/k120-gallery-02-new.png",
+      "https://resource.logitech.com/w_544%2Ch_466%2Car_7%3A6%2Cc_pad%2Cq_auto%2Cf_auto%2Cdpr_1.0/d_transparent.gif/content/dam/logitech/en/products/keyboards/k120/gallery/k120-gallery-03-new.png"
+    ],
+    "description": "Logitech K120 lÃ  bÃ n phÃ­m cÃ³ dÃ¢y phá»• thÃ´ng dÃ nh cho vÄƒn phÃ²ng, trÆ°á»ng há»c vÃ  sá»­ dá»¥ng gia Ä‘Ã¬nh. Thiáº¿t káº¿ Ä‘áº§y Ä‘á»§ phÃ­m chá»©c nÄƒng, Ä‘á»™ bá»n cao vÃ  cáº£m giÃ¡c gÃµ á»•n Ä‘á»‹nh giÃºp Ä‘Ã¡p á»©ng tá»‘t nhu cáº§u nháº­p liá»‡u háº±ng ngÃ y.",
     "specifications": {
       "type": "Membrane",
       "layout": "Full Size",
@@ -23,8 +28,13 @@
     "price": 799000,
     "stock": 90,
     "minStockLevel": 18,
-    "images": [],
-    "description": "Logitech K380 là bàn phím Bluetooth nhỏ gọn hỗ trợ kết nối nhiều thiết bị cùng lúc. Thiết kế tối giản, dễ mang theo và tương thích với Windows, macOS, Android và iPadOS.",
+    "image": "https://resource.logitech.com/w_544%2Ch_466%2Car_7%3A6%2Cc_pad%2Cq_auto%2Cf_auto%2Cdpr_1.0/d_transparent.gif/content/dam/logitech/en/products/keyboards/multi-keyboard-k380/gallery/k380-sand-gallery-1-cht.png",
+    "images": [
+      "https://resource.logitech.com/w_544%2Ch_466%2Car_7%3A6%2Cc_pad%2Cq_auto%2Cf_auto%2Cdpr_1.0/d_transparent.gif/content/dam/logitech/en/products/keyboards/multi-keyboard-k380/gallery/k380-sand-gallery-1-cht.png",
+      "https://resource.logitech.com/w_544%2Ch_466%2Car_7%3A6%2Cc_pad%2Cq_auto%2Cf_auto%2Cdpr_1.0/d_transparent.gif/content/dam/logitech/en/products/keyboards/multi-keyboard-k380/gallery/k380-sand-gallery-3.png",
+      "https://resource.logitech.com/w_544%2Ch_466%2Car_7%3A6%2Cc_pad%2Cq_auto%2Cf_auto%2Cdpr_1.0/d_transparent.gif/content/dam/logitech/en/products/keyboards/multi-keyboard-k380/gallery/k380-sand-gallery-4.png"
+    ],
+    "description": "Logitech K380 lÃ  bÃ n phÃ­m Bluetooth nhá» gá»n há»— trá»£ káº¿t ná»‘i nhiá»u thiáº¿t bá»‹ cÃ¹ng lÃºc. Thiáº¿t káº¿ tá»‘i giáº£n, dá»… mang theo vÃ  tÆ°Æ¡ng thÃ­ch vá»›i Windows, macOS, Android vÃ  iPadOS.",
     "specifications": {
       "type": "Wireless Keyboard",
       "layout": "Compact",
@@ -40,8 +50,13 @@
     "price": 2690000,
     "stock": 45,
     "minStockLevel": 10,
-    "images": [],
-    "description": "Logitech MX Keys S là bàn phím cao cấp dành cho lập trình viên, designer và nhân viên văn phòng chuyên nghiệp. Phím bấm êm, có đèn nền thông minh và hỗ trợ kết nối đa thiết bị.",
+    "image": "https://resource.logitech.com/w_544%2Ch_466%2Car_7%3A6%2Cc_pad%2Cq_auto%2Cf_auto%2Cdpr_1.0/d_transparent.gif/content/dam/logitech/en/products/keyboards/mx-keys-s/migration-assets-for-delorean-2025/gallery/mx-keys-s-top-view-pale-gray-ch.png",
+    "images": [
+      "https://resource.logitech.com/w_544%2Ch_466%2Car_7%3A6%2Cc_pad%2Cq_auto%2Cf_auto%2Cdpr_1.0/d_transparent.gif/content/dam/logitech/en/products/keyboards/mx-keys-s/migration-assets-for-delorean-2025/gallery/mx-keys-s-top-view-pale-gray-ch.png",
+      "https://resource.logitech.com/w_544%2Ch_544%2Car_1%2Cc_fill%2Cq_auto%2Cf_auto%2Cdpr_1.0/d_transparent.gif/content/dam/logitech/en/products/keyboards/mx-keys-s/migration-assets-for-delorean-2025/gallery/mx-keys-s-pale-gray-wireless-keyboard-desk-setup.jpg",
+      "https://resource.logitech.com/w_544%2Ch_544%2Car_1%2Cc_fill%2Cq_auto%2Cf_auto%2Cdpr_1.0/d_transparent.gif/content/dam/logitech/en/products/keyboards/mx-keys-s/migration-assets-for-delorean-2025/gallery/person-typing-mx-keys-s-pale-gray.png"
+    ],
+    "description": "Logitech MX Keys S lÃ  bÃ n phÃ­m cao cáº¥p dÃ nh cho láº­p trÃ¬nh viÃªn, designer vÃ  nhÃ¢n viÃªn vÄƒn phÃ²ng chuyÃªn nghiá»‡p. PhÃ­m báº¥m Ãªm, cÃ³ Ä‘Ã¨n ná»n thÃ´ng minh vÃ  há»— trá»£ káº¿t ná»‘i Ä‘a thiáº¿t bá»‹.",
     "specifications": {
       "type": "Premium Wireless",
       "layout": "Full Size",
@@ -57,8 +72,13 @@
     "price": 2590000,
     "stock": 55,
     "minStockLevel": 12,
-    "images": [],
-    "description": "Apple Magic Keyboard USB-C là bàn phím không dây tối ưu cho người dùng MacBook, iMac và iPad. Thiết kế mỏng nhẹ, cảm giác gõ chính xác và thời lượng pin dài.",
+    "image": "https://cdsassets.apple.com/live/7WUAS350/images/tech-specs/magic-keyboard-usb-c-us.png",
+    "images": [
+      "https://cdsassets.apple.com/live/7WUAS350/images/tech-specs/magic-keyboard-usb-c-us.png",
+      "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/MXCL3_AV1?.v=cURReGNCZlU5UkVadzd6cVJOQmRkaVRkTXNZOFJZTitTVFE0NHl0VW5Cb0YwVmtIbGRkS25RMVpBRlo0bk5DUXZvSXlKR08xYnB5VnJrQVBuRU1DaVE&fmt=jpeg&hei=2000&qlt=90&wid=2000",
+      "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/MXCL3_AV2?.v=c0NVVm53aDhwY0MrZ3JCeWpEN3lSQ1RkTXNZOFJZTitTVFE0NHl0VW5Cb0YwVmtIbGRkS25RMVpBRlo0bk5DUXFKajNVQmJ6THR0QktTSUhUUXZsK1E&fmt=jpeg&hei=2000&qlt=90&wid=2000"
+    ],
+    "description": "Apple Magic Keyboard USB-C lÃ  bÃ n phÃ­m khÃ´ng dÃ¢y tá»‘i Æ°u cho ngÆ°á»i dÃ¹ng MacBook, iMac vÃ  iPad. Thiáº¿t káº¿ má»ng nháº¹, cáº£m giÃ¡c gÃµ chÃ­nh xÃ¡c vÃ  thá»i lÆ°á»£ng pin dÃ i.",
     "specifications": {
       "type": "Wireless Keyboard",
       "layout": "Compact",
@@ -74,8 +94,13 @@
     "price": 2290000,
     "stock": 70,
     "minStockLevel": 15,
-    "images": [],
-    "description": "Keychron K2 Pro là bàn phím cơ không dây được yêu thích bởi lập trình viên và người dùng MacBook. Thiết bị hỗ trợ hotswap, Bluetooth và tương thích đa nền tảng.",
+    "image": "https://www.keychron.com/cdn/shop/products/Keychron-K2-Pro-QMK-VIA-custom-mechanical-keyboard-75-percent-layout-Mac-Windows-Linux-Keychron-K-Pro-switch-red.jpg?v=1690876125&width=160",
+    "images": [
+      "https://www.keychron.com/cdn/shop/products/Keychron-K2-Pro-QMK-VIA-custom-mechanical-keyboard-75-percent-layout-Mac-Windows-Linux-Keychron-K-Pro-switch-red.jpg?v=1690876125&width=160",
+      "https://cdn.shopify.com/s/files/1/0059/0630/1017/t/5/assets/keychronk2prowirelesscustommechanicalkeyboard-1670291563312.jpg?v=1670291565",
+      "https://cdn.shopify.com/s/files/1/0059/0630/1017/files/K2-Pro-C1.jpg?v=1697442451"
+    ],
+    "description": "Keychron K2 Pro lÃ  bÃ n phÃ­m cÆ¡ khÃ´ng dÃ¢y Ä‘Æ°á»£c yÃªu thÃ­ch bá»Ÿi láº­p trÃ¬nh viÃªn vÃ  ngÆ°á»i dÃ¹ng MacBook. Thiáº¿t bá»‹ há»— trá»£ hotswap, Bluetooth vÃ  tÆ°Æ¡ng thÃ­ch Ä‘a ná»n táº£ng.",
     "specifications": {
       "type": "Mechanical Keyboard",
       "layout": "75%",
@@ -91,8 +116,13 @@
     "price": 2490000,
     "stock": 60,
     "minStockLevel": 12,
-    "images": [],
-    "description": "Keychron K8 Pro là bàn phím cơ TKL phù hợp cho lập trình, làm việc văn phòng và gaming nhẹ. Thiết kế cân bằng giữa tính di động và trải nghiệm gõ.",
+    "image": "https://www.keychron.co.th/cdn/shop/files/cover_e6505dae-d493-437d-be37-f3fa03d1beb4.jpg?v=1725119082&width=1200",
+    "images": [
+      "https://www.keychron.co.th/cdn/shop/files/cover_e6505dae-d493-437d-be37-f3fa03d1beb4.jpg?v=1725119082&width=1200",
+      "https://www.keychron.co.th/cdn/shop/files/K8-Pro-White-1cover.jpg?v=1721892798&width=1200",
+      "https://www.keychron.co.th/cdn/shop/files/5-K2-Pro.jpg?v=1725442232&width=1200"
+    ],
+    "description": "Keychron K8 Pro lÃ  bÃ n phÃ­m cÆ¡ TKL phÃ¹ há»£p cho láº­p trÃ¬nh, lÃ m viá»‡c vÄƒn phÃ²ng vÃ  gaming nháº¹. Thiáº¿t káº¿ cÃ¢n báº±ng giá»¯a tÃ­nh di Ä‘á»™ng vÃ  tráº£i nghiá»‡m gÃµ.",
     "specifications": {
       "type": "Mechanical Keyboard",
       "layout": "TKL",
@@ -108,8 +138,13 @@
     "price": 4990000,
     "stock": 30,
     "minStockLevel": 8,
-    "images": [],
-    "description": "Keychron Q1 Max là bàn phím cơ cao cấp với khung nhôm CNC, hỗ trợ wireless và trải nghiệm gõ chất lượng cao dành cho người dùng chuyên nghiệp.",
+    "image": "https://www.keychron.com/cdn/shop/files/Keychron-Q1-Max-QMK-VIA-Wireless-Custom-Mechanical-Keyboard-75_-Layout-Aluminum-White-Fully-Assembled-Knob-JIS-Layout-for-Mac-Windows-Linux-Gateron-Jupiter-Red.jpg?v=1718087462&width=160",
+    "images": [
+      "https://www.keychron.com/cdn/shop/files/Keychron-Q1-Max-QMK-VIA-Wireless-Custom-Mechanical-Keyboard-75_-Layout-Aluminum-White-Fully-Assembled-Knob-JIS-Layout-for-Mac-Windows-Linux-Gateron-Jupiter-Red.jpg?v=1718087462&width=160",
+      "https://www.keychron.com/cdn/shop/files/Keychron-Q1-Max-QMK-VIA-Wireless-Custom-Mechanical-Keyboard-75_-Layout-Aluminum-White-Fully-Assembled-Knob-JIS-Layout-for-Mac-Windows-Linux-Gateron-Jupiter-Brown.jpg?v=1718087480&width=160",
+      "https://www.keychron.com/cdn/shop/files/Keychron-Q1-Max-QMK-VIA-Wireless-Custom-Mechanical-Keyboard-75_-Layout-Aluminum-White-Fully-Assembled-Knob-JIS-Layout-for-Mac-Windows-Linux-Gateron-Jupiter-Banana.jpg?v=1718087498&width=160"
+    ],
+    "description": "Keychron Q1 Max lÃ  bÃ n phÃ­m cÆ¡ cao cáº¥p vá»›i khung nhÃ´m CNC, há»— trá»£ wireless vÃ  tráº£i nghiá»‡m gÃµ cháº¥t lÆ°á»£ng cao dÃ nh cho ngÆ°á»i dÃ¹ng chuyÃªn nghiá»‡p.",
     "specifications": {
       "type": "Mechanical Keyboard",
       "layout": "75%",
@@ -125,15 +160,20 @@
     "price": 3490000,
     "stock": 40,
     "minStockLevel": 10,
-    "images": [],
-    "description": "Razer BlackWidow V4 là bàn phím cơ gaming cao cấp với đèn RGB Chroma và switch cơ học tối ưu cho game thủ chuyên nghiệp.",
+    "images": [
+      "https://assets2.razerzone.com/images/pnx.assets/b2365984c607948cd60ebe738ea2e6b8/razer-blackwidow-v4-hero-desktop.webp",
+      "https://assets2.razerzone.com/images/pnx.assets/431674bde4a2268e2b68818fe0c3ec51/razer-blackwidow-v4-lighting-desktop.webp",
+      "https://assets2.razerzone.com/images/pnx.assets/f942fc799c634f4855a3f2a97a341187/razer-blackwidow-v4-mechanical-switches-desktop.webp"
+    ],
+    "description": "Razer BlackWidow V4 lÃ  bÃ n phÃ­m cÆ¡ gaming cao cáº¥p vá»›i Ä‘Ã¨n RGB Chroma vÃ  switch cÆ¡ há»c tá»‘i Æ°u cho game thá»§ chuyÃªn nghiá»‡p.",
     "specifications": {
       "type": "Gaming Mechanical",
       "layout": "Full Size",
       "connection": "USB",
       "backlight": "RGB Chroma",
       "switch": "Razer Green"
-    }
+    },
+    "image": "https://assets2.razerzone.com/images/pnx.assets/b2365984c607948cd60ebe738ea2e6b8/razer-blackwidow-v4-hero-desktop.webp"
   },
   {
     "name": "Razer Huntsman Mini",
@@ -142,15 +182,21 @@
     "price": 2690000,
     "stock": 50,
     "minStockLevel": 12,
-    "images": [],
-    "description": "Razer Huntsman Mini là bàn phím cơ 60% nhỏ gọn dành cho game thủ FPS cần nhiều không gian rê chuột và tốc độ phản hồi cao.",
+    "images": [
+      "https://assets2.razerzone.com/images/pnx.assets/59ae30a3aeca25f4a702515d7a05e099/razer-huntsman-mini-2020-hero-mobile-v2.jpg",
+      "https://assets2.razerzone.com/images/pnx.assets/1da2873f5f76c4e185ed90fb33408a1d/razer-huntsman-mini-2020-usp-form-factors-mobile.jpg",
+      "https://assets2.razerzone.com/images/pnx.assets/9acd93122d03d19da7881630eaaaafd2/razer-huntsman-mini-2020-usp-available-in-mobile.jpg",
+      "https://assets2.razerzone.com/images/pnx.assets/e7d77564a0b135689c4de7b119c14fea/razer-huntsman-mini-2020-usp-onboard-mobile.jpg"
+    ],
+    "description": "Razer Huntsman Mini lÃ  bÃ n phÃ­m cÆ¡ 60% nhá» gá»n dÃ nh cho game thá»§ FPS cáº§n nhiá»u khÃ´ng gian rÃª chuá»™t vÃ  tá»‘c Ä‘á»™ pháº£n há»“i cao.",
     "specifications": {
       "type": "Gaming Mechanical",
       "layout": "60%",
       "connection": "USB-C",
       "backlight": "RGB Chroma",
       "switch": "Optical Red"
-    }
+    },
+    "image": "https://assets2.razerzone.com/images/pnx.assets/59ae30a3aeca25f4a702515d7a05e099/razer-huntsman-mini-2020-hero-mobile-v2.jpg"
   },
   {
     "name": "Logitech G Pro X TKL Lightspeed",
@@ -159,15 +205,20 @@
     "price": 4590000,
     "stock": 35,
     "minStockLevel": 8,
-    "images": [],
-    "description": "Logitech G Pro X TKL Lightspeed là bàn phím gaming không dây dành cho eSports với độ trễ thấp, thiết kế nhỏ gọn và độ bền cao.",
+    "images": [
+      "https://resource.logitechg.com/w_544%2Ch_466%2Car_7%3A6%2Cc_pad%2Cq_auto%2Cf_auto%2Cdpr_1.0/d_transparent.gif/content/dam/gaming/en/products/pro-x-tkl/gallery-2-pro-x-tkl-black-lightspeed-gaming-keyboard.png.png",
+      "https://resource.logitechg.com/w_544%2Ch_544%2Car_1%2Cc_fill%2Cq_auto%2Cf_auto%2Cdpr_1.0/d_transparent.gif/content/dam/gaming/en/products/pro-x-tkl/round-2/pro-x-tkl-black-light-speed-wireless-gaming-keyboard.png",
+      "https://resource.logitechg.com/w_544%2Ch_466%2Car_7%3A6%2Cc_pad%2Cq_auto%2Cf_auto%2Cdpr_1.0/d_transparent.gif/content/dam/gaming/en/products/pro-x-tkl/gallery-3-pro-x-tkl-black-lightspeed-gaming-keyboard.png.png"
+    ],
+    "description": "Logitech G Pro X TKL Lightspeed lÃ  bÃ n phÃ­m gaming khÃ´ng dÃ¢y dÃ nh cho eSports vá»›i Ä‘á»™ trá»… tháº¥p, thiáº¿t káº¿ nhá» gá»n vÃ  Ä‘á»™ bá»n cao.",
     "specifications": {
       "type": "Gaming Mechanical",
       "layout": "TKL",
       "connection": "Lightspeed Wireless",
       "backlight": "RGB",
       "switch": "GX Brown"
-    }
+    },
+    "image": "https://resource.logitechg.com/w_544%2Ch_466%2Car_7%3A6%2Cc_pad%2Cq_auto%2Cf_auto%2Cdpr_1.0/d_transparent.gif/content/dam/gaming/en/products/pro-x-tkl/gallery-2-pro-x-tkl-black-lightspeed-gaming-keyboard.png.png"
   },
   {
     "name": "Akko 3087 V2",
@@ -176,15 +227,21 @@
     "price": 1490000,
     "stock": 80,
     "minStockLevel": 15,
-    "images": [],
-    "description": "Akko 3087 V2 là bàn phím cơ TKL phổ biến với mức giá dễ tiếp cận, phù hợp cho học tập, làm việc và chơi game.",
+    "images": [
+      "https://en.akkogear.com/wp-content/uploads/2020/09/Hello-Kitty3087-B.jpg",
+      "https://en.akkogear.com/wp-content/uploads/2020/09/Hello-Kitty-B.jpg",
+      "https://en.akkogear.com/wp-content/uploads/2020/09/Hello-Kitty.jpg",
+      "https://en.akkogear.com/wp-content/uploads/2020/09/Hello-Kitty3087-B2.jpg"
+    ],
+    "description": "Akko 3087 V2 lÃ  bÃ n phÃ­m cÆ¡ TKL phá»• biáº¿n vá»›i má»©c giÃ¡ dá»… tiáº¿p cáº­n, phÃ¹ há»£p cho há»c táº­p, lÃ m viá»‡c vÃ  chÆ¡i game.",
     "specifications": {
       "type": "Mechanical Keyboard",
       "layout": "TKL",
       "connection": "USB-C",
       "backlight": "RGB",
       "switch": "Akko CS Jelly Pink"
-    }
+    },
+    "image": "https://en.akkogear.com/wp-content/uploads/2020/09/Hello-Kitty3087-B.jpg"
   },
   {
     "name": "Akko 5075B Plus",
@@ -193,15 +250,21 @@
     "price": 1990000,
     "stock": 70,
     "minStockLevel": 15,
-    "images": [],
-    "description": "Akko 5075B Plus là bàn phím cơ wireless hỗ trợ nhiều chế độ kết nối, thiết kế hiện đại và trải nghiệm gõ tốt trong tầm giá.",
+    "images": [
+      "https://en.akkogear.com/wp-content/uploads/2023/04/Cinnamoroll-20th-Q.jpg",
+      "https://en.akkogear.com/wp-content/uploads/2023/01/Gasket-Mount.jpg",
+      "https://en.akkogear.com/wp-content/uploads/2023/01/Multi-Modes-2.jpg",
+      "https://en.akkogear.com/wp-content/uploads/2023/07/Akko-CS-Air-Switch-XTGX-150x150.jpg"
+    ],
+    "description": "Akko 5075B Plus lÃ  bÃ n phÃ­m cÆ¡ wireless há»— trá»£ nhiá»u cháº¿ Ä‘á»™ káº¿t ná»‘i, thiáº¿t káº¿ hiá»‡n Ä‘áº¡i vÃ  tráº£i nghiá»‡m gÃµ tá»‘t trong táº§m giÃ¡.",
     "specifications": {
       "type": "Mechanical Keyboard",
       "layout": "75%",
       "connection": "Bluetooth, 2.4GHz, USB-C",
       "backlight": "RGB",
       "switch": "Akko Cream Yellow"
-    }
+    },
+    "image": "https://en.akkogear.com/wp-content/uploads/2023/04/Cinnamoroll-20th-Q.jpg"
   },
   {
     "name": "DareU EK87",
@@ -210,15 +273,20 @@
     "price": 699000,
     "stock": 110,
     "minStockLevel": 20,
-    "images": [],
-    "description": "DareU EK87 là bàn phím cơ giá rẻ phù hợp cho học sinh, sinh viên và game thủ mới bắt đầu muốn trải nghiệm bàn phím cơ.",
+    "images": [
+      "https://dareu.com/cdn/shop/files/ek87pro-__04.jpg?v=1731660817",
+      "https://dareu.com/cdn/shop/files/0006_rgb.png?v=1733904728&width=900",
+      "https://dareu.com/cdn/shop/files/0003____-1.png?v=1733904728&width=900"
+    ],
+    "description": "DareU EK87 lÃ  bÃ n phÃ­m cÆ¡ giÃ¡ ráº» phÃ¹ há»£p cho há»c sinh, sinh viÃªn vÃ  game thá»§ má»›i báº¯t Ä‘áº§u muá»‘n tráº£i nghiá»‡m bÃ n phÃ­m cÆ¡.",
     "specifications": {
       "type": "Mechanical Keyboard",
       "layout": "TKL",
       "connection": "USB",
       "backlight": "Rainbow LED",
       "switch": "DareU Blue"
-    }
+    },
+    "image": "https://dareu.com/cdn/shop/files/ek87pro-__04.jpg?v=1731660817"
   },
   {
     "name": "Royal Kludge RK84",
@@ -227,15 +295,21 @@
     "price": 1590000,
     "stock": 75,
     "minStockLevel": 15,
-    "images": [],
-    "description": "Royal Kludge RK84 là bàn phím cơ wireless 75% được nhiều người dùng lựa chọn nhờ thiết kế nhỏ gọn và hỗ trợ hotswap.",
+    "images": [
+      "https://rkgamingstore.com/cdn/shop/products/compactkeyboard_1.png?v=1685352794&width=1946",
+      "https://rkgamingstore.com/cdn/shop/files/RK84wiredkeyboardblack_3.jpg?v=1685352794&width=1946",
+      "https://rkgamingstore.com/cdn/shop/files/RK84wiredkeyboardblack_5.jpg?v=1685352794&width=1946",
+      "https://rkgamingstore.com/cdn/shop/products/compactkeyboard_4.png?v=1685352794&width=416"
+    ],
+    "description": "Royal Kludge RK84 lÃ  bÃ n phÃ­m cÆ¡ wireless 75% Ä‘Æ°á»£c nhiá»u ngÆ°á»i dÃ¹ng lá»±a chá»n nhá» thiáº¿t káº¿ nhá» gá»n vÃ  há»— trá»£ hotswap.",
     "specifications": {
       "type": "Mechanical Keyboard",
       "layout": "75%",
       "connection": "Bluetooth, 2.4GHz, USB-C",
       "backlight": "RGB",
       "switch": "RK Red"
-    }
+    },
+    "image": "https://rkgamingstore.com/cdn/shop/products/compactkeyboard_1.png?v=1685352794&width=1946"
   },
   {
     "name": "SteelSeries Apex Pro TKL",
@@ -244,14 +318,20 @@
     "price": 4990000,
     "stock": 25,
     "minStockLevel": 6,
-    "images": [],
-    "description": "SteelSeries Apex Pro TKL là bàn phím gaming cao cấp sử dụng switch từ tính có thể tùy chỉnh độ nhạy, phù hợp cho game thủ chuyên nghiệp.",
+    "images": [
+      "https://cdn.mos.cms.futurecdn.net/u7W6cv7PFPKHgAEAXbExKK.jpg",
+      "https://cdn.mos.cms.futurecdn.net/imbCfF9XNtKFrKX6tLNUJ6.jpg",
+      "https://cdn.mos.cms.futurecdn.net/uZ7sS8NjWRxoZYozfWJYRg.jpg",
+      "https://cdn.mos.cms.futurecdn.net/McdANk8PxmeNmdk77TA9zi.jpg"
+    ],
+    "description": "SteelSeries Apex Pro TKL lÃ  bÃ n phÃ­m gaming cao cáº¥p sá»­ dá»¥ng switch tá»« tÃ­nh cÃ³ thá»ƒ tÃ¹y chá»‰nh Ä‘á»™ nháº¡y, phÃ¹ há»£p cho game thá»§ chuyÃªn nghiá»‡p.",
     "specifications": {
       "type": "Gaming Mechanical",
       "layout": "TKL",
       "connection": "USB",
       "backlight": "RGB",
       "switch": "OmniPoint 2.0"
-    }
+    },
+    "image": "https://cdn.mos.cms.futurecdn.net/u7W6cv7PFPKHgAEAXbExKK.jpg"
   }
 ]

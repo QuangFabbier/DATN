@@ -1,4 +1,5 @@
 import axios from 'axios'
+import allProducts from '../data/all-products.json'
 import { normalizeProduct } from '../utils/product'
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api'
@@ -41,6 +42,11 @@ export async function getProducts() {
     const response = await axios.get(PRODUCTS_API_URL)
     return normalizeProductList(response.data)
   } catch (error) {
+    const localProducts = normalizeProductList(allProducts)
+    if (localProducts.length > 0) {
+      return localProducts
+    }
+
     throw createProductServiceError(error, 'Khng th ti danh sch sn phm.')
   }
 }
