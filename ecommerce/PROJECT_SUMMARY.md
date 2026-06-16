@@ -7,7 +7,7 @@
 - Repository: `ecommerce/`
 - Frontend: `ecommerce/fe` (React + Vite)
 - Backend: `ecommerce/be` (Express + MongoDB + Mongoose)
-- Cập nhật tài liệu: **2026-06-08**
+- Cập nhật tài liệu: **2026-06-16**
 
 ### Mục tiêu
 
@@ -59,18 +59,41 @@
 
 ```mermaid
 flowchart LR
-  U[User Browser]
-  FE[React/Vite Frontend]
-  BE[Express API Backend]
-  DB[(MongoDB)]
-  AI[Gemini API]
+  Customer[Khách hàng] --> Browser[Trình duyệt]
+  Admin[Quản trị viên] --> Browser
 
-  U --> FE
-  FE -->|REST /api/*| BE
-  BE --> DB
-  BE -->|Prompt rút gọn| AI
-  AI --> BE
-  BE --> FE
+  subgraph FE[Frontend React + Vite]
+    Pages[Pages: Home, Products, Cart, Orders, Admin]
+    Context[Context: Auth, Cart, Favorites, Compare, Search, Theme]
+    Services[Services: auth, product, review, inventory, AI]
+    LocalStorage[(LocalStorage: cart, orders, wishlist, AI cache)]
+  end
+
+  subgraph BE[Backend NodeJS + Express]
+    Routes[API Routes /api/*]
+    Middleware[Middleware: auth, role, rate-limit, AI optimize]
+    Controllers[Controllers]
+    DomainServices[Services nghiệp vụ]
+    Models[Mongoose Models]
+  end
+
+  Mongo[(MongoDB)]
+  Gemini[Gemini API]
+
+  Browser --> FE
+  Pages --> Context
+  Pages --> Services
+  Context --> LocalStorage
+  Services -->|REST API| Routes
+  Routes --> Middleware
+  Middleware --> Controllers
+  Controllers --> DomainServices
+  DomainServices --> Models
+  Models --> Mongo
+  DomainServices -->|AI prompt + product context| Gemini
+  Gemini -->|AI response| DomainServices
+  Controllers -->|JSON response| Services
+  FE --> Browser
 ```
 
 ### 3.2 Nguyên Tắc Kiến Trúc
@@ -104,6 +127,8 @@ ecommerce/
     routes/
     services/
     seeders/
+  docs/
+    FUNCTION_WORKFLOW_DIAGRAMS.md
 ```
 
 ---
@@ -126,7 +151,7 @@ ecommerce/
 - `POST /api/ai/compare`
 - `POST /api/ai/product-explain`
 - `POST /api/ai/cart-analyze`
-- `GET /api/ai/inventory-insights`
+- `POST /api/ai/inventory-insights`
 
 ### 5.3 Review API
 
@@ -381,6 +406,32 @@ Tại thời điểm **2026-06-08**:
 
 ---
 
-## 14. Kết Luận
+## 14. Tài Liệu Sơ Đồ Và Slide
+
+File `ecommerce/docs/FUNCTION_WORKFLOW_DIAGRAMS.md` đã bổ sung các sơ đồ phục vụ báo cáo và slide giới thiệu dự án:
+
+1. Sơ đồ tổng quan hệ thống.
+2. Sơ đồ phân cấp chức năng.
+3. Phân rã module frontend/backend.
+4. Route map chính.
+5. Workflow mua hàng, đăng nhập, AI tư vấn, review, quản trị sản phẩm, tồn kho và phân quyền admin.
+6. Luồng dữ liệu chính giữa Product, Review, Cart, Order, Inventory và AI.
+
+Gợi ý cấu trúc slide ngắn gọn:
+
+1. Trang bìa.
+2. Nội dung thuyết trình.
+3. Nội dung và phạm vi đề tài.
+4. Kiến trúc hệ thống.
+5. Sơ đồ phân cấp chức năng.
+6. Chức năng AI Shopping Assistant.
+7. Một số giao diện chính.
+8. Demo chức năng.
+9. Kết quả đạt được.
+10. Cảm ơn / Q&A.
+
+---
+
+## 15. Kết Luận
 
 Dự án Nexora Ecommerce + AI Shopping Assistant đã đạt mục tiêu của một hệ thống ecommerce có AI tư vấn ở mức đồ án tốt nghiệp: kiến trúc rõ ràng, luồng dữ liệu đầy đủ, có cơ chế tối ưu vận hành AI, có review/rating để tăng độ tin cậy và có khả năng tư vấn theo ngữ cảnh hội thoại nhiều lượt. Tài liệu này có thể dùng trực tiếp cho phần workflow, kiến trúc hệ thống và quy trình phát triển phần mềm trong báo cáo.
