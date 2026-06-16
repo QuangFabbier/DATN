@@ -6,7 +6,9 @@
     "price": 16990000,
     "stock": 75,
     "minStockLevel": 15,
-    "images": [],
+    "images": [
+      "https://m.media-amazon.com/images/I/715Sum+EpLL._AC_.jpg"
+    ],
     "description": "Acer Aspire 5 là mẫu laptop văn phòng phổ biến dành cho sinh viên, nhân viên văn phòng và người dùng gia đình cần một thiết bị ổn định cho công việc hằng ngày. Intel Core i5 kết hợp RAM 16GB mang lại khả năng đa nhiệm mượt mà khi sử dụng các ứng dụng văn phòng, học trực tuyến, trình duyệt web và quản lý dữ liệu. Thiết kế đơn giản nhưng bền bỉ, màn hình Full HD sắc nét cùng bàn phím thoải mái giúp nâng cao hiệu suất làm việc. Đây là lựa chọn phù hợp cho người dùng cần một chiếc laptop có hiệu năng tốt, chi phí hợp lý và dễ sử dụng trong thời gian dài.",
     "specifications": {
       "cpu": "Intel Core i5-13420H",
@@ -17,7 +19,8 @@
       "battery": "50Wh",
       "operatingSystem": "Windows 11 Home",
       "weight": "1.78kg"
-    }
+    },
+    "image": "https://m.media-amazon.com/images/I/715Sum+EpLL._AC_.jpg"
   },
   {
     "name": "Acer Nitro V 15 i7 RTX 4050",
@@ -26,7 +29,9 @@
     "price": 27990000,
     "stock": 30,
     "minStockLevel": 8,
-    "images": [],
+    "images": [
+      "https://m.media-amazon.com/images/I/71iB6UqXbGL._AC_.jpg"
+    ],
     "description": "Acer Nitro V 15 là mẫu laptop gaming tầm trung được thiết kế dành cho game thủ và sinh viên kỹ thuật cần hiệu năng mạnh với mức giá hợp lý. Intel Core i7 kết hợp card đồ họa RTX 4050 cho khả năng xử lý tốt các tựa game hiện đại, đồ họa 2D, 3D và chỉnh sửa video. Màn hình tần số quét cao mang lại trải nghiệm hình ảnh mượt mà khi chơi game hoặc giải trí. Hệ thống tản nhiệt được tối ưu giúp duy trì hiệu suất ổn định trong thời gian dài. Đây là lựa chọn phù hợp cho người dùng muốn một chiếc laptop vừa phục vụ học tập vừa đáp ứng nhu cầu giải trí chuyên sâu.",
     "specifications": {
       "cpu": "Intel Core i7-13620H",
@@ -37,7 +42,8 @@
       "battery": "57Wh",
       "operatingSystem": "Windows 11 Home",
       "weight": "2.10kg"
-    }
+    },
+    "image": "https://m.media-amazon.com/images/I/71iB6UqXbGL._AC_.jpg"
   },
   {
     "name": "Acer Predator Helios Neo 16 i9 RTX 4070",
@@ -46,7 +52,9 @@
     "price": 46990000,
     "stock": 15,
     "minStockLevel": 5,
-    "images": [],
+    "images": [
+      "https://m.media-amazon.com/images/I/71gqlzTfZzL._AC_.jpg"
+    ],
     "description": "Acer Predator Helios Neo 16 là mẫu laptop gaming cao cấp hướng đến game thủ chuyên nghiệp và người dùng sáng tạo nội dung cần hiệu năng cực mạnh. Intel Core i9 kết hợp RTX 4070 cho khả năng xử lý vượt trội trong các tựa game AAA, dựng video 4K, thiết kế đồ họa 3D và các tác vụ AI. Màn hình 2.5K tần số quét cao mang đến chất lượng hình ảnh sắc nét và mượt mà. Hệ thống tản nhiệt tiên tiến giúp thiết bị duy trì hiệu suất cao trong thời gian dài. Đây là lựa chọn lý tưởng cho người dùng cần một cỗ máy mạnh mẽ để làm việc và giải trí.",
     "specifications": {
       "cpu": "Intel Core i9-14900HX",
@@ -57,6 +65,7 @@
       "battery": "90Wh",
       "operatingSystem": "Windows 11 Home",
       "weight": "2.60kg"
-    }
+    },
+    "image": "https://m.media-amazon.com/images/I/71gqlzTfZzL._AC_.jpg"
   }
 ]

@@ -6,7 +6,11 @@
     "price": 3990000,
     "stock": 80,
     "minStockLevel": 15,
-    "images": [],
+    "images": [
+      "https://www.apple.com/v/airpods-4/g/images/overview/stories/design_airpods_stem__ca26r79ta9f6_large.jpg",
+      "https://www.apple.com/v/airpods-4/g/images/overview/stories/airpods-connect_endframe__eyakc5xs2ei6_large.png",
+      "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/airpods-4-up-compare-202409?.v=M3NBMGZBMXE5bjhSK09ZMUdVcVJ4a0pCRUFQZnNTOWVuQVp6SHVXN253RGd4YU5mRUlFTWdmRnVFeUNUbW9rU0JkRlpCNVhYU3AwTldRQldlSnpRa085em81aWlObDIxZUh5RFVqa0pOTm8&fmt=jpeg&hei=500&qlt=90&wid=420"
+    ],
     "description": "AirPods 4 mang đến trải nghiệm âm thanh chất lượng cao với khả năng kết nối nhanh trong hệ sinh thái Apple. Thiết kế nhỏ gọn, đeo thoải mái trong thời gian dài và phù hợp cho học tập, làm việc cũng như giải trí hằng ngày. Thiết bị hỗ trợ điều khiển cảm ứng tiện lợi và thời lượng pin đủ đáp ứng nhu cầu sử dụng cả ngày.",
     "specifications": {
       "type": "True Wireless",
@@ -14,7 +18,8 @@
       "battery": "Up to 30 hours with case",
       "noiseCancellation": "No",
       "waterResistance": "IP54"
-    }
+    },
+    "image": "https://www.apple.com/v/airpods-4/g/images/overview/stories/design_airpods_stem__ca26r79ta9f6_large.jpg"
   },
   {
     "name": "AirPods 4 ANC",
@@ -23,7 +28,11 @@
     "price": 5490000,
     "stock": 60,
     "minStockLevel": 12,
-    "images": [],
+    "images": [
+      "https://www.apple.com/v/airpods-4/g/images/overview/stories/design_airpods_stem__ca26r79ta9f6_large.jpg",
+      "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/airpods-4-down-compare-202409?.v=ZXRUMUVvUDYrWGRPb1p5T2Q2TWV5c0s2Ym10NllyT1YxL1B0ck1mTlQyWmZoWEFrZzZyNzRKRU1rc296ejZTN3VUb3VPa2FUZVhQMFhDQnVBMWhwQStYMW5mVVZNSWRMTXRCT3QvUkZqa3c&fmt=jpeg&hei=500&qlt=90&wid=420",
+      "https://www.apple.com/v/airpods-4/g/images/overview/stories/airpods-connect_endframe__eyakc5xs2ei6_large.png"
+    ],
     "description": "AirPods 4 ANC được trang bị công nghệ chống ồn chủ động giúp tập trung hơn khi học tập và làm việc. Chất lượng âm thanh cân bằng, khả năng kết nối ổn định và tích hợp sâu với hệ sinh thái Apple mang lại trải nghiệm sử dụng thuận tiện.",
     "specifications": {
       "type": "True Wireless",
@@ -31,7 +40,8 @@
       "battery": "Up to 30 hours with case",
       "noiseCancellation": "Active Noise Cancellation",
       "waterResistance": "IP54"
-    }
+    },
+    "image": "https://www.apple.com/v/airpods-4/g/images/overview/stories/design_airpods_stem__ca26r79ta9f6_large.jpg"
   },
   {
     "name": "AirPods Pro 2 USB-C",
@@ -40,7 +50,9 @@
     "price": 6290000,
     "stock": 45,
     "minStockLevel": 10,
-    "images": [],
+    "images": [
+      "https://www.apple.com/newsroom/images/2023/09/apple-introduces-new-airpods-pro-2nd-generation/article/Apple-AirPods-Pro-2nd-generation-USB-C-connection-demo-230912_big.jpg.large_2x.jpg"
+    ],
     "description": "AirPods Pro 2 là mẫu tai nghe cao cấp với khả năng chống ồn chủ động mạnh mẽ, chế độ xuyên âm thông minh và chất lượng âm thanh chi tiết. Đây là lựa chọn phù hợp cho người dùng iPhone muốn trải nghiệm âm thanh cao cấp và tiện lợi.",
     "specifications": {
       "type": "True Wireless",
@@ -48,6 +60,7 @@
       "battery": "Up to 30 hours with case",
       "noiseCancellation": "Adaptive ANC",
       "waterResistance": "IP54"
-    }
+    },
+    "image": "https://www.apple.com/newsroom/images/2023/09/apple-introduces-new-airpods-pro-2nd-generation/article/Apple-AirPods-Pro-2nd-generation-USB-C-connection-demo-230912_big.jpg.large_2x.jpg"
   }
 ]

@@ -6,7 +6,9 @@
     "price": 1490000,
     "stock": 90,
     "minStockLevel": 20,
-    "images": [],
+    "images": [
+      "https://image-us.samsung.com/SamsungUS/home/mobile/audio/all-audio/galaxy-buds-fe-sm-r400nzaaxar/white/2-Gallery-1600x1200.jpg?$product-details-jpg$"
+    ],
     "description": "Galaxy Buds FE là mẫu tai nghe không dây phù hợp cho người dùng Android cần chất lượng âm thanh tốt với mức giá dễ tiếp cận. Thiết bị hỗ trợ chống ồn chủ động và thời lượng pin dài.",
     "specifications": {
       "type": "True Wireless",
@@ -14,7 +16,8 @@
       "battery": "Up to 30 hours",
       "noiseCancellation": "ANC",
       "waterResistance": "IPX2"
-    }
+    },
+    "image": "https://image-us.samsung.com/SamsungUS/home/mobile/audio/all-audio/galaxy-buds-fe-sm-r400nzaaxar/white/2-Gallery-1600x1200.jpg?$product-details-jpg$"
   },
   {
     "name": "Samsung Galaxy Buds 3",
@@ -23,7 +26,9 @@
     "price": 3490000,
     "stock": 60,
     "minStockLevel": 12,
-    "images": [],
+    "images": [
+      "https://m.media-amazon.com/images/I/61Mv3cWzZeL._AC_SL1500_.jpg"
+    ],
     "description": "Galaxy Buds 3 mang đến thiết kế hiện đại cùng chất lượng âm thanh được tối ưu cho hệ sinh thái Galaxy. Thiết bị phù hợp cho học tập, làm việc và giải trí hằng ngày.",
     "specifications": {
       "type": "True Wireless",
@@ -31,7 +36,8 @@
       "battery": "Up to 30 hours",
       "noiseCancellation": "ANC",
       "waterResistance": "IP57"
-    }
+    },
+    "image": "https://m.media-amazon.com/images/I/61Mv3cWzZeL._AC_SL1500_.jpg"
   },
   {
     "name": "Samsung Galaxy Buds 3 Pro",
@@ -40,7 +46,11 @@
     "price": 5490000,
     "stock": 40,
     "minStockLevel": 10,
-    "images": [],
+    "images": [
+      "https://images.samsung.com/is/image/samsung/assets/us/galaxy-buds3-pro/images/galaxy-buds3-pro-highlight-slide03-startframe-pc_0710.jpg",
+      "https://images.samsung.com/is/image/samsung/assets/us/galaxy-buds3-pro/images/galaxy-buds3-pro-highlight-slide03-endframe-pc_0710.jpg",
+      "https://image-us.samsung.com/us/galaxy-buds3-pro/images/galaxy-buds3-pro-sound-optimization-pc.jpg"
+    ],
     "description": "Galaxy Buds 3 Pro là dòng tai nghe cao cấp với khả năng chống ồn nâng cao, âm thanh chi tiết và hỗ trợ nhiều tính năng AI trong hệ sinh thái Samsung.",
     "specifications": {
       "type": "True Wireless",
@@ -48,6 +58,7 @@
       "battery": "Up to 30 hours",
       "noiseCancellation": "Adaptive ANC",
       "waterResistance": "IP57"
-    }
+    },
+    "image": "https://images.samsung.com/is/image/samsung/assets/us/galaxy-buds3-pro/images/galaxy-buds3-pro-highlight-slide03-startframe-pc_0710.jpg"
   }
 ]

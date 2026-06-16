@@ -6,7 +6,9 @@
     "price": 1290000,
     "stock": 60,
     "minStockLevel": 12,
-    "images": [],
+    "images": [
+      "https://static.tp-link.com/Overview_AX23_04_large_1627273099820e.jpg"
+    ],
     "description": "TP-Link Archer AX23 là router WiFi 6 phổ thông phù hợp cho gia đình và căn hộ nhỏ. Thiết bị hỗ trợ nhiều thiết bị kết nối đồng thời, cải thiện tốc độ truyền tải và độ ổn định khi học tập, làm việc từ xa hoặc giải trí trực tuyến. Đây là lựa chọn phù hợp cho người dùng muốn nâng cấp từ router WiFi 5 với chi phí hợp lý.",
     "specifications": {
       "wifiStandard": "WiFi 6 (802.11ax)",
@@ -15,7 +17,8 @@
       "ports": "1 WAN + 4 LAN Gigabit",
       "antennas": "4 External Antennas",
       "coverage": "120-150m²"
-    }
+    },
+    "image": "https://static.tp-link.com/Overview_AX23_04_large_1627273099820e.jpg"
   },
   {
     "name": "TP-Link Archer AX55 AX3000",
@@ -24,7 +27,9 @@
     "price": 2290000,
     "stock": 45,
     "minStockLevel": 10,
-    "images": [],
+    "images": [
+      "https://static.tp-link.com/upload/image-line/Overview_Archer_AX55_06_large_20210816012711l.jpg"
+    ],
     "description": "TP-Link Archer AX55 là router WiFi 6 hiệu năng cao dành cho gia đình có nhiều thiết bị kết nối. Thiết bị hỗ trợ xem video 4K, chơi game trực tuyến và làm việc từ xa với độ ổn định cao. Hệ thống bảo mật tích hợp giúp tăng cường an toàn cho mạng gia đình.",
     "specifications": {
       "wifiStandard": "WiFi 6 (802.11ax)",
@@ -33,7 +38,8 @@
       "ports": "1 WAN + 4 LAN Gigabit",
       "antennas": "4 High Gain Antennas",
       "coverage": "150-200m²"
-    }
+    },
+    "image": "https://static.tp-link.com/upload/image-line/Overview_Archer_AX55_06_large_20210816012711l.jpg"
   },
   {
     "name": "ASUS RT-AX58U AX3000",
@@ -42,7 +48,9 @@
     "price": 3190000,
     "stock": 30,
     "minStockLevel": 8,
-    "images": [],
+    "images": [
+      "https://www.asus.com/media/global/products/b2nmtj8czggu4mud/P_setting_xxx_0_90_end_500.png"
+    ],
     "description": "ASUS RT-AX58U là router WiFi 6 dành cho người dùng nâng cao, game thủ và gia đình có nhu cầu sử dụng mạng ổn định. Thiết bị hỗ trợ nhiều tính năng quản lý mạng, bảo mật AiProtection và khả năng hoạt động ổn định trong thời gian dài.",
     "specifications": {
       "wifiStandard": "WiFi 6 (802.11ax)",
@@ -51,7 +59,8 @@
       "ports": "1 WAN + 4 LAN Gigabit",
       "antennas": "4 External Antennas",
       "coverage": "200m²"
-    }
+    },
+    "image": "https://www.asus.com/media/global/products/b2nmtj8czggu4mud/P_setting_xxx_0_90_end_500.png"
   },
   {
     "name": "Xiaomi Router AX3000T",
@@ -60,7 +69,12 @@
     "price": 990000,
     "stock": 70,
     "minStockLevel": 15,
-    "images": [],
+    "images": [
+      "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-router-ax3000t/PC/a1791c64fb28829bddf3d9d83e6d215c.jpg?f=webp",
+      "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-router-ax3000t/PC/1a7d1487655a0c3beb78221369be7d7d.png?f=webp",
+      "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-router-ax3000t/PC/739e0c03bef09a4071c85d381953f821.jpg?f=webp",
+      "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-router-ax3000t/PC/74c8ee7c8faefb131616a730b28fe0e5.jpg?f=webp"
+    ],
     "description": "Xiaomi Router AX3000T là router WiFi 6 giá tốt dành cho hộ gia đình, sinh viên và người dùng phổ thông. Thiết bị có khả năng phủ sóng ổn định, giao diện quản lý đơn giản và hỗ trợ nhiều thiết bị kết nối cùng lúc.",
     "specifications": {
       "wifiStandard": "WiFi 6 (802.11ax)",
@@ -69,7 +83,8 @@
       "ports": "1 WAN + 3 LAN Gigabit",
       "antennas": "4 External Antennas",
       "coverage": "120-180m²"
-    }
+    },
+    "image": "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-router-ax3000t/PC/a1791c64fb28829bddf3d9d83e6d215c.jpg?f=webp"
   },
   {
     "name": "TP-Link Deco X20 Mesh WiFi 6",
@@ -78,7 +93,9 @@
     "price": 3990000,
     "stock": 25,
     "minStockLevel": 6,
-    "images": [],
+    "images": [
+      "https://static.tp-link.com/Deco-X20-DSL_02_large_1618534225777o.jpg"
+    ],
     "description": "TP-Link Deco X20 là hệ thống Mesh WiFi 6 dành cho nhà nhiều tầng, văn phòng nhỏ hoặc không gian rộng. Công nghệ Mesh giúp thiết bị tự động chuyển vùng liền mạch, đảm bảo kết nối ổn định trong toàn bộ khu vực sử dụng.",
     "specifications": {
       "wifiStandard": "WiFi 6 (802.11ax)",
@@ -87,6 +104,7 @@
       "ports": "2 Gigabit Ports mỗi node",
       "antennas": "Internal Antennas",
       "coverage": "350-500m²"
-    }
+    },
+    "image": "https://static.tp-link.com/Deco-X20-DSL_02_large_1618534225777o.jpg"
   }
 ]

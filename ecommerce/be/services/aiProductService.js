@@ -1,7 +1,11 @@
 ﻿import mongoose from 'mongoose'
 import Product from '../models/Product.js'
 import { generateGeminiJson } from './geminiService.js'
-import { buildUseCaseFitTexts, detectUseCaseProfile, scoreUseCaseFit } from './aiUseCaseCriteriaService.js'
+import {
+  buildUseCaseFitTexts,
+  resolveBestUseCaseProfile,
+  scoreUseCaseFit,
+} from './aiUseCaseCriteriaService.js'
 import { mapProductForResponse } from './productMatchingService.js'
 import { normalizeTextFold } from './aiJsonUtils.js'
 
@@ -92,7 +96,7 @@ function buildProductExplainPrompt({ product, question, alternatives }) {
   const briefProduct = toGeminiProductBrief(product)
   const briefAlternatives = Array.isArray(alternatives) ? alternatives.slice(0, 5).map(toGeminiProductBrief) : []
   const fitTexts = buildUseCaseFitTexts(product)
-  const useCaseProfile = detectUseCaseProfile({ useCase: question }, question) || 'study'
+  const useCaseProfile = resolveBestUseCaseProfile(product, { useCase: question }, question)
 
   return `
 Bạn là AI Product Explainer cho ecommerce Nexora.
@@ -146,10 +150,11 @@ ${JSON.stringify(fitTexts, null, 2)}
 function fallbackProductExplain({ product, alternatives }) {
   const alternativeItems = alternatives.slice(0, 2)
   const fitTexts = buildUseCaseFitTexts(product)
+  const bestProfile = resolveBestUseCaseProfile(product)
 
   return {
     summary: `${product.name} thuộc nhóm ${product.category} với mức giá ${product.price.toLocaleString('vi-VN')} VND.`,
-    suitableFor: `Phù hợp người dùng cần ${product.category.toLowerCase()} trong tầm giá hiện tại.`,
+    suitableFor: fitTexts[bestProfile] || `Phù hợp người dùng cần ${product.category.toLowerCase()} trong tầm giá hiện tại.`,
     strengths: [
       'Mức giá và thông tin cấu hình khá rõ để so sánh.',
       product.stock > 0 ? 'Sản phẩm đang còn hàng.' : 'Thông tin vẫn hữu ích để tham chiếu.',
@@ -175,7 +180,7 @@ function fallbackProductExplain({ product, alternatives }) {
 export async function explainProductWithAi({ productId, question }) {
   const productDoc = await getProductByIdOrThrow(productId)
   const product = toCompactProduct(productDoc)
-  const useCaseProfile = detectUseCaseProfile({ useCase: question }, question) || 'study'
+  const useCaseProfile = resolveBestUseCaseProfile(product, { useCase: question }, question)
 
   const alternativeDocs = await Product.find({
     _id: { $ne: productDoc._id },

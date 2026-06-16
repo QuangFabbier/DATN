@@ -6,7 +6,9 @@
     "price": 5990000,
     "stock": 70,
     "minStockLevel": 15,
-    "images": [],
+    "images": [
+      "https://m.media-amazon.com/images/I/71YdE55GwjL._AC_SL1500_.jpg"
+    ],
     "description": "Apple Watch SE 2 GPS 40mm là mẫu đồng hồ thông minh phù hợp cho người dùng iPhone cần theo dõi sức khỏe, luyện tập và nhận thông báo hằng ngày. Thiết bị có thiết kế nhỏ gọn, giao diện dễ sử dụng và tích hợp tốt với hệ sinh thái Apple. Các tính năng như đo nhịp tim, theo dõi giấc ngủ, đếm bước chân và ghi nhận bài tập giúp người dùng xây dựng thói quen sống lành mạnh hơn. Đây là lựa chọn hợp lý cho học sinh, sinh viên và người dùng phổ thông muốn bắt đầu sử dụng Apple Watch.",
     "specifications": {
       "display": "Retina OLED",
@@ -16,7 +18,8 @@
       "waterResistance": "50m",
       "healthFeatures": "Heart rate, sleep tracking, workout tracking",
       "compatibility": "iPhone"
-    }
+    },
+    "image": "https://m.media-amazon.com/images/I/71YdE55GwjL._AC_SL1500_.jpg"
   },
   {
     "name": "Apple Watch SE 2 GPS 44mm",
@@ -25,7 +28,9 @@
     "price": 6990000,
     "stock": 60,
     "minStockLevel": 12,
-    "images": [],
+    "images": [
+      "https://m.media-amazon.com/images/I/71XBcl6bNjL._AC_SL1500_.jpg"
+    ],
     "description": "Apple Watch SE 2 GPS 44mm mang lại trải nghiệm Apple Watch với màn hình lớn hơn, dễ quan sát thông báo, bài tập và dữ liệu sức khỏe. Thiết bị phù hợp cho người dùng iPhone cần một chiếc smartwatch ổn định để theo dõi vận động, giấc ngủ và nhịp tim. Thiết kế nhẹ, đeo thoải mái cả ngày và khả năng chống nước giúp sử dụng linh hoạt trong nhiều tình huống. Đây là lựa chọn tốt cho người dùng muốn đồng hồ thông minh Apple có giá dễ tiếp cận nhưng vẫn đầy đủ tính năng cần thiết.",
     "specifications": {
       "display": "Retina OLED",
@@ -35,7 +40,8 @@
       "waterResistance": "50m",
       "healthFeatures": "Heart rate, sleep tracking, workout tracking",
       "compatibility": "iPhone"
-    }
+    },
+    "image": "https://m.media-amazon.com/images/I/71XBcl6bNjL._AC_SL1500_.jpg"
   },
   {
     "name": "Apple Watch Series 10 GPS 42mm",
@@ -44,7 +50,9 @@
     "price": 10990000,
     "stock": 45,
     "minStockLevel": 10,
-    "images": [],
+    "images": [
+      "https://m.media-amazon.com/images/I/61Z8y0y2b0L._AC_SL1500_.jpg"
+    ],
     "description": "Apple Watch Series 10 GPS 42mm là mẫu smartwatch cao cấp dành cho người dùng iPhone cần theo dõi sức khỏe chuyên sâu và trải nghiệm thông minh mượt mà. Màn hình lớn, viền mỏng và độ sáng cao giúp xem thông tin rõ ràng trong nhiều điều kiện ánh sáng. Thiết bị hỗ trợ đo nhịp tim, theo dõi giấc ngủ, ghi nhận bài tập và cảnh báo sức khỏe. Khả năng kết nối ổn định với iPhone giúp nhận cuộc gọi, tin nhắn và thông báo tiện lợi. Đây là lựa chọn phù hợp cho người dùng muốn nâng cấp trải nghiệm Apple Watch.",
     "specifications": {
       "display": "Always-On Retina OLED",
@@ -54,7 +62,8 @@
       "waterResistance": "50m",
       "healthFeatures": "Heart rate, ECG, sleep tracking, workout tracking",
       "compatibility": "iPhone"
-    }
+    },
+    "image": "https://m.media-amazon.com/images/I/61Z8y0y2b0L._AC_SL1500_.jpg"
   },
   {
     "name": "Apple Watch Series 10 GPS 46mm",
@@ -63,7 +72,9 @@
     "price": 11990000,
     "stock": 40,
     "minStockLevel": 10,
-    "images": [],
+    "images": [
+      "https://www.apple.com/newsroom/images/2024/09/introducing-apple-watch-series-10/article/Apple-Watch-Series-10-aluminum-jet-black-240909_inline.jpg.large_2x.jpg"
+    ],
     "description": "Apple Watch Series 10 GPS 46mm sở hữu màn hình lớn, thiết kế cao cấp và nhiều tính năng chăm sóc sức khỏe dành cho người dùng iPhone. Đồng hồ hỗ trợ theo dõi luyện tập, đo nhịp tim, giấc ngủ, cảnh báo sức khỏe và hiển thị thông báo nhanh chóng. Kích thước 46mm phù hợp với người dùng thích không gian hiển thị rộng để xem dữ liệu rõ ràng hơn. Thiết kế mỏng nhẹ giúp đeo thoải mái trong cả ngày. Đây là lựa chọn lý tưởng cho người dùng cần một chiếc smartwatch cao cấp, mạnh mẽ và đồng bộ tốt với hệ sinh thái Apple.",
     "specifications": {
       "display": "Always-On Retina OLED",
@@ -73,7 +84,8 @@
       "waterResistance": "50m",
       "healthFeatures": "Heart rate, ECG, sleep tracking, workout tracking",
       "compatibility": "iPhone"
-    }
+    },
+    "image": "https://www.apple.com/newsroom/images/2024/09/introducing-apple-watch-series-10/article/Apple-Watch-Series-10-aluminum-jet-black-240909_inline.jpg.large_2x.jpg"
   },
   {
     "name": "Samsung Galaxy Watch 7 40mm",
@@ -82,7 +94,9 @@
     "price": 6990000,
     "stock": 55,
     "minStockLevel": 12,
-    "images": [],
+    "images": [
+      "https://m.media-amazon.com/images/I/71E8iEWXY9L.jpg"
+    ],
     "description": "Samsung Galaxy Watch 7 40mm là mẫu đồng hồ thông minh phù hợp cho người dùng Android, đặc biệt là hệ sinh thái Samsung Galaxy. Thiết bị hỗ trợ theo dõi sức khỏe, luyện tập, giấc ngủ và thông báo hằng ngày. Thiết kế nhỏ gọn, màn hình sắc nét và giao diện Wear OS giúp thao tác dễ dàng. Các tính năng đo nhịp tim, theo dõi bài tập và phân tích giấc ngủ giúp người dùng quản lý sức khỏe hiệu quả hơn. Đây là lựa chọn phù hợp cho người dùng cần smartwatch Android hiện đại với mức giá hợp lý.",
     "specifications": {
       "display": "Super AMOLED",
@@ -92,7 +106,8 @@
       "waterResistance": "5ATM IP68",
       "healthFeatures": "Heart rate, sleep tracking, body composition",
       "compatibility": "Android"
-    }
+    },
+    "image": "https://m.media-amazon.com/images/I/71E8iEWXY9L.jpg"
   },
   {
     "name": "Samsung Galaxy Watch 7 44mm",
@@ -101,7 +116,9 @@
     "price": 7490000,
     "stock": 50,
     "minStockLevel": 12,
-    "images": [],
+    "images": [
+      "https://m.media-amazon.com/images/I/71E8iEWXY9L.jpg"
+    ],
     "description": "Samsung Galaxy Watch 7 44mm mang đến màn hình lớn hơn và thời lượng sử dụng tốt hơn cho người dùng Android. Đồng hồ hỗ trợ nhận thông báo, theo dõi vận động, đo nhịp tim, phân tích giấc ngủ và ghi nhận nhiều chế độ luyện tập. Thiết kế hiện đại, khả năng chống nước và độ bền cao giúp sử dụng linh hoạt trong công việc lẫn thể thao. Khi kết hợp với điện thoại Samsung, thiết bị phát huy tối đa các tính năng trong hệ sinh thái Galaxy. Đây là lựa chọn cân bằng cho người dùng cần smartwatch mạnh, đẹp và dễ sử dụng.",
     "specifications": {
       "display": "Super AMOLED",
@@ -111,7 +128,8 @@
       "waterResistance": "5ATM IP68",
       "healthFeatures": "Heart rate, sleep tracking, body composition",
       "compatibility": "Android"
-    }
+    },
+    "image": "https://m.media-amazon.com/images/I/71E8iEWXY9L.jpg"
   },
   {
     "name": "Samsung Galaxy Watch Ultra 47mm",
@@ -120,7 +138,9 @@
     "price": 15990000,
     "stock": 25,
     "minStockLevel": 6,
-    "images": [],
+    "images": [
+      "https://static1.anpoimages.com/wordpress/wp-content/uploads/2024/10/untitled-design-3.png"
+    ],
     "description": "Samsung Galaxy Watch Ultra 47mm là mẫu smartwatch cao cấp dành cho người dùng yêu thích thể thao, hoạt động ngoài trời và theo dõi sức khỏe chuyên sâu. Thiết bị có thiết kế bền bỉ, màn hình sáng rõ và khả năng chống nước tốt. Các tính năng theo dõi luyện tập, định vị, đo nhịp tim, phân tích giấc ngủ và đo thành phần cơ thể giúp hỗ trợ người dùng trong nhiều hoạt động khác nhau. Đây là lựa chọn phù hợp cho người dùng Android cần một chiếc đồng hồ mạnh mẽ, cao cấp và có độ bền cao.",
     "specifications": {
       "display": "Super AMOLED",
@@ -130,7 +150,8 @@
       "waterResistance": "10ATM IP68",
       "healthFeatures": "Heart rate, sleep tracking, body composition, GPS workout",
       "compatibility": "Android"
-    }
+    },
+    "image": "https://static1.anpoimages.com/wordpress/wp-content/uploads/2024/10/untitled-design-3.png"
   },
   {
     "name": "Xiaomi Watch S3",
@@ -139,7 +160,9 @@
     "price": 3990000,
     "stock": 65,
     "minStockLevel": 15,
-    "images": [],
+    "images": [
+      "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-watch-s3/PC/f5380c37520ff6177abd0c929278d010.jpg"
+    ],
     "description": "Xiaomi Watch S3 là mẫu đồng hồ thông minh có thiết kế thời trang, màn hình AMOLED sắc nét và thời lượng pin dài. Thiết bị phù hợp cho người dùng cần theo dõi sức khỏe, nhận thông báo và ghi nhận hoạt động thể thao hằng ngày. Các tính năng như đo nhịp tim, theo dõi giấc ngủ, đo SpO2 và nhiều chế độ luyện tập giúp hỗ trợ chăm sóc sức khỏe tốt hơn. Với mức giá hợp lý, Xiaomi Watch S3 là lựa chọn đáng cân nhắc cho người dùng Android muốn một chiếc smartwatch đẹp, bền và dễ sử dụng.",
     "specifications": {
       "display": "1.43 inch AMOLED",
@@ -149,7 +172,8 @@
       "waterResistance": "5ATM",
       "healthFeatures": "Heart rate, SpO2, sleep tracking, workout tracking",
       "compatibility": "Android, iOS"
-    }
+    },
+    "image": "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-watch-s3/PC/f5380c37520ff6177abd0c929278d010.jpg"
   },
   {
     "name": "Xiaomi Watch 2 Pro",
@@ -158,7 +182,9 @@
     "price": 5990000,
     "stock": 45,
     "minStockLevel": 10,
-    "images": [],
+    "images": [
+      "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-2-pro/pc/cb55c20a14efe07d9f91736f87453368.jpg"
+    ],
     "description": "Xiaomi Watch 2 Pro là mẫu smartwatch cao cấp chạy Wear OS, phù hợp cho người dùng Android cần trải nghiệm thông minh đầy đủ hơn. Thiết bị hỗ trợ cài ứng dụng, nhận thông báo, theo dõi sức khỏe và ghi nhận luyện tập đa dạng. Màn hình AMOLED sắc nét, thiết kế kim loại cao cấp và hiệu năng ổn định giúp sử dụng mượt mà trong công việc lẫn giải trí. Đây là lựa chọn phù hợp cho người dùng muốn một chiếc đồng hồ thông minh mạnh mẽ, nhiều tính năng nhưng vẫn có mức giá cạnh tranh.",
     "specifications": {
       "display": "1.43 inch AMOLED",
@@ -168,7 +194,8 @@
       "waterResistance": "5ATM",
       "healthFeatures": "Heart rate, SpO2, sleep tracking, GPS workout",
       "compatibility": "Android"
-    }
+    },
+    "image": "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-2-pro/pc/cb55c20a14efe07d9f91736f87453368.jpg"
   },
   {
     "name": "Amazfit Bip 5",
@@ -177,7 +204,9 @@
     "price": 1990000,
     "stock": 90,
     "minStockLevel": 20,
-    "images": [],
+    "images": [
+      "https://m.media-amazon.com/images/I/61xOL21rKJL._AC_SL1500_.jpg"
+    ],
     "description": "Amazfit Bip 5 là mẫu smartwatch giá tốt dành cho người dùng cần theo dõi sức khỏe và thông báo cơ bản. Thiết bị có màn hình lớn, giao diện dễ dùng và thời lượng pin dài, phù hợp cho học sinh, sinh viên và người dùng phổ thông. Đồng hồ hỗ trợ đo nhịp tim, theo dõi giấc ngủ, SpO2 và nhiều chế độ thể thao. Khả năng tương thích với cả Android và iOS giúp sử dụng linh hoạt. Đây là lựa chọn phù hợp cho người mới bắt đầu dùng đồng hồ thông minh với ngân sách tiết kiệm.",
     "specifications": {
       "display": "1.91 inch TFT",
@@ -187,7 +216,8 @@
       "waterResistance": "IP68",
       "healthFeatures": "Heart rate, SpO2, sleep tracking, workout tracking",
       "compatibility": "Android, iOS"
-    }
+    },
+    "image": "https://m.media-amazon.com/images/I/61xOL21rKJL._AC_SL1500_.jpg"
   },
   {
     "name": "Amazfit GTS 4 Mini",
@@ -196,7 +226,9 @@
     "price": 2490000,
     "stock": 75,
     "minStockLevel": 15,
-    "images": [],
+    "images": [
+      "https://m.media-amazon.com/images/I/61f4Ox9sojL._AC_SL1500_.jpg"
+    ],
     "description": "Amazfit GTS 4 Mini là mẫu smartwatch mỏng nhẹ với thiết kế thanh lịch, phù hợp cho người dùng cần một thiết bị theo dõi sức khỏe hằng ngày. Màn hình AMOLED hiển thị rõ ràng, thời lượng pin dài và nhiều chế độ luyện tập giúp đáp ứng tốt nhu cầu cơ bản. Đồng hồ hỗ trợ đo nhịp tim, SpO2, theo dõi giấc ngủ và quản lý vận động. Thiết kế nhẹ giúp đeo thoải mái cả ngày, kể cả khi ngủ. Đây là lựa chọn tốt cho người dùng muốn smartwatch đẹp, pin lâu và giá hợp lý.",
     "specifications": {
       "display": "1.65 inch AMOLED",
@@ -206,7 +238,8 @@
       "waterResistance": "5ATM",
       "healthFeatures": "Heart rate, SpO2, sleep tracking, workout tracking",
       "compatibility": "Android, iOS"
-    }
+    },
+    "image": "https://m.media-amazon.com/images/I/61f4Ox9sojL._AC_SL1500_.jpg"
   },
   {
     "name": "Amazfit T-Rex 3",
@@ -215,7 +248,9 @@
     "price": 5990000,
     "stock": 35,
     "minStockLevel": 8,
-    "images": [],
+    "images": [
+      "https://m.media-amazon.com/images/I/71udm2yMPRL._AC_SL1500_.jpg"
+    ],
     "description": "Amazfit T-Rex 3 là mẫu smartwatch bền bỉ dành cho người dùng yêu thích thể thao, leo núi, chạy bộ và hoạt động ngoài trời. Thiết kế hầm hố, khả năng chống nước tốt và thời lượng pin dài giúp thiết bị phù hợp với các chuyến đi dài ngày. Đồng hồ hỗ trợ định vị, đo nhịp tim, SpO2, theo dõi giấc ngủ và nhiều chế độ luyện tập chuyên sâu. Đây là lựa chọn phù hợp cho người dùng cần một chiếc đồng hồ thông minh khỏe, pin lâu và có nhiều tính năng thể thao.",
     "specifications": {
       "display": "1.5 inch AMOLED",
@@ -225,6 +260,7 @@
       "waterResistance": "10ATM",
       "healthFeatures": "Heart rate, SpO2, sleep tracking, GPS workout",
       "compatibility": "Android, iOS"
-    }
+    },
+    "image": "https://m.media-amazon.com/images/I/71udm2yMPRL._AC_SL1500_.jpg"
   }
 ]

@@ -6,7 +6,12 @@
     "price": 28990000,
     "stock": 45,
     "minStockLevel": 10,
-    "images": [],
+    "images": [
+      "https://www.apple.com/newsroom/images/2025/03/apple-introduces-the-new-macbook-air-with-the-m4-chip-and-a-sky-blue-color/article/Apple-MacBook-Air-hero-250305_big.jpg.large.jpg",
+      "https://www.apple.com/newsroom/images/2025/03/apple-introduces-the-new-macbook-air-with-the-m4-chip-and-a-sky-blue-color/article/Apple-MacBook-Air-sky-blue-250305_big.jpg.large.jpg",
+      "https://www.apple.com/newsroom/images/2025/03/apple-introduces-the-new-macbook-air-with-the-m4-chip-and-a-sky-blue-color/article/Apple-MacBook-Air-top-view-250305_big.jpg.large.jpg",
+      "https://www.apple.com/newsroom/images/2025/03/apple-introduces-the-new-macbook-air-with-the-m4-chip-and-a-sky-blue-color/article/Apple-MacBook-Air-side-view-250305_big.jpg.large.jpg"
+    ],
     "description": "MacBook Air 13 M4 là mẫu laptop mỏng nhẹ dành cho sinh viên, nhân viên văn phòng và người dùng sáng tạo nội dung cần hiệu năng ổn định trong thiết kế di động. Chip Apple M4 mang lại khả năng xử lý nhanh, tối ưu điện năng và vận hành mượt mà với các tác vụ học tập, làm việc, lập trình và chỉnh sửa ảnh cơ bản. Màn hình Liquid Retina hiển thị sắc nét, màu sắc trung thực giúp nâng cao trải nghiệm sử dụng hằng ngày. Thời lượng pin dài hỗ trợ làm việc liên tục trong nhiều giờ. Đây là lựa chọn phù hợp cho người dùng cần một chiếc MacBook hiện đại, bền bỉ và dễ mang theo.",
     "specifications": {
       "cpu": "Apple M4",
@@ -17,7 +22,8 @@
       "battery": "52.6Wh",
       "operatingSystem": "macOS",
       "weight": "1.24kg"
-    }
+    },
+    "image": "https://www.apple.com/newsroom/images/2025/03/apple-introduces-the-new-macbook-air-with-the-m4-chip-and-a-sky-blue-color/article/Apple-MacBook-Air-hero-250305_big.jpg.large.jpg"
   },
   {
     "name": "MacBook Air 15 M4 16GB 512GB",
@@ -26,7 +32,12 @@
     "price": 35990000,
     "stock": 35,
     "minStockLevel": 10,
-    "images": [],
+    "images": [
+      "https://www.apple.com/newsroom/images/2025/03/apple-introduces-the-new-macbook-air-with-the-m4-chip-and-a-sky-blue-color/article/Apple-MacBook-Air-hero-250305_big.jpg.large.jpg",
+      "https://www.apple.com/newsroom/images/2025/03/apple-introduces-the-new-macbook-air-with-the-m4-chip-and-a-sky-blue-color/article/Apple-MacBook-Air-sky-blue-250305_big.jpg.large.jpg",
+      "https://www.apple.com/newsroom/images/2025/03/apple-introduces-the-new-macbook-air-with-the-m4-chip-and-a-sky-blue-color/article/Apple-MacBook-Air-top-view-250305_big.jpg.large.jpg",
+      "https://www.apple.com/newsroom/images/2025/03/apple-introduces-the-new-macbook-air-with-the-m4-chip-and-a-sky-blue-color/article/Apple-MacBook-Air-side-view-250305_big.jpg.large.jpg"
+    ],
     "description": "MacBook Air 15 M4 mang đến không gian hiển thị rộng rãi hơn nhưng vẫn duy trì thiết kế mỏng nhẹ đặc trưng của dòng Air. Chip Apple M4 giúp xử lý hiệu quả các công việc văn phòng, học tập, lập trình và chỉnh sửa nội dung đa phương tiện. Màn hình Liquid Retina 15 inch mang lại trải nghiệm làm việc thoải mái, đặc biệt phù hợp với người dùng thường xuyên xử lý nhiều cửa sổ cùng lúc. Pin lâu và hệ điều hành macOS tối ưu giúp nâng cao năng suất làm việc hằng ngày. Đây là lựa chọn hấp dẫn cho người dùng cần một chiếc laptop cao cấp có màn hình lớn nhưng vẫn đảm bảo tính di động.",
     "specifications": {
       "cpu": "Apple M4",
@@ -37,7 +48,8 @@
       "battery": "66.5Wh",
       "operatingSystem": "macOS",
       "weight": "1.51kg"
-    }
+    },
+    "image": "https://www.apple.com/newsroom/images/2025/03/apple-introduces-the-new-macbook-air-with-the-m4-chip-and-a-sky-blue-color/article/Apple-MacBook-Air-hero-250305_big.jpg.large.jpg"
   },
   {
     "name": "MacBook Pro 14 M4 16GB 512GB",
@@ -46,7 +58,12 @@
     "price": 45990000,
     "stock": 20,
     "minStockLevel": 5,
-    "images": [],
+    "images": [
+      "https://www.apple.com/newsroom/images/2024/10/new-macbook-pro/article/Apple-MacBook-Pro-M4-hero_big.jpg.large.jpg",
+      "https://www.apple.com/newsroom/images/2024/10/new-macbook-pro/article/Apple-MacBook-Pro-M4-lineup_big.jpg.large.jpg",
+      "https://www.apple.com/newsroom/images/2024/10/new-macbook-pro/article/Apple-MacBook-Pro-M4-lifestyle-01_big.jpg.large.jpg",
+      "https://www.apple.com/newsroom/images/2024/10/new-macbook-pro/article/Apple-MacBook-Pro-M4-lifestyle-03_big.jpg.large.jpg"
+    ],
     "description": "MacBook Pro 14 M4 được thiết kế cho người dùng chuyên nghiệp cần hiệu năng mạnh mẽ trong công việc sáng tạo nội dung, phát triển phần mềm và xử lý dữ liệu. Chip Apple M4 cung cấp khả năng xử lý vượt trội cùng hiệu suất đồ họa cao hơn so với dòng Air. Màn hình Liquid Retina XDR mang lại độ sáng cao và độ chính xác màu sắc ấn tượng, phù hợp cho chỉnh sửa ảnh và video. Hệ thống loa chất lượng cao cùng thời lượng pin dài giúp nâng cao trải nghiệm sử dụng. Đây là mẫu laptop phù hợp cho người dùng muốn cân bằng giữa hiệu năng, tính di động và độ bền lâu dài.",
     "specifications": {
       "cpu": "Apple M4",
@@ -57,7 +74,8 @@
       "battery": "72.4Wh",
       "operatingSystem": "macOS",
       "weight": "1.55kg"
-    }
+    },
+    "image": "https://www.apple.com/newsroom/images/2024/10/new-macbook-pro/article/Apple-MacBook-Pro-M4-hero_big.jpg.large.jpg"
   },
   {
     "name": "MacBook Pro 14 M4 Pro 24GB 1TB",
@@ -66,7 +84,12 @@
     "price": 62990000,
     "stock": 15,
     "minStockLevel": 5,
-    "images": [],
+    "images": [
+      "https://www.apple.com/newsroom/images/2024/10/new-macbook-pro/article/Apple-MacBook-Pro-M4-hero_big.jpg.large.jpg",
+      "https://www.apple.com/newsroom/images/2024/10/new-macbook-pro/article/Apple-MacBook-Pro-M4-lineup_big.jpg.large.jpg",
+      "https://www.apple.com/newsroom/images/2024/10/new-macbook-pro/article/Apple-MacBook-Pro-M4-lifestyle-01_big.jpg.large.jpg",
+      "https://www.apple.com/newsroom/images/2024/10/new-macbook-pro/article/Apple-MacBook-Pro-M4-lifestyle-03_big.jpg.large.jpg"
+    ],
     "description": "MacBook Pro 14 M4 Pro hướng đến nhà phát triển phần mềm, kỹ sư dữ liệu, nhà thiết kế và nhà sáng tạo nội dung chuyên nghiệp. Chip M4 Pro cung cấp sức mạnh xử lý cao cho các dự án phức tạp, biên dịch mã nguồn lớn, chỉnh sửa video độ phân giải cao và làm việc đa nhiệm nặng. Bộ nhớ hợp nhất dung lượng lớn hỗ trợ vận hành nhiều ứng dụng cùng lúc mà vẫn đảm bảo độ ổn định. Màn hình Liquid Retina XDR hiển thị chi tiết sắc nét với độ chính xác màu cao. Đây là lựa chọn lý tưởng cho người dùng cần hiệu năng chuyên nghiệp trong một thiết bị nhỏ gọn.",
     "specifications": {
       "cpu": "Apple M4 Pro",
@@ -77,7 +100,8 @@
       "battery": "72.4Wh",
       "operatingSystem": "macOS",
       "weight": "1.60kg"
-    }
+    },
+    "image": "https://www.apple.com/newsroom/images/2024/10/new-macbook-pro/article/Apple-MacBook-Pro-M4-hero_big.jpg.large.jpg"
   },
   {
     "name": "MacBook Pro 16 M4 Pro 24GB 1TB",
@@ -86,7 +110,12 @@
     "price": 74990000,
     "stock": 12,
     "minStockLevel": 5,
-    "images": [],
+    "images": [
+      "https://www.apple.com/newsroom/images/2024/10/new-macbook-pro/article/Apple-MacBook-Pro-M4-hero_big.jpg.large.jpg",
+      "https://www.apple.com/newsroom/images/2024/10/new-macbook-pro/article/Apple-MacBook-Pro-M4-lineup_big.jpg.large.jpg",
+      "https://www.apple.com/newsroom/images/2024/10/new-macbook-pro/article/Apple-MacBook-Pro-M4-lifestyle-01_big.jpg.large.jpg",
+      "https://www.apple.com/newsroom/images/2024/10/new-macbook-pro/article/Apple-MacBook-Pro-M4-lifestyle-03_big.jpg.large.jpg"
+    ],
     "description": "MacBook Pro 16 M4 Pro là mẫu laptop cao cấp dành cho người dùng chuyên nghiệp cần màn hình lớn và hiệu năng mạnh để xử lý các tác vụ nặng. Chip M4 Pro kết hợp bộ nhớ lớn giúp làm việc hiệu quả với dự án lập trình, dựng phim, thiết kế đồ họa và xử lý dữ liệu quy mô lớn. Màn hình Liquid Retina XDR 16 inch mang đến không gian làm việc rộng rãi cùng chất lượng hiển thị xuất sắc. Hệ thống tản nhiệt tối ưu giúp duy trì hiệu suất ổn định trong thời gian dài. Đây là lựa chọn phù hợp cho những ai cần một cỗ máy làm việc mạnh mẽ và đáng tin cậy.",
     "specifications": {
       "cpu": "Apple M4 Pro",
@@ -97,6 +126,7 @@
       "battery": "100Wh",
       "operatingSystem": "macOS",
       "weight": "2.14kg"
-    }
+    },
+    "image": "https://www.apple.com/newsroom/images/2024/10/new-macbook-pro/article/Apple-MacBook-Pro-M4-hero_big.jpg.large.jpg"
   }
 ]

@@ -6,7 +6,9 @@
     "price": 2490000,
     "stock": 70,
     "minStockLevel": 15,
-    "images": [],
+    "images": [
+      "https://m.media-amazon.com/images/S/aplus-media-library-service-media/b6421743-8af3-4bc4-9591-d436c75f3df3.__CR0,0,800,600_PT0_SX800_V1___.jpg"
+    ],
     "description": "Sony WF-C700N là tai nghe không dây chống ồn phù hợp cho học tập, làm việc và giải trí. Thiết kế nhỏ gọn, âm thanh cân bằng và thời lượng pin tốt.",
     "specifications": {
       "type": "True Wireless",
@@ -14,7 +16,8 @@
       "battery": "Up to 15 hours",
       "noiseCancellation": "ANC",
       "waterResistance": "IPX4"
-    }
+    },
+    "image": "https://m.media-amazon.com/images/S/aplus-media-library-service-media/b6421743-8af3-4bc4-9591-d436c75f3df3.__CR0,0,800,600_PT0_SX800_V1___.jpg"
   },
   {
     "name": "Sony LinkBuds S",
@@ -23,7 +26,9 @@
     "price": 3990000,
     "stock": 50,
     "minStockLevel": 12,
-    "images": [],
+    "images": [
+      "https://m.media-amazon.com/images/I/51yRkCCx40L.jpg"
+    ],
     "description": "Sony LinkBuds S sở hữu thiết kế nhẹ, chống ồn hiệu quả và chất lượng âm thanh cao, phù hợp cho người dùng cần đeo trong thời gian dài.",
     "specifications": {
       "type": "True Wireless",
@@ -31,7 +36,8 @@
       "battery": "Up to 20 hours",
       "noiseCancellation": "ANC",
       "waterResistance": "IPX4"
-    }
+    },
+    "image": "https://m.media-amazon.com/images/I/51yRkCCx40L.jpg"
   },
   {
     "name": "Sony WF-1000XM5",
@@ -40,7 +46,11 @@
     "price": 6990000,
     "stock": 30,
     "minStockLevel": 8,
-    "images": [],
+    "images": [
+      "https://d1ncau8tqf99kp.cloudfront.net/converted/115577_original_local_1200x1050_v3_converted.webp",
+      "https://d1ncau8tqf99kp.cloudfront.net/converted/115577_original_local_504x441_v3_converted.webp",
+      "https://d1ncau8tqf99kp.cloudfront.net/converted/115577_original_local_256x224_v3_converted.webp"
+    ],
     "description": "WF-1000XM5 là mẫu tai nghe flagship của Sony với khả năng chống ồn hàng đầu, âm thanh chất lượng cao và nhiều tính năng thông minh.",
     "specifications": {
       "type": "True Wireless",
@@ -48,6 +58,7 @@
       "battery": "Up to 24 hours",
       "noiseCancellation": "Premium ANC",
       "waterResistance": "IPX4"
-    }
+    },
+    "image": "https://d1ncau8tqf99kp.cloudfront.net/converted/115577_original_local_1200x1050_v3_converted.webp"
   }
 ]

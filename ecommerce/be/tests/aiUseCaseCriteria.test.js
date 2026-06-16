@@ -3,6 +3,7 @@ import { describe, it } from 'node:test'
 import {
   buildUseCaseFitTexts,
   detectUseCaseProfile,
+  resolveBestUseCaseProfile,
   scoreUseCaseFit,
 } from '../services/aiUseCaseCriteriaService.js'
 
@@ -130,5 +131,27 @@ describe('AI use case criteria', () => {
       assert.equal(typeof value, 'string')
       assert.equal(value.length > 0, true)
     }
+  })
+
+  it('prefers gaming or compact for a keyboard product instead of forcing study', () => {
+    const keyboard = {
+      name: 'Razer Huntsman Mini',
+      category: 'Keyboard',
+      description: 'Ban phim co, switch quang hoc, RGB, anti ghosting, rapid trigger',
+      price: 2690000,
+      specs: [
+        { label: 'Switch', value: 'Optical' },
+        { label: 'Layout', value: '60%' },
+      ],
+      tags: ['keyboard', 'gaming', 'compact'],
+    }
+
+    const gamingScore = scoreUseCaseFit(keyboard, 'gaming').score
+    const compactScore = scoreUseCaseFit(keyboard, 'compact').score
+    const studyScore = scoreUseCaseFit(keyboard, 'study').score
+
+    assert.equal(gamingScore > studyScore, true)
+    assert.equal(compactScore > studyScore, true)
+    assert.equal(['gaming', 'compact'].includes(resolveBestUseCaseProfile(keyboard)), true)
   })
 })

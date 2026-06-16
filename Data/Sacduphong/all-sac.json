@@ -6,7 +6,9 @@
     "price": 590000,
     "stock": 120,
     "minStockLevel": 25,
-    "images": [],
+    "images": [
+      "https://m.media-amazon.com/images/I/71rC6tBu0NL._AC_SL1500_.jpg"
+    ],
     "description": "Anker PowerCore 10000mAh là pin dự phòng nhỏ gọn phù hợp cho người dùng điện thoại cần nguồn năng lượng dự phòng khi di chuyển. Thiết kế nhẹ, dễ mang theo và độ bền cao giúp sản phẩm trở thành lựa chọn phổ biến cho học sinh, sinh viên và nhân viên văn phòng.",
     "specifications": {
       "capacity": "10000mAh",
@@ -14,7 +16,8 @@
       "output": "USB-A",
       "maxOutput": "12W",
       "weight": "180g"
-    }
+    },
+    "image": "https://m.media-amazon.com/images/I/71rC6tBu0NL._AC_SL1500_.jpg"
   },
   {
     "name": "Anker PowerCore Essential 20000mAh",
@@ -23,7 +26,9 @@
     "price": 990000,
     "stock": 90,
     "minStockLevel": 20,
-    "images": [],
+    "images": [
+      "https://m.media-amazon.com/images/I/71ytBCYHNkL._AC_SL1500_.jpg"
+    ],
     "description": "Pin dự phòng dung lượng lớn phù hợp cho điện thoại, tablet và tai nghe. Sản phẩm cung cấp nhiều lần sạc cho thiết bị trong các chuyến đi dài.",
     "specifications": {
       "capacity": "20000mAh",
@@ -31,7 +36,8 @@
       "output": "USB-A x2",
       "maxOutput": "18W",
       "weight": "345g"
-    }
+    },
+    "image": "https://m.media-amazon.com/images/I/71ytBCYHNkL._AC_SL1500_.jpg"
   },
   {
     "name": "Anker 737 Power Bank 24000mAh 140W",
@@ -40,7 +46,9 @@
     "price": 3290000,
     "stock": 35,
     "minStockLevel": 8,
-    "images": [],
+    "images": [
+      "https://m.media-amazon.com/images/I/61FeCECR4wL._AC_SL1500_.jpg"
+    ],
     "description": "Anker 737 là pin dự phòng cao cấp hỗ trợ sạc laptop, tablet và smartphone với công suất lớn. Phù hợp cho người dùng MacBook, ultrabook và thiết bị USB-C hiện đại.",
     "specifications": {
       "capacity": "24000mAh",
@@ -48,7 +56,8 @@
       "output": "USB-C x2, USB-A",
       "maxOutput": "140W",
       "weight": "630g"
-    }
+    },
+    "image": "https://m.media-amazon.com/images/I/61FeCECR4wL._AC_SL1500_.jpg"
   },
   {
     "name": "Xiaomi Power Bank 10000mAh 22.5W",
@@ -57,7 +66,9 @@
     "price": 390000,
     "stock": 140,
     "minStockLevel": 30,
-    "images": [],
+    "images": [
+      "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-power-bank-10000mah-22w-lite/pc/245f88d1d18ce6220ed35f8e4a78ddb3.png"
+    ],
     "description": "Pin dự phòng Xiaomi 10000mAh là lựa chọn giá tốt dành cho người dùng điện thoại Android và iPhone cần giải pháp sạc dự phòng hằng ngày.",
     "specifications": {
       "capacity": "10000mAh",
@@ -65,7 +76,8 @@
       "output": "USB-A, USB-C",
       "maxOutput": "22.5W",
       "weight": "220g"
-    }
+    },
+    "image": "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-power-bank-10000mah-22w-lite/pc/245f88d1d18ce6220ed35f8e4a78ddb3.png"
   },
   {
     "name": "Xiaomi Power Bank 20000mAh 33W",
@@ -74,7 +86,9 @@
     "price": 690000,
     "stock": 110,
     "minStockLevel": 25,
-    "images": [],
+    "images": [
+      "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-power-bank-20000/pc/854737fe4a231f7c16392fc44d0b8752.jpg"
+    ],
     "description": "Dung lượng lớn cùng công suất sạc nhanh giúp đáp ứng tốt nhu cầu sử dụng cho điện thoại, tablet và thiết bị di động.",
     "specifications": {
       "capacity": "20000mAh",
@@ -82,7 +96,8 @@
       "output": "USB-A x2, USB-C",
       "maxOutput": "33W",
       "weight": "440g"
-    }
+    },
+    "image": "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-power-bank-20000/pc/854737fe4a231f7c16392fc44d0b8752.jpg"
   },
   {
     "name": "Baseus Bipow 10000mAh 20W",
@@ -91,7 +106,9 @@
     "price": 350000,
     "stock": 130,
     "minStockLevel": 30,
-    "images": [],
+    "images": [
+      "https://dirigible.com.ng/wp-content/uploads/2022/08/eng_pl_Baseus-Bipow-Digital-Display-Power-bank-10000mAh-20W-2x-USB-USB-Type-C-micro-USB-20W-Quick-Charge-AFC-FCP-white-PPDML-L02-94774_5.jpg"
+    ],
     "description": "Baseus Bipow là dòng pin dự phòng phổ biến với màn hình hiển thị phần trăm pin và khả năng sạc nhanh 20W.",
     "specifications": {
       "capacity": "10000mAh",
@@ -99,7 +116,8 @@
       "output": "USB-A x2, USB-C",
       "maxOutput": "20W",
       "weight": "250g"
-    }
+    },
+    "image": "https://dirigible.com.ng/wp-content/uploads/2022/08/eng_pl_Baseus-Bipow-Digital-Display-Power-bank-10000mAh-20W-2x-USB-USB-Type-C-micro-USB-20W-Quick-Charge-AFC-FCP-white-PPDML-L02-94774_5.jpg"
   },
   {
     "name": "Baseus Bipow 20000mAh 20W",
@@ -108,7 +126,9 @@
     "price": 590000,
     "stock": 120,
     "minStockLevel": 25,
-    "images": [],
+    "images": [
+      "https://appleme.lk/wp-content/uploads/2021/09/1619430371478074.png"
+    ],
     "description": "Phiên bản 20000mAh phù hợp cho người dùng thường xuyên di chuyển và cần nhiều lần sạc cho điện thoại hoặc tablet.",
     "specifications": {
       "capacity": "20000mAh",
@@ -116,7 +136,8 @@
       "output": "USB-A x2, USB-C",
       "maxOutput": "20W",
       "weight": "450g"
-    }
+    },
+    "image": "https://appleme.lk/wp-content/uploads/2021/09/1619430371478074.png"
   },
   {
     "name": "UGREEN Nexode Power Bank 12000mAh 100W",
@@ -125,7 +146,9 @@
     "price": 1690000,
     "stock": 50,
     "minStockLevel": 12,
-    "images": [],
+    "images": [
+      "https://m.media-amazon.com/images/I/51s7ZPI9sgL._AC_SL1500_.jpg"
+    ],
     "description": "UGREEN Nexode hỗ trợ sạc nhanh công suất cao cho laptop, tablet và smartphone hiện đại.",
     "specifications": {
       "capacity": "12000mAh",
@@ -133,7 +156,8 @@
       "output": "USB-C x2, USB-A",
       "maxOutput": "100W",
       "weight": "320g"
-    }
+    },
+    "image": "https://m.media-amazon.com/images/I/51s7ZPI9sgL._AC_SL1500_.jpg"
   },
   {
     "name": "Samsung Battery Pack 10000mAh 25W",
@@ -142,7 +166,9 @@
     "price": 790000,
     "stock": 70,
     "minStockLevel": 15,
-    "images": [],
+    "images": [
+      "https://image-us.samsung.com/us/smartphones/galaxy-s23-ultra/accessories/images/battery/beige/6.jpg?$product-details-jpg$"
+    ],
     "description": "Pin dự phòng chính hãng Samsung hỗ trợ sạc nhanh Super Fast Charging cho các thiết bị Galaxy tương thích.",
     "specifications": {
       "capacity": "10000mAh",
@@ -150,7 +176,8 @@
       "output": "USB-C x2",
       "maxOutput": "25W",
       "weight": "210g"
-    }
+    },
+    "image": "https://image-us.samsung.com/us/smartphones/galaxy-s23-ultra/accessories/images/battery/beige/6.jpg?$product-details-jpg$"
   },
   {
     "name": "Belkin BoostCharge 20000mAh 30W",
@@ -159,7 +186,9 @@
     "price": 1190000,
     "stock": 65,
     "minStockLevel": 15,
-    "images": [],
+    "images": [
+      "https://m.media-amazon.com/images/I/41SsumdX-jL._AC_SL1500_.jpg"
+    ],
     "description": "Belkin BoostCharge là pin dự phòng cao cấp phù hợp cho người dùng iPhone, iPad và các thiết bị USB-C hiện đại.",
     "specifications": {
       "capacity": "20000mAh",
@@ -167,6 +196,7 @@
       "output": "USB-C, USB-A",
       "maxOutput": "30W",
       "weight": "410g"
-    }
+    },
+    "image": "https://m.media-amazon.com/images/I/41SsumdX-jL._AC_SL1500_.jpg"
   }
 ]

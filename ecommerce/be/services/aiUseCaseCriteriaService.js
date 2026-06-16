@@ -10,7 +10,7 @@ function fold(value = '') {
 
 const USE_CASE_PROFILES = {
   study: {
-    label: 'hoc tap',
+    label: 'học tập',
     keywords: ['hoc tap', 'hoc lap trinh', 'hoc online', 'sinh vien', 'ghi chu', 'on thi', 'study', 'school'],
     positiveTerms: ['ram', 'ssd', 'cpu', 'i3', 'i5', 'i7', 'ryzen 3', 'ryzen 5', 'ryzen 7', 'pin', 'battery', 'nhe', 'mong', 'full hd', 'oled', 'keyboard'],
     negativeTerms: ['gaming', 'rtx', 'gtx', 'high refresh', 'mechanical'],
@@ -20,13 +20,13 @@ const USE_CASE_PROFILES = {
   gaming: {
     label: 'gaming',
     keywords: ['gaming', 'game', 'fps', 'esports', 'choi game', 'stream'],
-    positiveTerms: ['rtx', 'gtx', 'radeon', 'gpu', 'vga', 'i7', 'ryzen 7', 'ryzen 9', '16gb', '32gb', 'high refresh', 'cooling', 'tản nhiệt'],
+    positiveTerms: ['rtx', 'gtx', 'radeon', 'gpu', 'vga', 'i7', 'ryzen 7', 'ryzen 9', '16gb', '32gb', 'high refresh', 'cooling', 'tản nhiệt', 'keyboard', 'mechanical', 'switch', 'rgb', 'anti ghosting', 'low latency', 'rapid trigger'],
     negativeTerms: ['pin yếu', 'mỏng nhẹ', 'siêu tiết kiệm điện'],
-    categoryHints: ['laptop', 'desktop', 'pc', 'monitor'],
+    categoryHints: ['laptop', 'desktop', 'pc', 'monitor', 'keyboard'],
     summary: 'hợp gaming nếu ưu tiên GPU, tản nhiệt, màn hình mượt và RAM đủ mạnh',
   },
   photography: {
-    label: 'chup anh',
+    label: 'chụp ảnh',
     keywords: ['chup anh', 'camera', 'photo', 'photography', 'portra', 'selfie', 'quay video', 'video', 'chup hinh'],
     positiveTerms: ['camera', 'ois', 'zoom', 'night', 'portrait', 'ultra wide', 'tele', 'mp', 'lens', 'ai photo', 'stabilization'],
     negativeTerms: ['camera phụ', 'không có ois'],
@@ -42,9 +42,9 @@ const USE_CASE_PROFILES = {
     summary: 'hợp nhu cầu pin nếu ưu tiên thời lượng dùng dài và sạc nhanh',
   },
   office: {
-    label: 'van phong',
+    label: 'văn phòng',
     keywords: ['van phong', 'office', 'lam viec', 'hop dong', 'email', 'excel', 'word'],
-    positiveTerms: ['keyboard', 'webcam', 'mic', 'battery', 'light', 'nhe', '14', '15.6', 'oled', 'full hd'],
+    positiveTerms: ['webcam', 'mic', 'battery', 'light', 'nhe', '14', '15.6', 'oled', 'full hd', 'silent', 'ergonomic', 'full size'],
     negativeTerms: ['gaming', 'rtx', 'mechanical'],
     categoryHints: ['laptop', 'tablet', 'monitor'],
     summary: 'hợp văn phòng nếu ưu tiên gọn nhẹ, pin ổn, màn hình dễ nhìn và gõ thoải mái',
@@ -52,9 +52,9 @@ const USE_CASE_PROFILES = {
   compact: {
     label: 'gọn nhẹ',
     keywords: ['gon nhe', 'di dong', 'travel', 'cong tac', 'mang theo', 'portable'],
-    positiveTerms: ['nhe', 'mong', 'thin', 'compact', 'battery', 'light', '13', '14'],
+    positiveTerms: ['nhe', 'mong', 'thin', 'compact', 'battery', 'light', '13', '14', 'keyboard', 'tenkeyless', 'mini', '60%', '65%', '75%'],
     negativeTerms: ['cồng kềnh'],
-    categoryHints: ['laptop', 'tablet', 'phone', 'smartwatch'],
+    categoryHints: ['laptop', 'tablet', 'phone', 'smartwatch', 'keyboard'],
     summary: 'hợp di chuyển nếu ưu tiên trọng lượng nhẹ và sự linh hoạt',
   },
 }
@@ -185,3 +185,18 @@ export function buildUseCaseFitTexts(product = {}) {
   }
 }
 
+export function resolveBestUseCaseProfile(product = {}, intent = {}, message = '') {
+  const explicitProfile = resolveUseCaseProfile(intent, message)
+  if (explicitProfile) {
+    return explicitProfile
+  }
+
+  const scoredProfiles = Object.keys(USE_CASE_PROFILES)
+    .map((profileKey) => ({
+      profileKey,
+      score: scoreUseCaseFit(product, profileKey).score,
+    }))
+    .sort((first, second) => second.score - first.score || first.profileKey.localeCompare(second.profileKey))
+
+  return scoredProfiles[0]?.profileKey || 'study'
+}

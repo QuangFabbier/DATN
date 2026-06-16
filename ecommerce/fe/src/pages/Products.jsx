@@ -3,7 +3,6 @@ import { Link, useSearchParams } from 'react-router-dom'
 import EmptyState from '../components/EmptyState'
 import ProductCard from '../components/ProductCard'
 import { ProductGridSkeleton } from '../components/Skeleton'
-import { useSearch } from '../hooks/useSearch'
 import { getProducts } from '../services/productService'
 import { getOrCreateFlashSaleCampaign } from '../utils/flashSale'
 import { getProductCategoryLabel, getProductId, normalizeProductCategory } from '../utils/product'
@@ -31,9 +30,9 @@ function Products() {
   const categoryDropdownRef = useRef(null)
   const brandDropdownRef = useRef(null)
   const sortDropdownRef = useRef(null)
-  const { searchKeyword, setSearchKeyword } = useSearch()
   const rawSelectedCategory = String(searchParams.get('category') || '').trim()
   const rawSelectedBrand = String(searchParams.get('brand') || '').trim()
+  const [searchKeyword, setSearchKeyword] = useState(String(searchParams.get('search') || '').trim())
   const selectedCategoryParam = normalizeProductCategory(rawSelectedCategory)
   const selectedBrandParam = rawSelectedBrand.toLowerCase()
   const selectedCategoryLabel = selectedCategoryParam ? getProductCategoryLabel(selectedCategoryParam) : ALL_CATEGORIES_LABEL
@@ -50,8 +49,8 @@ function Products() {
   )
 
   useEffect(() => {
-    setSearchKeyword(searchParams.get('search') || '')
-  }, [searchParams, setSearchKeyword])
+    setSearchKeyword(String(searchParams.get('search') || '').trim())
+  }, [searchParams])
 
   useEffect(() => {
     async function fetchProducts() {
@@ -341,7 +340,11 @@ function Products() {
             onChange={(event) => {
               setSearchKeyword(event.target.value)
               setCurrentPage(1)
-              updateParams(selectedCategory, selectedBrand, event.target.value)
+            }}
+            onKeyDown={(event) => {
+              if (event.key === 'Enter') {
+                event.preventDefault()
+              }
             }}
             placeholder="Tìm theo tên sản phẩm"
           />

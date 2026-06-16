@@ -292,7 +292,7 @@ function createMockOrders(products = []) {
 
           return {
             id: String(matchedProduct.id),
-            name: String(matchedProduct.name || 'Sáº£n pháº©m Nexora'),
+            name: String(matchedProduct.name || 'Sản phẩm Nexora'),
             image: String(matchedProduct.image || ''),
             price,
             quantity: Math.max(1, Number(item.quantity) || 1),

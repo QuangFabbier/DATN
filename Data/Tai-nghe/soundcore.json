@@ -3,18 +3,30 @@
     "name": "Soundcore R50i",
     "category": "Headphones",
     "brand": "Soundcore",
-    "price": 590000
+    "price": 590000,
+    "image": "https://m.media-amazon.com/images/I/61b5cOjm2eL._AC_SL1500_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/61b5cOjm2eL._AC_SL1500_.jpg"
+    ]
   },
   {
     "name": "Soundcore Liberty 4 NC",
     "category": "Headphones",
     "brand": "Soundcore",
-    "price": 1990000
+    "price": 1990000,
+    "image": "https://cdn.shopify.com/s/files/1/0520/7192/3885/files/3947-Normal_Product.png?v=1688038274",
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0520/7192/3885/files/3947-Normal_Product.png?v=1688038274"
+    ]
   },
   {
     "name": "Soundcore Liberty 4 Pro",
     "category": "Headphones",
     "brand": "Soundcore",
-    "price": 3490000
+    "price": 3490000,
+    "image": "https://m.media-amazon.com/images/I/51iZKAb6FuL._AC_SL1500_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/51iZKAb6FuL._AC_SL1500_.jpg"
+    ]
   }
 ]
