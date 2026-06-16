@@ -1,172 +1,172 @@
 [
   {
-    "name": "Apple USB-C Power Adapter 20W",
-    "category": "Charger",
-    "brand": "Apple",
+    "name": "Soundcore R50i",
+    "category": "Headphones",
+    "brand": "Soundcore",
     "price": 590000,
-    "stock": 120,
-    "minStockLevel": 25,
-    "images": [],
-    "description": "Củ sạc Apple USB-C 20W là phụ kiện chính hãng phù hợp cho iPhone, iPad và AirPods. Thiết bị hỗ trợ sạc nhanh cho các dòng iPhone hiện đại, thiết kế nhỏ gọn và đảm bảo độ an toàn cao trong quá trình sử dụng.",
-    "specifications": {
-      "power": "20W",
-      "ports": "1 x USB-C",
-      "technology": "USB Power Delivery",
-      "input": "100-240V",
-      "color": "White"
-    }
+    "image": "https://m.media-amazon.com/images/I/61b5cOjm2eL._AC_SL1500_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/61b5cOjm2eL._AC_SL1500_.jpg"
+    ]
   },
   {
-    "name": "Apple USB-C Power Adapter 35W Dual Port",
-    "category": "Charger",
-    "brand": "Apple",
-    "price": 1490000,
+    "name": "Soundcore Liberty 4 NC",
+    "category": "Headphones",
+    "brand": "Soundcore",
+    "price": 1990000,
+    "image": "https://cdn.shopify.com/s/files/1/0520/7192/3885/files/3947-Normal_Product.png?v=1688038274",
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0520/7192/3885/files/3947-Normal_Product.png?v=1688038274"
+    ]
+  },
+  {
+    "name": "Soundcore Liberty 4 Pro",
+    "category": "Headphones",
+    "brand": "Soundcore",
+    "price": 3490000,
+    "image": "https://m.media-amazon.com/images/I/51iZKAb6FuL._AC_SL1500_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/51iZKAb6FuL._AC_SL1500_.jpg"
+    ]
+  },
+  {
+    "name": "Kingston Fury Beast DDR5 32GB 6000MHz",
+    "category": "RAM",
+    "brand": "Kingston",
+    "price": 2990000,
     "stock": 60,
     "minStockLevel": 12,
-    "images": [],
-    "description": "Củ sạc Apple 35W hai cổng USB-C cho phép sạc đồng thời iPhone, iPad, AirPods hoặc MacBook Air với hiệu suất ổn định.",
+    "images": [
+      "https://m.media-amazon.com/images/I/71yiC8EpVCL._AC_.jpg"
+    ],
+    "description": "Bộ nhớ DDR5 dung lượng lớn dành cho gaming cao cấp, chỉnh sửa video và xử lý dữ liệu chuyên nghiệp.",
     "specifications": {
-      "power": "35W",
-      "ports": "2 x USB-C",
-      "technology": "USB Power Delivery",
-      "input": "100-240V",
-      "color": "White"
-    }
+      "capacity": "32GB",
+      "type": "DDR5",
+      "speed": "6000MHz",
+      "latency": "CL36",
+      "voltage": "1.35V"
+    },
+    "image": "https://m.media-amazon.com/images/I/71yiC8EpVCL._AC_.jpg"
   },
   {
-    "name": "Samsung Super Fast Charger 25W",
-    "category": "Charger",
-    "brand": "Samsung",
-    "price": 490000,
-    "stock": 110,
-    "minStockLevel": 20,
-    "images": [],
-    "description": "Củ sạc Samsung 25W hỗ trợ công nghệ Super Fast Charging cho điện thoại Galaxy và các thiết bị USB-C tương thích.",
-    "specifications": {
-      "power": "25W",
-      "ports": "1 x USB-C",
-      "technology": "PD PPS",
-      "input": "100-240V",
-      "color": "Black"
-    }
-  },
-  {
-    "name": "Samsung Super Fast Charger 45W",
-    "category": "Charger",
-    "brand": "Samsung",
-    "price": 890000,
-    "stock": 80,
-    "minStockLevel": 15,
-    "images": [],
-    "description": "Phiên bản 45W dành cho smartphone flagship Galaxy, tablet Samsung và nhiều thiết bị USB-C hiện đại.",
-    "specifications": {
-      "power": "45W",
-      "ports": "1 x USB-C",
-      "technology": "PD PPS",
-      "input": "100-240V",
-      "color": "Black"
-    }
-  },
-  {
-    "name": "Anker Nano 3 USB-C Charger 30W",
-    "category": "Charger",
-    "brand": "Anker",
-    "price": 490000,
-    "stock": 100,
-    "minStockLevel": 20,
-    "images": [],
-    "description": "Anker Nano 3 sử dụng công nghệ GaN giúp thiết kế nhỏ gọn nhưng vẫn cung cấp công suất sạc nhanh lên đến 30W.",
-    "specifications": {
-      "power": "30W",
-      "ports": "1 x USB-C",
-      "technology": "GaN, PD",
-      "input": "100-240V",
-      "color": "White"
-    }
-  },
-  {
-    "name": "Anker 735 GaNPrime Charger 65W",
-    "category": "Charger",
-    "brand": "Anker",
-    "price": 1490000,
+    "name": "Corsair Vengeance DDR5 32GB 6000MHz",
+    "category": "RAM",
+    "brand": "Corsair",
+    "price": 3190000,
     "stock": 55,
     "minStockLevel": 12,
-    "images": [],
-    "description": "Anker 735 là củ sạc GaN cao cấp hỗ trợ sạc đồng thời laptop, tablet và smartphone với công suất tối đa 65W.",
+    "images": [
+      "https://m.media-amazon.com/images/I/71m9-93iPBL._AC_.jpg"
+    ],
+    "description": "Corsair Vengeance DDR5 là dòng RAM nổi tiếng với độ ổn định cao và khả năng tương thích tốt cho PC gaming hiện đại.",
     "specifications": {
-      "power": "65W",
-      "ports": "2 x USB-C, 1 x USB-A",
-      "technology": "GaNPrime, PD",
-      "input": "100-240V",
-      "color": "Black"
-    }
+      "capacity": "32GB",
+      "type": "DDR5",
+      "speed": "6000MHz",
+      "latency": "CL36",
+      "voltage": "1.35V"
+    },
+    "image": "https://m.media-amazon.com/images/I/71m9-93iPBL._AC_.jpg"
   },
   {
-    "name": "UGREEN Nexode GaN Charger 65W",
-    "category": "Charger",
-    "brand": "UGREEN",
-    "price": 1190000,
-    "stock": 70,
-    "minStockLevel": 15,
-    "images": [],
-    "description": "UGREEN Nexode 65W là củ sạc GaN đa năng phù hợp cho MacBook Air, ultrabook, tablet và điện thoại.",
+    "name": "Corsair Dominator Titanium DDR5 32GB 6400MHz",
+    "category": "RAM",
+    "brand": "Corsair",
+    "price": 4990000,
+    "stock": 30,
+    "minStockLevel": 8,
+    "images": [
+      "https://m.media-amazon.com/images/I/61FvCy+l77L._AC_SL1500_.jpg"
+    ],
+    "description": "Corsair Dominator Titanium là dòng RAM cao cấp dành cho hệ thống gaming và workstation hiệu năng cao.",
     "specifications": {
-      "power": "65W",
-      "ports": "2 x USB-C, 1 x USB-A",
-      "technology": "GaN, PD",
-      "input": "100-240V",
-      "color": "Gray"
-    }
+      "capacity": "32GB",
+      "type": "DDR5",
+      "speed": "6400MHz",
+      "latency": "CL32",
+      "voltage": "1.40V"
+    },
+    "image": "https://m.media-amazon.com/images/I/61FvCy+l77L._AC_SL1500_.jpg"
   },
   {
-    "name": "Baseus GaN5 Fast Charger 100W",
-    "category": "Charger",
-    "brand": "Baseus",
-    "price": 1390000,
+    "name": "G.Skill Trident Z5 RGB DDR5 32GB 6400MHz",
+    "category": "RAM",
+    "brand": "G.Skill",
+    "price": 4590000,
+    "stock": 35,
+    "minStockLevel": 8,
+    "images": [
+      "https://m.media-amazon.com/images/I/71DiVTefKBL._AC_.jpg"
+    ],
+    "description": "G.Skill Trident Z5 RGB là dòng RAM cao cấp được nhiều game thủ và người ép xung lựa chọn nhờ hiệu năng mạnh mẽ.",
+    "specifications": {
+      "capacity": "32GB",
+      "type": "DDR5",
+      "speed": "6400MHz",
+      "latency": "CL32",
+      "voltage": "1.40V"
+    },
+    "image": "https://m.media-amazon.com/images/I/71DiVTefKBL._AC_.jpg"
+  },
+  {
+    "name": "ADATA XPG Lancer DDR5 32GB 6000MHz",
+    "category": "RAM",
+    "brand": "ADATA",
+    "price": 2890000,
     "stock": 60,
     "minStockLevel": 12,
-    "images": [],
-    "description": "Baseus GaN5 100W hỗ trợ sạc nhanh cho laptop, tablet và smartphone với nhiều cổng kết nối tiện lợi.",
+    "images": [
+      "https://files.pccasegear.com/UserFiles/AX5U6000C4016G-DCLARWH-adata-xpg-lancer-rgb-32gb-2x16gb-6000mhz-cl40-ddr5-white-product4.jpg"
+    ],
+    "description": "ADATA XPG Lancer DDR5 mang đến hiệu năng tốt trong phân khúc tầm trung cho gaming và làm việc.",
     "specifications": {
-      "power": "100W",
-      "ports": "2 x USB-C, 2 x USB-A",
-      "technology": "GaN5, PD",
-      "input": "100-240V",
-      "color": "Black"
-    }
+      "capacity": "32GB",
+      "type": "DDR5",
+      "speed": "6000MHz",
+      "latency": "CL38",
+      "voltage": "1.35V"
+    },
+    "image": "https://files.pccasegear.com/UserFiles/AX5U6000C4016G-DCLARWH-adata-xpg-lancer-rgb-32gb-2x16gb-6000mhz-cl40-ddr5-white-product4.jpg"
   },
   {
-    "name": "Xiaomi 67W Turbo Charger",
-    "category": "Charger",
-    "brand": "Xiaomi",
-    "price": 590000,
-    "stock": 90,
-    "minStockLevel": 18,
-    "images": [],
-    "description": "Củ sạc Xiaomi 67W hỗ trợ sạc nhanh cho điện thoại Xiaomi, Redmi, POCO và các thiết bị USB-C tương thích.",
+    "name": "Crucial DDR5 16GB 5600MHz",
+    "category": "RAM",
+    "brand": "Crucial",
+    "price": 1390000,
+    "stock": 80,
+    "minStockLevel": 15,
+    "images": [
+      "https://m.media-amazon.com/images/I/819OdHGCicL.jpg"
+    ],
+    "description": "Crucial DDR5 16GB là lựa chọn nâng cấp phù hợp cho người dùng phổ thông muốn chuyển sang nền tảng DDR5.",
     "specifications": {
-      "power": "67W",
-      "ports": "1 x USB-A",
-      "technology": "Turbo Charge",
-      "input": "100-240V",
-      "color": "White"
-    }
+      "capacity": "16GB",
+      "type": "DDR5",
+      "speed": "5600MHz",
+      "latency": "CL46",
+      "voltage": "1.10V"
+    },
+    "image": "https://m.media-amazon.com/images/I/819OdHGCicL.jpg"
   },
   {
-    "name": "Belkin BoostCharge Pro 65W GaN",
-    "category": "Charger",
-    "brand": "Belkin",
-    "price": 1590000,
-    "stock": 45,
-    "minStockLevel": 10,
-    "images": [],
-    "description": "Belkin BoostCharge Pro 65W là củ sạc GaN cao cấp phù hợp cho MacBook, iPad, iPhone và nhiều thiết bị USB-C hiện đại.",
+    "name": "Samsung DDR5 SODIMM 16GB 5600MHz",
+    "category": "RAM",
+    "brand": "Samsung",
+    "price": 1490000,
+    "stock": 75,
+    "minStockLevel": 15,
+    "images": [
+      "https://m.media-amazon.com/images/I/61Mc6kTOz+L._AC_.jpg"
+    ],
+    "description": "Samsung DDR5 SODIMM là RAM laptop phổ biến dành cho nâng cấp notebook và laptop gaming thế hệ mới.",
     "specifications": {
-      "power": "65W",
-      "ports": "2 x USB-C",
-      "technology": "GaN, PD",
-      "input": "100-240V",
-      "color": "White"
-    }
+      "capacity": "16GB",
+      "type": "DDR5 SODIMM",
+      "speed": "5600MHz",
+      "latency": "CL46",
+      "voltage": "1.10V"
+    },
+    "image": "https://m.media-amazon.com/images/I/61Mc6kTOz+L._AC_.jpg"
   }
 ]

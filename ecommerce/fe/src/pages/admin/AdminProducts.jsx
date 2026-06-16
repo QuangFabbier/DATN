@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
+﻿import { useEffect, useMemo, useRef, useState } from 'react'
 import EmptyState from '../../components/EmptyState'
 import { AdminProductsSkeleton } from '../../components/Skeleton'
 import { ButtonSpinner } from '../../components/Spinner'
@@ -28,6 +28,16 @@ function normalizeImageListFromText(primaryImage, imagesText) {
   ].filter(Boolean)
 }
 
+function writeImageListToFormData(currentData, images = []) {
+  const uniqueImages = [...new Set(images.map((image) => String(image || '').trim()).filter(Boolean))]
+
+  return {
+    ...currentData,
+    image: uniqueImages[0] || '',
+    imagesText: uniqueImages.slice(1).join('\n'),
+  }
+}
+
 function readFileAsDataUrl(file) {
   return new Promise((resolve, reject) => {
     const fileReader = new FileReader()
@@ -53,6 +63,7 @@ function AdminProducts() {
   const [imageUploadError, setImageUploadError] = useState('')
   const [isReadingImage, setIsReadingImage] = useState(false)
   const [isDraggingImage, setIsDraggingImage] = useState(false)
+  const [draggedPreviewImageIndex, setDraggedPreviewImageIndex] = useState(null)
   const [editingProductId, setEditingProductId] = useState('')
   const [isFormOpen, setIsFormOpen] = useState(false)
   const [selectedProduct, setSelectedProduct] = useState(null)
@@ -60,7 +71,11 @@ function AdminProducts() {
   const [deletingProductId, setDeletingProductId] = useState('')
   const [pendingDeleteProduct, setPendingDeleteProduct] = useState(null)
   const hasAdminAccess = isAuthenticated && user?.role === 'admin'
-  const hasImagePreview = Boolean(formData.image || formData.imagesText.trim())
+  const previewImages = useMemo(
+    () => normalizeImageListFromText(formData.image, formData.imagesText),
+    [formData.image, formData.imagesText],
+  )
+  const hasImagePreview = previewImages.length > 0
   const imageInputRef = useRef(null)
 
   useEffect(() => {
@@ -145,6 +160,7 @@ function AdminProducts() {
     setImageUploadError('')
     setIsReadingImage(false)
     setIsDraggingImage(false)
+    setDraggedPreviewImageIndex(null)
     setEditingProductId('')
     setIsFormOpen(false)
     setIsSubmitting(false)
@@ -239,15 +255,10 @@ function AdminProducts() {
     const imageDataUrls = await Promise.all(selectedFiles.map((file) => readFileAsDataUrl(file)))
 
     setFormData((currentData) => {
-      const nextImages = normalizeImageListFromText(currentData.image, currentData.imagesText)
-      const mergedImages = [...nextImages, ...imageDataUrls].filter(Boolean)
-      const uniqueImages = [...new Set(mergedImages)]
-
-      return {
-        ...currentData,
-        image: uniqueImages[0] || '',
-        imagesText: uniqueImages.slice(1).join('\n'),
-      }
+      return writeImageListToFormData(currentData, [
+        ...normalizeImageListFromText(currentData.image, currentData.imagesText),
+        ...imageDataUrls,
+      ])
     })
   }
 
@@ -258,6 +269,64 @@ function AdminProducts() {
       imagesText: '',
     }))
     setImageUploadError('')
+  }
+
+  function handleRemoveImage(indexToRemove) {
+    setFormData((currentData) => {
+      const nextImages = normalizeImageListFromText(currentData.image, currentData.imagesText).filter(
+        (_, index) => index !== indexToRemove,
+      )
+
+      return writeImageListToFormData(currentData, nextImages)
+    })
+  }
+
+  function handlePromoteImage(indexToPromote) {
+    setFormData((currentData) => {
+      const nextImages = normalizeImageListFromText(currentData.image, currentData.imagesText)
+
+      if (indexToPromote <= 0 || indexToPromote >= nextImages.length) {
+        return currentData
+      }
+
+      const promotedImage = nextImages[indexToPromote]
+      const reorderedImages = [promotedImage, ...nextImages.filter((_, index) => index !== indexToPromote)]
+
+      return writeImageListToFormData(currentData, reorderedImages)
+    })
+  }
+
+  function handlePreviewDragStart(index) {
+    setDraggedPreviewImageIndex(index)
+  }
+
+  function handlePreviewDragOver(event) {
+    event.preventDefault()
+  }
+
+  function handlePreviewDrop(targetIndex) {
+    setFormData((currentData) => {
+      const nextImages = normalizeImageListFromText(currentData.image, currentData.imagesText)
+
+      if (
+        draggedPreviewImageIndex === null ||
+        draggedPreviewImageIndex === targetIndex ||
+        draggedPreviewImageIndex < 0 ||
+        draggedPreviewImageIndex >= nextImages.length ||
+        targetIndex < 0 ||
+        targetIndex >= nextImages.length
+      ) {
+        return currentData
+      }
+
+      const reorderedImages = [...nextImages]
+      const [draggedImage] = reorderedImages.splice(draggedPreviewImageIndex, 1)
+      reorderedImages.splice(targetIndex, 0, draggedImage)
+
+      return writeImageListToFormData(currentData, reorderedImages)
+    })
+
+    setDraggedPreviewImageIndex(null)
   }
 
   function validateForm() {
@@ -348,6 +417,7 @@ function AdminProducts() {
     setFormData(initialFormData)
     setFormErrors({})
     setError('')
+    setDraggedPreviewImageIndex(null)
   }
 
   function handleEditProduct(product) {
@@ -374,6 +444,7 @@ function AdminProducts() {
       imagesText: Array.isArray(product.images) ? product.images.slice(1).join('\n') : '',
       description: product.description || '',
     })
+    setDraggedPreviewImageIndex(null)
   }
 
   async function handleDeleteProduct() {
@@ -719,13 +790,47 @@ function AdminProducts() {
                     <span className="section-heading-meta">Đang đọc ảnh...</span>
                   ) : null}
                   {imageUploadError ? <span className="field-error">{imageUploadError}</span> : null}
-                  {normalizeImageListFromText(formData.image, formData.imagesText).length > 0 ? (
-                    <div className="admin-image-preview-grid">
-                      {normalizeImageListFromText(formData.image, formData.imagesText).map((image, index) => (
-                        <div key={`${image}-${index}`} className="admin-image-preview">
-                          <img src={image} alt={`Xem trước ảnh ${index + 1}`} />
-                        </div>
-                      ))}
+                  {previewImages.length > 0 ? (
+                    <div className="admin-image-preview-block">
+                      <div className="admin-image-preview-row">
+                        {previewImages.map((image, index) => (
+                          <div
+                            key={`${image}-${index}`}
+                            className={`admin-image-preview ${
+                              draggedPreviewImageIndex === index ? 'is-dragging' : ''
+                            }`}
+                            role="button"
+                            tabIndex={0}
+                            draggable
+                            onClick={() => handlePromoteImage(index)}
+                            onKeyDown={(event) => {
+                              if (event.key === 'Enter' || event.key === ' ') {
+                                event.preventDefault()
+                                handlePromoteImage(index)
+                              }
+                            }}
+                            onDragStart={() => handlePreviewDragStart(index)}
+                            onDragOver={handlePreviewDragOver}
+                            onDrop={() => handlePreviewDrop(index)}
+                            onDragEnd={() => setDraggedPreviewImageIndex(null)}
+                            title="Bấm để đưa ảnh này lên đầu, kéo thả để đổi thứ tự"
+                          >
+                            <img src={image} alt={`Xem trước ảnh ${index + 1}`} />
+                            <button
+                              type="button"
+                              className="admin-image-remove-button"
+                              onClick={(event) => {
+                                event.stopPropagation()
+                                handleRemoveImage(index)
+                              }}
+                              aria-label={`Xóa ảnh ${index + 1}`}
+                              title="Xóa ảnh này"
+                            >
+                              ×
+                            </button>
+                          </div>
+                        ))}
+                      </div>
                       <button type="button" className="button button-danger" onClick={handleClearImage}>
                         Xóa toàn bộ ảnh
                       </button>

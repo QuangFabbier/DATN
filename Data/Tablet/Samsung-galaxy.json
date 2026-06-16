@@ -6,7 +6,11 @@
     "price": 13990000,
     "stock": 55,
     "minStockLevel": 15,
-    "images": [],
+    "images": [
+      "https://shop.samsung.com/latin/ecu/pub/media/catalog/product/cache/a69170b4a4f0666a52473c2224ba9220/s/m/sm-x520n_galaxy-tab-s10-fe_blue_product-image_set-cut-all-1.png",
+      "https://shop.samsung.com/latin/ecu/pub/media/catalog/product/s/m/sm-x520n_galaxy-tab-s10-fe_blue_product-image_set-cut-all-1.png",
+      "https://shop.samsung.com/latin/ecu/pub/media/catalog/product/s/m/sm-x520n_galaxy-tab-s10-fe_blue_product-image_set-cut-all-1_thumb.png"
+    ],
     "description": "Galaxy Tab S10 FE là mẫu máy tính bảng Android phù hợp cho học tập, làm việc và giải trí hằng ngày. Thiết bị được trang bị màn hình lớn giúp đọc tài liệu, ghi chú và xem nội dung đa phương tiện thoải mái. Bút S Pen đi kèm hỗ trợ học tập, vẽ và ghi chú hiệu quả mà không cần mua thêm phụ kiện. Hiệu năng ổn định đáp ứng tốt các tác vụ văn phòng, học trực tuyến và giải trí phổ biến. Đây là lựa chọn phù hợp cho học sinh, sinh viên và người dùng cần một chiếc tablet Android đa năng với mức giá hợp lý.",
     "specifications": {
       "processor": "Exynos 1580",
@@ -17,7 +21,8 @@
       "operatingSystem": "Android",
       "connectivity": "Wi-Fi",
       "weight": "523g"
-    }
+    },
+    "image": "https://shop.samsung.com/latin/ecu/pub/media/catalog/product/cache/a69170b4a4f0666a52473c2224ba9220/s/m/sm-x520n_galaxy-tab-s10-fe_blue_product-image_set-cut-all-1.png"
   },
   {
     "name": "Samsung Galaxy Tab S10+ Wi-Fi 256GB",
@@ -26,7 +31,12 @@
     "price": 24990000,
     "stock": 30,
     "minStockLevel": 8,
-    "images": [],
+    "image": "https://images.samsung.com/is/image/samsung/p6pim/us/sm-x820nzaaxar/gallery/us-galaxy-tab-s10-plus-sm-x820-sm-x820nzaaxar-551218671?$product-details-jpg$",
+    "images": [
+      "https://images.samsung.com/is/image/samsung/p6pim/us/sm-x820nzaaxar/gallery/us-galaxy-tab-s10-plus-sm-x820-sm-x820nzaaxar-551218671?$product-details-jpg$",
+      "https://images.samsung.com/is/image/samsung/p6pim/us/sm-x820nzaaxar/gallery/us-galaxy-tab-s10-plus-sm-x820-sm-x820nzaaxar-551218672?$product-details-jpg$",
+      "https://images.samsung.com/is/image/samsung/p6pim/us/sm-x820nzaaxar/gallery/us-galaxy-tab-s10-plus-sm-x820-sm-x820nzaaxar-551218673?$product-details-jpg$"
+    ],
     "description": "Galaxy Tab S10+ là mẫu tablet cao cấp dành cho người dùng cần màn hình lớn và hiệu năng mạnh mẽ cho công việc lẫn giải trí. Màn hình Dynamic AMOLED mang lại màu sắc sống động và độ tương phản cao, phù hợp cho chỉnh sửa hình ảnh và xem nội dung chất lượng cao. Bút S Pen đi kèm giúp ghi chú, phác thảo ý tưởng và làm việc hiệu quả hơn. Thiết bị đáp ứng tốt đa nhiệm, họp trực tuyến và các ứng dụng sáng tạo nội dung. Đây là lựa chọn phù hợp cho sinh viên, nhân viên văn phòng và người dùng chuyên nghiệp.",
     "specifications": {
       "processor": "MediaTek Dimensity 9300+",
@@ -46,7 +56,11 @@
     "price": 32990000,
     "stock": 18,
     "minStockLevel": 5,
-    "images": [],
+    "images": [
+      "https://shop.samsung.com/latin/cac/pub/media/catalog/product/s/m/sm-x920n_galaxy-tab-s10ultra_00_thumb_2.png",
+      "https://shop.samsung.com/latin/cac/pub/media/catalog/product/cache/a69170b4a4f0666a52473c2224ba9220/s/m/sm-x920n_galaxy-tab-s10ultra_00_2.png",
+      "https://shop.samsung.com/latin/cac/pub/media/catalog/product/s/m/sm-x920n_galaxy-tab-s10ultra_00_thumb_3.png"
+    ],
     "description": "Galaxy Tab S10 Ultra là mẫu tablet Android cao cấp nhất của Samsung dành cho người dùng chuyên nghiệp. Màn hình kích thước lớn mang lại không gian làm việc rộng rãi, phù hợp cho chỉnh sửa nội dung, đa nhiệm và giải trí cao cấp. Hiệu năng mạnh mẽ giúp xử lý tốt các tác vụ đồ họa, công việc văn phòng nâng cao và học tập chuyên sâu. Bút S Pen hỗ trợ sáng tạo nội dung và ghi chú hiệu quả. Đây là lựa chọn lý tưởng cho người dùng muốn một thiết bị Android cao cấp có khả năng thay thế laptop trong nhiều tình huống.",
     "specifications": {
       "processor": "MediaTek Dimensity 9300+",
@@ -57,6 +71,7 @@
       "operatingSystem": "Android",
       "connectivity": "Wi-Fi",
       "weight": "718g"
-    }
+    },
+    "image": "https://shop.samsung.com/latin/cac/pub/media/catalog/product/s/m/sm-x920n_galaxy-tab-s10ultra_00_thumb_2.png"
   }
 ]

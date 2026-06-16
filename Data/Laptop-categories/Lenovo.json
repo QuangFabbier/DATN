@@ -6,7 +6,13 @@
     "price": 30990000,
     "stock": 32,
     "minStockLevel": 8,
-    "images": [],
+    "images": [
+      "https://p2-ofp.static.pub/ShareResource/na/products/loq/560x450/lenovo-loq-15inch-amd-white-backlit-01.png",
+      "https://p3-ofp.static.pub/ShareResource/na/products/loq/560x450/lenovo-loq-15inch-amd-white-backlit-02.png",
+      "https://p4-ofp.static.pub/ShareResource/na/products/loq/560x450/lenovo-loq-15inch-amd-white-backlit-03.png",
+      "https://p1-ofp.static.pub/ShareResource/na/products/loq/560x450/lenovo-loq-15inch-amd-white-backlit-04.png",
+      "https://p1-ofp.static.pub/ShareResource/na/products/loq/560x450/lenovo-loq-15inch-amd-white-backlit-05.png"
+    ],
     "description": "Lenovo LOQ 15 Ryzen 7 RTX 4060 là mẫu laptop gaming được thiết kế cho game thủ và sinh viên kỹ thuật cần hiệu năng mạnh trong mức giá hợp lý. Bộ xử lý Ryzen 7 kết hợp RTX 4060 đáp ứng tốt nhu cầu chơi game, lập trình, thiết kế đồ họa và dựng video. Màn hình tốc độ làm mới cao mang lại trải nghiệm mượt mà trong các tựa game cạnh tranh. Thiết kế hiện đại cùng hệ thống tản nhiệt hiệu quả giúp máy hoạt động ổn định trong thời gian dài. Đây là lựa chọn hấp dẫn cho người dùng cần một chiếc laptop đa năng phục vụ cả học tập và giải trí.",
     "specifications": {
       "cpu": "AMD Ryzen 7 8845HS",
@@ -17,7 +23,8 @@
       "battery": "60Wh",
       "operatingSystem": "Windows 11 Home",
       "weight": "2.40kg"
-    }
+    },
+    "image": "https://p2-ofp.static.pub/ShareResource/na/products/loq/560x450/lenovo-loq-15inch-amd-white-backlit-01.png"
   },
   {
     "name": "Lenovo LOQ 15 i7 RTX 4060",
@@ -26,7 +33,9 @@
     "price": 31990000,
     "stock": 28,
     "minStockLevel": 8,
-    "images": [],
+    "images": [
+      "https://m.media-amazon.com/images/I/71SAusg17wL._AC_.jpg"
+    ],
     "description": "Lenovo LOQ 15 i7 RTX 4060 mang đến hiệu năng mạnh mẽ cho game thủ và người dùng sáng tạo nội dung. Intel Core i7 thế hệ mới kết hợp RTX 4060 giúp xử lý tốt các tựa game hiện đại, phần mềm kỹ thuật và các công việc đồ họa chuyên sâu. Màn hình tần số quét cao mang lại trải nghiệm hình ảnh mượt mà và sắc nét. Hệ thống tản nhiệt tối ưu giúp duy trì hiệu suất ổn định trong quá trình sử dụng liên tục. Đây là lựa chọn phù hợp cho người dùng cần sức mạnh xử lý cao với mức đầu tư hợp lý.",
     "specifications": {
       "cpu": "Intel Core i7-14650HX",
@@ -37,7 +46,8 @@
       "battery": "60Wh",
       "operatingSystem": "Windows 11 Home",
       "weight": "2.40kg"
-    }
+    },
+    "image": "https://m.media-amazon.com/images/I/71SAusg17wL._AC_.jpg"
   },
   {
     "name": "Lenovo ThinkPad E14 Gen 6 Ultra 5",
@@ -46,7 +56,13 @@
     "price": 25990000,
     "stock": 50,
     "minStockLevel": 12,
-    "images": [],
+    "images": [
+      "https://p2-ofp.static.pub//fes/cms/2024/04/01/ftl62xwvpojikibk3nc99l3i1epvkk200820.png",
+      "https://p3-ofp.static.pub//fes/cms/2024/04/01/rmups0v4fxegc2gry1y2jzajjlk648409646.png",
+      "https://p4-ofp.static.pub//fes/cms/2024/04/01/1k6t72f7vmsmsuxd9ml2e622cm6185892739.png",
+      "https://p4-ofp.static.pub//fes/cms/2024/04/01/txm4s2o7jjlvtlk5b21lulnpvp36s1141491.png",
+      "https://p3-ofp.static.pub//fes/cms/2024/04/01/92avq7opc8ggtjjx09ra7eabk5k7lz482805.png"
+    ],
     "description": "Lenovo ThinkPad E14 Gen 6 là dòng laptop doanh nghiệp nổi tiếng với độ bền cao, bàn phím chất lượng và khả năng vận hành ổn định. Intel Core Ultra 5 đáp ứng tốt các nhu cầu văn phòng, quản lý dữ liệu, lập trình và làm việc từ xa. Thiết kế chắc chắn cùng thời lượng pin dài giúp người dùng yên tâm sử dụng trong môi trường doanh nghiệp. Bàn phím ThinkPad đặc trưng mang lại trải nghiệm nhập liệu thoải mái trong thời gian dài. Đây là lựa chọn phù hợp cho doanh nhân, nhân viên văn phòng và kỹ sư phần mềm.",
     "specifications": {
       "cpu": "Intel Core Ultra 5 125U",
@@ -57,7 +73,8 @@
       "battery": "57Wh",
       "operatingSystem": "Windows 11 Pro",
       "weight": "1.44kg"
-    }
+    },
+    "image": "https://p2-ofp.static.pub//fes/cms/2024/04/01/ftl62xwvpojikibk3nc99l3i1epvkk200820.png"
   },
   {
     "name": "Lenovo ThinkPad X1 Carbon Gen 13 Ultra 7",
@@ -66,7 +83,12 @@
     "price": 49990000,
     "stock": 22,
     "minStockLevel": 5,
-    "images": [],
+    "images": [
+      "https://p4-ofp.static.pub/ShareResource/optimized/pdp/thinkpad/thinkpad-x1-series/len101t0108/thinkpad-x1-carbon-gen-13-aura-edition-14-intel-lnl.png",
+      "https://p3-ofp.static.pub//fes/cms/2024/08/27/s6ipe83zyup65q7s29pyv6ch52s07x509330.png",
+      "https://p1-ofp.static.pub//fes/cms/2024/08/27/yd5dqi756ec0vr9a09fhc5s90tx4l6387783.png",
+      "https://p4-ofp.static.pub//fes/cms/2024/08/27/ywck7nrx6rw2ayxse5t4tni1f7vqba827973.png"
+    ],
     "description": "Lenovo ThinkPad X1 Carbon Gen 13 là mẫu ultrabook doanh nhân cao cấp với thiết kế siêu nhẹ và độ hoàn thiện xuất sắc. Intel Core Ultra 7 kết hợp bộ nhớ tốc độ cao giúp xử lý hiệu quả các tác vụ văn phòng nâng cao, quản trị hệ thống, lập trình và làm việc đa nhiệm. Màn hình chất lượng cao cùng thời lượng pin ấn tượng giúp nâng cao năng suất làm việc mọi lúc mọi nơi. Khung máy bằng vật liệu cao cấp mang lại độ bền vượt trội. Đây là lựa chọn hàng đầu cho doanh nhân và người dùng chuyên nghiệp thường xuyên di chuyển.",
     "specifications": {
       "cpu": "Intel Core Ultra 7 155U",
@@ -77,6 +99,7 @@
       "battery": "57Wh",
       "operatingSystem": "Windows 11 Pro",
       "weight": "1.10kg"
-    }
+    },
+    "image": "https://p4-ofp.static.pub/ShareResource/optimized/pdp/thinkpad/thinkpad-x1-series/len101t0108/thinkpad-x1-carbon-gen-13-aura-edition-14-intel-lnl.png"
   }
 ]

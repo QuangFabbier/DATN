@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
+﻿import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useAuth } from '../hooks/useAuth'
 import { useCart } from '../hooks/useCart'
@@ -8,25 +8,28 @@ import { useToast } from '../hooks/useToast'
 import { getAIPreferences } from '../services/accountStorage'
 import { chatWithAi } from '../services/aiService'
 import { getProducts } from '../services/productService'
+import {
+  clearPersistedConsultantSession,
+  readPersistedConsultantSession,
+  writePersistedConsultantSession,
+} from '../utils/aiConsultantSession'
 import { formatCurrency } from '../utils/formatCurrency'
 import { getProductCategoryLabel } from '../utils/product'
 import {
   canUseStorage,
   getScopedStorageKey,
-  readScopedStorageJSON,
-  writeScopedStorageJSON,
 } from '../utils/storageScope'
 import StarRating from './StarRating'
+const nexoraMark = new URL('../assets/nexora-mark.svg', import.meta.url).href
 
 const PRODUCT_FALLBACK_IMAGE = 'https://placehold.co/120x120/e5e7eb/111827?text=Nexora'
 const MAX_WIDGET_PRODUCTS = 5
-const AI_WIDGET_MINIMIZED_FLAG_KEY_PREFIX = 'nexora.ai.widget.minimized'
-const AI_CONSULTANT_SESSION_STORAGE_KEY_PREFIX = 'nexora.ai.consultant.session.v1'
+const Nexora_WIDGET_MINIMIZED_FLAG_KEY_PREFIX = 'nexora.ai.widget.minimized'
 const DEFAULT_ASSISTANT_MESSAGE = {
   id: 1,
   role: 'assistant',
   content:
-    'Xin chào. Mình là AI Shopping Assistant. Bạn mô tả nhanh nhu cầu, mình sẽ gợi ý sản phẩm phù hợp ngay tại đây.',
+    'Xin chào, mình là Nexora. Bạn cứ mô tả nhanh nhu cầu, mình sẽ gợi ý sản phẩm phù hợp ngay tại đây.',
   recommendedProducts: [],
 }
 
@@ -35,6 +38,14 @@ const QUICK_SUGGESTION_CHIPS = [
   'Điện thoại pin trâu',
   'Tai nghe chống ồn',
 ]
+
+function normalizeAssistantCopy(value = '') {
+    return String(value || '')
+    .replace(/\bAI Shopping Assistant\b/g, 'Nexora')
+    .replace(/\bAI tư vấn nhanh\b/g, 'Nexora tư vấn nhanh')
+    .replace(/\bAI đang soạn tư vấn\.\.\./g, 'Nexora đang suy nghĩ...')
+    .replace(/\bAI\b/g, 'Nexora')
+}
 
 const CATEGORY_KEYWORD_RULES = [
   { category: 'Phone', keywords: ['dien thoai', 'phone', 'smartphone', 'mobile'] },
@@ -52,52 +63,6 @@ const CATEGORY_KEYWORD_RULES = [
   { category: 'Router', keywords: ['router', 'wifi', 'modem'] },
   { category: 'Smartwatch', keywords: ['smartwatch', 'dong ho thong minh'] },
 ]
-
-function readPersistedConsultantSession(user) {
-  if (!canUseStorage()) {
-    return null
-  }
-
-  try {
-    const parsedSession = readScopedStorageJSON(
-      window.sessionStorage,
-      AI_CONSULTANT_SESSION_STORAGE_KEY_PREFIX,
-      null,
-      user,
-    )
-
-    if (!parsedSession || typeof parsedSession !== 'object') {
-      return null
-    }
-
-    const question = typeof parsedSession?.question === 'string' ? parsedSession.question : ''
-    const persistedConversationContext =
-      parsedSession?.conversationContext && typeof parsedSession.conversationContext === 'object'
-        ? parsedSession.conversationContext
-        : null
-    const rawMessages = Array.isArray(parsedSession?.messages) ? parsedSession.messages : []
-    const normalizedMessages = rawMessages
-      .map((message, index) => ({
-        id: Number.isFinite(Number(message?.id)) ? Number(message.id) : index + 1,
-        role: message?.role === 'user' ? 'user' : 'assistant',
-        content: String(message?.content || ''),
-        recommendedProducts: Array.isArray(message?.recommendedProducts) ? message.recommendedProducts : [],
-      }))
-      .filter((message) => message.content.trim().length > 0)
-
-    if (normalizedMessages.length === 0) {
-      return null
-    }
-
-    return {
-      question,
-      messages: normalizedMessages,
-      conversationContext: persistedConversationContext,
-    }
-  } catch {
-    return null
-  }
-}
 
 function normalizeConversationContextValue(context = null) {
   if (!context || typeof context !== 'object') {
@@ -205,7 +170,7 @@ function pickFallbackProducts(question = '', catalog = []) {
     }))
 }
 
-function AIConsultantWidget() {
+function NexoraConsultantWidget() {
   const location = useLocation()
   const navigate = useNavigate()
   const { user } = useAuth()
@@ -219,7 +184,7 @@ function AIConsultantWidget() {
   const messageListRef = useRef(null)
   const messageIdRef = useRef(2)
   const minimizedStorageKey = useMemo(
-    () => getScopedStorageKey(AI_WIDGET_MINIMIZED_FLAG_KEY_PREFIX, user),
+    () => getScopedStorageKey(Nexora_WIDGET_MINIMIZED_FLAG_KEY_PREFIX, user),
     [user],
   )
 
@@ -229,7 +194,7 @@ function AIConsultantWidget() {
       return false
     }
 
-    return window.sessionStorage.getItem(getScopedStorageKey(AI_WIDGET_MINIMIZED_FLAG_KEY_PREFIX, user)) === '1'
+    return window.sessionStorage.getItem(getScopedStorageKey(Nexora_WIDGET_MINIMIZED_FLAG_KEY_PREFIX, user)) === '1'
   })
   const [question, setQuestion] = useState(() => persistedSession?.question || '')
   const [messages, setMessages] = useState(() => persistedSession?.messages || [DEFAULT_ASSISTANT_MESSAGE])
@@ -261,16 +226,11 @@ function AIConsultantWidget() {
       return
     }
 
-    writeScopedStorageJSON(
-      window.sessionStorage,
-      AI_CONSULTANT_SESSION_STORAGE_KEY_PREFIX,
-      {
-        question,
-        messages,
-        conversationContext,
-      },
-      user,
-    )
+    writePersistedConsultantSession(user, {
+      question,
+      messages,
+      conversationContext,
+    })
   }, [messages, question, conversationContext, user])
 
   useEffect(() => {
@@ -419,8 +379,8 @@ function AIConsultantWidget() {
           role: 'assistant',
           content:
             fallbackProducts.length > 0
-              ? 'Hệ thống AI đang bận, mình hiển thị nhanh các sản phẩm có thể phù hợp cho bạn.'
-              : 'Hiện tại mình chưa tư vấn tự động được. Bạn thử mô tả rõ hơn theo dạng: loại sản phẩm + ngân sách + ưu tiên nhé.',
+              ? 'Mình đang lọc thêm vài mẫu hợp với nhu cầu của bạn.'
+              : 'Mình chưa lấy được dữ liệu kho Nexora lúc này. Bạn thử gửi lại sau hoặc đổi 1-2 tiêu chí chính nhé.',
           recommendedProducts: fallbackProducts,
         },
       ])
@@ -436,9 +396,7 @@ function AIConsultantWidget() {
     setConversationContext(null)
 
     if (canUseStorage()) {
-      window.sessionStorage.removeItem(
-        getScopedStorageKey(AI_CONSULTANT_SESSION_STORAGE_KEY_PREFIX, user),
-      )
+      clearPersistedConsultantSession(user)
     }
 
     showToast({
@@ -484,22 +442,22 @@ function AIConsultantWidget() {
   const renderedMessages = isLoading
     ? [
         ...messages,
-        {
-          id: 'typing-indicator',
-          role: 'assistant',
-          content: 'AI đang soạn tư vấn...',
-          isTyping: true,
-          recommendedProducts: [],
-        },
+      {
+        id: 'typing-indicator',
+        role: 'assistant',
+        content: normalizeAssistantCopy('Mình đang nghĩ giúp bạn...'),
+        isTyping: true,
+        recommendedProducts: [],
+      },
       ]
     : messages
 
   return (
     <div className={`ai-widget ai-widget-shortcut ${isOpen ? 'open' : ''}`}>
-      <div className="ai-widget-panel" role="dialog" aria-label="AI tư vấn nhanh">
+      <div className="ai-widget-panel" role="dialog" aria-label="Nexora tư vấn nhanh">
         <div className="ai-widget-header">
           <div>
-            <p className="eyebrow">AI Assistant</p>
+            <p className="eyebrow">Nexora</p>
             <h2>Tư vấn nhanh</h2>
           </div>
 
@@ -518,7 +476,7 @@ function AIConsultantWidget() {
               type="button"
               className="ai-widget-toggle"
               onClick={() => navigate('/ai-consultant')}
-              aria-label="Mở AI toàn màn hình"
+              aria-label="Mở Nexora toàn màn hình"
             >
               <i className="fa-solid fa-up-right-from-square" aria-hidden="true" />
             </button>
@@ -547,7 +505,7 @@ function AIConsultantWidget() {
                   : ''
               }`}
             >
-              <span className="ai-message-role">{message.role === 'user' ? 'Bạn' : 'AI'}</span>
+              <span className="ai-message-role">{message.role === 'user' ? 'Bạn' : 'Nexora'}</span>
               <p style={{ whiteSpace: 'pre-line' }}>{message.content}</p>
 
               {message.role === 'assistant' &&
@@ -633,7 +591,7 @@ function AIConsultantWidget() {
             value={question}
             onChange={(event) => setQuestion(event.target.value)}
             onKeyDown={handleQuestionKeyDown}
-            placeholder="Nhắn AI để tiếp tục tư vấn..."
+            placeholder="Nhắn Nexora để tiếp tục tư vấn..."
             disabled={isLoading}
           />
 
@@ -649,12 +607,12 @@ function AIConsultantWidget() {
         type="button"
         className={`ai-widget-fab ${hasPendingResumeSession ? 'ai-widget-fab-resume' : ''}`}
         onClick={handleToggleWidget}
-        aria-label={isOpen ? 'Thu nhỏ AI tư vấn' : 'Mở AI tư vấn nhanh'}
+        aria-label={isOpen ? 'Thu nhỏ Nexora tư vấn' : 'Mở Nexora tư vấn nhanh'}
       >
-        AI
+        <img src={nexoraMark} alt="" aria-hidden="true" className="ai-widget-fab-mark" />
       </button>
     </div>
   )
 }
 
-export default AIConsultantWidget
+export default NexoraConsultantWidget

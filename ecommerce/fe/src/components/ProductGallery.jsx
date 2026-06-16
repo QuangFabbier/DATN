@@ -9,10 +9,11 @@ function ProductGallery({
   const safeImages = images.filter(Boolean)
   const [activeIndex, setActiveIndex] = useState(0)
   const [zoomPosition, setZoomPosition] = useState({ x: 50, y: 50 })
+  const [isHoveringControls, setIsHoveringControls] = useState(false)
   const touchStartXRef = useRef(0)
 
   function handlePointerMove(event) {
-    if (!enableZoom) {
+    if (!enableZoom || isHoveringControls) {
       return
     }
 
@@ -61,7 +62,7 @@ function ProductGallery({
   return (
     <div className={`product-gallery ${isCompact ? 'compact' : ''}`}>
       <div
-        className={`detail-image-box ${enableZoom ? 'zoom-enabled' : ''}`}
+        className={`detail-image-box ${enableZoom && !isHoveringControls ? 'zoom-enabled' : ''}`}
         onMouseMove={handlePointerMove}
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
@@ -85,6 +86,10 @@ function ProductGallery({
               type="button"
               className="gallery-nav gallery-nav-prev"
               onClick={showPreviousImage}
+              onMouseEnter={() => setIsHoveringControls(true)}
+              onMouseLeave={() => setIsHoveringControls(false)}
+              onFocus={() => setIsHoveringControls(true)}
+              onBlur={() => setIsHoveringControls(false)}
               aria-label="Xem ảnh trước"
             >
               <i className="fa-solid fa-chevron-left" aria-hidden="true" />
@@ -93,6 +98,10 @@ function ProductGallery({
               type="button"
               className="gallery-nav gallery-nav-next"
               onClick={showNextImage}
+              onMouseEnter={() => setIsHoveringControls(true)}
+              onMouseLeave={() => setIsHoveringControls(false)}
+              onFocus={() => setIsHoveringControls(true)}
+              onBlur={() => setIsHoveringControls(false)}
               aria-label="Xem ảnh tiếp theo"
             >
               <i className="fa-solid fa-chevron-right" aria-hidden="true" />

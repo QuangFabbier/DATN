@@ -341,7 +341,10 @@ const USE_CASE_RULES = [
   { useCase: 'hoc tap', keywords: ['hoc', 'sinh vien', 'ghi chu', 'on thi'] },
   { useCase: 'hoc online', keywords: ['hoc online', 'zoom', 'meet', 'hoc tu xa'] },
   { useCase: 'gaming', keywords: ['game', 'gaming', 'fps', 'esports'] },
+  { useCase: 'chup anh', keywords: ['chup anh', 'camera', 'photo', 'photography', 'selfie', 'quay video', 'video'] },
+  { useCase: 'pin', keywords: ['pin', 'battery', 'sac nhanh', 'fast charge', 'travel', 'di dong'] },
   { useCase: 'van phong', keywords: ['van phong', 'office', 'lam viec'] },
+  { useCase: 'gon nhe', keywords: ['gon nhe', 'di dong', 'portable', 'travel', 'mang theo'] },
 ]
 
 function normalizeText(value = '') {
@@ -354,6 +357,11 @@ function parseBudgetFromMessage(message = '') {
 
   const underPattern = new RegExp(
     `(?:duoi|dui|khong qua|toi da|under|less than)\\s*(\\d+(?:[.,]\\d+)?)\\s*${budgetUnitPattern}`,
+    'i',
+  )
+
+  const overPattern = new RegExp(
+    `(?:tren|hon|tu|at least|over|above|more than)\\s*(\\d+(?:[.,]\\d+)?)\\s*${budgetUnitPattern}`,
     'i',
   )
 
@@ -409,6 +417,15 @@ function parseBudgetFromMessage(message = '') {
     return {
       min: null,
       max: toVnd(underMatch[1], underMatch[2]),
+      currency: 'VND',
+    }
+  }
+
+  const overMatch = normalized.match(overPattern)
+  if (overMatch) {
+    return {
+      min: toVnd(overMatch[1], overMatch[2]),
+      max: null,
       currency: 'VND',
     }
   }

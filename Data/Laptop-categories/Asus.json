@@ -6,7 +6,12 @@
     "price": 18990000,
     "stock": 65,
     "minStockLevel": 12,
-    "images": [],
+    "images": [
+      "https://www.asus.com/media/global/gallery/q98ycgtgvbanjnoo_setting_xxx_0_90_end_184.png",
+      "https://www.asus.com/media/global/gallery/3hbt7z3zgl8whunr_setting_xxx_0_90_end_184.png",
+      "https://www.asus.com/media/global/gallery/w8pkguzrxm74rh8t_setting_xxx_0_90_end_184.png",
+      "https://www.asus.com/media/global/gallery/drgnbyjpgz5zj7ri_setting_xxx_0_90_end_184.png"
+    ],
     "description": "ASUS Vivobook 15 OLED là mẫu laptop văn phòng hiện đại sở hữu màn hình OLED chất lượng cao cùng hiệu năng ổn định cho nhu cầu học tập và làm việc hằng ngày. Bộ vi xử lý Intel Core i5 kết hợp RAM 16GB giúp xử lý mượt mà các tác vụ văn phòng, học trực tuyến, lập trình cơ bản và giải trí đa phương tiện. Màn hình OLED hiển thị màu sắc sống động, độ tương phản cao và hỗ trợ làm việc lâu dài. Thiết kế gọn nhẹ cùng thời lượng pin tốt giúp người dùng dễ dàng mang theo khi di chuyển. Đây là lựa chọn phù hợp cho sinh viên và nhân viên văn phòng cần một chiếc laptop cân bằng giữa hiệu năng và giá trị sử dụng.",
     "specifications": {
       "cpu": "Intel Core i5-13420H",
@@ -17,7 +22,8 @@
       "battery": "50Wh",
       "operatingSystem": "Windows 11 Home",
       "weight": "1.70kg"
-    }
+    },
+    "image": "https://www.asus.com/media/global/gallery/q98ycgtgvbanjnoo_setting_xxx_0_90_end_184.png"
   },
   {
     "name": "ASUS Vivobook S 14 OLED Ultra 5 16GB 512GB",
@@ -26,7 +32,9 @@
     "price": 24990000,
     "stock": 55,
     "minStockLevel": 12,
-    "images": [],
+    "images": [
+      "https://m.media-amazon.com/images/I/71WUVMk1vCL._AC_.jpg"
+    ],
     "description": "ASUS Vivobook S 14 OLED được trang bị vi xử lý Intel Core Ultra thế hệ mới cùng thiết kế mỏng nhẹ phục vụ nhu cầu làm việc linh hoạt. Hiệu năng mạnh mẽ giúp xử lý tốt các ứng dụng văn phòng, sáng tạo nội dung và đa nhiệm hằng ngày. Màn hình OLED độ phân giải cao mang đến hình ảnh sắc nét và màu sắc chính xác. Hệ thống AI tích hợp trong nền tảng Intel mới hỗ trợ tối ưu hiệu suất và tiết kiệm điện năng. Với thiết kế hiện đại, trọng lượng nhẹ và cấu hình cân đối, đây là lựa chọn phù hợp cho người dùng trẻ, nhân viên văn phòng và sinh viên công nghệ.",
     "specifications": {
       "cpu": "Intel Core Ultra 5 125H",
@@ -37,7 +45,8 @@
       "battery": "75Wh",
       "operatingSystem": "Windows 11 Home",
       "weight": "1.30kg"
-    }
+    },
+    "image": "https://m.media-amazon.com/images/I/71WUVMk1vCL._AC_.jpg"
   },
   {
     "name": "ASUS Zenbook 14 OLED Ultra 7 32GB 1TB",
@@ -46,7 +55,12 @@
     "price": 33990000,
     "stock": 40,
     "minStockLevel": 10,
-    "images": [],
+    "images": [
+      "https://dlcdnwebimgs.asus.com/files/media/64d9cc60-7873-4180-9e9c-ad2ed2e922df/images/pic01.webp",
+      "https://dlcdnwebimgs.asus.com/files/media/64d9cc60-7873-4180-9e9c-ad2ed2e922df/images/pc-keyboard.jpg",
+      "https://dlcdnwebimgs.asus.com/files/media/64d9cc60-7873-4180-9e9c-ad2ed2e922df/images/pc-performance.jpg",
+      "https://dlcdnwebimgs.asus.com/files/media/64d9cc60-7873-4180-9e9c-ad2ed2e922df/images/pc-software.jpg"
+    ],
     "description": "ASUS Zenbook 14 OLED là dòng ultrabook cao cấp hướng đến người dùng chuyên nghiệp cần sự kết hợp giữa hiệu năng mạnh và tính di động. Intel Core Ultra 7 cùng RAM 32GB cho phép xử lý đa nhiệm, lập trình, chỉnh sửa ảnh và công việc sáng tạo nội dung hiệu quả. Màn hình OLED 3K mang đến chất lượng hiển thị ấn tượng với độ chính xác màu cao. Thiết kế kim loại sang trọng, trọng lượng nhẹ và pin lâu giúp tối ưu trải nghiệm làm việc mọi lúc mọi nơi. Đây là lựa chọn đáng cân nhắc cho doanh nhân, kỹ sư phần mềm và người dùng yêu cầu tính cơ động cao.",
     "specifications": {
       "cpu": "Intel Core Ultra 7 155H",
@@ -57,7 +71,8 @@
       "battery": "75Wh",
       "operatingSystem": "Windows 11 Home",
       "weight": "1.22kg"
-    }
+    },
+    "image": "https://dlcdnwebimgs.asus.com/files/media/64d9cc60-7873-4180-9e9c-ad2ed2e922df/images/pic01.webp"
   },
   {
     "name": "ASUS TUF Gaming A15 Ryzen 7 RTX 4060",
@@ -66,7 +81,12 @@
     "price": 31990000,
     "stock": 28,
     "minStockLevel": 8,
-    "images": [],
+    "images": [
+      "https://dlcdnwebimgs.asus.com/gain/a25d4381-0f1a-48bd-86d6-3bd59f017f19/",
+      "https://dlcdnwebimgs.asus.com/gain/ed4c3cdc-29c4-4bdf-a42b-9f008244a173/w800",
+      "https://dlcdnwebimgs.asus.com/gain/ed4c3cdc-29c4-4bdf-a42b-9f008244a173/w80",
+      "https://dlcdnwebimgs.asus.com/gain/ed4c3cdc-29c4-4bdf-a42b-9f008244a173//fwebp"
+    ],
     "description": "ASUS TUF Gaming A15 là mẫu laptop gaming nổi bật trong phân khúc tầm trung với hiệu năng mạnh mẽ từ AMD Ryzen 7 và RTX 4060. Thiết bị đáp ứng tốt nhu cầu chơi game AAA, livestream, dựng video và xử lý đồ họa 3D. Màn hình tần số quét cao mang đến trải nghiệm hình ảnh mượt mà trong các tựa game cạnh tranh. Hệ thống tản nhiệt được tối ưu giúp duy trì hiệu năng ổn định khi hoạt động liên tục. Đây là lựa chọn phù hợp cho game thủ và người dùng cần một chiếc laptop đa năng vừa phục vụ giải trí vừa đáp ứng công việc sáng tạo.",
     "specifications": {
       "cpu": "AMD Ryzen 7 8845HS",
@@ -77,7 +97,8 @@
       "battery": "90Wh",
       "operatingSystem": "Windows 11 Home",
       "weight": "2.20kg"
-    }
+    },
+    "image": "https://dlcdnwebimgs.asus.com/gain/a25d4381-0f1a-48bd-86d6-3bd59f017f19/"
   },
   {
     "name": "ASUS TUF Gaming F15 i7 RTX 4060",
@@ -86,7 +107,9 @@
     "price": 32990000,
     "stock": 25,
     "minStockLevel": 8,
-    "images": [],
+    "images": [
+      "https://m.media-amazon.com/images/I/71ZZ0yHLuYL._AC_.jpg"
+    ],
     "description": "ASUS TUF Gaming F15 được xây dựng dành cho game thủ yêu cầu hiệu năng cao và độ bền lâu dài. Bộ xử lý Intel Core i7 thế hệ mới kết hợp RTX 4060 mang lại khả năng xử lý mạnh mẽ cho các tựa game hiện đại, công việc thiết kế đồ họa và chỉnh sửa video. Màn hình 144Hz giúp thao tác mượt mà và cải thiện trải nghiệm chơi game. Thiết kế chuẩn độ bền quân đội cùng hệ thống tản nhiệt hiệu quả giúp thiết bị hoạt động ổn định trong thời gian dài. Đây là lựa chọn phù hợp cho game thủ và sinh viên ngành kỹ thuật.",
     "specifications": {
       "cpu": "Intel Core i7-14650HX",
@@ -97,7 +120,8 @@
       "battery": "90Wh",
       "operatingSystem": "Windows 11 Home",
       "weight": "2.20kg"
-    }
+    },
+    "image": "https://m.media-amazon.com/images/I/71ZZ0yHLuYL._AC_.jpg"
   },
   {
     "name": "ASUS ROG Strix G16 i9 RTX 4070",
@@ -106,7 +130,9 @@
     "price": 49990000,
     "stock": 15,
     "minStockLevel": 5,
-    "images": [],
+    "images": [
+      "https://m.media-amazon.com/images/I/71v0BQo8T8L._AC_SL1500_.jpg"
+    ],
     "description": "ASUS ROG Strix G16 là mẫu laptop gaming cao cấp dành cho game thủ chuyên nghiệp và người dùng sáng tạo nội dung cần hiệu năng tối đa. Intel Core i9 kết hợp RTX 4070 mang lại sức mạnh vượt trội cho các tựa game AAA, dựng phim, thiết kế 3D và AI. Màn hình tốc độ làm mới cao giúp hiển thị mượt mà trong mọi tình huống. Hệ thống tản nhiệt tiên tiến duy trì hiệu năng ổn định ngay cả khi xử lý khối lượng công việc lớn. Đây là lựa chọn lý tưởng cho những người cần một cỗ máy hiệu năng cao để làm việc và giải trí.",
     "specifications": {
       "cpu": "Intel Core i9-14900HX",
@@ -117,6 +143,7 @@
       "battery": "90Wh",
       "operatingSystem": "Windows 11 Home",
       "weight": "2.50kg"
-    }
+    },
+    "image": "https://m.media-amazon.com/images/I/71v0BQo8T8L._AC_SL1500_.jpg"
   }
 ]

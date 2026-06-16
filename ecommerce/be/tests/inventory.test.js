@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict'
 import { after, before, describe, it } from 'node:test'
+import { mkdirSync } from 'node:fs'
 import jwt from 'jsonwebtoken'
 import mongoose from 'mongoose'
 import { MongoMemoryReplSet } from 'mongodb-memory-server'
@@ -30,6 +31,12 @@ let xpsProduct
 let redmiProduct
 let sonyHeadphoneProduct
 let logitechMouseProduct
+let studyLaptopProduct
+let gamingLaptopProduct
+let photographyPhoneProduct
+let batteryPhoneProduct
+let officeLaptopProduct
+let compactLaptopProduct
 
 function createToken(userId) {
   return jwt.sign({ id: String(userId) }, JWT_SECRET, { expiresIn: '1h' })
@@ -52,6 +59,8 @@ async function request(path, options = {}) {
 describe('Inventory module', () => {
   before(async () => {
     process.env.JWT_SECRET = JWT_SECRET
+    process.env.MONGOMS_DOWNLOAD_DIR = 'D:\\DATN\\.cache\\mongodb-binaries'
+    mkdirSync(process.env.MONGOMS_DOWNLOAD_DIR, { recursive: true })
     mongoServer = await MongoMemoryReplSet.create({
       replSet: {
         count: 1,
@@ -242,6 +251,135 @@ describe('Inventory module', () => {
       specs: [],
       tags: [],
       useCases: [],
+    })
+
+    studyLaptopProduct = await Product.create({
+      name: 'Acer Aspire 5 i5 16GB 512GB',
+      category: 'Laptop',
+      brand: 'Acer',
+      description: 'Laptop hoc tap, pin on, de mang theo, du gia tot',
+      price: 15990000,
+      stock: 22,
+      minStockLevel: 6,
+      image: '',
+      images: [],
+      specs: [
+        { label: 'RAM', value: '16GB' },
+        { label: 'SSD', value: '512GB' },
+        { label: 'Man hinh', value: '14 inch Full HD' },
+        { label: 'Pin', value: '8 gio' },
+      ],
+      tags: ['hoc tap', 'sinh vien', 'on dinh', 'pin tot'],
+      useCases: ['hoc tap', 'hoc lap trinh', 'van phong'],
+      averageRating: 4.7,
+      totalReviews: 84,
+    })
+
+    gamingLaptopProduct = await Product.create({
+      name: 'Acer Nitro V 15 RTX 4050 144Hz',
+      category: 'Laptop',
+      brand: 'Acer',
+      description: 'Laptop gaming manh, RTX 4050, tan nhiet tot, man 144Hz',
+      price: 24990000,
+      stock: 16,
+      minStockLevel: 5,
+      image: '',
+      images: [],
+      specs: [
+        { label: 'CPU', value: 'Intel Core i7' },
+        { label: 'GPU', value: 'RTX 4050' },
+        { label: 'RAM', value: '16GB' },
+        { label: 'Man hinh', value: '144Hz' },
+      ],
+      tags: ['gaming', 'fps', 'eSports', 'tan nhiet'],
+      useCases: ['gaming', 'choi game', 'stream'],
+      averageRating: 4.8,
+      totalReviews: 136,
+    })
+
+    photographyPhoneProduct = await Product.create({
+      name: 'OPPO Find X9 Pro 512GB',
+      category: 'Phone',
+      brand: 'OPPO',
+      description: 'Dien thoai chu trong chup anh, zoom, OIS, quay video dep',
+      price: 24990000,
+      stock: 14,
+      minStockLevel: 4,
+      image: '',
+      images: [],
+      specs: [
+        { label: 'Camera', value: '50MP OIS' },
+        { label: 'Zoom', value: 'Periscope tele' },
+        { label: 'Chip', value: 'Flagship' },
+      ],
+      tags: ['camera', 'photo', 'zoom', 'OIS', 'portrait'],
+      useCases: ['chup anh', 'selfie', 'quay video'],
+      averageRating: 4.9,
+      totalReviews: 156,
+    })
+
+    batteryPhoneProduct = await Product.create({
+      name: 'vivo Y39 128GB',
+      category: 'Phone',
+      brand: 'vivo',
+      description: 'Pin trau, sac nhanh, phu hop di dong va dung lau',
+      price: 6990000,
+      stock: 28,
+      minStockLevel: 6,
+      image: '',
+      images: [],
+      specs: [
+        { label: 'Pin', value: '6500mAh' },
+        { label: 'Sac nhanh', value: '44W' },
+        { label: 'Trong luong', value: 'nhe' },
+      ],
+      tags: ['pin', 'battery', 'travel', 'di dong'],
+      useCases: ['pin', 'di dong', 'travel'],
+      averageRating: 4.6,
+      totalReviews: 71,
+    })
+
+    officeLaptopProduct = await Product.create({
+      name: 'Lenovo IdeaPad Slim 3 14',
+      category: 'Laptop',
+      brand: 'Lenovo',
+      description: 'Laptop van phong gon nhe, pin on, webcam va ban phim de dung',
+      price: 13990000,
+      stock: 19,
+      minStockLevel: 5,
+      image: '',
+      images: [],
+      specs: [
+        { label: 'CPU', value: 'Ryzen 5' },
+        { label: 'RAM', value: '16GB' },
+        { label: 'SSD', value: '512GB' },
+        { label: 'Man hinh', value: '14 inch' },
+      ],
+      tags: ['van phong', 'email', 'word', 'excel', 'light'],
+      useCases: ['van phong', 'lam viec', 'hoc tap'],
+      averageRating: 4.5,
+      totalReviews: 62,
+    })
+
+    compactLaptopProduct = await Product.create({
+      name: 'ASUS Zenbook 14 OLED UX3405',
+      category: 'Laptop',
+      brand: 'ASUS',
+      description: 'Laptop compact, mong nhe, de mang theo, pin tot',
+      price: 22990000,
+      stock: 13,
+      minStockLevel: 4,
+      image: '',
+      images: [],
+      specs: [
+        { label: 'Trong luong', value: '1.2kg' },
+        { label: 'Man hinh', value: '14 inch OLED' },
+        { label: 'Pin', value: 'dung ca ngay' },
+      ],
+      tags: ['gon nhe', 'compact', 'portable', 'thin'],
+      useCases: ['gon nhe', 'di dong', 'cong tac'],
+      averageRating: 4.8,
+      totalReviews: 97,
     })
 
     httpServer = app.listen(0)
@@ -885,5 +1023,93 @@ describe('Inventory module', () => {
       assert.equal(testCase.expectedFamily.test(payload.recommendedProducts[0].name), true)
       assert.equal(payload.recommendedProducts[0].category, testCase.expectedCategory)
     }
+  })
+
+  it('chooses the right product focus when a user compares by real-life needs', async () => {
+    const cases = [
+      {
+        useCase: 'hoc tap',
+        question: 'mua cho hoc tap va lam viec',
+        productIds: [studyLaptopProduct._id, officeLaptopProduct._id, gamingLaptopProduct._id],
+        expectedPickId: String(studyLaptopProduct._id),
+      },
+      {
+        useCase: 'gaming',
+        question: 'mua cho gaming va FPS',
+        productIds: [gamingLaptopProduct._id, studyLaptopProduct._id, officeLaptopProduct._id],
+        expectedPickId: String(gamingLaptopProduct._id),
+      },
+      {
+        useCase: 'chup anh',
+        question: 'mua dien thoai de chup anh va quay video',
+        productIds: [photographyPhoneProduct._id, batteryPhoneProduct._id, iphoneProduct._id],
+        expectedPickId: String(photographyPhoneProduct._id),
+      },
+      {
+        useCase: 'pin',
+        question: 'mua dien thoai pin trau va sac nhanh',
+        productIds: [batteryPhoneProduct._id, photographyPhoneProduct._id, redmiProduct._id],
+        expectedPickId: String(batteryPhoneProduct._id),
+      },
+      {
+        useCase: 'van phong',
+        question: 'mua may tinh van phong email excel hop dong',
+        productIds: [officeLaptopProduct._id, studyLaptopProduct._id, gamingLaptopProduct._id],
+        expectedPickId: String(officeLaptopProduct._id),
+      },
+      {
+        useCase: 'gon nhe',
+        question: 'mua may tinh gon nhe de mang theo cong tac',
+        productIds: [compactLaptopProduct._id, studyLaptopProduct._id, gamingLaptopProduct._id],
+        expectedPickId: String(compactLaptopProduct._id),
+      },
+    ]
+
+    for (const testCase of cases) {
+      const response = await request('/api/ai/compare', {
+        method: 'POST',
+        token: customerToken,
+        body: {
+          productIds: testCase.productIds.map((id) => String(id)),
+          focus: {
+            useCase: testCase.useCase,
+            question: testCase.question,
+          },
+        },
+      })
+
+      assert.equal(response.status, 200)
+      const payload = await response.json()
+      assert.equal(Array.isArray(payload.comparedProducts), true)
+      assert.equal(payload.comparedProducts.length >= 2, true)
+      assert.equal(String(payload.focusPick?.productId || ''), testCase.expectedPickId)
+      assert.equal(typeof payload.summary, 'string')
+      assert.equal(typeof payload.recommendation, 'string')
+    }
+  })
+
+  it('explains a product with the Nexora fit text for multiple needs', async () => {
+    const response = await request('/api/ai/product-explain', {
+      method: 'POST',
+      token: customerToken,
+      body: {
+        productId: String(gamingLaptopProduct._id),
+        question: 'toi muon mua may nay cho hoc tap, gaming, pin va mang theo',
+      },
+    })
+
+    assert.equal(response.status, 200)
+    const payload = await response.json()
+
+    assert.equal(String(payload.product?.id || ''), String(gamingLaptopProduct._id))
+    assert.equal(typeof payload.answer?.fitForStudy, 'string')
+    assert.equal(typeof payload.answer?.fitForGaming, 'string')
+    assert.equal(typeof payload.answer?.fitForPhotography, 'string')
+    assert.equal(typeof payload.answer?.fitForBattery, 'string')
+    assert.equal(typeof payload.answer?.fitForOffice, 'string')
+    assert.equal(typeof payload.answer?.fitForCompact, 'string')
+    assert.equal(Array.isArray(payload.alternativeProducts), true)
+    assert.equal(payload.alternativeProducts.length > 0, true)
+    assert.equal(String(payload.alternativeProducts[0]?.id || ''), String(studyLaptopProduct._id))
   })
 })

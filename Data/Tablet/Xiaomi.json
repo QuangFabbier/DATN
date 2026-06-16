@@ -6,7 +6,11 @@
     "price": 9990000,
     "stock": 65,
     "minStockLevel": 15,
-    "images": [],
+    "images": [
+      "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-pad-7/pc/3569ebdf7939e29319357ac306de16ab.jpg",
+      "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-pad-7/pc/1155e849d1ff953f47d71dd69b7bd2be.jpg",
+      "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-pad-7/pc/8c23aff8f1fc4b3e0a9ee0b2576b7cc9.jpg"
+    ],
     "description": "Xiaomi Pad 7 là mẫu máy tính bảng Android cân bằng giữa hiệu năng, màn hình chất lượng và mức giá cạnh tranh. Thiết bị phù hợp cho học tập, xem phim, đọc tài liệu và làm việc văn phòng cơ bản. Màn hình độ phân giải cao cùng tần số quét mượt mà mang lại trải nghiệm sử dụng dễ chịu trong thời gian dài. Hiệu năng ổn định giúp đáp ứng các ứng dụng học tập, giải trí và đa nhiệm hằng ngày. Đây là lựa chọn phù hợp cho học sinh, sinh viên và người dùng phổ thông cần một chiếc tablet có giá trị sử dụng cao.",
     "specifications": {
       "processor": "Snapdragon 7+ Gen 3",
@@ -17,7 +21,8 @@
       "operatingSystem": "Android",
       "connectivity": "Wi-Fi",
       "weight": "500g"
-    }
+    },
+    "image": "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-pad-7/pc/3569ebdf7939e29319357ac306de16ab.jpg"
   },
   {
     "name": "Xiaomi Pad 7 Pro Wi-Fi 256GB",
@@ -26,7 +31,11 @@
     "price": 13990000,
     "stock": 45,
     "minStockLevel": 12,
-    "images": [],
+    "images": [
+      "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-pad-7-pro/pc/5484effe86e2b64e1bf9d0235e7bd126.jpg",
+      "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-pad-7-pro/pc/3981123868a4e977d2dbc54589509d13.jpg",
+      "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-pad-7-pro/pc/de5dbed338c43903da2f792dd8a3ccc4.jpg"
+    ],
     "description": "Xiaomi Pad 7 Pro được thiết kế cho người dùng cần hiệu năng mạnh mẽ hơn để học tập, làm việc và giải trí. Bộ xử lý Snapdragon cao cấp giúp thiết bị vận hành mượt mà với đa nhiệm, chỉnh sửa hình ảnh và các ứng dụng năng suất. Màn hình 3.2K sắc nét cùng tần số quét cao mang lại trải nghiệm hiển thị ấn tượng khi xem phim hoặc làm việc. Thiết kế kim loại cao cấp, pin lớn và hệ điều hành tối ưu giúp nâng cao trải nghiệm sử dụng. Đây là lựa chọn phù hợp cho người dùng muốn một chiếc tablet Android mạnh mẽ trong tầm giá hợp lý.",
     "specifications": {
       "processor": "Snapdragon 8s Gen 3",
@@ -37,6 +46,7 @@
       "operatingSystem": "Android",
       "connectivity": "Wi-Fi",
       "weight": "500g"
-    }
+    },
+    "image": "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-pad-7-pro/pc/5484effe86e2b64e1bf9d0235e7bd126.jpg"
   }
 ]

@@ -6,7 +6,9 @@
     "price": 18990000,
     "stock": 65,
     "minStockLevel": 15,
-    "images": [],
+    "images": [
+      "https://m.media-amazon.com/images/I/71i6AGYrIGL._AC_.jpg"
+    ],
     "description": "HP Pavilion 15 là mẫu laptop văn phòng phổ biến dành cho sinh viên, nhân viên văn phòng và người dùng gia đình cần một thiết bị ổn định cho công việc hằng ngày. Bộ vi xử lý Intel Core i5 cùng RAM 16GB giúp xử lý mượt mà các tác vụ văn phòng, học tập trực tuyến, duyệt web và giải trí đa phương tiện. Màn hình Full HD hiển thị rõ nét, phù hợp cho làm việc và học tập trong thời gian dài. Thiết kế hiện đại, bàn phím thoải mái cùng thời lượng pin tốt giúp nâng cao trải nghiệm sử dụng. Đây là lựa chọn phù hợp cho người dùng cần một chiếc laptop cân bằng giữa hiệu năng, độ bền và chi phí đầu tư.",
     "specifications": {
       "cpu": "Intel Core i5-1335U",
@@ -17,7 +19,8 @@
       "battery": "41Wh",
       "operatingSystem": "Windows 11 Home",
       "weight": "1.75kg"
-    }
+    },
+    "image": "https://m.media-amazon.com/images/I/71i6AGYrIGL._AC_.jpg"
   },
   {
     "name": "HP Envy x360 14 Ultra 7 16GB 1TB",
@@ -26,7 +29,9 @@
     "price": 34990000,
     "stock": 35,
     "minStockLevel": 10,
-    "images": [],
+    "images": [
+      "https://m.media-amazon.com/images/I/71qj7+Q5xIL._AC_.jpg"
+    ],
     "description": "HP Envy x360 14 là mẫu laptop cao cấp có khả năng xoay gập 360 độ, phù hợp cho người dùng sáng tạo nội dung, doanh nhân và sinh viên cần sự linh hoạt trong quá trình làm việc. Intel Core Ultra 7 mang lại hiệu năng mạnh mẽ cho các tác vụ văn phòng nâng cao, thiết kế đồ họa cơ bản và xử lý đa nhiệm. Màn hình cảm ứng OLED sắc nét hỗ trợ ghi chú, trình bày và giải trí hiệu quả. Thiết kế cao cấp, trọng lượng nhẹ và thời lượng pin dài giúp tối ưu trải nghiệm sử dụng hằng ngày. Đây là lựa chọn lý tưởng cho người dùng yêu thích sự linh hoạt và hiện đại.",
     "specifications": {
       "cpu": "Intel Core Ultra 7 155U",
@@ -37,7 +42,8 @@
       "battery": "59Wh",
       "operatingSystem": "Windows 11 Home",
       "weight": "1.39kg"
-    }
+    },
+    "image": "https://m.media-amazon.com/images/I/71qj7+Q5xIL._AC_.jpg"
   },
   {
     "name": "HP Omen 16 i7 RTX 4070",
@@ -46,7 +52,9 @@
     "price": 48990000,
     "stock": 18,
     "minStockLevel": 5,
-    "images": [],
+    "images": [
+      "https://m.media-amazon.com/images/I/710qDL9V5RL._AC_.jpg"
+    ],
     "description": "HP Omen 16 là mẫu laptop gaming cao cấp được thiết kế cho game thủ chuyên nghiệp và người dùng sáng tạo nội dung cần hiệu năng mạnh mẽ. Intel Core i7 kết hợp card đồ họa RTX 4070 giúp xử lý hiệu quả các tựa game AAA, dựng video độ phân giải cao, thiết kế 3D và các tác vụ AI hiện đại. Màn hình kích thước lớn với tần số quét cao mang lại trải nghiệm hình ảnh mượt mà và chi tiết. Hệ thống tản nhiệt tối ưu giúp duy trì hiệu suất ổn định trong thời gian dài. Đây là lựa chọn phù hợp cho người dùng muốn sở hữu một chiếc laptop mạnh để vừa làm việc vừa giải trí.",
     "specifications": {
       "cpu": "Intel Core i7-14700HX",
@@ -57,6 +65,7 @@
       "battery": "83Wh",
       "operatingSystem": "Windows 11 Home",
       "weight": "2.35kg"
-    }
+    },
+    "image": "https://m.media-amazon.com/images/I/710qDL9V5RL._AC_.jpg"
   }
 ]

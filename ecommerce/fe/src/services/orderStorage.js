@@ -375,6 +375,41 @@ export function updateOrderStatus(orderId, nextStatus, statusNote = '') {
   }
 }
 
+export function canDeleteOrder(order = null) {
+  return (
+    order?.status === ORDER_STATUSES.COMPLETED &&
+    order?.paymentStatus === PAYMENT_STATUSES.COMPLETED
+  )
+}
+
+export function deleteOrder(orderId) {
+  const normalizedOrderId = String(orderId)
+  const currentOrders = getOrders()
+  const targetOrder = currentOrders.find((order) => order.id === normalizedOrderId)
+
+  if (!targetOrder) {
+    const error = new Error('Không tìm thấy đơn hàng cần xóa.')
+    error.code = 'ORDER_NOT_FOUND'
+    throw error
+  }
+
+  if (!canDeleteOrder(targetOrder)) {
+    const error = new Error('Chỉ có thể xóa đơn hàng đã hoàn thành và thanh toán hoàn tất.')
+    error.code = 'ORDER_DELETE_FORBIDDEN'
+    throw error
+  }
+
+  const nextOrders = persistOrders(
+    currentOrders.filter((order) => order.id !== normalizedOrderId),
+    null,
+  )
+
+  return {
+    order: targetOrder,
+    orders: nextOrders,
+  }
+}
+
 export function getOrderStats() {
   const orders = getOrders()
   const revenueOrders = orders.filter(

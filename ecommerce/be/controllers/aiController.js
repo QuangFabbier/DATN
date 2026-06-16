@@ -63,6 +63,7 @@ export async function chatWithAi(req, res) {
     })
     const effectiveIntent = {
       ...intent,
+      queryText: message,
       category: mergedConversationContext.category || intent.category,
       budget: mergedConversationContext.budget || intent.budget,
       useCase: mergedConversationContext.useCase || intent.useCase,

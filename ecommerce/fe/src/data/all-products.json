@@ -7,8 +7,10 @@
     "price": 590000,
     "stock": 120,
     "minStockLevel": 25,
-    "image": "",
-    "images": [],
+    "image": "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/MWVV3?.v=ZGMwamVQM3NMNFF3dllBOFdrb0RHV2orYzFkTG5HaE9wejd5WUxYZjRMK0xZRW05UENvR2I1ditwQTlTUkJwZHVBYVpQODZ2VDA1a1lBSm83UHYrTWc&fmt=jpeg&hei=2000&qlt=90&wid=2000",
+    "images": [
+      "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/MWVV3?.v=ZGMwamVQM3NMNFF3dllBOFdrb0RHV2orYzFkTG5HaE9wejd5WUxYZjRMK0xZRW05UENvR2I1ditwQTlTUkJwZHVBYVpQODZ2VDA1a1lBSm83UHYrTWc&fmt=jpeg&hei=2000&qlt=90&wid=2000"
+    ],
     "description": "Củ sạc Apple USB-C 20W là phụ kiện chính hãng phù hợp cho iPhone, iPad và AirPods. Thiết bị hỗ trợ sạc nhanh cho các dòng iPhone hiện đại, thiết kế nhỏ gọn và đảm bảo độ an toàn cao trong quá trình sử dụng.",
     "specifications": [
       {
@@ -74,8 +76,10 @@
     "price": 1490000,
     "stock": 60,
     "minStockLevel": 12,
-    "image": "",
-    "images": [],
+    "image": "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/MW2H3?.v=UlZyZUlvS3NXK3R0SnlWcldDblQwV2orYzFkTG5HaE9wejd5WUxYZjRMOTBpYTU5MTRmTXNvZjlHZDhhSEpTMy80TnNnWi9hNmZjN2pQdWp3NWxCRVE&fmt=jpeg&hei=2000&qlt=90&wid=2000",
+    "images": [
+      "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/MW2H3?.v=UlZyZUlvS3NXK3R0SnlWcldDblQwV2orYzFkTG5HaE9wejd5WUxYZjRMOTBpYTU5MTRmTXNvZjlHZDhhSEpTMy80TnNnWi9hNmZjN2pQdWp3NWxCRVE&fmt=jpeg&hei=2000&qlt=90&wid=2000"
+    ],
     "description": "Củ sạc Apple 35W hai cổng USB-C cho phép sạc đồng thời iPhone, iPad, AirPods hoặc MacBook Air với hiệu suất ổn định.",
     "specifications": [
       {
@@ -141,8 +145,12 @@
     "price": 490000,
     "stock": 110,
     "minStockLevel": 20,
-    "image": "",
-    "images": [],
+    "image": "https://m.media-amazon.com/images/I/51hEtaKmlyL._AC_SL1500_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/51hEtaKmlyL._AC_SL1500_.jpg",
+      "https://m.media-amazon.com/images/I/71nU4OTh5+L._AC_SL1500_.jpg",
+      "https://m.media-amazon.com/images/I/81bcfLvtRiL._AC_SL1500_.jpg"
+    ],
     "description": "Củ sạc Samsung 25W hỗ trợ công nghệ Super Fast Charging cho điện thoại Galaxy và các thiết bị USB-C tương thích.",
     "specifications": [
       {
@@ -208,8 +216,12 @@
     "price": 890000,
     "stock": 80,
     "minStockLevel": 15,
-    "image": "",
-    "images": [],
+    "image": "https://m.media-amazon.com/images/I/31QFDZwadmL._AC_SL1080_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/31QFDZwadmL._AC_SL1080_.jpg",
+      "https://m.media-amazon.com/images/I/31Bx23yRnPL._AC_SL1080_.jpg",
+      "https://m.media-amazon.com/images/I/41-2MZjAAPL._AC_SL1080_.jpg"
+    ],
     "description": "Phiên bản 45W dành cho smartphone flagship Galaxy, tablet Samsung và nhiều thiết bị USB-C hiện đại.",
     "specifications": [
       {
@@ -275,8 +287,12 @@
     "price": 490000,
     "stock": 100,
     "minStockLevel": 20,
-    "image": "",
-    "images": [],
+    "image": "https://cdn.shopify.com/s/files/1/0493/9834/9974/files/A2147111_TD02_6_3840x.jpg?v=1764228261",
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0493/9834/9974/files/A2147111_TD02_6_3840x.jpg?v=1764228261",
+      "https://cdn.shopify.com/s/files/1/0493/9834/9974/files/A21471V1_TD04_3840x.jpg?v=1764228261",
+      "https://cdn.shopify.com/s/files/1/0493/9834/9974/files/A2147121_TD05_3840x.jpg?v=1764228261"
+    ],
     "description": "Anker Nano 3 sử dụng công nghệ GaN giúp thiết kế nhỏ gọn nhưng vẫn cung cấp công suất sạc nhanh lên đến 30W.",
     "specifications": [
       {
@@ -342,8 +358,13 @@
     "price": 1490000,
     "stock": 55,
     "minStockLevel": 12,
-    "image": "",
-    "images": [],
+    "image": "https://cdn.shopify.com/s/files/1/0765/2137/3999/files/A2668T11_TD02_V1_3840x.jpg?v=1750143308",
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0765/2137/3999/files/A2668T11_TD02_V1_3840x.jpg?v=1750143308",
+      "https://cdn.shopify.com/s/files/1/0765/2137/3999/files/A2668T11_TD03_V1_3840x.jpg?v=1750143308",
+      "https://cdn.shopify.com/s/files/1/0765/2137/3999/files/A2668T11_TD04_V1_3840x.jpg?v=1750143308",
+      "https://cdn.shopify.com/s/files/1/0765/2137/3999/files/A2668T11_TD06_V1_3840x.jpg?v=1750143308"
+    ],
     "description": "Anker 735 là củ sạc GaN cao cấp hỗ trợ sạc đồng thời laptop, tablet và smartphone với công suất tối đa 65W.",
     "specifications": [
       {
@@ -409,8 +430,12 @@
     "price": 1190000,
     "stock": 70,
     "minStockLevel": 15,
-    "image": "",
-    "images": [],
+    "image": "https://us.ugreen.com/cdn/shop/products/ugreen-nexode-65w-usb-c-gan-charger-3-ports-wall-charger-276386.png?v=1764234605",
+    "images": [
+      "https://us.ugreen.com/cdn/shop/products/ugreen-nexode-65w-usb-c-gan-charger-3-ports-wall-charger-276386.png?v=1764234605",
+      "https://us.ugreen.com/cdn/shop/products/ugreen-nexode-65w-usb-c-gan-charger-3-ports-wall-charger-276386_grande.png?v=1764234605",
+      "https://m.media-amazon.com/images/S/aplus-media-library-service-media/b73ad1e0-80d3-4c02-a048-23a692401300.__CR0,0,1464,600_PT0_SX1464_V1___.jpg"
+    ],
     "description": "UGREEN Nexode 65W là củ sạc GaN đa năng phù hợp cho MacBook Air, ultrabook, tablet và điện thoại.",
     "specifications": [
       {
@@ -476,8 +501,13 @@
     "price": 1390000,
     "stock": 60,
     "minStockLevel": 12,
-    "image": "",
-    "images": [],
+    "image": "https://baseusonline.com/uploads/product_contents/6zOS13YqHSEVoE4L3IuWb91FRzNpyRXrYer2gbKW.jpg",
+    "images": [
+      "https://baseusonline.com/uploads/product_contents/6zOS13YqHSEVoE4L3IuWb91FRzNpyRXrYer2gbKW.jpg",
+      "https://baseusonline.com/uploads/product_contents/3wTNLuZvq6e77YLmsoYWZsHekB2pDb1S6I9R6W0d.jpg",
+      "https://baseusonline.com/uploads/product_contents/9Bjb2ZBiBm660Yiv9ZhponfSvzdQx176Vqk638Pg.jpg",
+      "https://baseusonline.com/uploads/product_contents/tOKHHkrRGJffmDX4gSFrx4lIXEkfDSGK7ZVraBOK.jpg"
+    ],
     "description": "Baseus GaN5 100W hỗ trợ sạc nhanh cho laptop, tablet và smartphone với nhiều cổng kết nối tiện lợi.",
     "specifications": [
       {
@@ -543,8 +573,13 @@
     "price": 590000,
     "stock": 90,
     "minStockLevel": 18,
-    "image": "",
-    "images": [],
+    "image": "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-67w-hypercharge-power-adapter-type-a/pc/d1db2054e418d8da1b604bf9ff3c5c54.jpg?f=webp",
+    "images": [
+      "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-67w-hypercharge-power-adapter-type-a/pc/d1db2054e418d8da1b604bf9ff3c5c54.jpg?f=webp",
+      "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-67w-hypercharge-power-adapter-type-a/pc/80e8a0efd559c990b6e455f9242d41f1.png?f=webp",
+      "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-67w-hypercharge-power-adapter-type-a/pc/8293049ff214dcb1dd16cb56826072b8.jpg?f=webp",
+      "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-67w-hypercharge-power-adapter-type-a/pc/f4dffa73ede9821e3c52591ea7a4a305.jpg?f=webp"
+    ],
     "description": "Củ sạc Xiaomi 67W hỗ trợ sạc nhanh cho điện thoại Xiaomi, Redmi, POCO và các thiết bị USB-C tương thích.",
     "specifications": [
       {
@@ -610,8 +645,12 @@
     "price": 1590000,
     "stock": 45,
     "minStockLevel": 10,
-    "image": "",
-    "images": [],
+    "image": "https://www.belkin.com/dw/image/v2/BGBH_PRD/on/demandware.static/-/Sites-master-product-catalog-blk/default/dw155af46b/images/hi-res/3/51f2ee0c7b71eb23_WCH013dqBK_Dual_USB-C_WallCharger_05_WEB.jpg?sfrm=png&sh=700&sm=fit&sw=700",
+    "images": [
+      "https://www.belkin.com/dw/image/v2/BGBH_PRD/on/demandware.static/-/Sites-master-product-catalog-blk/default/dw155af46b/images/hi-res/3/51f2ee0c7b71eb23_WCH013dqBK_Dual_USB-C_WallCharger_05_WEB.jpg?sfrm=png&sh=700&sm=fit&sw=700",
+      "https://www.belkin.com/dw/image/v2/BGBH_PRD/on/demandware.static/-/Sites-master-product-catalog-blk/default/dw45c562ee/images/hi-res/f/719ee8c3f66ecf6c_BBC013-BK-boostcharge-pro-dual-usbc-gan-wall-charger-with-pps-65w-webgg02-6000x6000-us__lz__en_US.jpg?sfrm=png&sh=700&sm=fit&sw=700",
+      "https://www.belkin.com/dw/image/v2/BGBH_PRD/on/demandware.static/-/Sites-master-product-catalog-blk/default/dw178ef84e/images/hi-res/6/6f6c5d566272479e_BBC013-BK-boostcharge-pro-dual-usbc-gan-wall-charger-with-pps-65w-webgg03-6000x6000-us__lz__en_US.jpg?sfrm=png&sh=700&sm=fit&sw=700"
+    ],
     "description": "Belkin BoostCharge Pro 65W là củ sạc GaN cao cấp phù hợp cho MacBook, iPad, iPhone và nhiều thiết bị USB-C hiện đại.",
     "specifications": [
       {
@@ -677,8 +716,12 @@
     "price": 490000,
     "stock": 150,
     "minStockLevel": 30,
-    "image": "",
-    "images": [],
+    "image": "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/MQKJ3?wid=1000&hei=1000&fmt=jpeg&qlt=95&.v=1770844094916",
+    "images": [
+      "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/MQKJ3?wid=1000&hei=1000&fmt=jpeg&qlt=95&.v=1770844094916",
+      "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/MQKJ3_AV1?wid=1000&hei=1000&fmt=jpeg&qlt=95&.v=1674496556083",
+      "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/MQKJ3?wid=8000&hei=8000&fmt=jpeg&qlt=90&.v=1770844094916"
+    ],
     "description": "Cáp USB-C to USB-C chính hãng Apple hỗ trợ sạc nhanh và truyền dữ liệu ổn định cho iPhone, iPad, MacBook và các thiết bị USB-C tương thích.",
     "specifications": [
       {
@@ -744,8 +787,13 @@
     "price": 590000,
     "stock": 120,
     "minStockLevel": 25,
-    "image": "",
-    "images": [],
+    "image": "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/MM0A3?wid=1000&hei=1000&fmt=jpeg&qlt=95&.v=1632956386000",
+    "images": [
+      "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/MM0A3?wid=1000&hei=1000&fmt=jpeg&qlt=95&.v=1632956386000",
+      "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/MM0A3_AV1?wid=1000&hei=1000&fmt=jpeg&qlt=95&.v=1647513437891",
+      "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/MM0A3_AV2?wid=1000&hei=1000&fmt=jpeg&qlt=95&.v=1632956358000",
+      "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/MM0A3_AV3?wid=1000&hei=1000&fmt=jpeg&qlt=95&.v=1632956361000"
+    ],
     "description": "Cáp USB-C to Lightning chính hãng dành cho các dòng iPhone sử dụng cổng Lightning, hỗ trợ sạc nhanh Power Delivery.",
     "specifications": [
       {
@@ -811,8 +859,13 @@
     "price": 190000,
     "stock": 200,
     "minStockLevel": 40,
-    "image": "",
-    "images": [],
+    "image": "https://cdn.shopify.com/s/files/1/0765/2137/3999/files/A81F5011_TD01_V1.png?v=1751420744",
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0765/2137/3999/files/A81F5011_TD01_V1.png?v=1751420744",
+      "https://cdn.shopify.com/s/files/1/0765/2137/3999/files/A81F5011_TD02_V1_3840x.jpg?v=1751420744",
+      "https://cdn.shopify.com/s/files/1/0765/2137/3999/files/A81F5011_TD04_V1_3840x.jpg?v=1751420744",
+      "https://cdn.shopify.com/s/files/1/0765/2137/3999/files/A81F5011_TD05_V1_3840x.jpg?v=1751420744"
+    ],
     "description": "Anker 322 là cáp USB-C phổ biến với độ bền cao, phù hợp cho điện thoại Android, tablet và laptop hỗ trợ USB-C.",
     "specifications": [
       {
@@ -878,8 +931,13 @@
     "price": 290000,
     "stock": 180,
     "minStockLevel": 35,
-    "image": "",
-    "images": [],
+    "image": "https://cdn.shopify.com/s/files/1/0765/2137/3999/files/A81F5021_TD01_V1_3840x.jpg?v=1751420744",
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0765/2137/3999/files/A81F5021_TD01_V1_3840x.jpg?v=1751420744",
+      "https://cdn.shopify.com/s/files/1/0765/2137/3999/files/A81F5021_TD02_V1_3840x.jpg?v=1751420744",
+      "https://cdn.shopify.com/s/files/1/0765/2137/3999/files/A81F5021_TD04_V1_3840x.jpg?v=1751420744",
+      "https://cdn.shopify.com/s/files/1/0765/2137/3999/files/A81F5021_TD05_V1_3840x.jpg?v=1751420744"
+    ],
     "description": "Anker 333 hỗ trợ sạc nhanh công suất cao cho laptop, tablet và smartphone với độ bền vượt trội.",
     "specifications": [
       {
@@ -945,8 +1003,11 @@
     "price": 250000,
     "stock": 160,
     "minStockLevel": 30,
-    "image": "",
-    "images": [],
+    "image": "https://www.ugreen.com/cdn/shop/files/71YftUXgI0L.jpg?v=1765189863",
+    "images": [
+      "https://www.ugreen.com/cdn/shop/files/71YftUXgI0L.jpg?v=1765189863",
+      "https://www.ugreen.com/cdn/shop/files/71YftUXgI0L_grande.jpg?v=1765189863"
+    ],
     "description": "Cáp UGREEN 100W hỗ trợ sạc nhanh cho MacBook, ultrabook và các thiết bị USB-C hiện đại.",
     "specifications": [
       {
@@ -1012,8 +1073,13 @@
     "price": 180000,
     "stock": 190,
     "minStockLevel": 35,
-    "image": "",
-    "images": [],
+    "image": "https://baseusonline.com/uploads/img/pi/173/173113240142/1731132401.jpg",
+    "images": [
+      "https://baseusonline.com/uploads/img/pi/173/173113240142/1731132401.jpg",
+      "https://baseusonline.com/uploads/img/pi/173/173113240320/1731132403.jpg",
+      "https://baseusonline.com/uploads/img/pi/173/173113240453/1731132404.jpg",
+      "https://baseusonline.com/uploads/img/pi/173/173113240568/1731132405.jpg"
+    ],
     "description": "Baseus Crystal Shine là cáp sạc nhanh USB-C được thiết kế bền bỉ và phù hợp với nhiều thiết bị hiện đại.",
     "specifications": [
       {
@@ -1079,8 +1145,12 @@
     "price": 250000,
     "stock": 140,
     "minStockLevel": 25,
-    "image": "",
-    "images": [],
+    "image": "https://images.samsung.com/is/image/samsung/p6pim/uk/ep-dx510jwegeu/gallery/uk-usb-cable-5a-ep-dx510jwegeu-532724901?$624_468_PNG$",
+    "images": [
+      "https://images.samsung.com/is/image/samsung/p6pim/uk/ep-dx510jwegeu/gallery/uk-usb-cable-5a-ep-dx510jwegeu-532724901?$624_468_PNG$",
+      "https://images.samsung.com/is/image/samsung/p6pim/uk/ep-dx510jwegeu/gallery/uk-usb-cable-5a-ep-dx510jwegeu-532724901?$1164_776_PNG$",
+      "https://images.samsung.com/is/image/samsung/p6pim/uk/ep-dx510jwegeu/gallery/uk-usb-cable-5a-ep-dx510jwegeu-532724901?$Q90_1368_1094_F_JPG$"
+    ],
     "description": "Cáp USB-C chính hãng Samsung hỗ trợ Super Fast Charging cho các thiết bị Galaxy tương thích.",
     "specifications": [
       {
@@ -1146,8 +1216,11 @@
     "price": 390000,
     "stock": 120,
     "minStockLevel": 25,
-    "image": "",
-    "images": [],
+    "image": "https://www.belkin.com/dw/image/v2/BGBH_PRD/on/demandware.static/-/Sites-master-product-catalog-blk/default/dw863133f3/images/hi-res/1/1cc349c8283b4acb_CAA004BT0M-BLK_BoostCharge_USB-C_to_LtgCable_Gallery_Shot_03_WEB.jpg?sw=700&sh=700&sm=fit&sfrm=png",
+    "images": [
+      "https://www.belkin.com/dw/image/v2/BGBH_PRD/on/demandware.static/-/Sites-master-product-catalog-blk/default/dw863133f3/images/hi-res/1/1cc349c8283b4acb_CAA004BT0M-BLK_BoostCharge_USB-C_to_LtgCable_Gallery_Shot_03_WEB.jpg?sw=700&sh=700&sm=fit&sfrm=png",
+      "https://www.belkin.com/dw/image/v2/BGBH_PRD/on/demandware.static/-/Sites-master-product-catalog-blk/default/dw863133f3/images/hi-res/1/1cc349c8283b4acb_CAA004BT0M-BLK_BoostCharge_USB-C_to_LtgCable_Gallery_Shot_03_WEB.jpg?sw=1200&sh=630&sm=fit&sfrm=png"
+    ],
     "description": "Belkin BoostCharge đạt chứng nhận MFi của Apple, phù hợp cho các dòng iPhone Lightning.",
     "specifications": [
       {
@@ -1213,8 +1286,13 @@
     "price": 99000,
     "stock": 220,
     "minStockLevel": 50,
-    "image": "",
-    "images": [],
+    "image": "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-6a-type-a-to-type-c-cable/de180110a3ff43719b8c159073b904e9.jpg?f=webp",
+    "images": [
+      "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-6a-type-a-to-type-c-cable/de180110a3ff43719b8c159073b904e9.jpg?f=webp",
+      "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-6a-type-a-to-type-c-cable/b28c8e8292c65b13c7802f25ac2f2718.png?f=webp",
+      "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-6a-type-a-to-type-c-cable/d23ad07eaa36bb64d5cdb360bacdb816.jpg?f=webp",
+      "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-6a-type-a-to-type-c-cable/c2d18bdac7d3516d3b328ff0dc9687cb.jpg?f=webp"
+    ],
     "description": "Cáp sạc nhanh Xiaomi phù hợp cho smartphone Xiaomi, Redmi và POCO hỗ trợ sạc công suất cao.",
     "specifications": [
       {
@@ -1280,8 +1358,13 @@
     "price": 220000,
     "stock": 130,
     "minStockLevel": 25,
-    "image": "",
-    "images": [],
+    "image": "https://www.ugreen.com/cdn/shop/files/0a03d126da2e2f21e25323bc329ef86d_5a221674-ef29-4694-bb3b-898614282465.webp?v=1772093953",
+    "images": [
+      "https://www.ugreen.com/cdn/shop/files/0a03d126da2e2f21e25323bc329ef86d_5a221674-ef29-4694-bb3b-898614282465.webp?v=1772093953",
+      "https://www.ugreen.com/cdn/shop/files/0a03d126da2e2f21e25323bc329ef86d_5a221674-ef29-4694-bb3b-898614282465_grande.webp?v=1772093953",
+      "https://m.media-amazon.com/images/S/aplus-media-library-service-media/75bf84ff-7595-4d7b-be93-8af31261d31d.__CR0,0,1464,600_PT0_SX1464_V1___.jpg",
+      "https://m.media-amazon.com/images/S/aplus-media-library-service-media/2e396a3e-e1f0-476b-898f-c9ab367577e2.__CR0,0,1464,600_PT0_SX1464_V1___.jpg"
+    ],
     "description": "Cáp Lightning đạt chứng nhận MFi dành cho iPhone, đảm bảo khả năng tương thích và độ bền cao.",
     "specifications": [
       {
@@ -1347,8 +1430,12 @@
     "price": 249000,
     "stock": 120,
     "minStockLevel": 25,
-    "image": "",
-    "images": [],
+    "image": "https://resource.logitech.com/w_544%2Ch_466%2Car_7%3A6%2Cc_pad%2Cq_auto%2Cf_auto%2Cdpr_1.0/d_transparent.gif/content/dam/logitech/en/products/keyboards/k120/gallery/k120-gallery-01-new.png",
+    "images": [
+      "https://resource.logitech.com/w_544%2Ch_466%2Car_7%3A6%2Cc_pad%2Cq_auto%2Cf_auto%2Cdpr_1.0/d_transparent.gif/content/dam/logitech/en/products/keyboards/k120/gallery/k120-gallery-01-new.png",
+      "https://resource.logitech.com/w_544%2Ch_466%2Car_7%3A6%2Cc_pad%2Cq_auto%2Cf_auto%2Cdpr_1.0/d_transparent.gif/content/dam/logitech/en/products/keyboards/k120/gallery/k120-gallery-02-new.png",
+      "https://resource.logitech.com/w_544%2Ch_466%2Car_7%3A6%2Cc_pad%2Cq_auto%2Cf_auto%2Cdpr_1.0/d_transparent.gif/content/dam/logitech/en/products/keyboards/k120/gallery/k120-gallery-03-new.png"
+    ],
     "description": "Logitech K120 là bàn phím có dây phổ thông dành cho văn phòng, trường học và sử dụng gia đình. Thiết kế đầy đủ phím chức năng, độ bền cao và cảm giác gõ ổn định giúp đáp ứng tốt nhu cầu nhập liệu hằng ngày.",
     "specifications": [
       {
@@ -1414,8 +1501,12 @@
     "price": 799000,
     "stock": 90,
     "minStockLevel": 18,
-    "image": "",
-    "images": [],
+    "image": "https://resource.logitech.com/w_1440%2Ch_810%2Car_16%3A9%2Cc_fill%2Cq_auto%2Cf_auto%2Cdpr_1.0/d_transparent.gif/content/dam/logitech/en/products/keyboards/multi-keyboard-k380/k380-lavender-collage-desktop.png",
+    "images": [
+      "https://resource.logitech.com/w_1440%2Ch_810%2Car_16%3A9%2Cc_fill%2Cq_auto%2Cf_auto%2Cdpr_1.0/d_transparent.gif/content/dam/logitech/en/products/keyboards/multi-keyboard-k380/k380-lavender-collage-desktop.png",
+      "https://resource.logitech.com/w_776%2Ch_437%2Car_16%3A9%2Cc_fill%2Cq_auto%2Cf_auto%2Cdpr_1.0/d_transparent.gif/content/dam/logitech/en/products/keyboards/multi-keyboard-k380/k380-full-setup-lavender.jpg",
+      "https://resource.logitech.com/w_776%2Ch_437%2Car_16%3A9%2Cc_fill%2Cq_auto%2Cf_auto%2Cdpr_1.0/d_transparent.gif/content/dam/logitech/en/products/keyboards/multi-keyboard-k380/k380-your-space-anywhere.jpg"
+    ],
     "description": "Logitech K380 là bàn phím Bluetooth nhỏ gọn hỗ trợ kết nối nhiều thiết bị cùng lúc. Thiết kế tối giản, dễ mang theo và tương thích với Windows, macOS, Android và iPadOS.",
     "specifications": [
       {
@@ -1481,8 +1572,12 @@
     "price": 2690000,
     "stock": 45,
     "minStockLevel": 10,
-    "image": "",
-    "images": [],
+    "image": "https://resource.logitech.com/w_776%2Ch_437%2Car_16%3A9%2Cc_fill%2Cq_auto%2Cf_auto%2Cdpr_1.0/d_transparent.gif/content/dam/logitech/en/products/keyboards/mx-keys-s/logi-mx-keys-s-key-features-typing.jpg",
+    "images": [
+      "https://resource.logitech.com/w_776%2Ch_437%2Car_16%3A9%2Cc_fill%2Cq_auto%2Cf_auto%2Cdpr_1.0/d_transparent.gif/content/dam/logitech/en/products/keyboards/mx-keys-s/logi-mx-keys-s-key-features-typing.jpg",
+      "https://resource.logitech.com/w_776%2Ch_437%2Car_16%3A9%2Cc_fill%2Cq_auto%2Cf_auto%2Cdpr_1.0/d_transparent.gif/content/dam/logitech/en/products/keyboards/mx-keys-s/logi-mx-keys-s-key-features-illumination.jpg",
+      "https://resource.logitech.com/w_776%2Ch_437%2Car_16%3A9%2Cc_fill%2Cq_auto%2Cf_auto%2Cdpr_1.0/d_transparent.gif/content/dam/logitech/en/products/keyboards/mx-keys-s/logi-mx-keys-s-key-features-options.jpg"
+    ],
     "description": "Logitech MX Keys S là bàn phím cao cấp dành cho lập trình viên, designer và nhân viên văn phòng chuyên nghiệp. Phím bấm êm, có đèn nền thông minh và hỗ trợ kết nối đa thiết bị.",
     "specifications": [
       {
@@ -1548,8 +1643,12 @@
     "price": 2590000,
     "stock": 55,
     "minStockLevel": 12,
-    "image": "",
-    "images": [],
+    "image": "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/MXCK3?.v=bzMxWXBObC9OejdnMksyYU0yaE91QWtuVHYzMERCZURia3c5SzJFOTlPakJ5ZHNlazlrRjVpVEhpRCtFc2V0d09mdmdFYVFOZkJyWmpxY1lCSU9pOEE&fmt=jpeg&hei=1144&qlt=90&wid=1144",
+    "images": [
+      "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/MXCK3?.v=bzMxWXBObC9OejdnMksyYU0yaE91QWtuVHYzMERCZURia3c5SzJFOTlPakJ5ZHNlazlrRjVpVEhpRCtFc2V0d09mdmdFYVFOZkJyWmpxY1lCSU9pOEE&fmt=jpeg&hei=1144&qlt=90&wid=1144",
+      "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/MXCK3_AV2?.v=MSsyc3Zvb21rQ015eVdkbTBEc0h5eVRkTXNZOFJZTitTVFE0NHl0VW5Cb0YwVmtIbGRkS25RMVpBRlo0bk5DUUJCdzlub3B5THNYV0UyVCtEZlIrdGc&fmt=jpeg&hei=2000&qlt=90&wid=2000",
+      "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/MXCK3_AV3?.v=L2hnWGRWaS9UbDZIWjdPRkpDTWU0aVRkTXNZOFJZTitTVFE0NHl0VW5Cb0YwVmtIbGRkS25RMVpBRlo0bk5DUURwMVVkVEN1cUZKbHA2em9adVJqRlE&fmt=jpeg&hei=2000&qlt=90&wid=2000"
+    ],
     "description": "Apple Magic Keyboard USB-C là bàn phím không dây tối ưu cho người dùng MacBook, iMac và iPad. Thiết kế mỏng nhẹ, cảm giác gõ chính xác và thời lượng pin dài.",
     "specifications": [
       {
@@ -1615,8 +1714,12 @@
     "price": 2290000,
     "stock": 70,
     "minStockLevel": 15,
-    "image": "",
-    "images": [],
+    "image": "https://www.keychronsg.com/cdn/shop/files/Keychron-K2-Pro-QMK-VIA-custom-mechanical-keyboard-75-percent-layout-Mac-Windows-Linux-hot-swappable-Keychron-K-Pro-switch-red-ISO-UK-layout.jpg?v=1723449323&width=160",
+    "images": [
+      "https://www.keychronsg.com/cdn/shop/files/Keychron-K2-Pro-QMK-VIA-custom-mechanical-keyboard-75-percent-layout-Mac-Windows-Linux-hot-swappable-Keychron-K-Pro-switch-red-ISO-UK-layout.jpg?v=1723449323&width=160",
+      "https://www.keychronsg.com/cdn/shop/files/Keychron-K2-Pro-QMK-VIA-custom-mechanical-keyboard-75-percent-layout-Mac-Windows-Linux-hot-swappable-Keychron-K-Pro-switch-red-ISO-German-layout.jpg?v=1723449324&width=160",
+      "https://www.keychronsg.com/cdn/shop/files/Keychron-K2-Pro-QMK-VIA-custom-mechanical-keyboard-75-percent-layout-Mac-Windows-Linux-hot-swappable-Keychron-K-Pro-switch-brown-ISO-German-layout.jpg?v=1723449324&width=160"
+    ],
     "description": "Keychron K2 Pro là bàn phím cơ không dây được yêu thích bởi lập trình viên và người dùng MacBook. Thiết bị hỗ trợ hotswap, Bluetooth và tương thích đa nền tảng.",
     "specifications": [
       {
@@ -1682,8 +1785,12 @@
     "price": 2490000,
     "stock": 60,
     "minStockLevel": 12,
-    "image": "",
-    "images": [],
+    "image": "https://www.keychron.com/cdn/shop/products/Keychron-K8-Pro-QMK-VIA-Wireless-Mechanical-Keyboard-RGB-aluminum-for-Mac-Windows-PBT-keycaps-PCB-screw-in-stabilizer-hot-swappable-Gateron-G-Pro-mechanical-blue-switch-K8P-J2.jpg?v=1666259785&width=160",
+    "images": [
+      "https://www.keychron.com/cdn/shop/products/Keychron-K8-Pro-QMK-VIA-Wireless-Mechanical-Keyboard-RGB-aluminum-for-Mac-Windows-PBT-keycaps-PCB-screw-in-stabilizer-hot-swappable-Gateron-G-Pro-mechanical-blue-switch-K8P-J2.jpg?v=1666259785&width=160",
+      "https://www.keychron.com/cdn/shop/products/Keychron-K8-Pro-QMK-VIA-Wireless-Mechanical-Keyboard-RGB-aluminum-for-Mac-Windows-PBT-keycaps-PCB-screw-in-stabilizer-hot-swappable-Gateron-G-Pro-mechanical-brown-switch-K8P-J3.jpg?v=1666259785&width=160",
+      "https://www.keychron.com/cdn/shop/products/Keychron-K8-Pro-QMK-VIA-Wireless-Mechanical-Keyboard-RGB-aluminum-for-Mac-Windows-PBT-keycaps-B-PCB-screw-in-stabilizer-hot-swappable-Gateron-G-Pro-mechanical-red-switch-K8P-J1Z.jpg?v=1666259785&width=160"
+    ],
     "description": "Keychron K8 Pro là bàn phím cơ TKL phù hợp cho lập trình, làm việc văn phòng và gaming nhẹ. Thiết kế cân bằng giữa tính di động và trải nghiệm gõ.",
     "specifications": [
       {
@@ -1749,8 +1856,12 @@
     "price": 4990000,
     "stock": 30,
     "minStockLevel": 8,
-    "image": "",
-    "images": [],
+    "image": "https://www.keychron.com/cdn/shop/files/Keychron-Q1-Max-QMK-VIA-Wireless-Custom-Mechanical-Keyboard-75_-Layout-Aluminum-White-for-Mac-Windows-Linux-Barebone-Knob-JIS.jpg?v=1753685590&width=160",
+    "images": [
+      "https://www.keychron.com/cdn/shop/files/Keychron-Q1-Max-QMK-VIA-Wireless-Custom-Mechanical-Keyboard-75_-Layout-Aluminum-White-for-Mac-Windows-Linux-Barebone-Knob-JIS.jpg?v=1753685590&width=160",
+      "https://www.keychron.com/cdn/shop/files/Keychron-Q1-Max-QMK-VIA-Wireless-Custom-Mechanical-Keyboard-75-Percent-Layout-Aluminum-Black-Side-Printed-PBT-Keycaps-for-Mac-Windows-Linux-Gateron-Jupiter-Red.jpg?v=1753685590&width=160",
+      "https://www.keychron.com/cdn/shop/files/Keychron-Q1-Max-QMK-VIA-Wireless-Custom-Mechanical-Keyboard-75-Percent-Layout-Aluminum-Black-Side-Printed-PBT-Keycaps-for-Mac-Windows-Linux-Gateron-Jupiter-Brown.jpg?v=1753685590&width=160"
+    ],
     "description": "Keychron Q1 Max là bàn phím cơ cao cấp với khung nhôm CNC, hỗ trợ wireless và trải nghiệm gõ chất lượng cao dành cho người dùng chuyên nghiệp.",
     "specifications": [
       {
@@ -1816,8 +1927,12 @@
     "price": 3490000,
     "stock": 40,
     "minStockLevel": 10,
-    "image": "",
-    "images": [],
+    "image": "https://assets2.razerzone.com/images/pnx.assets/b2365984c607948cd60ebe738ea2e6b8/razer-blackwidow-v4-hero-desktop.webp",
+    "images": [
+      "https://assets2.razerzone.com/images/pnx.assets/b2365984c607948cd60ebe738ea2e6b8/razer-blackwidow-v4-hero-desktop.webp",
+      "https://assets2.razerzone.com/images/pnx.assets/431674bde4a2268e2b68818fe0c3ec51/razer-blackwidow-v4-lighting-desktop.webp",
+      "https://assets2.razerzone.com/images/pnx.assets/f942fc799c634f4855a3f2a97a341187/razer-blackwidow-v4-mechanical-switches-desktop.webp"
+    ],
     "description": "Razer BlackWidow V4 là bàn phím cơ gaming cao cấp với đèn RGB Chroma và switch cơ học tối ưu cho game thủ chuyên nghiệp.",
     "specifications": [
       {
@@ -1883,8 +1998,13 @@
     "price": 2690000,
     "stock": 50,
     "minStockLevel": 12,
-    "image": "",
-    "images": [],
+    "image": "https://assets2.razerzone.com/images/pnx.assets/59ae30a3aeca25f4a702515d7a05e099/razer-huntsman-mini-2020-hero-mobile-v2.jpg",
+    "images": [
+      "https://assets2.razerzone.com/images/pnx.assets/59ae30a3aeca25f4a702515d7a05e099/razer-huntsman-mini-2020-hero-mobile-v2.jpg",
+      "https://assets2.razerzone.com/images/pnx.assets/1da2873f5f76c4e185ed90fb33408a1d/razer-huntsman-mini-2020-usp-form-factors-mobile.jpg",
+      "https://assets2.razerzone.com/images/pnx.assets/9acd93122d03d19da7881630eaaaafd2/razer-huntsman-mini-2020-usp-available-in-mobile.jpg",
+      "https://assets2.razerzone.com/images/pnx.assets/e7d77564a0b135689c4de7b119c14fea/razer-huntsman-mini-2020-usp-onboard-mobile.jpg"
+    ],
     "description": "Razer Huntsman Mini là bàn phím cơ 60% nhỏ gọn dành cho game thủ FPS cần nhiều không gian rê chuột và tốc độ phản hồi cao.",
     "specifications": [
       {
@@ -1950,8 +2070,12 @@
     "price": 4590000,
     "stock": 35,
     "minStockLevel": 8,
-    "image": "",
-    "images": [],
+    "image": "https://resource.logitechg.com/w_544%2Ch_466%2Car_7%3A6%2Cc_pad%2Cq_auto%2Cf_auto%2Cdpr_1.0/d_transparent.gif/content/dam/gaming/en/products/pro-x-tkl/gallery-2-pro-x-tkl-black-lightspeed-gaming-keyboard.png.png",
+    "images": [
+      "https://resource.logitechg.com/w_544%2Ch_466%2Car_7%3A6%2Cc_pad%2Cq_auto%2Cf_auto%2Cdpr_1.0/d_transparent.gif/content/dam/gaming/en/products/pro-x-tkl/gallery-2-pro-x-tkl-black-lightspeed-gaming-keyboard.png.png",
+      "https://resource.logitechg.com/w_544%2Ch_544%2Car_1%2Cc_fill%2Cq_auto%2Cf_auto%2Cdpr_1.0/d_transparent.gif/content/dam/gaming/en/products/pro-x-tkl/round-2/pro-x-tkl-black-light-speed-wireless-gaming-keyboard.png",
+      "https://resource.logitechg.com/w_544%2Ch_466%2Car_7%3A6%2Cc_pad%2Cq_auto%2Cf_auto%2Cdpr_1.0/d_transparent.gif/content/dam/gaming/en/products/pro-x-tkl/gallery-3-pro-x-tkl-black-lightspeed-gaming-keyboard.png.png"
+    ],
     "description": "Logitech G Pro X TKL Lightspeed là bàn phím gaming không dây dành cho eSports với độ trễ thấp, thiết kế nhỏ gọn và độ bền cao.",
     "specifications": [
       {
@@ -2017,8 +2141,13 @@
     "price": 1490000,
     "stock": 80,
     "minStockLevel": 15,
-    "image": "",
-    "images": [],
+    "image": "https://en.akkogear.com/wp-content/uploads/2020/09/Hello-Kitty3087-B.jpg",
+    "images": [
+      "https://en.akkogear.com/wp-content/uploads/2020/09/Hello-Kitty3087-B.jpg",
+      "https://en.akkogear.com/wp-content/uploads/2020/09/Hello-Kitty-B.jpg",
+      "https://en.akkogear.com/wp-content/uploads/2020/09/Hello-Kitty.jpg",
+      "https://en.akkogear.com/wp-content/uploads/2020/09/Hello-Kitty3087-B2.jpg"
+    ],
     "description": "Akko 3087 V2 là bàn phím cơ TKL phổ biến với mức giá dễ tiếp cận, phù hợp cho học tập, làm việc và chơi game.",
     "specifications": [
       {
@@ -2084,8 +2213,13 @@
     "price": 1990000,
     "stock": 70,
     "minStockLevel": 15,
-    "image": "",
-    "images": [],
+    "image": "https://en.akkogear.com/wp-content/uploads/2023/04/Cinnamoroll-20th-Q.jpg",
+    "images": [
+      "https://en.akkogear.com/wp-content/uploads/2023/04/Cinnamoroll-20th-Q.jpg",
+      "https://en.akkogear.com/wp-content/uploads/2023/01/Gasket-Mount.jpg",
+      "https://en.akkogear.com/wp-content/uploads/2023/01/Multi-Modes-2.jpg",
+      "https://en.akkogear.com/wp-content/uploads/2023/07/Akko-CS-Air-Switch-XTGX-150x150.jpg"
+    ],
     "description": "Akko 5075B Plus là bàn phím cơ wireless hỗ trợ nhiều chế độ kết nối, thiết kế hiện đại và trải nghiệm gõ tốt trong tầm giá.",
     "specifications": [
       {
@@ -2151,8 +2285,12 @@
     "price": 699000,
     "stock": 110,
     "minStockLevel": 20,
-    "image": "",
-    "images": [],
+    "image": "https://dareu.com/cdn/shop/files/ek87pro-__04.jpg?v=1731660817",
+    "images": [
+      "https://dareu.com/cdn/shop/files/ek87pro-__04.jpg?v=1731660817",
+      "https://dareu.com/cdn/shop/files/0006_rgb.png?v=1733904728&width=900",
+      "https://dareu.com/cdn/shop/files/0003____-1.png?v=1733904728&width=900"
+    ],
     "description": "DareU EK87 là bàn phím cơ giá rẻ phù hợp cho học sinh, sinh viên và game thủ mới bắt đầu muốn trải nghiệm bàn phím cơ.",
     "specifications": [
       {
@@ -2218,8 +2356,13 @@
     "price": 1590000,
     "stock": 75,
     "minStockLevel": 15,
-    "image": "",
-    "images": [],
+    "image": "https://rkgamingstore.com/cdn/shop/products/compactkeyboard_1.png?v=1685352794&width=1946",
+    "images": [
+      "https://rkgamingstore.com/cdn/shop/products/compactkeyboard_1.png?v=1685352794&width=1946",
+      "https://rkgamingstore.com/cdn/shop/files/RK84wiredkeyboardblack_3.jpg?v=1685352794&width=1946",
+      "https://rkgamingstore.com/cdn/shop/files/RK84wiredkeyboardblack_5.jpg?v=1685352794&width=1946",
+      "https://rkgamingstore.com/cdn/shop/products/compactkeyboard_4.png?v=1685352794&width=416"
+    ],
     "description": "Royal Kludge RK84 là bàn phím cơ wireless 75% được nhiều người dùng lựa chọn nhờ thiết kế nhỏ gọn và hỗ trợ hotswap.",
     "specifications": [
       {
@@ -2285,8 +2428,13 @@
     "price": 4990000,
     "stock": 25,
     "minStockLevel": 6,
-    "image": "",
-    "images": [],
+    "image": "https://cdn.mos.cms.futurecdn.net/u7W6cv7PFPKHgAEAXbExKK.jpg",
+    "images": [
+      "https://cdn.mos.cms.futurecdn.net/u7W6cv7PFPKHgAEAXbExKK.jpg",
+      "https://cdn.mos.cms.futurecdn.net/imbCfF9XNtKFrKX6tLNUJ6.jpg",
+      "https://cdn.mos.cms.futurecdn.net/uZ7sS8NjWRxoZYozfWJYRg.jpg",
+      "https://cdn.mos.cms.futurecdn.net/McdANk8PxmeNmdk77TA9zi.jpg"
+    ],
     "description": "SteelSeries Apex Pro TKL là bàn phím gaming cao cấp sử dụng switch từ tính có thể tùy chỉnh độ nhạy, phù hợp cho game thủ chuyên nghiệp.",
     "specifications": [
       {
@@ -2352,8 +2500,10 @@
     "price": 16990000,
     "stock": 75,
     "minStockLevel": 15,
-    "image": "",
-    "images": [],
+    "image": "https://m.media-amazon.com/images/I/715Sum+EpLL._AC_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/715Sum+EpLL._AC_.jpg"
+    ],
     "description": "Acer Aspire 5 là mẫu laptop văn phòng phổ biến dành cho sinh viên, nhân viên văn phòng và người dùng gia đình cần một thiết bị ổn định cho công việc hằng ngày. Intel Core i5 kết hợp RAM 16GB mang lại khả năng đa nhiệm mượt mà khi sử dụng các ứng dụng văn phòng, học trực tuyến, trình duyệt web và quản lý dữ liệu. Thiết kế đơn giản nhưng bền bỉ, màn hình Full HD sắc nét cùng bàn phím thoải mái giúp nâng cao hiệu suất làm việc. Đây là lựa chọn phù hợp cho người dùng cần một chiếc laptop có hiệu năng tốt, chi phí hợp lý và dễ sử dụng trong thời gian dài.",
     "specifications": [
       {
@@ -2446,8 +2596,10 @@
     "price": 27990000,
     "stock": 30,
     "minStockLevel": 8,
-    "image": "",
-    "images": [],
+    "image": "https://m.media-amazon.com/images/I/71iB6UqXbGL._AC_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/71iB6UqXbGL._AC_.jpg"
+    ],
     "description": "Acer Nitro V 15 là mẫu laptop gaming tầm trung được thiết kế dành cho game thủ và sinh viên kỹ thuật cần hiệu năng mạnh với mức giá hợp lý. Intel Core i7 kết hợp card đồ họa RTX 4050 cho khả năng xử lý tốt các tựa game hiện đại, đồ họa 2D, 3D và chỉnh sửa video. Màn hình tần số quét cao mang lại trải nghiệm hình ảnh mượt mà khi chơi game hoặc giải trí. Hệ thống tản nhiệt được tối ưu giúp duy trì hiệu suất ổn định trong thời gian dài. Đây là lựa chọn phù hợp cho người dùng muốn một chiếc laptop vừa phục vụ học tập vừa đáp ứng nhu cầu giải trí chuyên sâu.",
     "specifications": [
       {
@@ -2540,8 +2692,10 @@
     "price": 46990000,
     "stock": 15,
     "minStockLevel": 5,
-    "image": "",
-    "images": [],
+    "image": "https://m.media-amazon.com/images/I/71gqlzTfZzL._AC_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/71gqlzTfZzL._AC_.jpg"
+    ],
     "description": "Acer Predator Helios Neo 16 là mẫu laptop gaming cao cấp hướng đến game thủ chuyên nghiệp và người dùng sáng tạo nội dung cần hiệu năng cực mạnh. Intel Core i9 kết hợp RTX 4070 cho khả năng xử lý vượt trội trong các tựa game AAA, dựng video 4K, thiết kế đồ họa 3D và các tác vụ AI. Màn hình 2.5K tần số quét cao mang đến chất lượng hình ảnh sắc nét và mượt mà. Hệ thống tản nhiệt tiên tiến giúp thiết bị duy trì hiệu suất cao trong thời gian dài. Đây là lựa chọn lý tưởng cho người dùng cần một cỗ máy mạnh mẽ để làm việc và giải trí.",
     "specifications": [
       {
@@ -2634,8 +2788,13 @@
     "price": 18990000,
     "stock": 65,
     "minStockLevel": 12,
-    "image": "",
-    "images": [],
+    "image": "https://www.asus.com/media/global/gallery/q98ycgtgvbanjnoo_setting_xxx_0_90_end_184.png",
+    "images": [
+      "https://www.asus.com/media/global/gallery/q98ycgtgvbanjnoo_setting_xxx_0_90_end_184.png",
+      "https://www.asus.com/media/global/gallery/3hbt7z3zgl8whunr_setting_xxx_0_90_end_184.png",
+      "https://www.asus.com/media/global/gallery/w8pkguzrxm74rh8t_setting_xxx_0_90_end_184.png",
+      "https://www.asus.com/media/global/gallery/drgnbyjpgz5zj7ri_setting_xxx_0_90_end_184.png"
+    ],
     "description": "ASUS Vivobook 15 OLED là mẫu laptop văn phòng hiện đại sở hữu màn hình OLED chất lượng cao cùng hiệu năng ổn định cho nhu cầu học tập và làm việc hằng ngày. Bộ vi xử lý Intel Core i5 kết hợp RAM 16GB giúp xử lý mượt mà các tác vụ văn phòng, học trực tuyến, lập trình cơ bản và giải trí đa phương tiện. Màn hình OLED hiển thị màu sắc sống động, độ tương phản cao và hỗ trợ làm việc lâu dài. Thiết kế gọn nhẹ cùng thời lượng pin tốt giúp người dùng dễ dàng mang theo khi di chuyển. Đây là lựa chọn phù hợp cho sinh viên và nhân viên văn phòng cần một chiếc laptop cân bằng giữa hiệu năng và giá trị sử dụng.",
     "specifications": [
       {
@@ -2728,8 +2887,10 @@
     "price": 24990000,
     "stock": 55,
     "minStockLevel": 12,
-    "image": "",
-    "images": [],
+    "image": "https://m.media-amazon.com/images/I/71WUVMk1vCL._AC_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/71WUVMk1vCL._AC_.jpg"
+    ],
     "description": "ASUS Vivobook S 14 OLED được trang bị vi xử lý Intel Core Ultra thế hệ mới cùng thiết kế mỏng nhẹ phục vụ nhu cầu làm việc linh hoạt. Hiệu năng mạnh mẽ giúp xử lý tốt các ứng dụng văn phòng, sáng tạo nội dung và đa nhiệm hằng ngày. Màn hình OLED độ phân giải cao mang đến hình ảnh sắc nét và màu sắc chính xác. Hệ thống AI tích hợp trong nền tảng Intel mới hỗ trợ tối ưu hiệu suất và tiết kiệm điện năng. Với thiết kế hiện đại, trọng lượng nhẹ và cấu hình cân đối, đây là lựa chọn phù hợp cho người dùng trẻ, nhân viên văn phòng và sinh viên công nghệ.",
     "specifications": [
       {
@@ -2822,8 +2983,13 @@
     "price": 33990000,
     "stock": 40,
     "minStockLevel": 10,
-    "image": "",
-    "images": [],
+    "image": "https://dlcdnwebimgs.asus.com/files/media/64d9cc60-7873-4180-9e9c-ad2ed2e922df/images/pic01.webp",
+    "images": [
+      "https://dlcdnwebimgs.asus.com/files/media/64d9cc60-7873-4180-9e9c-ad2ed2e922df/images/pic01.webp",
+      "https://dlcdnwebimgs.asus.com/files/media/64d9cc60-7873-4180-9e9c-ad2ed2e922df/images/pc-keyboard.jpg",
+      "https://dlcdnwebimgs.asus.com/files/media/64d9cc60-7873-4180-9e9c-ad2ed2e922df/images/pc-performance.jpg",
+      "https://dlcdnwebimgs.asus.com/files/media/64d9cc60-7873-4180-9e9c-ad2ed2e922df/images/pc-software.jpg"
+    ],
     "description": "ASUS Zenbook 14 OLED là dòng ultrabook cao cấp hướng đến người dùng chuyên nghiệp cần sự kết hợp giữa hiệu năng mạnh và tính di động. Intel Core Ultra 7 cùng RAM 32GB cho phép xử lý đa nhiệm, lập trình, chỉnh sửa ảnh và công việc sáng tạo nội dung hiệu quả. Màn hình OLED 3K mang đến chất lượng hiển thị ấn tượng với độ chính xác màu cao. Thiết kế kim loại sang trọng, trọng lượng nhẹ và pin lâu giúp tối ưu trải nghiệm làm việc mọi lúc mọi nơi. Đây là lựa chọn đáng cân nhắc cho doanh nhân, kỹ sư phần mềm và người dùng yêu cầu tính cơ động cao.",
     "specifications": [
       {
@@ -2916,8 +3082,13 @@
     "price": 31990000,
     "stock": 28,
     "minStockLevel": 8,
-    "image": "",
-    "images": [],
+    "image": "https://dlcdnwebimgs.asus.com/gain/a25d4381-0f1a-48bd-86d6-3bd59f017f19/",
+    "images": [
+      "https://dlcdnwebimgs.asus.com/gain/a25d4381-0f1a-48bd-86d6-3bd59f017f19/",
+      "https://dlcdnwebimgs.asus.com/gain/ed4c3cdc-29c4-4bdf-a42b-9f008244a173/w800",
+      "https://dlcdnwebimgs.asus.com/gain/ed4c3cdc-29c4-4bdf-a42b-9f008244a173/w80",
+      "https://dlcdnwebimgs.asus.com/gain/ed4c3cdc-29c4-4bdf-a42b-9f008244a173//fwebp"
+    ],
     "description": "ASUS TUF Gaming A15 là mẫu laptop gaming nổi bật trong phân khúc tầm trung với hiệu năng mạnh mẽ từ AMD Ryzen 7 và RTX 4060. Thiết bị đáp ứng tốt nhu cầu chơi game AAA, livestream, dựng video và xử lý đồ họa 3D. Màn hình tần số quét cao mang đến trải nghiệm hình ảnh mượt mà trong các tựa game cạnh tranh. Hệ thống tản nhiệt được tối ưu giúp duy trì hiệu năng ổn định khi hoạt động liên tục. Đây là lựa chọn phù hợp cho game thủ và người dùng cần một chiếc laptop đa năng vừa phục vụ giải trí vừa đáp ứng công việc sáng tạo.",
     "specifications": [
       {
@@ -3010,8 +3181,10 @@
     "price": 32990000,
     "stock": 25,
     "minStockLevel": 8,
-    "image": "",
-    "images": [],
+    "image": "https://m.media-amazon.com/images/I/71ZZ0yHLuYL._AC_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/71ZZ0yHLuYL._AC_.jpg"
+    ],
     "description": "ASUS TUF Gaming F15 được xây dựng dành cho game thủ yêu cầu hiệu năng cao và độ bền lâu dài. Bộ xử lý Intel Core i7 thế hệ mới kết hợp RTX 4060 mang lại khả năng xử lý mạnh mẽ cho các tựa game hiện đại, công việc thiết kế đồ họa và chỉnh sửa video. Màn hình 144Hz giúp thao tác mượt mà và cải thiện trải nghiệm chơi game. Thiết kế chuẩn độ bền quân đội cùng hệ thống tản nhiệt hiệu quả giúp thiết bị hoạt động ổn định trong thời gian dài. Đây là lựa chọn phù hợp cho game thủ và sinh viên ngành kỹ thuật.",
     "specifications": [
       {
@@ -3104,8 +3277,10 @@
     "price": 49990000,
     "stock": 15,
     "minStockLevel": 5,
-    "image": "",
-    "images": [],
+    "image": "https://m.media-amazon.com/images/I/71v0BQo8T8L._AC_SL1500_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/71v0BQo8T8L._AC_SL1500_.jpg"
+    ],
     "description": "ASUS ROG Strix G16 là mẫu laptop gaming cao cấp dành cho game thủ chuyên nghiệp và người dùng sáng tạo nội dung cần hiệu năng tối đa. Intel Core i9 kết hợp RTX 4070 mang lại sức mạnh vượt trội cho các tựa game AAA, dựng phim, thiết kế 3D và AI. Màn hình tốc độ làm mới cao giúp hiển thị mượt mà trong mọi tình huống. Hệ thống tản nhiệt tiên tiến duy trì hiệu năng ổn định ngay cả khi xử lý khối lượng công việc lớn. Đây là lựa chọn lý tưởng cho những người cần một cỗ máy hiệu năng cao để làm việc và giải trí.",
     "specifications": [
       {
@@ -3198,8 +3373,12 @@
     "price": 17990000,
     "stock": 70,
     "minStockLevel": 15,
-    "image": "",
-    "images": [],
+    "image": "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/inspiron-notebooks/15-3530-intel/pdp/inspiron-laptop-15-3530-intel-pdp-hero.psd?fmt=png-alpha&wid=570&hei=400&fit=constrain,1&qlt=90",
+    "images": [
+      "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/inspiron-notebooks/15-3530-intel/pdp/inspiron-laptop-15-3530-intel-pdp-hero.psd?fmt=png-alpha&wid=570&hei=400&fit=constrain,1&qlt=90",
+      "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/inspiron-notebooks/15-3530-intel/pdp/inspiron-laptop-15-3530-intel-pdp-hero.psd?fmt=png-alpha&wid=900&hei=630&fit=constrain,1&qlt=90",
+      "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/inspiron-notebooks/15-3530-intel/pdp/inspiron-laptop-15-3530-intel-pdp-hero.psd?fmt=png-alpha&wid=1200&hei=840&fit=constrain,1&qlt=90"
+    ],
     "description": "Dell Inspiron 15 3530 là mẫu laptop văn phòng đáng tin cậy dành cho sinh viên, nhân viên văn phòng và người dùng gia đình. Bộ vi xử lý Intel Core i5 kết hợp RAM 16GB mang lại hiệu năng ổn định cho các tác vụ làm việc, học tập trực tuyến, quản lý dữ liệu và giải trí hằng ngày. Màn hình 15.6 inch rộng rãi giúp làm việc thoải mái với bảng tính, tài liệu và các ứng dụng đa nhiệm. Thiết kế bền bỉ, bàn phím dễ sử dụng cùng khả năng nâng cấp linh hoạt giúp tăng tuổi thọ sử dụng. Đây là lựa chọn phù hợp cho người dùng cần một chiếc laptop thực dụng với mức giá hợp lý.",
     "specifications": [
       {
@@ -3292,8 +3471,12 @@
     "price": 29990000,
     "stock": 45,
     "minStockLevel": 10,
-    "image": "",
-    "images": [],
+    "image": "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/inspiron-notebooks/7441/spi/notebook-inspiron-14-7441-blue-campaign-hero-504x350-ng.psd?fmt=jpg&wid=570&hei=400",
+    "images": [
+      "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/inspiron-notebooks/7441/spi/notebook-inspiron-14-7441-blue-campaign-hero-504x350-ng.psd?fmt=jpg&wid=570&hei=400",
+      "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/inspiron-notebooks/7441/spi/notebook-inspiron-14-7441-blue-campaign-hero-504x350-ng.psd?fmt=jpg&wid=900&hei=630",
+      "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/inspiron-notebooks/7441/spi/notebook-inspiron-14-7441-blue-campaign-hero-504x350-ng.psd?fmt=jpg&wid=1200&hei=840"
+    ],
     "description": "Dell Inspiron 14 Plus là mẫu laptop cao cấp hướng đến người dùng văn phòng chuyên nghiệp và sinh viên kỹ thuật cần hiệu năng mạnh mẽ trong thiết kế gọn nhẹ. Intel Core Ultra 7 giúp xử lý hiệu quả các tác vụ đa nhiệm, lập trình, chỉnh sửa ảnh và làm việc với dữ liệu lớn. Màn hình độ phân giải cao mang lại trải nghiệm hiển thị sắc nét và chính xác. Thiết kế hiện đại cùng thời lượng pin tốt giúp người dùng làm việc linh hoạt ở nhiều môi trường khác nhau. Đây là lựa chọn phù hợp cho những ai muốn cân bằng giữa hiệu năng, tính di động và độ bền thương hiệu Dell.",
     "specifications": [
       {
@@ -3386,8 +3569,12 @@
     "price": 42990000,
     "stock": 30,
     "minStockLevel": 8,
-    "image": "",
-    "images": [],
+    "image": "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/xps-notebooks/xps-13-9350/spi/platinum/oled/notebook-xps-13-9350-oled-silver-campaign-hero-504x350-ng.psd?fmt=jpg&wid=570&hei=400",
+    "images": [
+      "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/xps-notebooks/xps-13-9350/spi/platinum/oled/notebook-xps-13-9350-oled-silver-campaign-hero-504x350-ng.psd?fmt=jpg&wid=570&hei=400",
+      "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/xps-notebooks/xps-13-9350/spi/platinum/oled/notebook-xps-13-9350-oled-silver-campaign-hero-504x350-ng.psd?fmt=jpg&wid=900&hei=630",
+      "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/xps-notebooks/xps-13-9350/spi/platinum/oled/notebook-xps-13-9350-oled-silver-campaign-hero-504x350-ng.psd?fmt=jpg&wid=1200&hei=840"
+    ],
     "description": "Dell XPS 13 là dòng ultrabook cao cấp nổi tiếng với thiết kế sang trọng, màn hình viền mỏng và chất lượng hoàn thiện xuất sắc. Intel Core Ultra 7 cung cấp hiệu năng mạnh mẽ cho công việc văn phòng nâng cao, lập trình và sáng tạo nội dung. Màn hình độ phân giải cao mang lại hình ảnh sắc nét và trải nghiệm sử dụng hiện đại. Trọng lượng nhẹ giúp dễ dàng mang theo trong các chuyến công tác hoặc học tập. Đây là lựa chọn lý tưởng cho doanh nhân, kỹ sư phần mềm và người dùng yêu cầu cao về tính thẩm mỹ cũng như hiệu suất làm việc.",
     "specifications": [
       {
@@ -3480,8 +3667,12 @@
     "price": 55990000,
     "stock": 18,
     "minStockLevel": 5,
-    "image": "",
-    "images": [],
+    "image": "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/xps-notebooks/14-9440/media-gallery/notebook-xps-14-9440t-sl-gallery-9.psd?chrss=full&fmt=png-alpha&hei=402&pscan=auto&qlt=100%2C1&resMode=sharp2&scl=1&size=639%2C402&wid=639",
+    "images": [
+      "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/xps-notebooks/14-9440/media-gallery/notebook-xps-14-9440t-sl-gallery-9.psd?chrss=full&fmt=png-alpha&hei=402&pscan=auto&qlt=100%2C1&resMode=sharp2&scl=1&size=639%2C402&wid=639",
+      "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/xps-notebooks/14-9440/media-gallery/notebook-xps-14-9440t-sl-gallery-9.psd?chrss=full&fmt=png-alpha&hei=402&pscan=auto&qlt=100%2C1&resMode=sharp2&scl=1&size=900%2C566&wid=900",
+      "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/xps-notebooks/14-9440/media-gallery/notebook-xps-14-9440t-sl-gallery-9.psd?chrss=full&fmt=png-alpha&hei=402&pscan=auto&qlt=100%2C1&resMode=sharp2&scl=1&size=1200%2C754&wid=1200"
+    ],
     "description": "Dell XPS 14 là mẫu laptop cao cấp dành cho người dùng chuyên nghiệp cần sức mạnh xử lý đồ họa trong một thiết kế sang trọng. Intel Core Ultra 7 kết hợp RTX 4050 giúp xử lý tốt các công việc thiết kế đồ họa, dựng video, lập trình AI và mô phỏng kỹ thuật. Màn hình độ phân giải cao với màu sắc chính xác hỗ trợ hiệu quả cho các dự án sáng tạo nội dung. Thiết kế nhôm nguyên khối và chất lượng hoàn thiện cao tạo cảm giác cao cấp khi sử dụng. Đây là lựa chọn phù hợp cho nhà thiết kế, kỹ sư và người sáng tạo nội dung chuyên nghiệp.",
     "specifications": [
       {
@@ -3574,8 +3765,10 @@
     "price": 18990000,
     "stock": 65,
     "minStockLevel": 15,
-    "image": "",
-    "images": [],
+    "image": "https://m.media-amazon.com/images/I/71i6AGYrIGL._AC_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/71i6AGYrIGL._AC_.jpg"
+    ],
     "description": "HP Pavilion 15 là mẫu laptop văn phòng phổ biến dành cho sinh viên, nhân viên văn phòng và người dùng gia đình cần một thiết bị ổn định cho công việc hằng ngày. Bộ vi xử lý Intel Core i5 cùng RAM 16GB giúp xử lý mượt mà các tác vụ văn phòng, học tập trực tuyến, duyệt web và giải trí đa phương tiện. Màn hình Full HD hiển thị rõ nét, phù hợp cho làm việc và học tập trong thời gian dài. Thiết kế hiện đại, bàn phím thoải mái cùng thời lượng pin tốt giúp nâng cao trải nghiệm sử dụng. Đây là lựa chọn phù hợp cho người dùng cần một chiếc laptop cân bằng giữa hiệu năng, độ bền và chi phí đầu tư.",
     "specifications": [
       {
@@ -3668,8 +3861,10 @@
     "price": 34990000,
     "stock": 35,
     "minStockLevel": 10,
-    "image": "",
-    "images": [],
+    "image": "https://m.media-amazon.com/images/I/71qj7+Q5xIL._AC_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/71qj7+Q5xIL._AC_.jpg"
+    ],
     "description": "HP Envy x360 14 là mẫu laptop cao cấp có khả năng xoay gập 360 độ, phù hợp cho người dùng sáng tạo nội dung, doanh nhân và sinh viên cần sự linh hoạt trong quá trình làm việc. Intel Core Ultra 7 mang lại hiệu năng mạnh mẽ cho các tác vụ văn phòng nâng cao, thiết kế đồ họa cơ bản và xử lý đa nhiệm. Màn hình cảm ứng OLED sắc nét hỗ trợ ghi chú, trình bày và giải trí hiệu quả. Thiết kế cao cấp, trọng lượng nhẹ và thời lượng pin dài giúp tối ưu trải nghiệm sử dụng hằng ngày. Đây là lựa chọn lý tưởng cho người dùng yêu thích sự linh hoạt và hiện đại.",
     "specifications": [
       {
@@ -3762,8 +3957,10 @@
     "price": 48990000,
     "stock": 18,
     "minStockLevel": 5,
-    "image": "",
-    "images": [],
+    "image": "https://m.media-amazon.com/images/I/710qDL9V5RL._AC_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/710qDL9V5RL._AC_.jpg"
+    ],
     "description": "HP Omen 16 là mẫu laptop gaming cao cấp được thiết kế cho game thủ chuyên nghiệp và người dùng sáng tạo nội dung cần hiệu năng mạnh mẽ. Intel Core i7 kết hợp card đồ họa RTX 4070 giúp xử lý hiệu quả các tựa game AAA, dựng video độ phân giải cao, thiết kế 3D và các tác vụ AI hiện đại. Màn hình kích thước lớn với tần số quét cao mang lại trải nghiệm hình ảnh mượt mà và chi tiết. Hệ thống tản nhiệt tối ưu giúp duy trì hiệu suất ổn định trong thời gian dài. Đây là lựa chọn phù hợp cho người dùng muốn sở hữu một chiếc laptop mạnh để vừa làm việc vừa giải trí.",
     "specifications": [
       {
@@ -3856,8 +4053,14 @@
     "price": 30990000,
     "stock": 32,
     "minStockLevel": 8,
-    "image": "",
-    "images": [],
+    "image": "https://p2-ofp.static.pub/ShareResource/na/products/loq/560x450/lenovo-loq-15inch-amd-white-backlit-01.png",
+    "images": [
+      "https://p2-ofp.static.pub/ShareResource/na/products/loq/560x450/lenovo-loq-15inch-amd-white-backlit-01.png",
+      "https://p3-ofp.static.pub/ShareResource/na/products/loq/560x450/lenovo-loq-15inch-amd-white-backlit-02.png",
+      "https://p4-ofp.static.pub/ShareResource/na/products/loq/560x450/lenovo-loq-15inch-amd-white-backlit-03.png",
+      "https://p1-ofp.static.pub/ShareResource/na/products/loq/560x450/lenovo-loq-15inch-amd-white-backlit-04.png",
+      "https://p1-ofp.static.pub/ShareResource/na/products/loq/560x450/lenovo-loq-15inch-amd-white-backlit-05.png"
+    ],
     "description": "Lenovo LOQ 15 Ryzen 7 RTX 4060 là mẫu laptop gaming được thiết kế cho game thủ và sinh viên kỹ thuật cần hiệu năng mạnh trong mức giá hợp lý. Bộ xử lý Ryzen 7 kết hợp RTX 4060 đáp ứng tốt nhu cầu chơi game, lập trình, thiết kế đồ họa và dựng video. Màn hình tốc độ làm mới cao mang lại trải nghiệm mượt mà trong các tựa game cạnh tranh. Thiết kế hiện đại cùng hệ thống tản nhiệt hiệu quả giúp máy hoạt động ổn định trong thời gian dài. Đây là lựa chọn hấp dẫn cho người dùng cần một chiếc laptop đa năng phục vụ cả học tập và giải trí.",
     "specifications": [
       {
@@ -3950,8 +4153,10 @@
     "price": 31990000,
     "stock": 28,
     "minStockLevel": 8,
-    "image": "",
-    "images": [],
+    "image": "https://m.media-amazon.com/images/I/71SAusg17wL._AC_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/71SAusg17wL._AC_.jpg"
+    ],
     "description": "Lenovo LOQ 15 i7 RTX 4060 mang đến hiệu năng mạnh mẽ cho game thủ và người dùng sáng tạo nội dung. Intel Core i7 thế hệ mới kết hợp RTX 4060 giúp xử lý tốt các tựa game hiện đại, phần mềm kỹ thuật và các công việc đồ họa chuyên sâu. Màn hình tần số quét cao mang lại trải nghiệm hình ảnh mượt mà và sắc nét. Hệ thống tản nhiệt tối ưu giúp duy trì hiệu suất ổn định trong quá trình sử dụng liên tục. Đây là lựa chọn phù hợp cho người dùng cần sức mạnh xử lý cao với mức đầu tư hợp lý.",
     "specifications": [
       {
@@ -4044,8 +4249,14 @@
     "price": 25990000,
     "stock": 50,
     "minStockLevel": 12,
-    "image": "",
-    "images": [],
+    "image": "https://p2-ofp.static.pub//fes/cms/2024/04/01/ftl62xwvpojikibk3nc99l3i1epvkk200820.png",
+    "images": [
+      "https://p2-ofp.static.pub//fes/cms/2024/04/01/ftl62xwvpojikibk3nc99l3i1epvkk200820.png",
+      "https://p3-ofp.static.pub//fes/cms/2024/04/01/rmups0v4fxegc2gry1y2jzajjlk648409646.png",
+      "https://p4-ofp.static.pub//fes/cms/2024/04/01/1k6t72f7vmsmsuxd9ml2e622cm6185892739.png",
+      "https://p4-ofp.static.pub//fes/cms/2024/04/01/txm4s2o7jjlvtlk5b21lulnpvp36s1141491.png",
+      "https://p3-ofp.static.pub//fes/cms/2024/04/01/92avq7opc8ggtjjx09ra7eabk5k7lz482805.png"
+    ],
     "description": "Lenovo ThinkPad E14 Gen 6 là dòng laptop doanh nghiệp nổi tiếng với độ bền cao, bàn phím chất lượng và khả năng vận hành ổn định. Intel Core Ultra 5 đáp ứng tốt các nhu cầu văn phòng, quản lý dữ liệu, lập trình và làm việc từ xa. Thiết kế chắc chắn cùng thời lượng pin dài giúp người dùng yên tâm sử dụng trong môi trường doanh nghiệp. Bàn phím ThinkPad đặc trưng mang lại trải nghiệm nhập liệu thoải mái trong thời gian dài. Đây là lựa chọn phù hợp cho doanh nhân, nhân viên văn phòng và kỹ sư phần mềm.",
     "specifications": [
       {
@@ -4138,8 +4349,13 @@
     "price": 49990000,
     "stock": 22,
     "minStockLevel": 5,
-    "image": "",
-    "images": [],
+    "image": "https://p4-ofp.static.pub/ShareResource/optimized/pdp/thinkpad/thinkpad-x1-series/len101t0108/thinkpad-x1-carbon-gen-13-aura-edition-14-intel-lnl.png",
+    "images": [
+      "https://p4-ofp.static.pub/ShareResource/optimized/pdp/thinkpad/thinkpad-x1-series/len101t0108/thinkpad-x1-carbon-gen-13-aura-edition-14-intel-lnl.png",
+      "https://p3-ofp.static.pub//fes/cms/2024/08/27/s6ipe83zyup65q7s29pyv6ch52s07x509330.png",
+      "https://p1-ofp.static.pub//fes/cms/2024/08/27/yd5dqi756ec0vr9a09fhc5s90tx4l6387783.png",
+      "https://p4-ofp.static.pub//fes/cms/2024/08/27/ywck7nrx6rw2ayxse5t4tni1f7vqba827973.png"
+    ],
     "description": "Lenovo ThinkPad X1 Carbon Gen 13 là mẫu ultrabook doanh nhân cao cấp với thiết kế siêu nhẹ và độ hoàn thiện xuất sắc. Intel Core Ultra 7 kết hợp bộ nhớ tốc độ cao giúp xử lý hiệu quả các tác vụ văn phòng nâng cao, quản trị hệ thống, lập trình và làm việc đa nhiệm. Màn hình chất lượng cao cùng thời lượng pin ấn tượng giúp nâng cao năng suất làm việc mọi lúc mọi nơi. Khung máy bằng vật liệu cao cấp mang lại độ bền vượt trội. Đây là lựa chọn hàng đầu cho doanh nhân và người dùng chuyên nghiệp thường xuyên di chuyển.",
     "specifications": [
       {
@@ -4232,8 +4448,13 @@
     "price": 28990000,
     "stock": 45,
     "minStockLevel": 10,
-    "image": "",
-    "images": [],
+    "image": "https://www.apple.com/newsroom/images/2025/03/apple-introduces-the-new-macbook-air-with-the-m4-chip-and-a-sky-blue-color/article/Apple-MacBook-Air-hero-250305_big.jpg.large.jpg",
+    "images": [
+      "https://www.apple.com/newsroom/images/2025/03/apple-introduces-the-new-macbook-air-with-the-m4-chip-and-a-sky-blue-color/article/Apple-MacBook-Air-hero-250305_big.jpg.large.jpg",
+      "https://www.apple.com/newsroom/images/2025/03/apple-introduces-the-new-macbook-air-with-the-m4-chip-and-a-sky-blue-color/article/Apple-MacBook-Air-sky-blue-250305_big.jpg.large.jpg",
+      "https://www.apple.com/newsroom/images/2025/03/apple-introduces-the-new-macbook-air-with-the-m4-chip-and-a-sky-blue-color/article/Apple-MacBook-Air-top-view-250305_big.jpg.large.jpg",
+      "https://www.apple.com/newsroom/images/2025/03/apple-introduces-the-new-macbook-air-with-the-m4-chip-and-a-sky-blue-color/article/Apple-MacBook-Air-side-view-250305_big.jpg.large.jpg"
+    ],
     "description": "MacBook Air 13 M4 là mẫu laptop mỏng nhẹ dành cho sinh viên, nhân viên văn phòng và người dùng sáng tạo nội dung cần hiệu năng ổn định trong thiết kế di động. Chip Apple M4 mang lại khả năng xử lý nhanh, tối ưu điện năng và vận hành mượt mà với các tác vụ học tập, làm việc, lập trình và chỉnh sửa ảnh cơ bản. Màn hình Liquid Retina hiển thị sắc nét, màu sắc trung thực giúp nâng cao trải nghiệm sử dụng hằng ngày. Thời lượng pin dài hỗ trợ làm việc liên tục trong nhiều giờ. Đây là lựa chọn phù hợp cho người dùng cần một chiếc MacBook hiện đại, bền bỉ và dễ mang theo.",
     "specifications": [
       {
@@ -4326,8 +4547,13 @@
     "price": 35990000,
     "stock": 35,
     "minStockLevel": 10,
-    "image": "",
-    "images": [],
+    "image": "https://www.apple.com/newsroom/images/2025/03/apple-introduces-the-new-macbook-air-with-the-m4-chip-and-a-sky-blue-color/article/Apple-MacBook-Air-hero-250305_big.jpg.large.jpg",
+    "images": [
+      "https://www.apple.com/newsroom/images/2025/03/apple-introduces-the-new-macbook-air-with-the-m4-chip-and-a-sky-blue-color/article/Apple-MacBook-Air-hero-250305_big.jpg.large.jpg",
+      "https://www.apple.com/newsroom/images/2025/03/apple-introduces-the-new-macbook-air-with-the-m4-chip-and-a-sky-blue-color/article/Apple-MacBook-Air-sky-blue-250305_big.jpg.large.jpg",
+      "https://www.apple.com/newsroom/images/2025/03/apple-introduces-the-new-macbook-air-with-the-m4-chip-and-a-sky-blue-color/article/Apple-MacBook-Air-top-view-250305_big.jpg.large.jpg",
+      "https://www.apple.com/newsroom/images/2025/03/apple-introduces-the-new-macbook-air-with-the-m4-chip-and-a-sky-blue-color/article/Apple-MacBook-Air-side-view-250305_big.jpg.large.jpg"
+    ],
     "description": "MacBook Air 15 M4 mang đến không gian hiển thị rộng rãi hơn nhưng vẫn duy trì thiết kế mỏng nhẹ đặc trưng của dòng Air. Chip Apple M4 giúp xử lý hiệu quả các công việc văn phòng, học tập, lập trình và chỉnh sửa nội dung đa phương tiện. Màn hình Liquid Retina 15 inch mang lại trải nghiệm làm việc thoải mái, đặc biệt phù hợp với người dùng thường xuyên xử lý nhiều cửa sổ cùng lúc. Pin lâu và hệ điều hành macOS tối ưu giúp nâng cao năng suất làm việc hằng ngày. Đây là lựa chọn hấp dẫn cho người dùng cần một chiếc laptop cao cấp có màn hình lớn nhưng vẫn đảm bảo tính di động.",
     "specifications": [
       {
@@ -4420,8 +4646,13 @@
     "price": 45990000,
     "stock": 20,
     "minStockLevel": 5,
-    "image": "",
-    "images": [],
+    "image": "https://www.apple.com/newsroom/images/2024/10/new-macbook-pro/article/Apple-MacBook-Pro-M4-hero_big.jpg.large.jpg",
+    "images": [
+      "https://www.apple.com/newsroom/images/2024/10/new-macbook-pro/article/Apple-MacBook-Pro-M4-hero_big.jpg.large.jpg",
+      "https://www.apple.com/newsroom/images/2024/10/new-macbook-pro/article/Apple-MacBook-Pro-M4-lineup_big.jpg.large.jpg",
+      "https://www.apple.com/newsroom/images/2024/10/new-macbook-pro/article/Apple-MacBook-Pro-M4-lifestyle-01_big.jpg.large.jpg",
+      "https://www.apple.com/newsroom/images/2024/10/new-macbook-pro/article/Apple-MacBook-Pro-M4-lifestyle-03_big.jpg.large.jpg"
+    ],
     "description": "MacBook Pro 14 M4 được thiết kế cho người dùng chuyên nghiệp cần hiệu năng mạnh mẽ trong công việc sáng tạo nội dung, phát triển phần mềm và xử lý dữ liệu. Chip Apple M4 cung cấp khả năng xử lý vượt trội cùng hiệu suất đồ họa cao hơn so với dòng Air. Màn hình Liquid Retina XDR mang lại độ sáng cao và độ chính xác màu sắc ấn tượng, phù hợp cho chỉnh sửa ảnh và video. Hệ thống loa chất lượng cao cùng thời lượng pin dài giúp nâng cao trải nghiệm sử dụng. Đây là mẫu laptop phù hợp cho người dùng muốn cân bằng giữa hiệu năng, tính di động và độ bền lâu dài.",
     "specifications": [
       {
@@ -4514,8 +4745,13 @@
     "price": 62990000,
     "stock": 15,
     "minStockLevel": 5,
-    "image": "",
-    "images": [],
+    "image": "https://www.apple.com/newsroom/images/2024/10/new-macbook-pro/article/Apple-MacBook-Pro-M4-hero_big.jpg.large.jpg",
+    "images": [
+      "https://www.apple.com/newsroom/images/2024/10/new-macbook-pro/article/Apple-MacBook-Pro-M4-hero_big.jpg.large.jpg",
+      "https://www.apple.com/newsroom/images/2024/10/new-macbook-pro/article/Apple-MacBook-Pro-M4-lineup_big.jpg.large.jpg",
+      "https://www.apple.com/newsroom/images/2024/10/new-macbook-pro/article/Apple-MacBook-Pro-M4-lifestyle-01_big.jpg.large.jpg",
+      "https://www.apple.com/newsroom/images/2024/10/new-macbook-pro/article/Apple-MacBook-Pro-M4-lifestyle-03_big.jpg.large.jpg"
+    ],
     "description": "MacBook Pro 14 M4 Pro hướng đến nhà phát triển phần mềm, kỹ sư dữ liệu, nhà thiết kế và nhà sáng tạo nội dung chuyên nghiệp. Chip M4 Pro cung cấp sức mạnh xử lý cao cho các dự án phức tạp, biên dịch mã nguồn lớn, chỉnh sửa video độ phân giải cao và làm việc đa nhiệm nặng. Bộ nhớ hợp nhất dung lượng lớn hỗ trợ vận hành nhiều ứng dụng cùng lúc mà vẫn đảm bảo độ ổn định. Màn hình Liquid Retina XDR hiển thị chi tiết sắc nét với độ chính xác màu cao. Đây là lựa chọn lý tưởng cho người dùng cần hiệu năng chuyên nghiệp trong một thiết bị nhỏ gọn.",
     "specifications": [
       {
@@ -4608,8 +4844,13 @@
     "price": 74990000,
     "stock": 12,
     "minStockLevel": 5,
-    "image": "",
-    "images": [],
+    "image": "https://www.apple.com/newsroom/images/2024/10/new-macbook-pro/article/Apple-MacBook-Pro-M4-hero_big.jpg.large.jpg",
+    "images": [
+      "https://www.apple.com/newsroom/images/2024/10/new-macbook-pro/article/Apple-MacBook-Pro-M4-hero_big.jpg.large.jpg",
+      "https://www.apple.com/newsroom/images/2024/10/new-macbook-pro/article/Apple-MacBook-Pro-M4-lineup_big.jpg.large.jpg",
+      "https://www.apple.com/newsroom/images/2024/10/new-macbook-pro/article/Apple-MacBook-Pro-M4-lifestyle-01_big.jpg.large.jpg",
+      "https://www.apple.com/newsroom/images/2024/10/new-macbook-pro/article/Apple-MacBook-Pro-M4-lifestyle-03_big.jpg.large.jpg"
+    ],
     "description": "MacBook Pro 16 M4 Pro là mẫu laptop cao cấp dành cho người dùng chuyên nghiệp cần màn hình lớn và hiệu năng mạnh để xử lý các tác vụ nặng. Chip M4 Pro kết hợp bộ nhớ lớn giúp làm việc hiệu quả với dự án lập trình, dựng phim, thiết kế đồ họa và xử lý dữ liệu quy mô lớn. Màn hình Liquid Retina XDR 16 inch mang đến không gian làm việc rộng rãi cùng chất lượng hiển thị xuất sắc. Hệ thống tản nhiệt tối ưu giúp duy trì hiệu suất ổn định trong thời gian dài. Đây là lựa chọn phù hợp cho những ai cần một cỗ máy làm việc mạnh mẽ và đáng tin cậy.",
     "specifications": [
       {
@@ -4702,8 +4943,12 @@
     "price": 299000,
     "stock": 120,
     "minStockLevel": 25,
-    "image": "",
-    "images": [],
+    "image": "https://resource.logitech.com/w_544%2Ch_466%2Car_7%3A6%2Cc_pad%2Cq_auto%2Cf_auto%2Cdpr_1.0/d_transparent.gif/content/dam/logitech/en/products/mice/m185/gallery/2025-update-assets/m185-grey-top-angle-1.png",
+    "images": [
+      "https://resource.logitech.com/w_544%2Ch_466%2Car_7%3A6%2Cc_pad%2Cq_auto%2Cf_auto%2Cdpr_1.0/d_transparent.gif/content/dam/logitech/en/products/mice/m185/gallery/2025-update-assets/m185-grey-top-angle-1.png",
+      "https://resource.logitech.com/w_544%2Ch_466%2Car_7%3A6%2Cc_pad%2Cq_auto%2Cf_auto%2Cdpr_1.0/d_transparent.gif/content/dam/logitech/en/products/mice/m185/gallery/2025-update-assets/m185-grey-3qtr-angle-2.png",
+      "https://resource.logitech.com/w_544%2Ch_466%2Car_7%3A6%2Cc_pad%2Cq_auto%2Cf_auto%2Cdpr_1.0/d_transparent.gif/content/dam/logitech/en/products/mice/m185/gallery/2025-update-assets/m185-grey-profile-angle-3.png"
+    ],
     "description": "Logitech M185 là mẫu chuột không dây phổ thông phù hợp cho học tập, làm việc văn phòng và sử dụng hằng ngày. Thiết kế nhỏ gọn, dễ cầm nắm và kết nối ổn định qua USB receiver giúp người dùng thao tác thuận tiện trên laptop hoặc máy tính để bàn. Thời lượng pin dài giúp giảm nhu cầu thay pin thường xuyên. Đây là lựa chọn hợp lý cho người dùng cần một chiếc chuột bền, dễ sử dụng và có mức giá tiết kiệm.",
     "specifications": [
       {
@@ -4778,8 +5023,12 @@
     "price": 399000,
     "stock": 110,
     "minStockLevel": 25,
-    "image": "",
-    "images": [],
+    "image": "https://resource.logitech.com/w_544%2Ch_466%2Car_7%3A6%2Cc_pad%2Cq_auto%2Cf_auto%2Cdpr_1.0/d_transparent.gif/content/dam/logitech/en/products/mice/m330-wireless-silent-mouse/2024-update/gallery/m330-wireless-mouse-black-gallery-05.png",
+    "images": [
+      "https://resource.logitech.com/w_544%2Ch_466%2Car_7%3A6%2Cc_pad%2Cq_auto%2Cf_auto%2Cdpr_1.0/d_transparent.gif/content/dam/logitech/en/products/mice/m330-wireless-silent-mouse/2024-update/gallery/m330-wireless-mouse-black-gallery-05.png",
+      "https://resource.logitech.com/w_1440%2Ch_810%2Car_16%3A9%2Cc_fill%2Cq_auto%2Cf_auto%2Cdpr_1.0/d_transparent.gif/content/dam/logitech/en/products/mice/m330-wireless-silent-mouse/2024-update/m330-wireless-mice-feature-01.jpg",
+      "https://resource.logitech.com/w_776%2Ch_437%2Car_16%3A9%2Cc_fill%2Cq_auto%2Cf_auto%2Cdpr_1.0/d_transparent.gif/content/dam/logitech/en/products/mice/m330-wireless-silent-mouse/2024-update/m330-wireless-mice-feature-02.jpg"
+    ],
     "description": "Logitech M331 Silent Plus là mẫu chuột không dây yên tĩnh, phù hợp cho văn phòng, thư viện và không gian học tập cần hạn chế tiếng ồn. Công nghệ giảm tiếng click giúp thao tác thoải mái mà không làm ảnh hưởng đến người xung quanh. Thiết kế công thái học cho tay phải mang lại cảm giác cầm chắc chắn trong thời gian dài. Đây là lựa chọn phù hợp cho nhân viên văn phòng và sinh viên cần một chiếc chuột bền, êm và dễ sử dụng.",
     "specifications": [
       {
@@ -4854,8 +5103,10 @@
     "price": 799000,
     "stock": 90,
     "minStockLevel": 20,
-    "image": "",
-    "images": [],
+    "image": "https://m.media-amazon.com/images/I/61MkJ8QI5VL._AC_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/61MkJ8QI5VL._AC_.jpg"
+    ],
     "description": "Logitech M650 Signature là mẫu chuột không dây cao cấp cho văn phòng với thiết kế thoải mái và thao tác yên tĩnh. Chuột hỗ trợ kết nối Bluetooth hoặc USB receiver, phù hợp cho nhiều thiết bị khác nhau. Con lăn SmartWheel giúp cuộn trang chính xác khi làm việc với tài liệu, bảng tính hoặc trang web dài. Thiết kế hiện đại, độ bền cao và khả năng sử dụng linh hoạt khiến sản phẩm phù hợp cho người dùng laptop, nhân viên văn phòng và người làm việc từ xa.",
     "specifications": [
       {
@@ -4930,8 +5181,12 @@
     "price": 2490000,
     "stock": 45,
     "minStockLevel": 10,
-    "image": "",
-    "images": [],
+    "image": "https://resource.logitech.com/w_544%2Ch_466%2Car_7%3A6%2Cc_pad%2Cq_auto%2Cf_auto%2Cdpr_1.0/d_transparent.gif/content/dam/logitech/en/products/mice/mx-master-3s/2025-update/mx-master-3s-bluetooth-edition-top-view-black-new-1.png",
+    "images": [
+      "https://resource.logitech.com/w_544%2Ch_466%2Car_7%3A6%2Cc_pad%2Cq_auto%2Cf_auto%2Cdpr_1.0/d_transparent.gif/content/dam/logitech/en/products/mice/mx-master-3s/2025-update/mx-master-3s-bluetooth-edition-top-view-black-new-1.png",
+      "https://resource.logitech.com/w_544%2Ch_544%2Car_1%2Cc_fill%2Cq_auto%2Cf_auto%2Cdpr_1.0/d_transparent.gif/content/dam/logitech/en/products/mice/mx-master-3s/migration-assets-for-delorean-2025/gallery/person-using-mx-master-3s-on-glass-surface-black.jpg",
+      "https://resource.logitech.com/w_544%2Ch_544%2Car_1%2Cc_fill%2Cq_auto%2Cf_auto%2Cdpr_1.0/d_transparent.gif/content/dam/logitech/en/products/mice/mx-master-3s/2025-update/person-using-mx-master-3s-offer-mx-travel-case-lifestyle-gallery-3.png"
+    ],
     "description": "Logitech MX Master 3S là mẫu chuột cao cấp dành cho người dùng chuyên nghiệp, lập trình viên, designer và nhân viên văn phòng làm việc đa nhiệm. Cảm biến độ chính xác cao hoạt động tốt trên nhiều bề mặt, kể cả mặt kính. Con lăn MagSpeed giúp cuộn nhanh và chính xác trong tài liệu dài hoặc timeline chỉnh sửa. Thiết kế công thái học giúp giảm mỏi tay khi sử dụng liên tục. Đây là lựa chọn lý tưởng cho người dùng cần hiệu suất làm việc cao và khả năng kết nối nhiều thiết bị.",
     "specifications": [
       {
@@ -5006,8 +5261,12 @@
     "price": 1990000,
     "stock": 55,
     "minStockLevel": 12,
-    "image": "",
-    "images": [],
+    "image": "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/MXK53?.v=cklxQnNFanFEcXZTdnYydmQrK0dKd2tuVHYzMERCZURia3c5SzJFOTlPaTY2RUlBaWZlQVRESlNWbTZyWXZnU08zdHBSQ1VOTXJXaFFoUVd6ZTQ0aFE&fmt=jpeg&hei=1144&qlt=90&wid=1144",
+    "images": [
+      "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/MXK53?.v=cklxQnNFanFEcXZTdnYydmQrK0dKd2tuVHYzMERCZURia3c5SzJFOTlPaTY2RUlBaWZlQVRESlNWbTZyWXZnU08zdHBSQ1VOTXJXaFFoUVd6ZTQ0aFE&fmt=jpeg&hei=1144&qlt=90&wid=1144",
+      "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/MXK53?.v=eXg5ajBLbzRwN01MMlN0R2h4bEVUMmorYzFkTG5HaE9wejd5WUxYZjRMKzY2RUlBaWZlQVRESlNWbTZyWXZnU08zdHBSQ1VOTXJXaFFoUVd6ZTQ0aFE&fmt=jpeg&hei=2000&qlt=90&wid=2000",
+      "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/MXK53_AV1?.v=Z2dmT2NLL3VzbkNMOSthc0tmdW1qaVRkTXNZOFJZTitTVFE0NHl0VW5Cb0YwVmtIbGRkS25RMVpBRlo0bk5DUStteWFnS2JDbkxFb1JqRG5KS1RPUWc&fmt=jpeg&hei=2000&qlt=90&wid=2000"
+    ],
     "description": "Apple Magic Mouse USB-C là mẫu chuột không dây tối ưu cho người dùng MacBook, iMac và hệ sinh thái Apple. Thiết kế tối giản, bề mặt cảm ứng đa điểm giúp thao tác cuộn, vuốt và chuyển trang trực quan. Kết nối Bluetooth ổn định và pin sạc tích hợp giúp sử dụng thuận tiện trong công việc hằng ngày. Đây là lựa chọn phù hợp cho người dùng yêu thích thiết kế gọn đẹp, đồng bộ với macOS và cần trải nghiệm thao tác mượt mà.",
     "specifications": [
       {
@@ -5082,8 +5341,10 @@
     "price": 590000,
     "stock": 95,
     "minStockLevel": 20,
-    "image": "",
-    "images": [],
+    "image": "https://f.btwcdn.com/store-50627/product/1704cf3b-a136-73c8-ef78-637f103d34b4.jpeg",
+    "images": [
+      "https://f.btwcdn.com/store-50627/product/1704cf3b-a136-73c8-ef78-637f103d34b4.jpeg"
+    ],
     "description": "Microsoft Bluetooth Mouse là mẫu chuột không dây gọn nhẹ phù hợp cho laptop Windows và người dùng văn phòng. Kết nối Bluetooth giúp không cần USB receiver, thuận tiện cho các thiết bị mỏng nhẹ có ít cổng kết nối. Thiết kế đơn giản, dễ sử dụng và cảm giác cầm thoải mái giúp đáp ứng tốt nhu cầu học tập, làm việc và di chuyển. Đây là lựa chọn phù hợp cho người dùng cần chuột Bluetooth ổn định, giá hợp lý và thương hiệu đáng tin cậy.",
     "specifications": [
       {
@@ -5158,8 +5419,10 @@
     "price": 250000,
     "stock": 130,
     "minStockLevel": 25,
-    "image": "",
-    "images": [],
+    "image": "https://m.media-amazon.com/images/I/61hx-nOSWwL.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/61hx-nOSWwL.jpg"
+    ],
     "description": "Rapoo M100 Silent là mẫu chuột không dây giá tốt với thiết kế nhỏ gọn và tiếng click êm. Sản phẩm phù hợp cho học sinh, sinh viên và nhân viên văn phòng cần một chiếc chuột cơ bản để sử dụng hằng ngày. Chuột hỗ trợ kết nối không dây ổn định, thao tác nhẹ nhàng và dễ mang theo cùng laptop. Với mức giá tiết kiệm, đây là lựa chọn hợp lý cho người dùng cần phụ kiện đơn giản, bền và tiện lợi.",
     "specifications": [
       {
@@ -5234,8 +5497,10 @@
     "price": 899000,
     "stock": 70,
     "minStockLevel": 15,
-    "image": "",
-    "images": [],
+    "image": "https://product.hstatic.net/200000722513/product/gvn_rapoo_mt750s_1fe79272f25741148c8550186f376969_d62e50b71c3a4c24b0477bc56c5928cd_1024x1024.png",
+    "images": [
+      "https://product.hstatic.net/200000722513/product/gvn_rapoo_mt750s_1fe79272f25741148c8550186f376969_d62e50b71c3a4c24b0477bc56c5928cd_1024x1024.png"
+    ],
     "description": "Rapoo MT750S Multi-mode là mẫu chuột không dây đa kết nối dành cho người dùng làm việc với nhiều thiết bị. Chuột hỗ trợ Bluetooth và USB receiver, cho phép chuyển đổi nhanh giữa laptop, PC và tablet. Thiết kế công thái học giúp cầm nắm thoải mái khi làm việc lâu. Cảm biến chính xác hỗ trợ thao tác tốt với tài liệu, bảng tính và phần mềm văn phòng. Đây là lựa chọn phù hợp cho người dùng cần chuột đa năng với chi phí hợp lý.",
     "specifications": [
       {
@@ -5310,8 +5575,10 @@
     "price": 690000,
     "stock": 80,
     "minStockLevel": 18,
-    "image": "",
-    "images": [],
+    "image": "https://www.gaming.gen.tr/wp-content/uploads/2023/07/razer-deathadder-essential-beyaz-kablolu-gaming-mouse-rz01-03850200-r3m1.jpg",
+    "images": [
+      "https://www.gaming.gen.tr/wp-content/uploads/2023/07/razer-deathadder-essential-beyaz-kablolu-gaming-mouse-rz01-03850200-r3m1.jpg"
+    ],
     "description": "Razer DeathAdder Essential là mẫu chuột gaming có dây nổi bật với thiết kế công thái học và độ bền cao. Cảm biến quang học chính xác giúp thao tác tốt trong các tựa game phổ biến cũng như công việc hằng ngày. Thiết kế ôm tay phù hợp cho người dùng chơi game trong thời gian dài. Đây là lựa chọn hợp lý cho game thủ mới bắt đầu hoặc người dùng cần một chiếc chuột gaming bền, dễ sử dụng và có giá phải chăng.",
     "specifications": [
       {
@@ -5386,8 +5653,10 @@
     "price": 1590000,
     "stock": 55,
     "minStockLevel": 12,
-    "image": "",
-    "images": [],
+    "image": "https://m.media-amazon.com/images/I/71OV4KGM0WL._AC_SL1500_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/71OV4KGM0WL._AC_SL1500_.jpg"
+    ],
     "description": "Razer Basilisk V3 là mẫu chuột gaming hiệu năng cao dành cho game thủ cần độ chính xác và khả năng tùy biến tốt. Cảm biến quang học độ phân giải cao, hệ thống nút lập trình và con lăn thông minh giúp tối ưu thao tác trong nhiều thể loại game. Thiết kế công thái học cho tay phải mang lại cảm giác cầm chắc chắn. Đây là lựa chọn phù hợp cho game thủ muốn nâng cấp trải nghiệm chơi game và kiểm soát thao tác tốt hơn.",
     "specifications": [
       {
@@ -5462,8 +5731,10 @@
     "price": 1890000,
     "stock": 45,
     "minStockLevel": 10,
-    "image": "",
-    "images": [],
+    "image": "https://m.media-amazon.com/images/I/71A+MM44goL._AC_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/71A+MM44goL._AC_.jpg"
+    ],
     "description": "Razer Viper V3 HyperSpeed là mẫu chuột gaming không dây dành cho người chơi cần tốc độ phản hồi nhanh và trọng lượng nhẹ. Thiết kế đối xứng phù hợp nhiều kiểu cầm, cảm biến chính xác hỗ trợ tốt trong các tựa game FPS và eSports. Kết nối không dây ổn định giúp giảm vướng víu khi thao tác. Đây là lựa chọn phù hợp cho game thủ muốn một chiếc chuột gaming hiệu năng cao, linh hoạt và dễ kiểm soát.",
     "specifications": [
       {
@@ -5538,8 +5809,10 @@
     "price": 490000,
     "stock": 100,
     "minStockLevel": 20,
-    "image": "",
-    "images": [],
+    "image": "https://techarc.pk/wp-content/uploads/2021/07/g102-lightsync-white-techarc.png",
+    "images": [
+      "https://techarc.pk/wp-content/uploads/2021/07/g102-lightsync-white-techarc.png"
+    ],
     "description": "Logitech G102 Lightsync là mẫu chuột gaming phổ thông được nhiều game thủ lựa chọn nhờ thiết kế gọn, độ bền tốt và hiệu năng ổn định. Cảm biến chính xác đáp ứng tốt các tựa game eSports, học tập và làm việc hằng ngày. Hệ thống đèn RGB Lightsync giúp tăng tính thẩm mỹ cho góc máy. Với mức giá dễ tiếp cận, đây là lựa chọn phù hợp cho học sinh, sinh viên và người mới bắt đầu chơi game.",
     "specifications": [
       {
@@ -5614,8 +5887,10 @@
     "price": 890000,
     "stock": 85,
     "minStockLevel": 18,
-    "image": "",
-    "images": [],
+    "image": "https://img.gkbcdn.com/s3/p/2018-07-20/logitech-g304-lightspeed-wireless-gaming-mouse-white-1571971262977.jpg",
+    "images": [
+      "https://img.gkbcdn.com/s3/p/2018-07-20/logitech-g304-lightspeed-wireless-gaming-mouse-white-1571971262977.jpg"
+    ],
     "description": "Logitech G304 Lightspeed là mẫu chuột gaming không dây có hiệu năng cao trong tầm giá. Công nghệ Lightspeed mang lại độ trễ thấp, phù hợp cho các tựa game FPS, MOBA và eSports. Cảm biến HERO tiết kiệm pin nhưng vẫn đảm bảo độ chính xác khi thao tác. Thiết kế nhỏ gọn, dễ mang theo và phù hợp với nhiều kiểu cầm. Đây là lựa chọn tốt cho game thủ cần chuột không dây ổn định, bền và giá hợp lý.",
     "specifications": [
       {
@@ -5690,8 +5965,10 @@
     "price": 3490000,
     "stock": 35,
     "minStockLevel": 8,
-    "image": "",
-    "images": [],
+    "image": "https://m.media-amazon.com/images/I/519DPaSOa5L.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/519DPaSOa5L.jpg"
+    ],
     "description": "Logitech G Pro X Superlight 2 là mẫu chuột gaming cao cấp dành cho game thủ chuyên nghiệp cần trọng lượng siêu nhẹ và độ chính xác tối đa. Cảm biến HERO 2 mang lại khả năng tracking chính xác trong các tựa game FPS và eSports. Kết nối không dây Lightspeed có độ trễ thấp giúp thao tác nhanh và ổn định. Thiết kế tối giản, pin sạc USB-C và độ hoàn thiện cao khiến sản phẩm phù hợp cho người dùng muốn hiệu năng thi đấu chuyên nghiệp.",
     "specifications": [
       {
@@ -5766,8 +6043,10 @@
     "price": 1290000,
     "stock": 60,
     "minStockLevel": 12,
-    "image": "",
-    "images": [],
+    "image": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/e871e1af-6cd3-4e8c-8924-69f47b2dea0a.jpg;maxHeight=1920;maxWidth=900?format=webp",
+    "images": [
+      "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/e871e1af-6cd3-4e8c-8924-69f47b2dea0a.jpg;maxHeight=1920;maxWidth=900?format=webp"
+    ],
     "description": "SteelSeries Rival 3 Wireless là mẫu chuột gaming không dây có thiết kế bền bỉ, thời lượng pin dài và hiệu năng ổn định. Chuột phù hợp cho game thủ cần sự linh hoạt khi chơi game hoặc làm việc. Cảm biến chính xác, kết nối không dây ổn định và thiết kế thoải mái giúp sử dụng tốt trong thời gian dài. Đây là lựa chọn phù hợp cho người dùng muốn chuột gaming không dây có thương hiệu tốt và mức giá hợp lý.",
     "specifications": [
       {
@@ -5842,8 +6121,13 @@
     "price": 20990000,
     "stock": 25,
     "minStockLevel": 8,
-    "image": "",
-    "images": [],
+    "image": "https://lh3.googleusercontent.com/iJZlOVuNzjHQEt49dPzgnl-m1FnH9iOqqoUq95UFqXl-XAmsgLJMLutdyfvTyvCCRP00hvZrU_18ZB-QXzmWj3uRKd-TBiWLsw=s3000-w3000-e365-rw-v0-nu",
+    "images": [
+      "https://lh3.googleusercontent.com/iJZlOVuNzjHQEt49dPzgnl-m1FnH9iOqqoUq95UFqXl-XAmsgLJMLutdyfvTyvCCRP00hvZrU_18ZB-QXzmWj3uRKd-TBiWLsw=s3000-w3000-e365-rw-v0-nu",
+      "https://lh3.googleusercontent.com/KPpoHAWlPoXtQf1NYwEM2qu3btzDa93FriuoEqZ7DVF75lpg-FEOLgHxWSBK9m0VxkgM34dnOGMAwvwYMU3x39Pb_uJ1HMLk5w=s3000-w3000-e365-rw-v0-nu",
+      "https://lh3.googleusercontent.com/hNPedyGt4zmtmhchMf3VLz0iSqSPbX3KMGRPw5WPsl2P2eXdOM0tKK-GB_kek2FabXyJjwhZe_ZeSfpqorAD8a6tfR7secM5zg=s3000-w3000-e365-rw-v0-nu",
+      "https://lh3.googleusercontent.com/6BW_pqhtFwQx83kww0_oS6VT6mlfS5yiT27BqpzJql5zKQyjXMmqbMmOovxWQScjOvXBAL0kVAPbBzrox-Ew188mdjnkHTIGPQI=s3000-w3000-e365-rw-v0-nu"
+    ],
     "description": "Google Pixel 10 128GB là mẫu smartphone cao cấp hướng đến những người dùng yêu thích trải nghiệm Android nguyên bản và khả năng xử lý hình ảnh bằng trí tuệ nhân tạo. Máy sở hữu thiết kế tối giản nhưng hiện đại, mang đến cảm giác cao cấp và khác biệt. Chip Tensor G6 kết hợp cùng 12GB RAM giúp thiết bị hoạt động mượt mà trong các tác vụ hàng ngày và tận dụng tốt các tính năng AI. Màn hình OLED 120Hz mang lại trải nghiệm hiển thị sắc nét và sống động. Hệ thống camera nổi tiếng của Pixel hỗ trợ chụp ảnh chất lượng cao với khả năng xử lý hậu kỳ thông minh. Đây là lựa chọn phù hợp cho những người dùng yêu thích hệ điều hành Android thuần khiết.",
     "specifications": [
       {
@@ -5918,8 +6202,13 @@
     "price": 26990000,
     "stock": 20,
     "minStockLevel": 8,
-    "image": "",
-    "images": [],
+    "image": "https://lh3.googleusercontent.com/k_JL8G9XNxlS5z8NxBcTvYTx7xyRkg2C5VoqgERK4uGt-CoZUG5wybmA2qkMzmGOURqfGkoKhemxYhyX5Q562NYSLx_zHG7JmCs=s3000-w3000-e365-rw-v0-nu",
+    "images": [
+      "https://lh3.googleusercontent.com/k_JL8G9XNxlS5z8NxBcTvYTx7xyRkg2C5VoqgERK4uGt-CoZUG5wybmA2qkMzmGOURqfGkoKhemxYhyX5Q562NYSLx_zHG7JmCs=s3000-w3000-e365-rw-v0-nu",
+      "https://lh3.googleusercontent.com/lD5KwCdw9so1SsUg0wIKUAIRqFqNLq8I56iWWXDMKd7uojW9xr-LYOvCaRJQUBUFcXOrcY_Y13rAc2NdmU8309TNlCnJuT8tZg=s3000-w3000-e365-rw-v0-nu",
+      "https://lh3.googleusercontent.com/1F2jQCa6eV8DQpFkAeCipsm3U8RoC6xShfcYFm2w0Eksnl3-QxTiIHBK-2HiHsD9F3R8jYgFgY-vNyPXdH_BZ3j3Uuy2Wg4DHrA=s3000-w3000-e365-rw-v0-nu",
+      "https://lh3.googleusercontent.com/99O-NNN6AbXSfPLW05S81yiTHg3saZY53OpxeEIkwm-nY_fmyqRX7Nk556gvapAyILndhCt7T2No6GaXkm_TK2vMHNXnuaW1a_0=s3000-w3000-e365-rw-v0-nu"
+    ],
     "description": "Google Pixel 10 Pro 256GB được phát triển dành cho người dùng mong muốn trải nghiệm những tính năng AI tiên tiến nhất của Google trên một thiết bị mạnh mẽ và cao cấp. Máy được trang bị chip Tensor G6 cùng 16GB RAM, đáp ứng tốt các nhu cầu từ công việc đến giải trí. Màn hình LTPO OLED với tần số quét thích ứng 120Hz mang lại trải nghiệm hiển thị mượt mà và tiết kiệm pin. Hệ thống camera đa ống kính giúp người dùng ghi lại những bức ảnh chất lượng cao với màu sắc tự nhiên. Bộ nhớ trong 256GB đáp ứng tốt nhu cầu lưu trữ lâu dài.",
     "specifications": [
       {
@@ -5994,8 +6283,13 @@
     "price": 31990000,
     "stock": 15,
     "minStockLevel": 5,
-    "image": "",
-    "images": [],
+    "image": "https://lh3.googleusercontent.com/DnJ0csj1DFQRVwYw5dMvX0V0qswZYtixZrQc5scm79FpHWJ2NHpyviHKIPq6_0CRvVnKrSPK7mCWh9OfCt_HRuZjXHAGIKHeNctx=s3000-w3000-e365-rw-v0-nu",
+    "images": [
+      "https://lh3.googleusercontent.com/DnJ0csj1DFQRVwYw5dMvX0V0qswZYtixZrQc5scm79FpHWJ2NHpyviHKIPq6_0CRvVnKrSPK7mCWh9OfCt_HRuZjXHAGIKHeNctx=s3000-w3000-e365-rw-v0-nu",
+      "https://lh3.googleusercontent.com/L7VyigCF2k3jt7QXMeFOSYqMNgxGHuZeh7QADEQ8GGRHbfpWYB4s1rP9B-gkaEkO8uR1AF52xI_Ybm5W4pehfTq2YVw_RBJ4Pg=s3000-w3000-e365-rw-v0-nu",
+      "https://lh3.googleusercontent.com/MR6x7xbHpex7Ck07eBYogsuIQYPyDHxLFXxlcMmtWWKmGYEogp0-ziwistdEOp1kODy63HBDV7RQsvWGWBajOmyIvLPWaHMvUx8=s3000-w3000-e365-rw-v0-nu",
+      "https://lh3.googleusercontent.com/xAfThg-V51jGB66Yw7DdENy-9NUX84TUJqfOJyDDMcW4oAfmOmRbfrmpwvEEoMK5ZqabAoUcXE6ZJ1U87ZcW2GPVGs77sakzBg=s3000-w3000-e365-rw-v0-nu"
+    ],
     "description": "Google Pixel 10 Pro XL 512GB là mẫu smartphone cao cấp nhất của Google, mang đến trải nghiệm Android nguyên bản kết hợp cùng sức mạnh của trí tuệ nhân tạo. Thiết bị được trang bị màn hình lớn, cấu hình mạnh mẽ và hệ thống camera tiên tiến nhằm phục vụ tốt cho cả nhu cầu công việc lẫn sáng tạo nội dung. Chip Tensor G6 cùng 16GB RAM giúp xử lý hiệu quả các tác vụ AI và đa nhiệm. Camera Pixel nổi tiếng với khả năng tái tạo màu sắc chân thực và xử lý ảnh thông minh. Với bộ nhớ trong 512GB, đây là lựa chọn phù hợp cho những người dùng chuyên nghiệp cần không gian lưu trữ lớn.",
     "specifications": [
       {
@@ -6070,8 +6364,12 @@
     "price": 22990000,
     "stock": 50,
     "minStockLevel": 10,
-    "image": "",
-    "images": [],
+    "image": "https://www.apple.com/newsroom/images/2024/09/apple-introduces-iphone-16-and-iphone-16-plus/article/Apple-iPhone-16-hero-240909_inline.jpg.large.jpg",
+    "images": [
+      "https://www.apple.com/newsroom/images/2024/09/apple-introduces-iphone-16-and-iphone-16-plus/article/Apple-iPhone-16-hero-240909_inline.jpg.large.jpg",
+      "https://www.apple.com/newsroom/images/2024/09/apple-introduces-iphone-16-and-iphone-16-plus/article/Apple-iPhone-16-lineup-240909_big.jpg.large.jpg",
+      "https://www.apple.com/newsroom/images/2024/09/apple-introduces-iphone-16-and-iphone-16-plus/article/Apple-iPhone-16-finish-lineup-240909_big.jpg.large.jpg"
+    ],
     "description": "iPhone 16 128GB là lựa chọn phù hợp dành cho người dùng yêu thích hệ sinh thái Apple và mong muốn sở hữu một chiếc điện thoại cao cấp với mức giá dễ tiếp cận hơn so với các phiên bản Pro. Sản phẩm nổi bật với thiết kế hiện đại, hoàn thiện chắc chắn và khả năng hoạt động ổn định trong thời gian dài. Được trang bị chip Apple A18 mạnh mẽ cùng 8GB RAM, thiết bị đáp ứng mượt mà các nhu cầu từ học tập, làm việc đến giải trí và chơi game. Màn hình Super Retina XDR mang lại chất lượng hiển thị sắc nét, màu sắc trung thực và trải nghiệm xem nội dung ấn tượng. Camera 48MP hỗ trợ ghi lại những khoảnh khắc đáng nhớ với độ chi tiết cao trong nhiều điều kiện ánh sáng khác nhau. Với bộ nhớ trong 128GB, đây là lựa chọn phù hợp cho người dùng đang tìm kiếm một chiếc iPhone cân bằng giữa hiệu năng, tính năng và chi phí đầu tư.",
     "specifications": [
       {
@@ -6146,8 +6444,12 @@
     "price": 25990000,
     "stock": 40,
     "minStockLevel": 10,
-    "image": "",
-    "images": [],
+    "image": "https://www.apple.com/newsroom/images/2024/09/apple-introduces-iphone-16-and-iphone-16-plus/article/Apple-iPhone-16-hero-240909_inline.jpg.large.jpg",
+    "images": [
+      "https://www.apple.com/newsroom/images/2024/09/apple-introduces-iphone-16-and-iphone-16-plus/article/Apple-iPhone-16-hero-240909_inline.jpg.large.jpg",
+      "https://www.apple.com/newsroom/images/2024/09/apple-introduces-iphone-16-and-iphone-16-plus/article/Apple-iPhone-16-lineup-240909_big.jpg.large.jpg",
+      "https://www.apple.com/newsroom/images/2024/09/apple-introduces-iphone-16-and-iphone-16-plus/article/Apple-iPhone-16-finish-lineup-240909_big.jpg.large.jpg"
+    ],
     "description": "iPhone 16 Plus 128GB mang đến trải nghiệm sử dụng thoải mái nhờ màn hình lớn cùng thời lượng pin ấn tượng. Đây là lựa chọn phù hợp cho người dùng thường xuyên xem phim, làm việc trên điện thoại hoặc cần một thiết bị có khả năng hoạt động bền bỉ suốt cả ngày. Chip Apple A18 kết hợp cùng dung lượng RAM tối ưu giúp xử lý tốt các tác vụ đa nhiệm, chỉnh sửa hình ảnh và giải trí. Màn hình Super Retina XDR kích thước 6.7 inch mang lại không gian hiển thị rộng rãi và sắc nét. Hệ thống camera hỗ trợ chụp ảnh chất lượng cao và quay video ổn định. Với thiết kế sang trọng và hiệu năng mạnh mẽ, iPhone 16 Plus là lựa chọn đáng cân nhắc trong phân khúc cao cấp.",
     "specifications": [
       {
@@ -6222,8 +6524,12 @@
     "price": 31990000,
     "stock": 35,
     "minStockLevel": 10,
-    "image": "",
-    "images": [],
+    "image": "https://www.apple.com/newsroom/images/2024/09/apple-debuts-iphone-16-pro-and-iphone-16-pro-max/article/Apple-iPhone-16-Pro-hero-240909_inline.jpg.large.jpg",
+    "images": [
+      "https://www.apple.com/newsroom/images/2024/09/apple-debuts-iphone-16-pro-and-iphone-16-pro-max/article/Apple-iPhone-16-Pro-hero-240909_inline.jpg.large.jpg",
+      "https://www.apple.com/newsroom/images/2024/09/apple-debuts-iphone-16-pro-and-iphone-16-pro-max/article/Apple-iPhone-16-Pro-camera-system-240909_inline.jpg.large.jpg",
+      "https://www.apple.com/newsroom/images/2024/09/apple-debuts-iphone-16-pro-and-iphone-16-pro-max/article/Apple-iPhone-16-Pro-finish-lineup-240909_big.jpg.large.jpg"
+    ],
     "description": "iPhone 16 Pro 256GB được thiết kế dành cho những người dùng yêu cầu cao về hiệu năng, chất lượng camera và độ hoàn thiện của sản phẩm. Máy sở hữu khung Titanium cao cấp cùng thiết kế hiện đại, mang lại cảm giác cầm nắm chắc chắn và sang trọng. Chip Apple A18 Pro cung cấp hiệu suất vượt trội trong các tác vụ từ công việc chuyên môn đến chơi game đồ họa cao. Màn hình LTPO OLED 120Hz giúp mọi thao tác trở nên mượt mà hơn. Hệ thống camera chuyên nghiệp hỗ trợ chụp ảnh chi tiết và quay video chất lượng cao. Bộ nhớ trong 256GB đáp ứng tốt nhu cầu lưu trữ dữ liệu, hình ảnh và ứng dụng của người dùng.",
     "specifications": [
       {
@@ -6298,8 +6604,12 @@
     "price": 34990000,
     "stock": 50,
     "minStockLevel": 10,
-    "image": "",
-    "images": [],
+    "image": "https://www.apple.com/newsroom/images/2024/09/apple-debuts-iphone-16-pro-and-iphone-16-pro-max/article/Apple-iPhone-16-Pro-hero-240909_inline.jpg.large.jpg",
+    "images": [
+      "https://www.apple.com/newsroom/images/2024/09/apple-debuts-iphone-16-pro-and-iphone-16-pro-max/article/Apple-iPhone-16-Pro-hero-240909_inline.jpg.large.jpg",
+      "https://www.apple.com/newsroom/images/2024/09/apple-debuts-iphone-16-pro-and-iphone-16-pro-max/article/Apple-iPhone-16-Pro-camera-system-240909_inline.jpg.large.jpg",
+      "https://www.apple.com/newsroom/images/2024/09/apple-debuts-iphone-16-pro-and-iphone-16-pro-max/article/Apple-iPhone-16-Pro-finish-lineup-240909_big.jpg.large.jpg"
+    ],
     "description": "iPhone 16 Pro Max 256GB là mẫu điện thoại cao cấp nhất của Apple, hướng đến người dùng yêu cầu hiệu năng mạnh mẽ, thiết kế sang trọng và trải nghiệm sử dụng ổn định trong thời gian dài. Sản phẩm nổi bật với khung Titanium cao cấp, mang lại cảm giác chắc chắn nhưng vẫn đảm bảo sự thoải mái khi cầm nắm. Thiết bị được trang bị chip Apple A18 Pro kết hợp cùng 8GB RAM và bộ nhớ trong 256GB, đáp ứng xuất sắc từ các tác vụ thường ngày cho đến chỉnh sửa video, xử lý hình ảnh hay chơi các tựa game đồ họa cao. Màn hình LTPO OLED 120Hz mang lại trải nghiệm hiển thị sắc nét và mượt mà. Hệ thống camera tiên tiến giúp người dùng ghi lại những khoảnh khắc chất lượng cao trong nhiều điều kiện khác nhau.",
     "specifications": [
       {
@@ -6374,8 +6684,12 @@
     "price": 18990000,
     "stock": 60,
     "minStockLevel": 10,
-    "image": "",
-    "images": [],
+    "image": "https://www.apple.com/newsroom/images/2023/09/apple-debuts-iphone-15-and-iphone-15-plus/article/Apple-iPhone-15-lineup-design-230912_big.jpg.large.jpg",
+    "images": [
+      "https://www.apple.com/newsroom/images/2023/09/apple-debuts-iphone-15-and-iphone-15-plus/article/Apple-iPhone-15-lineup-design-230912_big.jpg.large.jpg",
+      "https://www.apple.com/newsroom/images/2023/09/apple-debuts-iphone-15-and-iphone-15-plus/article/Apple-iPhone-15-48MP-01-230912_big.jpg.large.jpg",
+      "https://www.apple.com/newsroom/images/2023/09/apple-debuts-iphone-15-and-iphone-15-plus/article/Apple-iPhone-15-Ultra-Wide-230912_big.jpg.large.jpg"
+    ],
     "description": "iPhone 15 128GB vẫn là một trong những lựa chọn đáng giá trong hệ sinh thái Apple nhờ thiết kế hiện đại và hiệu năng ổn định. Máy được trang bị chip Apple A16 Bionic mạnh mẽ, đáp ứng tốt các nhu cầu sử dụng hàng ngày như học tập, làm việc, giải trí và chơi game. Dynamic Island mang đến trải nghiệm tương tác trực quan hơn trong quá trình sử dụng. Camera 48MP hỗ trợ chụp ảnh sắc nét với độ chi tiết cao, trong khi màn hình OLED giúp hiển thị màu sắc sống động. Đây là sản phẩm phù hợp với những người muốn trải nghiệm iPhone thế hệ mới với mức chi phí hợp lý hơn.",
     "specifications": [
       {
@@ -6450,8 +6764,12 @@
     "price": 21990000,
     "stock": 45,
     "minStockLevel": 10,
-    "image": "",
-    "images": [],
+    "image": "https://www.apple.com/newsroom/images/2023/09/apple-debuts-iphone-15-and-iphone-15-plus/article/Apple-iPhone-15-lineup-design-230912_big.jpg.large.jpg",
+    "images": [
+      "https://www.apple.com/newsroom/images/2023/09/apple-debuts-iphone-15-and-iphone-15-plus/article/Apple-iPhone-15-lineup-design-230912_big.jpg.large.jpg",
+      "https://www.apple.com/newsroom/images/2023/09/apple-debuts-iphone-15-and-iphone-15-plus/article/Apple-iPhone-15-48MP-01-230912_big.jpg.large.jpg",
+      "https://www.apple.com/newsroom/images/2023/09/apple-debuts-iphone-15-and-iphone-15-plus/article/Apple-iPhone-15-Ultra-Wide-230912_big.jpg.large.jpg"
+    ],
     "description": "iPhone 15 Plus 128GB là lựa chọn phù hợp dành cho những người yêu thích màn hình lớn và thời lượng pin dài. Máy sở hữu thiết kế cao cấp cùng khả năng hoạt động ổn định nhờ chip Apple A16 Bionic. Màn hình OLED kích thước 6.7 inch mang lại trải nghiệm giải trí ấn tượng, phù hợp với nhu cầu xem phim và làm việc. Camera 48MP hỗ trợ ghi lại những khoảnh khắc hàng ngày với chất lượng hình ảnh sắc nét. Với bộ nhớ 128GB, thiết bị đáp ứng tốt nhu cầu lưu trữ cơ bản của đa số người dùng.",
     "specifications": [
       {
@@ -6526,8 +6844,12 @@
     "price": 28990000,
     "stock": 30,
     "minStockLevel": 10,
-    "image": "",
-    "images": [],
+    "image": "https://www.apple.com/newsroom/images/2023/09/apple-unveils-iphone-15-pro-and-iphone-15-pro-max/article/Apple-iPhone-15-Pro-lineup-hero-230912_Full-Bleed-Image.jpg.large.jpg",
+    "images": [
+      "https://www.apple.com/newsroom/images/2023/09/apple-unveils-iphone-15-pro-and-iphone-15-pro-max/article/Apple-iPhone-15-Pro-lineup-hero-230912_Full-Bleed-Image.jpg.large.jpg",
+      "https://www.apple.com/newsroom/images/2023/09/apple-unveils-iphone-15-pro-and-iphone-15-pro-max/article/Apple-iPhone-15-Pro-Max-48MP-camera-01-230912_big.jpg.large.jpg",
+      "https://www.apple.com/newsroom/images/2023/09/apple-unveils-iphone-15-pro-and-iphone-15-pro-max/article/Apple-iPhone-15-Pro-Max-Telephoto-camera-230912_big.jpg.large.jpg"
+    ],
     "description": "iPhone 15 Pro 256GB là mẫu smartphone cao cấp dành cho người dùng yêu cầu hiệu suất mạnh mẽ và khả năng chụp ảnh chuyên nghiệp. Thiết bị sử dụng khung Titanium nhẹ nhưng bền bỉ, kết hợp cùng chip Apple A17 Pro mang lại hiệu năng ấn tượng trong nhiều tác vụ khác nhau. Màn hình ProMotion 120Hz giúp mọi thao tác trở nên mượt mà hơn. Hệ thống camera đa tiêu cự hỗ trợ sáng tạo nội dung chất lượng cao. Bộ nhớ 256GB đáp ứng tốt nhu cầu lưu trữ lâu dài.",
     "specifications": [
       {
@@ -6602,8 +6924,12 @@
     "price": 30990000,
     "stock": 25,
     "minStockLevel": 10,
-    "image": "",
-    "images": [],
+    "image": "https://www.apple.com/newsroom/images/2023/09/apple-unveils-iphone-15-pro-and-iphone-15-pro-max/article/Apple-iPhone-15-Pro-lineup-hero-230912_Full-Bleed-Image.jpg.large.jpg",
+    "images": [
+      "https://www.apple.com/newsroom/images/2023/09/apple-unveils-iphone-15-pro-and-iphone-15-pro-max/article/Apple-iPhone-15-Pro-lineup-hero-230912_Full-Bleed-Image.jpg.large.jpg",
+      "https://www.apple.com/newsroom/images/2023/09/apple-unveils-iphone-15-pro-and-iphone-15-pro-max/article/Apple-iPhone-15-Pro-Max-48MP-camera-01-230912_big.jpg.large.jpg",
+      "https://www.apple.com/newsroom/images/2023/09/apple-unveils-iphone-15-pro-and-iphone-15-pro-max/article/Apple-iPhone-15-Pro-Max-Telephoto-camera-230912_big.jpg.large.jpg"
+    ],
     "description": "iPhone 15 Pro Max 256GB hướng đến người dùng cao cấp cần một thiết bị mạnh mẽ và linh hoạt trong công việc cũng như giải trí. Máy sở hữu màn hình lớn, hiệu năng mạnh mẽ từ chip Apple A17 Pro và khả năng quay chụp ấn tượng. Hệ thống camera hỗ trợ zoom quang học chất lượng cao, giúp người dùng dễ dàng ghi lại những khoảnh khắc từ khoảng cách xa. Đây là sản phẩm phù hợp với những ai thường xuyên sáng tạo nội dung hoặc mong muốn trải nghiệm công nghệ hàng đầu của Apple.",
     "specifications": [
       {
@@ -6678,8 +7004,12 @@
     "price": 24990000,
     "stock": 35,
     "minStockLevel": 10,
-    "image": "",
-    "images": [],
+    "image": "https://www.oppo.com/content/dam/oppo/common/mkt/v2-2/find-x9-series-en/listpage/find-x9/480-600-titanium-v2.png",
+    "images": [
+      "https://www.oppo.com/content/dam/oppo_com/common/mkt/v2-2/find-x9-series/find-x9/en/assets/images-ksp-zj-img-0-eb0f8a.jpg",
+      "https://www.oppo.com/content/dam/oppo_com/common/mkt/v2-2/find-x9-series/find-x9/en/assets/images-design-zj-phone-25-f319f1.jpg",
+      "https://www.oppo.com/content/dam/oppo_com/common/mkt/v2-2/find-x9-series/find-x9/en/assets/images-design-zj-phone-28-66d45e.jpg"
+    ],
     "description": "OPPO Find X9 256GB là mẫu flagship cao cấp hướng đến những người dùng yêu thích thiết kế sang trọng, hiệu năng mạnh mẽ và khả năng chụp ảnh ấn tượng. Sản phẩm sở hữu ngoại hình hiện đại với độ hoàn thiện cao, mang lại cảm giác cầm nắm chắc chắn và thoải mái trong quá trình sử dụng. Được trang bị vi xử lý Dimensity 9500 kết hợp cùng 12GB RAM, thiết bị đáp ứng mượt mà các tác vụ từ công việc hàng ngày đến giải trí và chơi game đồ họa cao. Màn hình AMOLED 120Hz mang đến trải nghiệm hiển thị sắc nét và màu sắc sống động. Hệ thống camera được tinh chỉnh nhằm hỗ trợ người dùng ghi lại những khoảnh khắc đáng nhớ với chất lượng tốt. Đây là lựa chọn phù hợp cho người dùng muốn trải nghiệm smartphone cao cấp của OPPO.",
     "specifications": [
       {
@@ -6754,8 +7084,13 @@
     "price": 31990000,
     "stock": 25,
     "minStockLevel": 10,
-    "image": "",
-    "images": [],
+    "image": "https://www.oppo.com/content/dam/oppo/common/mkt/v2-2/find-x9-series-en/listpage/find-x9-pro/480-600-white-v2.png",
+    "images": [
+      "https://www.oppo.com/content/dam/oppo/common/mkt/v2-2/find-x9-series-en/listpage/find-x9-pro/480-600-white-v2.png",
+      "https://www.oppo.com/content/dam/oppo_com/en/mkt/newsroom/story/2025/10/oppo-find-x9-pro-camera/header.webp",
+      "https://www.oppo.com/content/dam/oppo_com/en/mkt/newsroom/press/2025/10/oppo-find-x9-global-launch-redefines-premium-smartphone-experience/header-v1.webp",
+      "https://www.oppo.com/content/dam/oppo_com/en/mkt/newsroom/story/2025/10/oppo-find-x9-series-design-durability/header.webp"
+    ],
     "description": "OPPO Find X9 Pro 512GB là phiên bản cao cấp nhất trong dòng Find X, được phát triển dành cho những người dùng yêu cầu cao về hiệu năng, nhiếp ảnh và trải nghiệm sử dụng. Máy được trang bị cấu hình mạnh mẽ với vi xử lý Dimensity 9500 và 16GB RAM, đáp ứng tốt nhu cầu xử lý công việc chuyên sâu, chỉnh sửa hình ảnh và chơi game nặng. Màn hình AMOLED LTPO với tần số quét 120Hz mang lại trải nghiệm hiển thị mượt mà. Hệ thống camera cao cấp hỗ trợ chụp ảnh chi tiết trong nhiều điều kiện khác nhau. Với bộ nhớ trong 512GB, sản phẩm đáp ứng tốt nhu cầu lưu trữ dữ liệu lớn của người dùng.",
     "specifications": [
       {
@@ -6830,8 +7165,12 @@
     "price": 11990000,
     "stock": 60,
     "minStockLevel": 15,
-    "image": "",
-    "images": [],
+    "image": "https://www.oppo.com/content/dam/oppo_com/common/mkt/v2-2/reno15-series-en/list-page/reno15/480-600-white.png",
+    "images": [
+      "https://www.oppo.com/content/dam/oppo_com/common/mkt/v2-2/reno15-series/en/reno15/white-darkblue-blue/v2/assets/images-design-phone-1-85-3955b2.png.webp",
+      "https://www.oppo.com/content/dam/oppo_com/common/mkt/v2-2/reno15-series/en/reno15/white-darkblue-blue/v2/assets/images-ksp-1-045269.jpg",
+      "https://www.oppo.com/content/dam/oppo_com/common/mkt/v2-2/reno15-series/en/reno15/white-darkblue-blue/v2/assets/images-ksp-2-1-30be2d.jpg.webp"
+    ],
     "description": "OPPO Reno 15 256GB là mẫu smartphone tầm trung hướng đến người dùng trẻ yêu thích thiết kế thời trang và khả năng chụp ảnh đẹp. Thiết bị sở hữu ngoại hình mỏng nhẹ cùng nhiều tùy chọn màu sắc hiện đại, phù hợp với xu hướng sử dụng hiện nay. Vi xử lý Dimensity 8400 kết hợp cùng 8GB RAM giúp máy hoạt động ổn định trong các tác vụ học tập, làm việc và giải trí hàng ngày. Màn hình AMOLED 120Hz mang đến trải nghiệm vuốt chạm mượt mà. Camera được tối ưu cho nhu cầu chụp chân dung và chia sẻ nội dung lên mạng xã hội. Đây là sản phẩm cân bằng tốt giữa hiệu năng, thiết kế và mức giá.",
     "specifications": [
       {
@@ -6906,8 +7245,12 @@
     "price": 15990000,
     "stock": 45,
     "minStockLevel": 15,
-    "image": "",
-    "images": [],
+    "image": "https://www.oppo.com/content/dam/oppo_com/common/mkt/v2-2/reno15-series-en/list-page/reno15-pro/480-600-blue.png",
+    "images": [
+      "https://www.oppo.com/content/dam/oppo_com/oppo/product-asset-library/reno/reno15-series/en/reno15-pro/blue-brown/v1/assets/images-ksp-s2-1-d42fd1.jpg",
+      "https://www.oppo.com/content/dam/oppo_com/oppo/product-asset-library/reno/reno15-series/en/reno15-pro/blue-brown/v1/assets/images-design-s2-phone-1-85-61e3a5.png.webp",
+      "https://www.oppo.com/content/dam/oppo_com/oppo/product-asset-library/reno/reno15-series/en/reno15-pro/blue-brown/v1/assets/images-color-s2-blue-pc-1-ac10dc.png.webp"
+    ],
     "description": "OPPO Reno 15 Pro 512GB là phiên bản nâng cấp dành cho những người dùng cần nhiều không gian lưu trữ và hiệu năng mạnh mẽ hơn. Máy được trang bị vi xử lý Dimensity 8450 cùng 12GB RAM, đáp ứng tốt nhu cầu đa nhiệm, chỉnh sửa ảnh và giải trí. Màn hình AMOLED chất lượng cao giúp nâng tầm trải nghiệm xem phim và chơi game. Hệ thống camera hỗ trợ chụp ảnh sắc nét và quay video ổn định. Bộ nhớ trong 512GB mang lại không gian lưu trữ rộng rãi cho hình ảnh, video và ứng dụng. Đây là lựa chọn phù hợp cho người dùng muốn sở hữu một chiếc smartphone tầm trung cao cấp.",
     "specifications": [
       {
@@ -6982,8 +7325,12 @@
     "price": 6490000,
     "stock": 90,
     "minStockLevel": 20,
-    "image": "",
-    "images": [],
+    "image": "https://www.oppo.com/content/dam/oppo/common/mkt/v2-2/a5-pro/list-page/green-427-600-v1.png",
+    "images": [
+      "https://www.oppo.com/content/dam/oppo/product-asset-library/a/a5-pro/green-brown/v1/assets/images-kv-phone-pc-1-100.png",
+      "https://www.oppo.com/content/dam/oppo/product-asset-library/a/a5-pro/green-brown/v1/assets/images-ksp-1-pc-1-90.jpg",
+      "https://www.oppo.com/content/dam/oppo/product-asset-library/a/a5-pro/green-brown/v1/assets/images-ksp-2-pc-1-90.jpg"
+    ],
     "description": "OPPO A5 Pro 128GB là mẫu điện thoại phổ thông phù hợp với học sinh, sinh viên và người dùng có nhu cầu sử dụng cơ bản. Thiết bị sở hữu thiết kế trẻ trung cùng giao diện thân thiện, giúp người dùng dễ dàng làm quen và sử dụng. Vi xử lý Snapdragon kết hợp với 8GB RAM đáp ứng tốt các tác vụ hàng ngày như gọi điện, nhắn tin, lướt web và sử dụng mạng xã hội. Màn hình lớn mang lại không gian hiển thị thoải mái, trong khi viên pin dung lượng cao giúp kéo dài thời gian sử dụng. Đây là lựa chọn đáng cân nhắc trong phân khúc giá phổ thông nhờ sự cân bằng giữa độ bền, tính ổn định và chi phí đầu tư.",
     "specifications": [
       {
@@ -7058,8 +7405,12 @@
     "price": 24990000,
     "stock": 40,
     "minStockLevel": 10,
-    "image": "",
-    "images": [],
+    "image": "https://images.samsung.com/is/image/samsung/p6pim/us/sm-s931udbaxaa/gallery/us-galaxy-s25-s931-551170-sm-s931udbaxaa-547068504",
+    "images": [
+      "https://images.samsung.com/is/image/samsung/p6pim/us/sm-s931udbaatt/gallery/us-galaxy-s25-s931-551170-551170-sm-s931udbaatt-548475727?$product-details-jpg$",
+      "https://images.samsung.com/is/image/samsung/p6pim/us/sm-s931udbaatt/gallery/us-galaxy-s25-s931-551170-551170-sm-s931udbaatt-548475710?$product-details-jpg$",
+      "https://images.samsung.com/is/image/samsung/p6pim/us/sm-s931udbaatt/gallery/us-galaxy-s25-s931-551170-551170-sm-s931udbaatt-548475711?$product-details-jpg$"
+    ],
     "description": "Samsung Galaxy S26 256GB là mẫu flagship tiêu chuẩn của Samsung, hướng đến người dùng yêu thích sự cân bằng giữa hiệu năng, thiết kế và tính di động. Máy sở hữu ngoại hình hiện đại với các đường nét tối giản, mang lại cảm giác cao cấp và thoải mái khi sử dụng hàng ngày. Được trang bị vi xử lý Snapdragon 8 Elite kết hợp cùng 12GB RAM, Galaxy S26 đáp ứng tốt mọi nhu cầu từ làm việc, học tập cho đến giải trí và chơi game. Màn hình Dynamic AMOLED 2X với tần số quét 120Hz mang lại trải nghiệm hiển thị sắc nét và mượt mà. Hệ thống camera đa ống kính hỗ trợ chụp ảnh chi tiết trong nhiều điều kiện ánh sáng khác nhau. Đây là lựa chọn phù hợp cho người dùng muốn trải nghiệm công nghệ cao cấp của Samsung với kích thước gọn gàng.",
     "specifications": [
       {
@@ -7134,8 +7485,12 @@
     "price": 27990000,
     "stock": 35,
     "minStockLevel": 10,
-    "image": "",
-    "images": [],
+    "image": "https://images.samsung.com/is/image/samsung/p6pim/us/sm-s931udbaatt/gallery/us-galaxy-s25-s931-551170-551170-sm-s931udbaatt-548475727?$product-details-jpg$",
+    "images": [
+      "https://images.samsung.com/is/image/samsung/p6pim/us/sm-s931udbaatt/gallery/us-galaxy-s25-s931-551170-551170-sm-s931udbaatt-548475710?$product-details-jpg$",
+      "https://images.samsung.com/is/image/samsung/p6pim/us/sm-s931udbaatt/gallery/us-galaxy-s25-s931-551170-551170-sm-s931udbaatt-548475711?$product-details-jpg$",
+      "https://images.samsung.com/is/image/samsung/p6pim/us/sm-s931udbaatt/gallery/us-galaxy-s25-s931-551170-551170-sm-s931udbaatt-548475712?$product-details-jpg$"
+    ],
     "description": "Samsung Galaxy S26+ 256GB mang đến trải nghiệm sử dụng toàn diện với màn hình lớn, hiệu năng mạnh mẽ và thời lượng pin được cải thiện. Thiết bị phù hợp với những người thường xuyên làm việc trên điện thoại, xem phim hoặc chơi game trong thời gian dài. Snapdragon 8 Elite kết hợp cùng 12GB RAM giúp xử lý mượt mà các tác vụ đa nhiệm và ứng dụng nặng. Màn hình Dynamic AMOLED 2X kích thước lớn mang lại chất lượng hiển thị sống động và độ sáng cao. Camera hỗ trợ ghi lại những khoảnh khắc hàng ngày với độ chi tiết tốt. Đây là lựa chọn lý tưởng cho người dùng mong muốn một chiếc smartphone cao cấp có khả năng đáp ứng nhiều nhu cầu khác nhau.",
     "specifications": [
       {
@@ -7210,8 +7565,12 @@
     "price": 35990000,
     "stock": 30,
     "minStockLevel": 10,
-    "image": "",
-    "images": [],
+    "image": "https://images.samsung.com/is/image/samsung/p6pim/us/sm-s938uzbfxaa/gallery/us-galaxy-s25-s938-536276-sm-s938uzbfxaa-548617513",
+    "images": [
+      "https://images.samsung.com/is/image/samsung/p6pim/us/2501/gallery/us-galaxy-s25-s938-536277-sm-s938uakaxaa-544888210?$product-details-jpg$",
+      "https://images.samsung.com/is/image/samsung/p6pim/us/2501/gallery/us-galaxy-s25-s938-536277-sm-s938uakaxaa-544888175?$product-details-jpg$",
+      "https://images.samsung.com/is/image/samsung/p6pim/us/2501/gallery/us-galaxy-s25-s938-536277-sm-s938uakaxaa-544888176?$product-details-jpg$"
+    ],
     "description": "Samsung Galaxy S26 Ultra 512GB là mẫu flagship cao cấp nhất của Samsung, được thiết kế dành cho người dùng chuyên nghiệp cần một thiết bị mạnh mẽ và đa năng. Máy nổi bật với bút S Pen tích hợp, hỗ trợ ghi chú và làm việc hiệu quả hơn. Snapdragon 8 Elite cùng 12GB RAM mang lại hiệu suất vượt trội trong mọi tác vụ. Màn hình Dynamic AMOLED 2X kích thước lớn với độ phân giải cao giúp nâng tầm trải nghiệm giải trí và sáng tạo nội dung. Hệ thống camera 200MP kết hợp nhiều ống kính tele hỗ trợ chụp ảnh chất lượng cao ở nhiều khoảng cách khác nhau. Với bộ nhớ 512GB, đây là lựa chọn phù hợp cho người dùng yêu cầu khả năng lưu trữ lớn và hiệu năng đỉnh cao.",
     "specifications": [
       {
@@ -7286,8 +7645,12 @@
     "price": 44990000,
     "stock": 15,
     "minStockLevel": 5,
-    "image": "",
-    "images": [],
+    "image": "https://images.samsung.com/is/image/samsung/p6pim/us/f2507/gallery/us-galaxy-z-fold7-f966-sm-f966uzsexaa-547867253",
+    "images": [
+      "https://images.samsung.com/is/image/samsung/p6pim/us/f2507/gallery/us-galaxy-z-fold7-f966-sm-f966udbaatt-547828582?$product-details-jpg$",
+      "https://images.samsung.com/is/image/samsung/p6pim/us/f2507/gallery/us-galaxy-z-fold7-f966-sm-f966udbaatt-547828584?$product-details-jpg$",
+      "https://images.samsung.com/is/image/samsung/p6pim/us/f2507/gallery/us-galaxy-z-fold7-f966-sm-f966udbaatt-547828586?$product-details-jpg$"
+    ],
     "description": "Samsung Galaxy Z Fold 8 512GB là thiết bị màn hình gập cao cấp dành cho những người yêu thích công nghệ tiên tiến và khả năng đa nhiệm vượt trội. Thiết kế gập độc đáo cho phép chuyển đổi linh hoạt giữa chế độ điện thoại và máy tính bảng, đáp ứng tốt nhu cầu làm việc cũng như giải trí. Snapdragon 8 Elite cùng 12GB RAM giúp xử lý mượt mà các ứng dụng nặng và tác vụ đa cửa sổ. Màn hình AMOLED lớn mang đến không gian hiển thị rộng rãi, phù hợp cho việc đọc tài liệu, chỉnh sửa nội dung hoặc xem phim. Đây là sản phẩm hướng đến người dùng muốn trải nghiệm những công nghệ mới nhất của Samsung.",
     "specifications": [
       {
@@ -7362,8 +7725,12 @@
     "price": 28990000,
     "stock": 20,
     "minStockLevel": 8,
-    "image": "",
-    "images": [],
+    "image": "https://images.samsung.com/is/image/samsung/p6pim/us/f2507/gallery/us-galaxy-zflip7-f766-sm-f766udbexaa-547890419",
+    "images": [
+      "https://images.samsung.com/is/image/samsung/p6pim/us/f2507/gallery/us-galaxy-zflip7-f766-sm-f766udbaatt-547888521?$product-details-jpg$",
+      "https://images.samsung.com/is/image/samsung/p6pim/us/f2507/gallery/us-galaxy-zflip7-f766-sm-f766udbaatt-547888527?$product-details-jpg$",
+      "https://images.samsung.com/is/image/samsung/p6pim/us/f2507/gallery/us-galaxy-zflip7-f766-sm-f766udbaatt-547888551?$product-details-jpg$"
+    ],
     "description": "Samsung Galaxy Z Flip 8 256GB là mẫu smartphone màn hình gập thời trang hướng đến những người dùng yêu thích sự khác biệt và tính linh hoạt trong thiết kế. Với kiểu dáng nhỏ gọn khi gập lại, thiết bị dễ dàng mang theo trong túi quần hoặc túi xách mà vẫn giữ được vẻ ngoài sang trọng và hiện đại. Máy được trang bị vi xử lý Snapdragon 8 Elite kết hợp cùng 12GB RAM, đáp ứng tốt nhu cầu sử dụng hàng ngày, xử lý đa nhiệm và giải trí với các tựa game phổ biến. Màn hình Dynamic AMOLED 2X 120Hz mang đến trải nghiệm hiển thị mượt mà, màu sắc sống động và độ sáng cao. Camera được tối ưu cho nhu cầu chụp ảnh nhanh và sáng tạo nội dung trên mạng xã hội. Đây là lựa chọn phù hợp cho những người dùng trẻ yêu thích công nghệ và phong cách cá nhân.",
     "specifications": [
       {
@@ -7438,8 +7805,12 @@
     "price": 10990000,
     "stock": 80,
     "minStockLevel": 15,
-    "image": "",
-    "images": [],
+    "image": "https://images.samsung.com/is/image/samsung/p6pim/uk/sm-a566bzgceub/gallery/uk-galaxy-a56-5g-sm-a566-sm-a566bzgceub-545178689?$624_468_PNG$",
+    "images": [
+      "https://images.samsung.com/is/image/samsung/p6pim/uk/sm-a566bzgceub/gallery/uk-galaxy-a56-5g-sm-a566-sm-a566bzgceub-545178689?$1164_776_PNG$",
+      "https://images.samsung.com/is/image/samsung/p6pim/uk/sm-a566bzgceub/gallery/uk-galaxy-a56-5g-sm-a566-sm-a566bzgceub-545178689?$Q90_1368_1094_F_JPG$",
+      "https://images.samsung.com/is/image/samsung/p6pim/uk/sm-a566bzgceub/gallery/uk-galaxy-a56-5g-sm-a566-sm-a566bzgceub-545178689?$Q90_2052_1641_JPG$"
+    ],
     "description": "Samsung Galaxy A56 256GB là mẫu smartphone tầm trung nổi bật của Samsung, phù hợp với học sinh, sinh viên và người dùng văn phòng đang tìm kiếm một thiết bị có thiết kế hiện đại cùng hiệu năng ổn định. Máy được trang bị vi xử lý Exynos 1580 kết hợp với 8GB RAM và bộ nhớ trong 256GB, đáp ứng tốt nhu cầu sử dụng hàng ngày như lướt web, xem phim, sử dụng mạng xã hội và chơi các tựa game phổ biến ở mức thiết lập phù hợp. Màn hình Super AMOLED 120Hz mang lại trải nghiệm hiển thị mượt mà và màu sắc rực rỡ. Viên pin 5000mAh giúp thiết bị hoạt động bền bỉ suốt cả ngày. Đây là lựa chọn đáng cân nhắc trong phân khúc tầm trung nhờ sự cân bằng giữa giá bán và tính năng.",
     "specifications": [
       {
@@ -7514,8 +7885,12 @@
     "price": 7990000,
     "stock": 90,
     "minStockLevel": 15,
-    "image": "",
-    "images": [],
+    "image": "https://images.samsung.com/is/image/samsung/p6pim/uk/sm-a366blvgeub/gallery/uk-galaxy-a36-5g-sm-a366-sm-a366blvgeub-545177072?$624_468_PNG$",
+    "images": [
+      "https://images.samsung.com/is/image/samsung/p6pim/uk/sm-a366blvgeub/gallery/uk-galaxy-a36-5g-sm-a366-sm-a366blvgeub-545177072?$1164_776_PNG$",
+      "https://images.samsung.com/is/image/samsung/p6pim/uk/sm-a366blvgeub/gallery/uk-galaxy-a36-5g-sm-a366-sm-a366blvgeub-545177072?$Q90_1368_1094_F_JPG$",
+      "https://images.samsung.com/is/image/samsung/p6pim/uk/sm-a366blvgeub/gallery/uk-galaxy-a36-5g-sm-a366-sm-a366blvgeub-545177072?$Q90_2052_1641_JPG$"
+    ],
     "description": "Samsung Galaxy A36 128GB được thiết kế dành cho người dùng phổ thông cần một chiếc điện thoại có mức giá hợp lý nhưng vẫn đáp ứng tốt nhu cầu sử dụng hàng ngày. Máy sở hữu màn hình Super AMOLED 120Hz mang lại chất lượng hiển thị tốt trong phân khúc, phù hợp cho việc xem phim, học tập trực tuyến và sử dụng mạng xã hội. Bộ vi xử lý Snapdragon 6 Gen 3 kết hợp với 8GB RAM giúp xử lý ổn định các tác vụ cơ bản và đa nhiệm nhẹ. Camera có khả năng chụp ảnh sắc nét trong điều kiện đủ sáng, đáp ứng nhu cầu lưu giữ những khoảnh khắc hàng ngày. Đây là sản phẩm phù hợp với học sinh, sinh viên hoặc người dùng lần đầu chuyển sang smartphone Samsung.",
     "specifications": [
       {
@@ -7590,8 +7965,12 @@
     "price": 5990000,
     "stock": 100,
     "minStockLevel": 20,
-    "image": "",
-    "images": [],
+    "image": "https://images.samsung.com/is/image/samsung/p6pim/uk/sm-a266bzkceub/gallery/uk-galaxy-a26-5g-sm-a266-sm-a266bzkceub-545279773?$624_468_PNG$",
+    "images": [
+      "https://images.samsung.com/is/image/samsung/p6pim/uk/sm-a266bzkceub/gallery/uk-galaxy-a26-5g-sm-a266-sm-a266bzkceub-545279773?$1164_776_PNG$",
+      "https://images.samsung.com/is/image/samsung/p6pim/uk/sm-a266bzkceub/gallery/uk-galaxy-a26-5g-sm-a266-sm-a266bzkceub-545279773?$Q90_1368_1094_F_JPG$",
+      "https://images.samsung.com/is/image/samsung/p6pim/uk/sm-a266bzkceub/gallery/uk-galaxy-a26-5g-sm-a266-sm-a266bzkceub-545279773?$Q90_2052_1641_JPG$"
+    ],
     "description": "Samsung Galaxy A26 128GB là mẫu điện thoại phổ thông hướng đến người dùng cần một thiết bị ổn định với chi phí đầu tư hợp lý. Thiết kế trẻ trung cùng giao diện thân thiện giúp máy dễ dàng tiếp cận với nhiều nhóm khách hàng khác nhau, đặc biệt là học sinh, sinh viên và người lớn tuổi. Vi xử lý Exynos kết hợp với 6GB RAM đáp ứng tốt các nhu cầu cơ bản như gọi điện, nhắn tin, sử dụng mạng xã hội và xem video trực tuyến. Màn hình lớn mang lại không gian hiển thị thoải mái, trong khi viên pin dung lượng cao giúp kéo dài thời gian sử dụng. Đây là lựa chọn phù hợp cho những người dùng ưu tiên tính thực dụng và độ bền trong quá trình sử dụng.",
     "specifications": [
       {
@@ -7666,8 +8045,12 @@
     "price": 22990000,
     "stock": 35,
     "minStockLevel": 10,
-    "image": "",
-    "images": [],
+    "image": "https://vivo-official.com/cdn/shop/files/titled-front_back.png?v=1773065488&width=2000",
+    "images": [
+      "https://vivo-official.com/cdn/shop/files/EN-X300-poster-horizontal_82814dbb-d778-4a92-981e-ae4ba0395e59.jpg?v=1761815218&width=3000",
+      "https://vivo-official.com/cdn/shop/files/e079a75955e2792a2788cde442a5d7a3.jpg?v=1778585053&width=1440",
+      "https://vivo-official.com/cdn/shop/files/X300_Pink_ProductImage.png?v=1780761973&width=2000"
+    ],
     "description": "vivo X300 256GB là mẫu smartphone cao cấp hướng đến người dùng yêu thích nhiếp ảnh và trải nghiệm sử dụng toàn diện. Máy sở hữu thiết kế hiện đại, hoàn thiện cao cấp cùng cụm camera được tinh chỉnh nhằm mang lại chất lượng hình ảnh ấn tượng. Vi xử lý Dimensity 9500 kết hợp cùng 12GB RAM giúp thiết bị xử lý mượt mà các tác vụ đa nhiệm, chỉnh sửa ảnh và chơi game. Màn hình AMOLED 120Hz mang đến trải nghiệm hiển thị sắc nét, màu sắc chân thực và thao tác vuốt chạm mượt mà. Viên pin dung lượng lớn hỗ trợ sử dụng bền bỉ trong suốt ngày dài. Đây là lựa chọn phù hợp cho những người dùng đang tìm kiếm một chiếc flagship Android cân bằng giữa hiệu năng và khả năng chụp ảnh.",
     "specifications": [
       {
@@ -7742,8 +8125,12 @@
     "price": 29990000,
     "stock": 25,
     "minStockLevel": 10,
-    "image": "",
-    "images": [],
+    "image": "https://vivo-official.com/cdn/shop/files/titled-front_back-RGB.png?v=1777897219&width=2000",
+    "images": [
+      "https://vivo-official.com/cdn/shop/files/titled-front_back.png?v=1773065488&width=2000",
+      "https://vivo-official.com/cdn/shop/files/X300_Pro_1-_english.jpg?v=1761752875",
+      "https://vivo-official.com/cdn/shop/files/X300_Pro_4-English.jpg?v=1761752875"
+    ],
     "description": "vivo X300 Pro 512GB là phiên bản cao cấp nhất trong dòng X300, được thiết kế dành cho người dùng yêu cầu hiệu năng mạnh mẽ và hệ thống camera chất lượng cao. Thiết bị được trang bị vi xử lý Dimensity 9500 cùng 16GB RAM, đáp ứng xuất sắc các nhu cầu từ công việc chuyên sâu đến giải trí cao cấp. Màn hình LTPO AMOLED 120Hz mang lại trải nghiệm hiển thị mượt mà và tiết kiệm năng lượng. Hệ thống camera được hợp tác phát triển với ZEISS, hỗ trợ chụp ảnh chân dung và quay video chất lượng chuyên nghiệp. Bộ nhớ trong 512GB mang lại không gian lưu trữ rộng rãi cho hình ảnh, video và dữ liệu quan trọng.",
     "specifications": [
       {
@@ -7818,8 +8205,12 @@
     "price": 11990000,
     "stock": 55,
     "minStockLevel": 15,
-    "image": "",
-    "images": [],
+    "image": "https://asia-exshopstatic-vivofs.vivo.com/KuCZNhz3cVxH4yrP/id/1741856861051/249ee9c25490e1d66a90f5fb92e37768.jpg",
+    "images": [
+      "https://asia-exshopstatic-vivofs.vivo.com/KuCZNhz3cVxH4yrP/id/1741856861941/3011152031ec099553acdf4154aa6130.jpg",
+      "https://asia-exshopstatic-vivofs.vivo.com/KuCZNhz3cVxH4yrP/id/1741856861655/e29954542844df6f2b93edde8a23e4f9.jpg",
+      "https://asia-exshopstatic-vivofs.vivo.com/KuCZNhz3cVxH4yrP/id/1741856861692/85630dbd9f8efaf069fadb791e334066.jpg"
+    ],
     "description": "vivo V50 256GB là mẫu smartphone tầm trung nổi bật với thiết kế thời trang và khả năng chụp ảnh chân dung ấn tượng. Thiết bị hướng đến người dùng trẻ yêu thích sáng tạo nội dung trên mạng xã hội và mong muốn sở hữu một sản phẩm có ngoại hình hiện đại. Bộ vi xử lý Snapdragon 7 Gen 4 kết hợp cùng 8GB RAM giúp máy hoạt động ổn định trong các tác vụ hàng ngày và giải trí. Màn hình AMOLED 120Hz mang lại trải nghiệm hiển thị sống động và mượt mà. Viên pin dung lượng lớn cùng công nghệ sạc nhanh giúp nâng cao trải nghiệm sử dụng. Đây là lựa chọn phù hợp trong phân khúc tầm trung.",
     "specifications": [
       {
@@ -7894,8 +8285,12 @@
     "price": 5990000,
     "stock": 85,
     "minStockLevel": 20,
-    "image": "",
-    "images": [],
+    "image": "https://in-exstatic-vivofs.vivo.com/gdHFRinHEMrj3yPG/Picture_library/1742294555694/zip/img/pc1.jpg",
+    "images": [
+      "https://in-exstatic-vivofs.vivo.com/gdHFRinHEMrj3yPG/Picture_library/1742294555694/zip/img/pc2.jpg",
+      "https://in-exstatic-vivofs.vivo.com/gdHFRinHEMrj3yPG/Picture_library/1742294555694/zip/img/pc3.jpg",
+      "https://in-exstatic-vivofs.vivo.com/gdHFRinHEMrj3yPG/Picture_library/1742294555694/zip/img/pc4.jpg"
+    ],
     "description": "vivo Y39 128GB là mẫu smartphone phổ thông được thiết kế nhằm đáp ứng tốt các nhu cầu sử dụng cơ bản của người dùng. Sản phẩm sở hữu thiết kế trẻ trung, dễ sử dụng và phù hợp với nhiều đối tượng khách hàng khác nhau. Vi xử lý Snapdragon kết hợp cùng 8GB RAM giúp máy hoạt động ổn định trong các tác vụ như lướt web, xem video, sử dụng mạng xã hội và liên lạc hàng ngày. Màn hình lớn mang lại không gian hiển thị thoải mái, trong khi viên pin dung lượng cao giúp kéo dài thời gian sử dụng. Đây là lựa chọn hợp lý dành cho những người dùng ưu tiên sự bền bỉ và tiết kiệm chi phí.",
     "specifications": [
       {
@@ -7970,8 +8365,13 @@
     "price": 19990000,
     "stock": 45,
     "minStockLevel": 10,
-    "image": "",
-    "images": [],
+    "image": "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-15/pc/2fb551f068f8de5461069dab5cf84556.jpg?f=webp",
+    "images": [
+      "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-15/pc/2fb551f068f8de5461069dab5cf84556.jpg?f=webp",
+      "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-15/pc/43fa088019c2025c561a74ff6f0721ec.png?f=webp",
+      "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-15/pc/83b79d00dcc202c40732b6e775eebc2e.jpg?f=webp",
+      "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-15/pc/a3159619ef4a28479e7cf9398335f293.jpg?f=webp"
+    ],
     "description": "Xiaomi 16 256GB là mẫu flagship nhỏ gọn dành cho những người dùng yêu thích hiệu năng mạnh mẽ nhưng vẫn ưu tiên sự thuận tiện trong quá trình sử dụng hàng ngày. Thiết bị sở hữu thiết kế hiện đại với các đường nét tinh tế, mang đến cảm giác cầm nắm thoải mái và chắc chắn. Được trang bị vi xử lý Snapdragon 8 Elite kết hợp cùng 12GB RAM, máy đáp ứng tốt mọi nhu cầu từ làm việc, học tập đến chơi game và chỉnh sửa hình ảnh. Màn hình AMOLED 120Hz mang lại trải nghiệm hiển thị sắc nét và mượt mà. Hệ thống camera hợp tác cùng Leica hỗ trợ ghi lại những khoảnh khắc chất lượng cao trong nhiều điều kiện ánh sáng khác nhau. Đây là lựa chọn phù hợp cho người dùng đang tìm kiếm một chiếc flagship Android toàn diện.",
     "specifications": [
       {
@@ -8046,8 +8446,13 @@
     "price": 27990000,
     "stock": 35,
     "minStockLevel": 10,
-    "image": "",
-    "images": [],
+    "image": "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-15-ultra/pc/8d37a7f2e7af06521ae6b5f32924d141.jpg?f=webp",
+    "images": [
+      "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-15-ultra/pc/8d37a7f2e7af06521ae6b5f32924d141.jpg?f=webp",
+      "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-15-ultra/pc/0a1497f5637e4177d5b801e7811f03cc.png?f=webp",
+      "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-15-ultra/pc/instroduce.jpg?f=webp",
+      "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-15-ultra/pc/telephoto.jpg?f=webp"
+    ],
     "description": "Xiaomi 16 Pro 512GB hướng đến những người dùng cần một thiết bị có hiệu năng cao, màn hình lớn và khả năng xử lý ổn định trong thời gian dài. Máy được trang bị Snapdragon 8 Elite cùng 16GB RAM, đáp ứng xuất sắc các tác vụ từ đa nhiệm, chỉnh sửa video đến chơi các tựa game đồ họa nặng. Màn hình AMOLED LTPO với tần số quét 120Hz mang lại trải nghiệm hiển thị mượt mà và sống động. Camera Leica hỗ trợ chụp ảnh với độ chi tiết cao và màu sắc chân thực. Với bộ nhớ trong 512GB, sản phẩm phù hợp với những người dùng có nhu cầu lưu trữ lớn.",
     "specifications": [
       {
@@ -8122,8 +8527,13 @@
     "price": 32990000,
     "stock": 25,
     "minStockLevel": 10,
-    "image": "",
-    "images": [],
+    "image": "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-15-ultra/pc/pinnacle.jpg?f=webp",
+    "images": [
+      "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-15-ultra/pc/pinnacle.jpg?f=webp",
+      "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-15-ultra/pc/xiaomihyperai.jpg?f=webp",
+      "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-15-ultra/pc/8d37a7f2e7af06521ae6b5f32924d141.jpg?f=webp",
+      "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-15-ultra/pc/0a1497f5637e4177d5b801e7811f03cc.png?f=webp"
+    ],
     "description": "Xiaomi 16 Ultra 512GB là mẫu smartphone cao cấp nhất của Xiaomi, được phát triển dành cho người dùng yêu thích nhiếp ảnh di động và hiệu năng hàng đầu. Máy nổi bật với hệ thống camera Leica tiên tiến, mang lại khả năng chụp ảnh chất lượng cao trong nhiều tình huống khác nhau. Vi xử lý Snapdragon 8 Elite cùng 16GB RAM giúp thiết bị xử lý mượt mà mọi tác vụ từ công việc đến giải trí. Màn hình LTPO AMOLED sắc nét kết hợp cùng viên pin dung lượng lớn mang đến trải nghiệm sử dụng trọn vẹn. Đây là lựa chọn đáng cân nhắc cho những người đam mê công nghệ và sáng tạo nội dung.",
     "specifications": [
       {
@@ -8198,8 +8608,13 @@
     "price": 8990000,
     "stock": 70,
     "minStockLevel": 15,
-    "image": "",
-    "images": [],
+    "image": "https://i02.appmifile.com/mi-com-product/fly-birds/redmi-note-15-pro/pc/a4fb3c11e4a0448530992d0846532e87.jpg?f=webp",
+    "images": [
+      "https://i02.appmifile.com/mi-com-product/fly-birds/redmi-note-15-pro/pc/a4fb3c11e4a0448530992d0846532e87.jpg?f=webp",
+      "https://i02.appmifile.com/mi-com-product/fly-birds/redmi-note-15-pro/pc/56dab3e847d99ebd1a75a69de420aa50.png?f=webp",
+      "https://i02.appmifile.com/mi-com-product/fly-birds/redmi-note-15-pro/pc/cea204a815cd0aab203ab79381bef9f3.jpg?f=webp",
+      "https://i02.appmifile.com/mi-com-product/fly-birds/redmi-note-15-pro/pc/de639df2f5f2c1acc324996568e2fb24.jpg?f=webp"
+    ],
     "description": "Redmi Note 15 Pro 256GB là mẫu smartphone tầm trung nổi bật với sự cân bằng giữa hiệu năng, thiết kế và mức giá hợp lý. Thiết bị được trang bị vi xử lý Snapdragon 7s Gen 4 cùng 8GB RAM, đáp ứng tốt các nhu cầu học tập, làm việc và giải trí hàng ngày. Màn hình AMOLED 120Hz mang lại trải nghiệm hiển thị mượt mà và màu sắc rực rỡ. Camera độ phân giải cao hỗ trợ ghi lại những khoảnh khắc đáng nhớ với độ chi tiết tốt. Viên pin dung lượng lớn giúp máy có thể hoạt động bền bỉ suốt cả ngày dài.",
     "specifications": [
       {
@@ -8274,8 +8689,13 @@
     "price": 10990000,
     "stock": 50,
     "minStockLevel": 15,
-    "image": "",
-    "images": [],
+    "image": "https://i02.appmifile.com/mi-com-product/fly-birds/redmi-note-15-pro-plus-5g/pc/1e62d6973df9124095c38d8ed31b142a.jpg?f=webp",
+    "images": [
+      "https://i02.appmifile.com/mi-com-product/fly-birds/redmi-note-15-pro-plus-5g/pc/1e62d6973df9124095c38d8ed31b142a.jpg?f=webp",
+      "https://i02.appmifile.com/mi-com-product/fly-birds/redmi-note-15-pro-plus-5g/pc/77175e9b26ca2a3b359cd35114216209.png?f=webp",
+      "https://i02.appmifile.com/mi-com-product/fly-birds/redmi-note-15-pro-plus-5g/pc/12e0eb811c4122172d35584a063b09cb.jpg?f=webp",
+      "https://i02.appmifile.com/mi-com-product/fly-birds/redmi-note-15-pro-plus-5g/pc/6ce6e3f706b47f9b2b6e1c7dce0f53b3.jpg?f=webp"
+    ],
     "description": "Redmi Note 15 Pro+ 512GB là phiên bản cao cấp nhất trong dòng Redmi Note, hướng đến người dùng cần cấu hình mạnh và dung lượng lưu trữ lớn. Máy sở hữu thiết kế hiện đại cùng màn hình AMOLED 120Hz cho trải nghiệm giải trí ấn tượng. Snapdragon 7s Gen 4 kết hợp với 12GB RAM giúp xử lý ổn định các tác vụ đa nhiệm và chơi game phổ biến. Camera 200MP hỗ trợ chụp ảnh với độ chi tiết cao, trong khi viên pin lớn mang lại thời gian sử dụng lâu dài. Đây là lựa chọn phù hợp trong phân khúc cận cao cấp.",
     "specifications": [
       {
@@ -8350,8 +8770,13 @@
     "price": 4990000,
     "stock": 120,
     "minStockLevel": 20,
-    "image": "",
-    "images": [],
+    "image": "https://i02.appmifile.com/mi-com-product/fly-birds/redmi-15-5g/g-pc/11a1bdd40679dd2346e4479825569972.jpg?f=webp",
+    "images": [
+      "https://i02.appmifile.com/mi-com-product/fly-birds/redmi-15-5g/g-pc/11a1bdd40679dd2346e4479825569972.jpg?f=webp",
+      "https://i02.appmifile.com/mi-com-product/fly-birds/redmi-15-5g/g-pc/ecbf8ea9f86aab64d70e25cfea4f8793.png?f=webp",
+      "https://i02.appmifile.com/mi-com-product/fly-birds/redmi-15-5g/g-pc/c0c78e972114ca3e84a017559fb188cb.jpg?f=webp",
+      "https://i02.appmifile.com/mi-com-product/fly-birds/redmi-15-5g/g-pc/36641dc5d0d6973b1a88763299317321.jpg?f=webp"
+    ],
     "description": "Redmi 15 128GB là mẫu smartphone phổ thông phù hợp với học sinh, sinh viên và người dùng có nhu cầu cơ bản. Thiết bị sở hữu màn hình lớn, giao diện thân thiện và thời lượng pin tốt, đáp ứng hiệu quả các tác vụ như gọi điện, nhắn tin, sử dụng mạng xã hội và xem video trực tuyến. Vi xử lý Snapdragon giúp máy hoạt động ổn định trong các nhu cầu hàng ngày. Camera đáp ứng tốt việc lưu giữ những khoảnh khắc đơn giản. Đây là sản phẩm có mức giá dễ tiếp cận nhưng vẫn mang lại trải nghiệm sử dụng đáng tin cậy.",
     "specifications": [
       {
@@ -8426,8 +8851,13 @@
     "price": 14990000,
     "stock": 35,
     "minStockLevel": 10,
-    "image": "",
-    "images": [],
+    "image": "https://i02.appmifile.com/mi-com-product/fly-birds/poco-f7-pro/pc/1e7c743971c5d34b1d27e82b5c070da1.jpg?f=webp",
+    "images": [
+      "https://i02.appmifile.com/mi-com-product/fly-birds/poco-f7-pro/pc/1e7c743971c5d34b1d27e82b5c070da1.jpg?f=webp",
+      "https://i02.appmifile.com/mi-com-product/fly-birds/poco-f7-pro/pc/afad517f350279b4f2806864a3ef4f15.png?f=webp",
+      "https://i02.appmifile.com/mi-com-product/fly-birds/poco-f7-pro/pc/7ae129fed2981ccd5f99970ad89668b1.jpg",
+      "https://i02.appmifile.com/mi-com-product/fly-birds/poco-f7-pro/pc/ab7e553c3973d60d8fbd16f81ad15253.png?f=webp"
+    ],
     "description": "POCO F8 Pro 512GB là mẫu smartphone hiệu năng cao hướng đến game thủ và những người dùng yêu thích công nghệ. Thiết bị được trang bị vi xử lý Snapdragon 8 Gen 4 mạnh mẽ cùng 12GB RAM, mang lại khả năng xử lý xuất sắc trong các tác vụ nặng. Màn hình AMOLED 120Hz giúp nâng cao trải nghiệm chơi game và giải trí. Hệ thống tản nhiệt được tối ưu để duy trì hiệu suất ổn định trong thời gian dài. Với bộ nhớ trong 512GB, người dùng có thể thoải mái lưu trữ dữ liệu và cài đặt nhiều ứng dụng.",
     "specifications": [
       {
@@ -8502,8 +8932,13 @@
     "price": 9990000,
     "stock": 60,
     "minStockLevel": 15,
-    "image": "",
-    "images": [],
+    "image": "https://i02.appmifile.com/mi-com-product/fly-birds/poco-f7-ultra/PC/705a27ca864053389f86eb033b19e000.jpg?f=webp",
+    "images": [
+      "https://i02.appmifile.com/mi-com-product/fly-birds/poco-f7-ultra/PC/705a27ca864053389f86eb033b19e000.jpg?f=webp",
+      "https://i02.appmifile.com/mi-com-product/fly-birds/poco-f7-ultra/PC/9642d2cd0b87b0b0fdb80124906bc235.png?f=webp",
+      "https://i02.appmifile.com/mi-com-product/fly-birds/poco-f7-ultra/PC/b2e1d30245ea2764095e63c2b16b71b2.jpg?f=webp",
+      "https://i02.appmifile.com/mi-com-product/fly-birds/poco-f7-ultra/PC/cc4fbab8fe5bbc414d7cd0ad5061b50a.png?f=webp"
+    ],
     "description": "POCO X8 Pro 256GB là mẫu smartphone tầm trung nổi bật nhờ hiệu năng mạnh mẽ và mức giá cạnh tranh. Máy được trang bị vi xử lý Dimensity cao cấp kết hợp cùng 12GB RAM, đáp ứng tốt nhu cầu chơi game, đa nhiệm và giải trí. Màn hình AMOLED 120Hz mang đến trải nghiệm hiển thị mượt mà và sắc nét. Viên pin dung lượng lớn hỗ trợ sử dụng liên tục trong thời gian dài. Đây là sản phẩm phù hợp với người dùng trẻ đang tìm kiếm một thiết bị mạnh mẽ trong tầm giá hợp lý.",
     "specifications": [
       {
@@ -8578,8 +9013,10 @@
     "price": 1290000,
     "stock": 60,
     "minStockLevel": 12,
-    "image": "",
-    "images": [],
+    "image": "https://static.tp-link.com/Overview_AX23_04_large_1627273099820e.jpg",
+    "images": [
+      "https://static.tp-link.com/Overview_AX23_04_large_1627273099820e.jpg"
+    ],
     "description": "TP-Link Archer AX23 là router WiFi 6 phổ thông phù hợp cho gia đình và căn hộ nhỏ. Thiết bị hỗ trợ nhiều thiết bị kết nối đồng thời, cải thiện tốc độ truyền tải và độ ổn định khi học tập, làm việc từ xa hoặc giải trí trực tuyến. Đây là lựa chọn phù hợp cho người dùng muốn nâng cấp từ router WiFi 5 với chi phí hợp lý.",
     "specifications": [
       {
@@ -8654,8 +9091,10 @@
     "price": 2290000,
     "stock": 45,
     "minStockLevel": 10,
-    "image": "",
-    "images": [],
+    "image": "https://static.tp-link.com/upload/image-line/Overview_Archer_AX55_06_large_20210816012711l.jpg",
+    "images": [
+      "https://static.tp-link.com/upload/image-line/Overview_Archer_AX55_06_large_20210816012711l.jpg"
+    ],
     "description": "TP-Link Archer AX55 là router WiFi 6 hiệu năng cao dành cho gia đình có nhiều thiết bị kết nối. Thiết bị hỗ trợ xem video 4K, chơi game trực tuyến và làm việc từ xa với độ ổn định cao. Hệ thống bảo mật tích hợp giúp tăng cường an toàn cho mạng gia đình.",
     "specifications": [
       {
@@ -8730,8 +9169,10 @@
     "price": 3190000,
     "stock": 30,
     "minStockLevel": 8,
-    "image": "",
-    "images": [],
+    "image": "https://www.asus.com/media/global/products/b2nmtj8czggu4mud/P_setting_xxx_0_90_end_500.png",
+    "images": [
+      "https://www.asus.com/media/global/products/b2nmtj8czggu4mud/P_setting_xxx_0_90_end_500.png"
+    ],
     "description": "ASUS RT-AX58U là router WiFi 6 dành cho người dùng nâng cao, game thủ và gia đình có nhu cầu sử dụng mạng ổn định. Thiết bị hỗ trợ nhiều tính năng quản lý mạng, bảo mật AiProtection và khả năng hoạt động ổn định trong thời gian dài.",
     "specifications": [
       {
@@ -8806,8 +9247,13 @@
     "price": 990000,
     "stock": 70,
     "minStockLevel": 15,
-    "image": "",
-    "images": [],
+    "image": "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-router-ax3000t/PC/a1791c64fb28829bddf3d9d83e6d215c.jpg?f=webp",
+    "images": [
+      "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-router-ax3000t/PC/a1791c64fb28829bddf3d9d83e6d215c.jpg?f=webp",
+      "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-router-ax3000t/PC/1a7d1487655a0c3beb78221369be7d7d.png?f=webp",
+      "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-router-ax3000t/PC/739e0c03bef09a4071c85d381953f821.jpg?f=webp",
+      "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-router-ax3000t/PC/74c8ee7c8faefb131616a730b28fe0e5.jpg?f=webp"
+    ],
     "description": "Xiaomi Router AX3000T là router WiFi 6 giá tốt dành cho hộ gia đình, sinh viên và người dùng phổ thông. Thiết bị có khả năng phủ sóng ổn định, giao diện quản lý đơn giản và hỗ trợ nhiều thiết bị kết nối cùng lúc.",
     "specifications": [
       {
@@ -8882,8 +9328,10 @@
     "price": 3990000,
     "stock": 25,
     "minStockLevel": 6,
-    "image": "",
-    "images": [],
+    "image": "https://static.tp-link.com/Deco-X20-DSL_02_large_1618534225777o.jpg",
+    "images": [
+      "https://static.tp-link.com/Deco-X20-DSL_02_large_1618534225777o.jpg"
+    ],
     "description": "TP-Link Deco X20 là hệ thống Mesh WiFi 6 dành cho nhà nhiều tầng, văn phòng nhỏ hoặc không gian rộng. Công nghệ Mesh giúp thiết bị tự động chuyển vùng liền mạch, đảm bảo kết nối ổn định trong toàn bộ khu vực sử dụng.",
     "specifications": [
       {
@@ -8958,8 +9406,10 @@
     "price": 590000,
     "stock": 120,
     "minStockLevel": 25,
-    "image": "",
-    "images": [],
+    "image": "https://m.media-amazon.com/images/I/71rC6tBu0NL._AC_SL1500_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/71rC6tBu0NL._AC_SL1500_.jpg"
+    ],
     "description": "Anker PowerCore 10000mAh là pin dự phòng nhỏ gọn phù hợp cho người dùng điện thoại cần nguồn năng lượng dự phòng khi di chuyển. Thiết kế nhẹ, dễ mang theo và độ bền cao giúp sản phẩm trở thành lựa chọn phổ biến cho học sinh, sinh viên và nhân viên văn phòng.",
     "specifications": [
       {
@@ -9025,8 +9475,10 @@
     "price": 990000,
     "stock": 90,
     "minStockLevel": 20,
-    "image": "",
-    "images": [],
+    "image": "https://m.media-amazon.com/images/I/71ytBCYHNkL._AC_SL1500_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/71ytBCYHNkL._AC_SL1500_.jpg"
+    ],
     "description": "Pin dự phòng dung lượng lớn phù hợp cho điện thoại, tablet và tai nghe. Sản phẩm cung cấp nhiều lần sạc cho thiết bị trong các chuyến đi dài.",
     "specifications": [
       {
@@ -9092,8 +9544,10 @@
     "price": 3290000,
     "stock": 35,
     "minStockLevel": 8,
-    "image": "",
-    "images": [],
+    "image": "https://m.media-amazon.com/images/I/61FeCECR4wL._AC_SL1500_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/61FeCECR4wL._AC_SL1500_.jpg"
+    ],
     "description": "Anker 737 là pin dự phòng cao cấp hỗ trợ sạc laptop, tablet và smartphone với công suất lớn. Phù hợp cho người dùng MacBook, ultrabook và thiết bị USB-C hiện đại.",
     "specifications": [
       {
@@ -9159,8 +9613,10 @@
     "price": 390000,
     "stock": 140,
     "minStockLevel": 30,
-    "image": "",
-    "images": [],
+    "image": "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-power-bank-10000mah-22w-lite/pc/245f88d1d18ce6220ed35f8e4a78ddb3.png",
+    "images": [
+      "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-power-bank-10000mah-22w-lite/pc/245f88d1d18ce6220ed35f8e4a78ddb3.png"
+    ],
     "description": "Pin dự phòng Xiaomi 10000mAh là lựa chọn giá tốt dành cho người dùng điện thoại Android và iPhone cần giải pháp sạc dự phòng hằng ngày.",
     "specifications": [
       {
@@ -9226,8 +9682,10 @@
     "price": 690000,
     "stock": 110,
     "minStockLevel": 25,
-    "image": "",
-    "images": [],
+    "image": "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-power-bank-20000/pc/854737fe4a231f7c16392fc44d0b8752.jpg",
+    "images": [
+      "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-power-bank-20000/pc/854737fe4a231f7c16392fc44d0b8752.jpg"
+    ],
     "description": "Dung lượng lớn cùng công suất sạc nhanh giúp đáp ứng tốt nhu cầu sử dụng cho điện thoại, tablet và thiết bị di động.",
     "specifications": [
       {
@@ -9293,8 +9751,10 @@
     "price": 350000,
     "stock": 130,
     "minStockLevel": 30,
-    "image": "",
-    "images": [],
+    "image": "https://dirigible.com.ng/wp-content/uploads/2022/08/eng_pl_Baseus-Bipow-Digital-Display-Power-bank-10000mAh-20W-2x-USB-USB-Type-C-micro-USB-20W-Quick-Charge-AFC-FCP-white-PPDML-L02-94774_5.jpg",
+    "images": [
+      "https://dirigible.com.ng/wp-content/uploads/2022/08/eng_pl_Baseus-Bipow-Digital-Display-Power-bank-10000mAh-20W-2x-USB-USB-Type-C-micro-USB-20W-Quick-Charge-AFC-FCP-white-PPDML-L02-94774_5.jpg"
+    ],
     "description": "Baseus Bipow là dòng pin dự phòng phổ biến với màn hình hiển thị phần trăm pin và khả năng sạc nhanh 20W.",
     "specifications": [
       {
@@ -9360,8 +9820,10 @@
     "price": 590000,
     "stock": 120,
     "minStockLevel": 25,
-    "image": "",
-    "images": [],
+    "image": "https://appleme.lk/wp-content/uploads/2021/09/1619430371478074.png",
+    "images": [
+      "https://appleme.lk/wp-content/uploads/2021/09/1619430371478074.png"
+    ],
     "description": "Phiên bản 20000mAh phù hợp cho người dùng thường xuyên di chuyển và cần nhiều lần sạc cho điện thoại hoặc tablet.",
     "specifications": [
       {
@@ -9427,8 +9889,10 @@
     "price": 1690000,
     "stock": 50,
     "minStockLevel": 12,
-    "image": "",
-    "images": [],
+    "image": "https://m.media-amazon.com/images/I/51s7ZPI9sgL._AC_SL1500_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/51s7ZPI9sgL._AC_SL1500_.jpg"
+    ],
     "description": "UGREEN Nexode hỗ trợ sạc nhanh công suất cao cho laptop, tablet và smartphone hiện đại.",
     "specifications": [
       {
@@ -9494,8 +9958,10 @@
     "price": 790000,
     "stock": 70,
     "minStockLevel": 15,
-    "image": "",
-    "images": [],
+    "image": "https://image-us.samsung.com/us/smartphones/galaxy-s23-ultra/accessories/images/battery/beige/6.jpg?$product-details-jpg$",
+    "images": [
+      "https://image-us.samsung.com/us/smartphones/galaxy-s23-ultra/accessories/images/battery/beige/6.jpg?$product-details-jpg$"
+    ],
     "description": "Pin dự phòng chính hãng Samsung hỗ trợ sạc nhanh Super Fast Charging cho các thiết bị Galaxy tương thích.",
     "specifications": [
       {
@@ -9561,8 +10027,10 @@
     "price": 1190000,
     "stock": 65,
     "minStockLevel": 15,
-    "image": "",
-    "images": [],
+    "image": "https://m.media-amazon.com/images/I/41SsumdX-jL._AC_SL1500_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/41SsumdX-jL._AC_SL1500_.jpg"
+    ],
     "description": "Belkin BoostCharge là pin dự phòng cao cấp phù hợp cho người dùng iPhone, iPad và các thiết bị USB-C hiện đại.",
     "specifications": [
       {
@@ -9628,8 +10096,10 @@
     "price": 2590000,
     "stock": 60,
     "minStockLevel": 15,
-    "image": "",
-    "images": [],
+    "image": "https://m.media-amazon.com/images/I/81xrHN1BYFL._AC_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/81xrHN1BYFL._AC_.jpg"
+    ],
     "description": "Dell E2225H là màn hình văn phòng phù hợp cho học tập, làm việc và sử dụng hằng ngày. Thiết kế đơn giản, độ bền cao và chất lượng hiển thị ổn định giúp đáp ứng tốt nhu cầu cơ bản.",
     "specifications": [
       {
@@ -9704,8 +10174,12 @@
     "price": 4590000,
     "stock": 45,
     "minStockLevel": 10,
-    "image": "",
-    "images": [],
+    "image": "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/peripherals/monitors/p-series/p2425h/mg/monitor-p2425h-black-gallery-1.psd?chrss=full&fmt=png-alpha&hei=804&pscan=auto&qlt=100%2C1&resMode=sharp2&scl=1&size=913%2C804&wid=913",
+    "images": [
+      "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/peripherals/monitors/p-series/p2425h/mg/monitor-p2425h-black-gallery-1.psd?chrss=full&fmt=png-alpha&hei=804&pscan=auto&qlt=100%2C1&resMode=sharp2&scl=1&size=913%2C804&wid=913",
+      "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/peripherals/monitors/p-series/p2425h/mg/monitor-p2425h-black-gallery-2.psd?chrss=full&fmt=png-alpha&hei=804&pscan=auto&qlt=100%2C1&resMode=sharp2&scl=1&size=913%2C804&wid=913",
+      "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/peripherals/monitors/p-series/p2425h/mg/monitor-p2425h-black-gallery-3.psd?chrss=full&fmt=png-alpha&hei=804&pscan=auto&qlt=100%2C1&resMode=sharp2&scl=1&size=913%2C804&wid=913"
+    ],
     "description": "Dell P2425H là màn hình văn phòng cao cấp với chân đế công thái học và khả năng hiển thị màu sắc ổn định. Phù hợp cho nhân viên văn phòng và lập trình viên.",
     "specifications": [
       {
@@ -9780,8 +10254,12 @@
     "price": 9990000,
     "stock": 25,
     "minStockLevel": 6,
-    "image": "",
-    "images": [],
+    "image": "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/peripherals/monitors/u-series/u2724d/media-gallery/monitor-ultrasharp-u2724d-qhd-gy-gallery-1.psd?chrss=full&fmt=png-alpha&hei=804&pscan=auto&qlt=100%2C1&resMode=sharp2&scl=1&size=914%2C804&wid=914",
+    "images": [
+      "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/peripherals/monitors/u-series/u2724d/media-gallery/monitor-ultrasharp-u2724d-qhd-gy-gallery-1.psd?chrss=full&fmt=png-alpha&hei=804&pscan=auto&qlt=100%2C1&resMode=sharp2&scl=1&size=914%2C804&wid=914",
+      "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/peripherals/monitors/u-series/u2724d/media-gallery/monitor-ultrasharp-u2724d-qhd-gy-gallery-2.psd?chrss=full&fmt=png-alpha&hei=804&pscan=auto&qlt=100%2C1&resMode=sharp2&scl=1&size=914%2C804&wid=914",
+      "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/peripherals/monitors/u-series/u2724d/media-gallery/monitor-ultrasharp-u2724d-qhd-gy-gallery-3.psd?chrss=full&fmt=png-alpha&hei=804&pscan=auto&qlt=100%2C1&resMode=sharp2&scl=1&size=914%2C804&wid=914"
+    ],
     "description": "Dell UltraSharp U2724D là màn hình chuyên nghiệp dành cho designer, lập trình viên và người dùng văn phòng cao cấp cần chất lượng hiển thị tốt.",
     "specifications": [
       {
@@ -9856,8 +10334,12 @@
     "price": 2890000,
     "stock": 70,
     "minStockLevel": 15,
-    "image": "",
-    "images": [],
+    "image": "https://media.us.lg.com/transform/ecomm-PDPGallery-1100x730/767390fa-2041-4842-91d9-647f245d5f78/24MR400-B_gallery_01_3000x3000?io=transform:fill,width:1200",
+    "images": [
+      "https://media.us.lg.com/transform/ecomm-PDPGallery-1100x730/767390fa-2041-4842-91d9-647f245d5f78/24MR400-B_gallery_01_3000x3000?io=transform:fill,width:1200",
+      "https://media.us.lg.com/transform/ecomm-PDPGallery-1100x730/267d5446-0487-4bc6-9611-89c91d3cb786/24MR400-B_gallery_03_3000x3000?io=transform:fill,width:1200",
+      "https://media.us.lg.com/transform/ecomm-PDPGallery-1100x730/767390fa-2041-4842-91d9-647f245d5f78/24MR400-B_gallery_01_3000x3000?io=transform:fill,width:1200"
+    ],
     "description": "LG 24MR400-B là màn hình phổ thông phù hợp cho học tập, làm việc văn phòng và giải trí hằng ngày.",
     "specifications": [
       {
@@ -9932,8 +10414,10 @@
     "price": 11990000,
     "stock": 20,
     "minStockLevel": 5,
-    "image": "",
-    "images": [],
+    "image": "https://m.media-amazon.com/images/I/71Svha9Q81L.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/71Svha9Q81L.jpg"
+    ],
     "description": "LG 27UP850-W là màn hình 4K dành cho designer, editor và người dùng MacBook cần hiển thị sắc nét và hỗ trợ USB-C.",
     "specifications": [
       {
@@ -10008,8 +10492,10 @@
     "price": 8990000,
     "stock": 30,
     "minStockLevel": 8,
-    "image": "",
-    "images": [],
+    "image": "https://m.media-amazon.com/images/I/71g9q4saOcL._AC_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/71g9q4saOcL._AC_.jpg"
+    ],
     "description": "LG UltraGear 27GP850-B là màn hình gaming QHD tốc độ cao dành cho game thủ cần hình ảnh mượt mà và độ chính xác cao.",
     "specifications": [
       {
@@ -10084,8 +10570,10 @@
     "price": 3990000,
     "stock": 55,
     "minStockLevel": 12,
-    "image": "",
-    "images": [],
+    "image": "https://m.media-amazon.com/images/I/71v6eqZJt2L._AC_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/71v6eqZJt2L._AC_.jpg"
+    ],
     "description": "ASUS TUF Gaming VG249Q3A là màn hình gaming phổ biến với tần số quét cao và mức giá dễ tiếp cận.",
     "specifications": [
       {
@@ -10160,8 +10648,10 @@
     "price": 14990000,
     "stock": 15,
     "minStockLevel": 5,
-    "image": "",
-    "images": [],
+    "image": "https://m.media-amazon.com/images/I/81H2NFld9ZL._AC_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/81H2NFld9ZL._AC_.jpg"
+    ],
     "description": "ASUS ProArt PA279CRV là màn hình chuyên nghiệp dành cho thiết kế đồ họa, chỉnh sửa ảnh và dựng video.",
     "specifications": [
       {
@@ -10236,8 +10726,10 @@
     "price": 6490000,
     "stock": 40,
     "minStockLevel": 10,
-    "image": "",
-    "images": [],
+    "image": "https://m.media-amazon.com/images/I/817Oy0Qw60L._AC_SL1500_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/817Oy0Qw60L._AC_SL1500_.jpg"
+    ],
     "description": "Samsung Odyssey G4 là màn hình gaming tốc độ cao dành cho game thủ FPS và eSports.",
     "specifications": [
       {
@@ -10312,8 +10804,10 @@
     "price": 12990000,
     "stock": 20,
     "minStockLevel": 5,
-    "image": "",
-    "images": [],
+    "image": "https://m.media-amazon.com/images/I/81fwJfCNVJL._AC_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/81fwJfCNVJL._AC_.jpg"
+    ],
     "description": "Samsung Odyssey G6 là màn hình gaming cao cấp với độ phân giải QHD và tần số quét 240Hz.",
     "specifications": [
       {
@@ -10388,8 +10882,10 @@
     "price": 3790000,
     "stock": 65,
     "minStockLevel": 15,
-    "image": "",
-    "images": [],
+    "image": "https://m.media-amazon.com/images/I/81eMGYK-ugL._AC_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/81eMGYK-ugL._AC_.jpg"
+    ],
     "description": "AOC 24G4E là màn hình gaming phổ thông với hiệu năng tốt trong phân khúc giá dễ tiếp cận.",
     "specifications": [
       {
@@ -10464,8 +10960,10 @@
     "price": 9990000,
     "stock": 25,
     "minStockLevel": 6,
-    "image": "",
-    "images": [],
+    "image": "https://m.media-amazon.com/images/I/71cShFafLEL._AC_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/71cShFafLEL._AC_.jpg"
+    ],
     "description": "MSI MAG 274QRF-QD E2 là màn hình gaming QHD dành cho game thủ và streamer cần chất lượng hiển thị cao.",
     "specifications": [
       {
@@ -10540,8 +11038,10 @@
     "price": 7990000,
     "stock": 30,
     "minStockLevel": 8,
-    "image": "",
-    "images": [],
+    "image": "https://ecommerce.datablitz.com.ph/cdn/shop/files/0889523026908-ECOM-MAIN-IMAGE_800x.jpg?v=1724231881",
+    "images": [
+      "https://ecommerce.datablitz.com.ph/cdn/shop/files/0889523026908-ECOM-MAIN-IMAGE_800x.jpg?v=1724231881"
+    ],
     "description": "Gigabyte M27Q là màn hình gaming QHD nổi tiếng với tính năng KVM và chất lượng hiển thị tốt.",
     "specifications": [
       {
@@ -10616,8 +11116,10 @@
     "price": 3590000,
     "stock": 55,
     "minStockLevel": 12,
-    "image": "",
-    "images": [],
+    "image": "https://www.viewsonic.com/vsAssetFile/global/img/slides/_lcd_display_(new)/VX2479-HD-PRO/GPG-23-MON-VX2479-HD-PRO-PRDP_RF01 1_pc.jpg",
+    "images": [
+      "https://www.viewsonic.com/vsAssetFile/global/img/slides/_lcd_display_(new)/VX2479-HD-PRO/GPG-23-MON-VX2479-HD-PRO-PRDP_RF01 1_pc.jpg"
+    ],
     "description": "ViewSonic VX2479-HD-PRO là màn hình gaming giá tốt dành cho học sinh, sinh viên và game thủ phổ thông.",
     "specifications": [
       {
@@ -10692,8 +11194,10 @@
     "price": 13990000,
     "stock": 18,
     "minStockLevel": 5,
-    "image": "",
-    "images": [],
+    "image": "https://m.media-amazon.com/images/I/91bybwaMLfL._AC_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/91bybwaMLfL._AC_.jpg"
+    ],
     "description": "BenQ PD2705U là màn hình 4K chuyên nghiệp dành cho thiết kế đồ họa, dựng phim và sáng tạo nội dung.",
     "specifications": [
       {
@@ -10768,8 +11272,10 @@
     "price": 5990000,
     "stock": 70,
     "minStockLevel": 15,
-    "image": "",
-    "images": [],
+    "image": "https://m.media-amazon.com/images/I/71YdE55GwjL._AC_SL1500_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/71YdE55GwjL._AC_SL1500_.jpg"
+    ],
     "description": "Apple Watch SE 2 GPS 40mm là mẫu đồng hồ thông minh phù hợp cho người dùng iPhone cần theo dõi sức khỏe, luyện tập và nhận thông báo hằng ngày. Thiết bị có thiết kế nhỏ gọn, giao diện dễ sử dụng và tích hợp tốt với hệ sinh thái Apple. Các tính năng như đo nhịp tim, theo dõi giấc ngủ, đếm bước chân và ghi nhận bài tập giúp người dùng xây dựng thói quen sống lành mạnh hơn. Đây là lựa chọn hợp lý cho học sinh, sinh viên và người dùng phổ thông muốn bắt đầu sử dụng Apple Watch.",
     "specifications": [
       {
@@ -10853,8 +11359,10 @@
     "price": 6990000,
     "stock": 60,
     "minStockLevel": 12,
-    "image": "",
-    "images": [],
+    "image": "https://m.media-amazon.com/images/I/71XBcl6bNjL._AC_SL1500_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/71XBcl6bNjL._AC_SL1500_.jpg"
+    ],
     "description": "Apple Watch SE 2 GPS 44mm mang lại trải nghiệm Apple Watch với màn hình lớn hơn, dễ quan sát thông báo, bài tập và dữ liệu sức khỏe. Thiết bị phù hợp cho người dùng iPhone cần một chiếc smartwatch ổn định để theo dõi vận động, giấc ngủ và nhịp tim. Thiết kế nhẹ, đeo thoải mái cả ngày và khả năng chống nước giúp sử dụng linh hoạt trong nhiều tình huống. Đây là lựa chọn tốt cho người dùng muốn đồng hồ thông minh Apple có giá dễ tiếp cận nhưng vẫn đầy đủ tính năng cần thiết.",
     "specifications": [
       {
@@ -10938,8 +11446,10 @@
     "price": 10990000,
     "stock": 45,
     "minStockLevel": 10,
-    "image": "",
-    "images": [],
+    "image": "https://m.media-amazon.com/images/I/61Z8y0y2b0L._AC_SL1500_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/61Z8y0y2b0L._AC_SL1500_.jpg"
+    ],
     "description": "Apple Watch Series 10 GPS 42mm là mẫu smartwatch cao cấp dành cho người dùng iPhone cần theo dõi sức khỏe chuyên sâu và trải nghiệm thông minh mượt mà. Màn hình lớn, viền mỏng và độ sáng cao giúp xem thông tin rõ ràng trong nhiều điều kiện ánh sáng. Thiết bị hỗ trợ đo nhịp tim, theo dõi giấc ngủ, ghi nhận bài tập và cảnh báo sức khỏe. Khả năng kết nối ổn định với iPhone giúp nhận cuộc gọi, tin nhắn và thông báo tiện lợi. Đây là lựa chọn phù hợp cho người dùng muốn nâng cấp trải nghiệm Apple Watch.",
     "specifications": [
       {
@@ -11023,8 +11533,10 @@
     "price": 11990000,
     "stock": 40,
     "minStockLevel": 10,
-    "image": "",
-    "images": [],
+    "image": "https://www.apple.com/newsroom/images/2024/09/introducing-apple-watch-series-10/article/Apple-Watch-Series-10-aluminum-jet-black-240909_inline.jpg.large_2x.jpg",
+    "images": [
+      "https://www.apple.com/newsroom/images/2024/09/introducing-apple-watch-series-10/article/Apple-Watch-Series-10-aluminum-jet-black-240909_inline.jpg.large_2x.jpg"
+    ],
     "description": "Apple Watch Series 10 GPS 46mm sở hữu màn hình lớn, thiết kế cao cấp và nhiều tính năng chăm sóc sức khỏe dành cho người dùng iPhone. Đồng hồ hỗ trợ theo dõi luyện tập, đo nhịp tim, giấc ngủ, cảnh báo sức khỏe và hiển thị thông báo nhanh chóng. Kích thước 46mm phù hợp với người dùng thích không gian hiển thị rộng để xem dữ liệu rõ ràng hơn. Thiết kế mỏng nhẹ giúp đeo thoải mái trong cả ngày. Đây là lựa chọn lý tưởng cho người dùng cần một chiếc smartwatch cao cấp, mạnh mẽ và đồng bộ tốt với hệ sinh thái Apple.",
     "specifications": [
       {
@@ -11108,8 +11620,10 @@
     "price": 6990000,
     "stock": 55,
     "minStockLevel": 12,
-    "image": "",
-    "images": [],
+    "image": "https://m.media-amazon.com/images/I/71E8iEWXY9L.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/71E8iEWXY9L.jpg"
+    ],
     "description": "Samsung Galaxy Watch 7 40mm là mẫu đồng hồ thông minh phù hợp cho người dùng Android, đặc biệt là hệ sinh thái Samsung Galaxy. Thiết bị hỗ trợ theo dõi sức khỏe, luyện tập, giấc ngủ và thông báo hằng ngày. Thiết kế nhỏ gọn, màn hình sắc nét và giao diện Wear OS giúp thao tác dễ dàng. Các tính năng đo nhịp tim, theo dõi bài tập và phân tích giấc ngủ giúp người dùng quản lý sức khỏe hiệu quả hơn. Đây là lựa chọn phù hợp cho người dùng cần smartwatch Android hiện đại với mức giá hợp lý.",
     "specifications": [
       {
@@ -11193,8 +11707,10 @@
     "price": 7490000,
     "stock": 50,
     "minStockLevel": 12,
-    "image": "",
-    "images": [],
+    "image": "https://m.media-amazon.com/images/I/71E8iEWXY9L.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/71E8iEWXY9L.jpg"
+    ],
     "description": "Samsung Galaxy Watch 7 44mm mang đến màn hình lớn hơn và thời lượng sử dụng tốt hơn cho người dùng Android. Đồng hồ hỗ trợ nhận thông báo, theo dõi vận động, đo nhịp tim, phân tích giấc ngủ và ghi nhận nhiều chế độ luyện tập. Thiết kế hiện đại, khả năng chống nước và độ bền cao giúp sử dụng linh hoạt trong công việc lẫn thể thao. Khi kết hợp với điện thoại Samsung, thiết bị phát huy tối đa các tính năng trong hệ sinh thái Galaxy. Đây là lựa chọn cân bằng cho người dùng cần smartwatch mạnh, đẹp và dễ sử dụng.",
     "specifications": [
       {
@@ -11278,8 +11794,10 @@
     "price": 15990000,
     "stock": 25,
     "minStockLevel": 6,
-    "image": "",
-    "images": [],
+    "image": "https://static1.anpoimages.com/wordpress/wp-content/uploads/2024/10/untitled-design-3.png",
+    "images": [
+      "https://static1.anpoimages.com/wordpress/wp-content/uploads/2024/10/untitled-design-3.png"
+    ],
     "description": "Samsung Galaxy Watch Ultra 47mm là mẫu smartwatch cao cấp dành cho người dùng yêu thích thể thao, hoạt động ngoài trời và theo dõi sức khỏe chuyên sâu. Thiết bị có thiết kế bền bỉ, màn hình sáng rõ và khả năng chống nước tốt. Các tính năng theo dõi luyện tập, định vị, đo nhịp tim, phân tích giấc ngủ và đo thành phần cơ thể giúp hỗ trợ người dùng trong nhiều hoạt động khác nhau. Đây là lựa chọn phù hợp cho người dùng Android cần một chiếc đồng hồ mạnh mẽ, cao cấp và có độ bền cao.",
     "specifications": [
       {
@@ -11363,8 +11881,10 @@
     "price": 3990000,
     "stock": 65,
     "minStockLevel": 15,
-    "image": "",
-    "images": [],
+    "image": "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-watch-s3/PC/f5380c37520ff6177abd0c929278d010.jpg",
+    "images": [
+      "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-watch-s3/PC/f5380c37520ff6177abd0c929278d010.jpg"
+    ],
     "description": "Xiaomi Watch S3 là mẫu đồng hồ thông minh có thiết kế thời trang, màn hình AMOLED sắc nét và thời lượng pin dài. Thiết bị phù hợp cho người dùng cần theo dõi sức khỏe, nhận thông báo và ghi nhận hoạt động thể thao hằng ngày. Các tính năng như đo nhịp tim, theo dõi giấc ngủ, đo SpO2 và nhiều chế độ luyện tập giúp hỗ trợ chăm sóc sức khỏe tốt hơn. Với mức giá hợp lý, Xiaomi Watch S3 là lựa chọn đáng cân nhắc cho người dùng Android muốn một chiếc smartwatch đẹp, bền và dễ sử dụng.",
     "specifications": [
       {
@@ -11448,8 +11968,10 @@
     "price": 5990000,
     "stock": 45,
     "minStockLevel": 10,
-    "image": "",
-    "images": [],
+    "image": "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-2-pro/pc/cb55c20a14efe07d9f91736f87453368.jpg",
+    "images": [
+      "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-2-pro/pc/cb55c20a14efe07d9f91736f87453368.jpg"
+    ],
     "description": "Xiaomi Watch 2 Pro là mẫu smartwatch cao cấp chạy Wear OS, phù hợp cho người dùng Android cần trải nghiệm thông minh đầy đủ hơn. Thiết bị hỗ trợ cài ứng dụng, nhận thông báo, theo dõi sức khỏe và ghi nhận luyện tập đa dạng. Màn hình AMOLED sắc nét, thiết kế kim loại cao cấp và hiệu năng ổn định giúp sử dụng mượt mà trong công việc lẫn giải trí. Đây là lựa chọn phù hợp cho người dùng muốn một chiếc đồng hồ thông minh mạnh mẽ, nhiều tính năng nhưng vẫn có mức giá cạnh tranh.",
     "specifications": [
       {
@@ -11533,8 +12055,10 @@
     "price": 1990000,
     "stock": 90,
     "minStockLevel": 20,
-    "image": "",
-    "images": [],
+    "image": "https://m.media-amazon.com/images/I/61xOL21rKJL._AC_SL1500_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/61xOL21rKJL._AC_SL1500_.jpg"
+    ],
     "description": "Amazfit Bip 5 là mẫu smartwatch giá tốt dành cho người dùng cần theo dõi sức khỏe và thông báo cơ bản. Thiết bị có màn hình lớn, giao diện dễ dùng và thời lượng pin dài, phù hợp cho học sinh, sinh viên và người dùng phổ thông. Đồng hồ hỗ trợ đo nhịp tim, theo dõi giấc ngủ, SpO2 và nhiều chế độ thể thao. Khả năng tương thích với cả Android và iOS giúp sử dụng linh hoạt. Đây là lựa chọn phù hợp cho người mới bắt đầu dùng đồng hồ thông minh với ngân sách tiết kiệm.",
     "specifications": [
       {
@@ -11618,8 +12142,10 @@
     "price": 2490000,
     "stock": 75,
     "minStockLevel": 15,
-    "image": "",
-    "images": [],
+    "image": "https://m.media-amazon.com/images/I/61f4Ox9sojL._AC_SL1500_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/61f4Ox9sojL._AC_SL1500_.jpg"
+    ],
     "description": "Amazfit GTS 4 Mini là mẫu smartwatch mỏng nhẹ với thiết kế thanh lịch, phù hợp cho người dùng cần một thiết bị theo dõi sức khỏe hằng ngày. Màn hình AMOLED hiển thị rõ ràng, thời lượng pin dài và nhiều chế độ luyện tập giúp đáp ứng tốt nhu cầu cơ bản. Đồng hồ hỗ trợ đo nhịp tim, SpO2, theo dõi giấc ngủ và quản lý vận động. Thiết kế nhẹ giúp đeo thoải mái cả ngày, kể cả khi ngủ. Đây là lựa chọn tốt cho người dùng muốn smartwatch đẹp, pin lâu và giá hợp lý.",
     "specifications": [
       {
@@ -11703,8 +12229,10 @@
     "price": 5990000,
     "stock": 35,
     "minStockLevel": 8,
-    "image": "",
-    "images": [],
+    "image": "https://m.media-amazon.com/images/I/71udm2yMPRL._AC_SL1500_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/71udm2yMPRL._AC_SL1500_.jpg"
+    ],
     "description": "Amazfit T-Rex 3 là mẫu smartwatch bền bỉ dành cho người dùng yêu thích thể thao, leo núi, chạy bộ và hoạt động ngoài trời. Thiết kế hầm hố, khả năng chống nước tốt và thời lượng pin dài giúp thiết bị phù hợp với các chuyến đi dài ngày. Đồng hồ hỗ trợ định vị, đo nhịp tim, SpO2, theo dõi giấc ngủ và nhiều chế độ luyện tập chuyên sâu. Đây là lựa chọn phù hợp cho người dùng cần một chiếc đồng hồ thông minh khỏe, pin lâu và có nhiều tính năng thể thao.",
     "specifications": [
       {
@@ -11788,8 +12316,10 @@
     "price": 890000,
     "stock": 120,
     "minStockLevel": 25,
-    "image": "",
-    "images": [],
+    "image": "https://philong.com.vn/media/product/28633-ssd-kingston-500gb-nv2-1.jpg",
+    "images": [
+      "https://philong.com.vn/media/product/28633-ssd-kingston-500gb-nv2-1.jpg"
+    ],
     "description": "Kingston NV2 500GB là ổ SSD NVMe phổ thông giúp nâng cấp tốc độ khởi động hệ điều hành, mở ứng dụng và sao chép dữ liệu nhanh hơn đáng kể so với ổ cứng truyền thống.",
     "specifications": [
       {
@@ -11855,8 +12385,10 @@
     "price": 1490000,
     "stock": 100,
     "minStockLevel": 20,
-    "image": "",
-    "images": [],
+    "image": "https://m.media-amazon.com/images/I/71NfMZKkpQL._SL1500_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/71NfMZKkpQL._SL1500_.jpg"
+    ],
     "description": "Kingston NV2 1TB cung cấp dung lượng lớn và hiệu năng ổn định cho laptop, PC văn phòng và gaming.",
     "specifications": [
       {
@@ -11922,8 +12454,10 @@
     "price": 1690000,
     "stock": 90,
     "minStockLevel": 20,
-    "image": "",
-    "images": [],
+    "image": "https://m.media-amazon.com/images/I/61SGBRxwq0L._AC_SL1500_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/61SGBRxwq0L._AC_SL1500_.jpg"
+    ],
     "description": "WD Blue SN580 là SSD NVMe dành cho người dùng cần tốc độ cao khi làm việc, học tập và giải trí.",
     "specifications": [
       {
@@ -11989,8 +12523,10 @@
     "price": 2890000,
     "stock": 50,
     "minStockLevel": 10,
-    "image": "",
-    "images": [],
+    "image": "https://m.media-amazon.com/images/I/51Qk09tA3oL._AC_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/51Qk09tA3oL._AC_.jpg"
+    ],
     "description": "WD Black SN850X là SSD gaming hiệu năng cao dành cho game thủ và người dùng chuyên nghiệp.",
     "specifications": [
       {
@@ -12056,8 +12592,10 @@
     "price": 2490000,
     "stock": 55,
     "minStockLevel": 12,
-    "image": "",
-    "images": [],
+    "image": "https://m.media-amazon.com/images/I/71H3OVkHOGL._AC_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/71H3OVkHOGL._AC_.jpg"
+    ],
     "description": "Samsung 990 EVO mang lại hiệu năng ổn định và độ bền cao cho người dùng laptop và PC hiện đại.",
     "specifications": [
       {
@@ -12123,8 +12661,10 @@
     "price": 4590000,
     "stock": 30,
     "minStockLevel": 8,
-    "image": "",
-    "images": [],
+    "image": "https://img.global.news.samsung.com/ca/wp-content/uploads/2022/08/SamsungSSD990PRO_dl_1.jpg",
+    "images": [
+      "https://img.global.news.samsung.com/ca/wp-content/uploads/2022/08/SamsungSSD990PRO_dl_1.jpg"
+    ],
     "description": "Samsung 990 Pro là SSD cao cấp dành cho workstation, gaming và sáng tạo nội dung chuyên nghiệp.",
     "specifications": [
       {
@@ -12190,8 +12730,10 @@
     "price": 1590000,
     "stock": 80,
     "minStockLevel": 18,
-    "image": "",
-    "images": [],
+    "image": "https://robu.in/wp-content/uploads/2024/07/R150035-1.jpg",
+    "images": [
+      "https://robu.in/wp-content/uploads/2024/07/R150035-1.jpg"
+    ],
     "description": "Crucial P3 Plus là SSD PCIe Gen4 có hiệu năng tốt trong phân khúc phổ thông.",
     "specifications": [
       {
@@ -12257,8 +12799,10 @@
     "price": 2690000,
     "stock": 45,
     "minStockLevel": 10,
-    "image": "",
-    "images": [],
+    "image": "https://m.media-amazon.com/images/I/51W5aZlKQeL.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/51W5aZlKQeL.jpg"
+    ],
     "description": "Crucial T500 mang đến tốc độ đọc ghi cao dành cho game thủ và người làm việc với dữ liệu lớn.",
     "specifications": [
       {
@@ -12324,8 +12868,10 @@
     "price": 1990000,
     "stock": 70,
     "minStockLevel": 15,
-    "image": "",
-    "images": [],
+    "image": "https://m.media-amazon.com/images/I/61Q4zdzkh4L._AC_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/61Q4zdzkh4L._AC_.jpg"
+    ],
     "description": "Lexar NM790 là SSD hiệu năng cao với mức giá cạnh tranh, phù hợp cho gaming và nâng cấp laptop.",
     "specifications": [
       {
@@ -12391,8 +12937,10 @@
     "price": 3490000,
     "stock": 40,
     "minStockLevel": 10,
-    "image": "",
-    "images": [],
+    "image": "https://m.media-amazon.com/images/I/61Q4zdzkh4L._AC_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/61Q4zdzkh4L._AC_.jpg"
+    ],
     "description": "Phiên bản 2TB cung cấp dung lượng lớn cho game thủ, editor và người dùng chuyên nghiệp.",
     "specifications": [
       {
@@ -12458,8 +13006,10 @@
     "price": 4290000,
     "stock": 35,
     "minStockLevel": 8,
-    "image": "",
-    "images": [],
+    "image": "https://songphuong.vn/Content/uploads/2023/04/SSD-Kingston-KC3000-2TB-M2-songphuong.vn-02.jpg",
+    "images": [
+      "https://songphuong.vn/Content/uploads/2023/04/SSD-Kingston-KC3000-2TB-M2-songphuong.vn-02.jpg"
+    ],
     "description": "Kingston KC3000 là SSD cao cấp hướng đến người dùng workstation và gaming hiệu năng cao.",
     "specifications": [
       {
@@ -12525,8 +13075,10 @@
     "price": 2590000,
     "stock": 50,
     "minStockLevel": 10,
-    "image": "",
-    "images": [],
+    "image": "https://m.media-amazon.com/images/I/71EESd1deTL._AC_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/71EESd1deTL._AC_.jpg"
+    ],
     "description": "Samsung T7 Shield là SSD di động chống va đập phù hợp cho người dùng thường xuyên di chuyển.",
     "specifications": [
       {
@@ -12592,8 +13144,10 @@
     "price": 890000,
     "stock": 120,
     "minStockLevel": 25,
-    "image": "",
-    "images": [],
+    "image": "https://images.tcdn.com.br/img/img_prod/1165337/memoria_ram_desktop_16gb_kingston_fury_beast_3200mhz_1_35v_ddr4_kf432c16bb1_16_26129_3_d0c1e1b8ba9c68693ebb90879c8b1eb2.jpg",
+    "images": [
+      "https://images.tcdn.com.br/img/img_prod/1165337/memoria_ram_desktop_16gb_kingston_fury_beast_3200mhz_1_35v_ddr4_kf432c16bb1_16_26129_3_d0c1e1b8ba9c68693ebb90879c8b1eb2.jpg"
+    ],
     "description": "Kingston Fury Beast DDR4 16GB 3200MHz là bộ nhớ RAM phổ biến dành cho máy tính văn phòng, gaming và học tập. Sản phẩm mang lại hiệu năng ổn định, tương thích với nhiều nền tảng và dễ dàng nâng cấp cho hệ thống hiện có.",
     "specifications": [
       {
@@ -12659,8 +13213,10 @@
     "price": 1790000,
     "stock": 90,
     "minStockLevel": 20,
-    "image": "",
-    "images": [],
+    "image": "https://m.media-amazon.com/images/I/71+clMT-q-L._AC_SL1500_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/71+clMT-q-L._AC_SL1500_.jpg"
+    ],
     "description": "Phiên bản 32GB phù hợp cho người dùng đa nhiệm, lập trình, thiết kế và gaming hiện đại cần dung lượng RAM lớn hơn.",
     "specifications": [
       {
@@ -12726,8 +13282,10 @@
     "price": 1490000,
     "stock": 95,
     "minStockLevel": 20,
-    "image": "",
-    "images": [],
+    "image": "https://m.media-amazon.com/images/I/71EKUjsKQYL._AC_SL1500_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/71EKUjsKQYL._AC_SL1500_.jpg"
+    ],
     "description": "Kingston Fury Beast DDR5 16GB mang đến băng thông cao hơn thế hệ DDR4, phù hợp cho PC gaming và workstation đời mới.",
     "specifications": [
       {
@@ -12793,8 +13351,10 @@
     "price": 2990000,
     "stock": 60,
     "minStockLevel": 12,
-    "image": "",
-    "images": [],
+    "image": "https://m.media-amazon.com/images/I/71yiC8EpVCL._AC_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/71yiC8EpVCL._AC_.jpg"
+    ],
     "description": "Bộ nhớ DDR5 dung lượng lớn dành cho gaming cao cấp, chỉnh sửa video và xử lý dữ liệu chuyên nghiệp.",
     "specifications": [
       {
@@ -12860,8 +13420,10 @@
     "price": 3190000,
     "stock": 55,
     "minStockLevel": 12,
-    "image": "",
-    "images": [],
+    "image": "https://m.media-amazon.com/images/I/71m9-93iPBL._AC_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/71m9-93iPBL._AC_.jpg"
+    ],
     "description": "Corsair Vengeance DDR5 là dòng RAM nổi tiếng với độ ổn định cao và khả năng tương thích tốt cho PC gaming hiện đại.",
     "specifications": [
       {
@@ -12927,8 +13489,10 @@
     "price": 4990000,
     "stock": 30,
     "minStockLevel": 8,
-    "image": "",
-    "images": [],
+    "image": "https://m.media-amazon.com/images/I/61FvCy+l77L._AC_SL1500_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/61FvCy+l77L._AC_SL1500_.jpg"
+    ],
     "description": "Corsair Dominator Titanium là dòng RAM cao cấp dành cho hệ thống gaming và workstation hiệu năng cao.",
     "specifications": [
       {
@@ -12994,8 +13558,10 @@
     "price": 4590000,
     "stock": 35,
     "minStockLevel": 8,
-    "image": "",
-    "images": [],
+    "image": "https://m.media-amazon.com/images/I/71DiVTefKBL._AC_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/71DiVTefKBL._AC_.jpg"
+    ],
     "description": "G.Skill Trident Z5 RGB là dòng RAM cao cấp được nhiều game thủ và người ép xung lựa chọn nhờ hiệu năng mạnh mẽ.",
     "specifications": [
       {
@@ -13061,8 +13627,10 @@
     "price": 2890000,
     "stock": 60,
     "minStockLevel": 12,
-    "image": "",
-    "images": [],
+    "image": "https://files.pccasegear.com/UserFiles/AX5U6000C4016G-DCLARWH-adata-xpg-lancer-rgb-32gb-2x16gb-6000mhz-cl40-ddr5-white-product4.jpg",
+    "images": [
+      "https://files.pccasegear.com/UserFiles/AX5U6000C4016G-DCLARWH-adata-xpg-lancer-rgb-32gb-2x16gb-6000mhz-cl40-ddr5-white-product4.jpg"
+    ],
     "description": "ADATA XPG Lancer DDR5 mang đến hiệu năng tốt trong phân khúc tầm trung cho gaming và làm việc.",
     "specifications": [
       {
@@ -13128,8 +13696,10 @@
     "price": 1390000,
     "stock": 80,
     "minStockLevel": 15,
-    "image": "",
-    "images": [],
+    "image": "https://m.media-amazon.com/images/I/819OdHGCicL.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/819OdHGCicL.jpg"
+    ],
     "description": "Crucial DDR5 16GB là lựa chọn nâng cấp phù hợp cho người dùng phổ thông muốn chuyển sang nền tảng DDR5.",
     "specifications": [
       {
@@ -13195,8 +13765,10 @@
     "price": 1490000,
     "stock": 75,
     "minStockLevel": 15,
-    "image": "",
-    "images": [],
+    "image": "https://m.media-amazon.com/images/I/61Mc6kTOz+L._AC_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/61Mc6kTOz+L._AC_.jpg"
+    ],
     "description": "Samsung DDR5 SODIMM là RAM laptop phổ biến dành cho nâng cấp notebook và laptop gaming thế hệ mới.",
     "specifications": [
       {
@@ -13262,8 +13834,12 @@
     "price": 11990000,
     "stock": 60,
     "minStockLevel": 15,
-    "image": "",
-    "images": [],
+    "image": "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/ipad-compare-header-202405?.v=bk5Ha2llcUlIczRSRUt0WDVzK2I3a3d5S3MwalZ0KzJYUzlaTEovR3lnM0JzNjk4alZXc1V3QlppSlJEdDY5eVJmWkRLbnF4V0o4MC80MUErK0tHaS82WXdLZXN4NXdtV2c5K0Z4cHFIU0E&fmt=png-alpha&hei=398&wid=392",
+    "images": [
+      "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/ipad-compare-header-202405?.v=bk5Ha2llcUlIczRSRUt0WDVzK2I3a3d5S3MwalZ0KzJYUzlaTEovR3lnM0JzNjk4alZXc1V3QlppSlJEdDY5eVJmWkRLbnF4V0o4MC80MUErK0tHaS82WXdLZXN4NXdtV2c5K0Z4cHFIU0E&fmt=png-alpha&hei=398&wid=392",
+      "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/ipad-compare-header-202405?.v=bk5Ha2llcUlIczRSRUt0WDVzK2I3a3d5S3MwalZ0KzJYUzlaTEovR3lnM0JzNjk4alZXc1V3QlppSlJEdDY5eVJmWkRLbnF4V0o4MC80MUErK0tHaS82WXdLZXN4NXdtV2c5K0Z4cHFIU0E&fmt=png-alpha&hei=720&wid=720",
+      "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/ipad-compare-swatches-gen10-202410?.v=VTllekV2RktMMEtYZm91K21zcE81WldTZ01FUzgydWdPK1dDTkxyNytTTStraHdEZ2VXTzRDSkZXWUJuM0tRZlZjUGxaZ2kzUjFwZGVzZThSeTdBdTRhU0FMNkVWZUtodWFPQXNaS01OQ1orYWpGdS9XeFgvbS9ITnNYOEhYaG4&fmt=png-alpha&hei=26&wid=134"
+    ],
     "description": "iPad Gen 11 là mẫu máy tính bảng đa năng phù hợp cho học tập, giải trí và làm việc cơ bản. Chip Apple thế hệ mới mang lại hiệu năng ổn định cho các ứng dụng văn phòng, học trực tuyến, ghi chú và chỉnh sửa nội dung nhẹ. Màn hình Liquid Retina sắc nét giúp hiển thị nội dung rõ ràng và sống động. Thiết bị hỗ trợ Apple Pencil giúp nâng cao trải nghiệm học tập và sáng tạo. Với thời lượng pin dài, thiết kế bền bỉ và hệ sinh thái iPadOS tối ưu, đây là lựa chọn phù hợp cho học sinh, sinh viên và người dùng phổ thông.",
     "specifications": [
       {
@@ -13356,8 +13932,12 @@
     "price": 17990000,
     "stock": 45,
     "minStockLevel": 10,
-    "image": "",
-    "images": [],
+    "image": "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/ipad-compare-header-air-202405?.v=bk5Ha2llcUlIczRSRUt0WDVzK2I3aEp0T1lvbEU5VzVUeFMyYUl3ZjA1RVk2Q3FubUg5cC93VlMzQkExanhMSzAzOVFHb3N0MkVmS01ZcFh0d1Y4R2hvR0JUOE5DanRnclpMbkNkbll4VFE&fmt=png-alpha&hei=398&wid=392",
+    "images": [
+      "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/ipad-compare-header-air-202405?.v=bk5Ha2llcUlIczRSRUt0WDVzK2I3aEp0T1lvbEU5VzVUeFMyYUl3ZjA1RVk2Q3FubUg5cC93VlMzQkExanhMSzAzOVFHb3N0MkVmS01ZcFh0d1Y4R2hvR0JUOE5DanRnclpMbkNkbll4VFE&fmt=png-alpha&hei=398&wid=392",
+      "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/ipad-compare-header-air-202405?.v=bk5Ha2llcUlIczRSRUt0WDVzK2I3aEp0T1lvbEU5VzVUeFMyYUl3ZjA1RVk2Q3FubUg5cC93VlMzQkExanhMSzAzOVFHb3N0MkVmS01ZcFh0d1Y4R2hvR0JUOE5DanRnclpMbkNkbll4VFE&fmt=png-alpha&hei=720&wid=720",
+      "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/ipad-compare-swatches-air-202410?.v=VTllekV2RktMMEtYZm91K21zcE81ZklpTlQzZFhQVGE0SXN5TXVVd0tsTStqNVNMUE5kWkM0SlBMVUVFRW5rM215d1FhSDJ0bkR0ZGZtUjZJNmFveFlubjdwNjI2STBFYk5icVZWN1RpamM&fmt=png-alpha&hei=26&wid=134"
+    ],
     "description": "iPad Air 11 M3 mang đến sự cân bằng giữa hiệu năng mạnh mẽ và tính di động cao. Chip Apple M3 giúp xử lý mượt mà các tác vụ học tập, làm việc, chỉnh sửa ảnh và sáng tạo nội dung. Thiết kế mỏng nhẹ giúp người dùng dễ dàng mang theo trong quá trình di chuyển. Màn hình Liquid Retina chất lượng cao mang lại trải nghiệm hiển thị sắc nét và màu sắc chính xác. Đây là lựa chọn phù hợp cho sinh viên, nhân viên văn phòng và người dùng muốn sở hữu một chiếc tablet cao cấp với hiệu năng vượt trội.",
     "specifications": [
       {
@@ -13450,8 +14030,12 @@
     "price": 24990000,
     "stock": 35,
     "minStockLevel": 10,
-    "image": "",
-    "images": [],
+    "image": "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/ipad-compare-header-air-202405?.v=bk5Ha2llcUlIczRSRUt0WDVzK2I3aEp0T1lvbEU5VzVUeFMyYUl3ZjA1RVk2Q3FubUg5cC93VlMzQkExanhMSzAzOVFHb3N0MkVmS01ZcFh0d1Y4R2hvR0JUOE5DanRnclpMbkNkbll4VFE&fmt=png-alpha&hei=398&wid=392",
+    "images": [
+      "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/ipad-compare-header-air-202405?.v=bk5Ha2llcUlIczRSRUt0WDVzK2I3aEp0T1lvbEU5VzVUeFMyYUl3ZjA1RVk2Q3FubUg5cC93VlMzQkExanhMSzAzOVFHb3N0MkVmS01ZcFh0d1Y4R2hvR0JUOE5DanRnclpMbkNkbll4VFE&fmt=png-alpha&hei=398&wid=392",
+      "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/ipad-compare-header-air-202405?.v=bk5Ha2llcUlIczRSRUt0WDVzK2I3aEp0T1lvbEU5VzVUeFMyYUl3ZjA1RVk2Q3FubUg5cC93VlMzQkExanhMSzAzOVFHb3N0MkVmS01ZcFh0d1Y4R2hvR0JUOE5DanRnclpMbkNkbll4VFE&fmt=png-alpha&hei=720&wid=720",
+      "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/ipad-compare-swatches-air-202410?.v=VTllekV2RktMMEtYZm91K21zcE81ZklpTlQzZFhQVGE0SXN5TXVVd0tsTStqNVNMUE5kWkM0SlBMVUVFRW5rM215d1FhSDJ0bkR0ZGZtUjZJNmFveFlubjdwNjI2STBFYk5icVZWN1RpamM&fmt=png-alpha&hei=26&wid=134"
+    ],
     "description": "iPad Air 13 M3 sở hữu màn hình lớn giúp nâng cao trải nghiệm học tập, làm việc và giải trí. Chip Apple M3 mang lại hiệu năng mạnh mẽ cho đa nhiệm, chỉnh sửa ảnh và các ứng dụng sáng tạo nội dung. Không gian hiển thị rộng rãi giúp thao tác thuận tiện với nhiều cửa sổ cùng lúc. Thiết bị hỗ trợ Apple Pencil và Magic Keyboard giúp thay thế laptop trong nhiều tình huống. Đây là lựa chọn phù hợp cho người dùng chuyên nghiệp cần một chiếc tablet mạnh mẽ và linh hoạt.",
     "specifications": [
       {
@@ -13544,8 +14128,12 @@
     "price": 29990000,
     "stock": 25,
     "minStockLevel": 8,
-    "image": "",
-    "images": [],
+    "image": "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/ipad-compare-header-pro-202405?.v=bk5Ha2llcUlIczRSRUt0WDVzK2I3aEpsdjhCN0cycWFLRklRalhsdmV1Y1k2Q3FubUg5cC93VlMzQkExanhMSzAzOVFHb3N0MkVmS01ZcFh0d1Y4R21yc3hpVFRmZnBDMzlsazg4c2M0Vk0&fmt=png-alpha&hei=398&wid=392",
+    "images": [
+      "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/ipad-compare-header-pro-202405?.v=bk5Ha2llcUlIczRSRUt0WDVzK2I3aEpsdjhCN0cycWFLRklRalhsdmV1Y1k2Q3FubUg5cC93VlMzQkExanhMSzAzOVFHb3N0MkVmS01ZcFh0d1Y4R21yc3hpVFRmZnBDMzlsazg4c2M0Vk0&fmt=png-alpha&hei=398&wid=392",
+      "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/ipad-compare-header-pro-202405?.v=bk5Ha2llcUlIczRSRUt0WDVzK2I3aEpsdjhCN0cycWFLRklRalhsdmV1Y1k2Q3FubUg5cC93VlMzQkExanhMSzAzOVFHb3N0MkVmS01ZcFh0d1Y4R21yc3hpVFRmZnBDMzlsazg4c2M0Vk0&fmt=png-alpha&hei=720&wid=720",
+      "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/ipad-compare-swatches-pro-202410?.v=VTllekV2RktMMEtYZm91K21zcE81YzlMaTNEK3FqdHk4VjVjd1laSDJPWmFWTUZXWmpVL0pSSHl0dEdINzRUVzAzOVFHb3N0MkVmS01ZcFh0d1Y4R3RKd3NvcEs3Z0t6VkdpY0VPb0dOUFE&fmt=png-alpha&hei=26&wid=62"
+    ],
     "description": "iPad Pro 11 M4 là mẫu tablet cao cấp dành cho người dùng sáng tạo nội dung, nhà thiết kế và chuyên gia cần hiệu năng hàng đầu. Chip Apple M4 mang lại sức mạnh xử lý vượt trội cho đồ họa, chỉnh sửa video và các ứng dụng chuyên nghiệp. Màn hình Ultra Retina XDR cho chất lượng hiển thị xuất sắc với độ sáng cao và màu sắc chính xác. Thiết kế siêu mỏng cùng trọng lượng nhẹ giúp tăng tính cơ động. Đây là lựa chọn lý tưởng cho người dùng muốn sở hữu một thiết bị mạnh mẽ trong hệ sinh thái Apple.",
     "specifications": [
       {
@@ -13638,8 +14226,12 @@
     "price": 42990000,
     "stock": 15,
     "minStockLevel": 5,
-    "image": "",
-    "images": [],
+    "image": "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/ipad-compare-header-pro-202405?.v=bk5Ha2llcUlIczRSRUt0WDVzK2I3aEpsdjhCN0cycWFLRklRalhsdmV1Y1k2Q3FubUg5cC93VlMzQkExanhMSzAzOVFHb3N0MkVmS01ZcFh0d1Y4R21yc3hpVFRmZnBDMzlsazg4c2M0Vk0&fmt=png-alpha&hei=398&wid=392",
+    "images": [
+      "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/ipad-compare-header-pro-202405?.v=bk5Ha2llcUlIczRSRUt0WDVzK2I3aEpsdjhCN0cycWFLRklRalhsdmV1Y1k2Q3FubUg5cC93VlMzQkExanhMSzAzOVFHb3N0MkVmS01ZcFh0d1Y4R21yc3hpVFRmZnBDMzlsazg4c2M0Vk0&fmt=png-alpha&hei=398&wid=392",
+      "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/ipad-compare-header-pro-202405?.v=bk5Ha2llcUlIczRSRUt0WDVzK2I3aEpsdjhCN0cycWFLRklRalhsdmV1Y1k2Q3FubUg5cC93VlMzQkExanhMSzAzOVFHb3N0MkVmS01ZcFh0d1Y4R21yc3hpVFRmZnBDMzlsazg4c2M0Vk0&fmt=png-alpha&hei=720&wid=720",
+      "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/ipad-compare-swatches-pro-202410?.v=VTllekV2RktMMEtYZm91K21zcE81YzlMaTNEK3FqdHk4VjVjd1laSDJPWmFWTUZXWmpVL0pSSHl0dEdINzRUVzAzOVFHb3N0MkVmS01ZcFh0d1Y4R3RKd3NvcEs3Z0t6VkdpY0VPb0dOUFE&fmt=png-alpha&hei=26&wid=62"
+    ],
     "description": "iPad Pro 13 M4 là mẫu máy tính bảng cao cấp nhất của Apple với hiệu năng vượt trội và màn hình lớn phục vụ công việc chuyên nghiệp. Chip M4 giúp xử lý hiệu quả các dự án thiết kế đồ họa, dựng video, mô hình 3D và các tác vụ AI hiện đại. Màn hình Ultra Retina XDR OLED mang lại trải nghiệm hình ảnh đẳng cấp với độ chi tiết và độ tương phản cao. Thiết bị hỗ trợ Apple Pencil Pro và Magic Keyboard giúp thay thế laptop trong nhiều tình huống. Đây là lựa chọn hàng đầu cho người dùng chuyên nghiệp.",
     "specifications": [
       {
@@ -13732,8 +14324,12 @@
     "price": 13990000,
     "stock": 55,
     "minStockLevel": 15,
-    "image": "",
-    "images": [],
+    "image": "https://shop.samsung.com/latin/ecu/pub/media/catalog/product/cache/a69170b4a4f0666a52473c2224ba9220/s/m/sm-x520n_galaxy-tab-s10-fe_blue_product-image_set-cut-all-1.png",
+    "images": [
+      "https://shop.samsung.com/latin/ecu/pub/media/catalog/product/cache/a69170b4a4f0666a52473c2224ba9220/s/m/sm-x520n_galaxy-tab-s10-fe_blue_product-image_set-cut-all-1.png",
+      "https://shop.samsung.com/latin/ecu/pub/media/catalog/product/s/m/sm-x520n_galaxy-tab-s10-fe_blue_product-image_set-cut-all-1.png",
+      "https://shop.samsung.com/latin/ecu/pub/media/catalog/product/s/m/sm-x520n_galaxy-tab-s10-fe_blue_product-image_set-cut-all-1_thumb.png"
+    ],
     "description": "Galaxy Tab S10 FE là mẫu máy tính bảng Android phù hợp cho học tập, làm việc và giải trí hằng ngày. Thiết bị được trang bị màn hình lớn giúp đọc tài liệu, ghi chú và xem nội dung đa phương tiện thoải mái. Bút S Pen đi kèm hỗ trợ học tập, vẽ và ghi chú hiệu quả mà không cần mua thêm phụ kiện. Hiệu năng ổn định đáp ứng tốt các tác vụ văn phòng, học trực tuyến và giải trí phổ biến. Đây là lựa chọn phù hợp cho học sinh, sinh viên và người dùng cần một chiếc tablet Android đa năng với mức giá hợp lý.",
     "specifications": [
       {
@@ -13826,8 +14422,12 @@
     "price": 24990000,
     "stock": 30,
     "minStockLevel": 8,
-    "image": "",
-    "images": [],
+    "image": "https://images.samsung.com/is/image/samsung/p6pim/us/sm-x820nzaaxar/gallery/us-galaxy-tab-s10-plus-sm-x820-sm-x820nzaaxar-551218671?$product-details-jpg$",
+    "images": [
+      "https://images.samsung.com/is/image/samsung/p6pim/us/sm-x820nzaaxar/gallery/us-galaxy-tab-s10-plus-sm-x820-sm-x820nzaaxar-551218671?$product-details-jpg$",
+      "https://images.samsung.com/is/image/samsung/p6pim/us/sm-x820nzaaxar/gallery/us-galaxy-tab-s10-plus-sm-x820-sm-x820nzaaxar-551218672?$product-details-jpg$",
+      "https://images.samsung.com/is/image/samsung/p6pim/us/sm-x820nzaaxar/gallery/us-galaxy-tab-s10-plus-sm-x820-sm-x820nzaaxar-551218673?$product-details-jpg$"
+    ],
     "description": "Galaxy Tab S10+ là mẫu tablet cao cấp dành cho người dùng cần màn hình lớn và hiệu năng mạnh mẽ cho công việc lẫn giải trí. Màn hình Dynamic AMOLED mang lại màu sắc sống động và độ tương phản cao, phù hợp cho chỉnh sửa hình ảnh và xem nội dung chất lượng cao. Bút S Pen đi kèm giúp ghi chú, phác thảo ý tưởng và làm việc hiệu quả hơn. Thiết bị đáp ứng tốt đa nhiệm, họp trực tuyến và các ứng dụng sáng tạo nội dung. Đây là lựa chọn phù hợp cho sinh viên, nhân viên văn phòng và người dùng chuyên nghiệp.",
     "specifications": [
       {
@@ -13920,8 +14520,12 @@
     "price": 32990000,
     "stock": 18,
     "minStockLevel": 5,
-    "image": "",
-    "images": [],
+    "image": "https://shop.samsung.com/latin/cac/pub/media/catalog/product/s/m/sm-x920n_galaxy-tab-s10ultra_00_thumb_2.png",
+    "images": [
+      "https://shop.samsung.com/latin/cac/pub/media/catalog/product/s/m/sm-x920n_galaxy-tab-s10ultra_00_thumb_2.png",
+      "https://shop.samsung.com/latin/cac/pub/media/catalog/product/cache/a69170b4a4f0666a52473c2224ba9220/s/m/sm-x920n_galaxy-tab-s10ultra_00_2.png",
+      "https://shop.samsung.com/latin/cac/pub/media/catalog/product/s/m/sm-x920n_galaxy-tab-s10ultra_00_thumb_3.png"
+    ],
     "description": "Galaxy Tab S10 Ultra là mẫu tablet Android cao cấp nhất của Samsung dành cho người dùng chuyên nghiệp. Màn hình kích thước lớn mang lại không gian làm việc rộng rãi, phù hợp cho chỉnh sửa nội dung, đa nhiệm và giải trí cao cấp. Hiệu năng mạnh mẽ giúp xử lý tốt các tác vụ đồ họa, công việc văn phòng nâng cao và học tập chuyên sâu. Bút S Pen hỗ trợ sáng tạo nội dung và ghi chú hiệu quả. Đây là lựa chọn lý tưởng cho người dùng muốn một thiết bị Android cao cấp có khả năng thay thế laptop trong nhiều tình huống.",
     "specifications": [
       {
@@ -14014,8 +14618,12 @@
     "price": 9990000,
     "stock": 65,
     "minStockLevel": 15,
-    "image": "",
-    "images": [],
+    "image": "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-pad-7/pc/3569ebdf7939e29319357ac306de16ab.jpg",
+    "images": [
+      "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-pad-7/pc/3569ebdf7939e29319357ac306de16ab.jpg",
+      "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-pad-7/pc/1155e849d1ff953f47d71dd69b7bd2be.jpg",
+      "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-pad-7/pc/8c23aff8f1fc4b3e0a9ee0b2576b7cc9.jpg"
+    ],
     "description": "Xiaomi Pad 7 là mẫu máy tính bảng Android cân bằng giữa hiệu năng, màn hình chất lượng và mức giá cạnh tranh. Thiết bị phù hợp cho học tập, xem phim, đọc tài liệu và làm việc văn phòng cơ bản. Màn hình độ phân giải cao cùng tần số quét mượt mà mang lại trải nghiệm sử dụng dễ chịu trong thời gian dài. Hiệu năng ổn định giúp đáp ứng các ứng dụng học tập, giải trí và đa nhiệm hằng ngày. Đây là lựa chọn phù hợp cho học sinh, sinh viên và người dùng phổ thông cần một chiếc tablet có giá trị sử dụng cao.",
     "specifications": [
       {
@@ -14108,8 +14716,12 @@
     "price": 13990000,
     "stock": 45,
     "minStockLevel": 12,
-    "image": "",
-    "images": [],
+    "image": "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-pad-7-pro/pc/5484effe86e2b64e1bf9d0235e7bd126.jpg",
+    "images": [
+      "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-pad-7-pro/pc/5484effe86e2b64e1bf9d0235e7bd126.jpg",
+      "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-pad-7-pro/pc/3981123868a4e977d2dbc54589509d13.jpg",
+      "https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-pad-7-pro/pc/de5dbed338c43903da2f792dd8a3ccc4.jpg"
+    ],
     "description": "Xiaomi Pad 7 Pro được thiết kế cho người dùng cần hiệu năng mạnh mẽ hơn để học tập, làm việc và giải trí. Bộ xử lý Snapdragon cao cấp giúp thiết bị vận hành mượt mà với đa nhiệm, chỉnh sửa hình ảnh và các ứng dụng năng suất. Màn hình 3.2K sắc nét cùng tần số quét cao mang lại trải nghiệm hiển thị ấn tượng khi xem phim hoặc làm việc. Thiết kế kim loại cao cấp, pin lớn và hệ điều hành tối ưu giúp nâng cao trải nghiệm sử dụng. Đây là lựa chọn phù hợp cho người dùng muốn một chiếc tablet Android mạnh mẽ trong tầm giá hợp lý.",
     "specifications": [
       {
@@ -14202,8 +14814,12 @@
     "price": 3990000,
     "stock": 80,
     "minStockLevel": 15,
-    "image": "",
-    "images": [],
+    "image": "https://www.apple.com/v/airpods-4/g/images/overview/stories/design_airpods_stem__ca26r79ta9f6_large.jpg",
+    "images": [
+      "https://www.apple.com/v/airpods-4/g/images/overview/stories/design_airpods_stem__ca26r79ta9f6_large.jpg",
+      "https://www.apple.com/v/airpods-4/g/images/overview/stories/airpods-connect_endframe__eyakc5xs2ei6_large.png",
+      "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/airpods-4-up-compare-202409?.v=M3NBMGZBMXE5bjhSK09ZMUdVcVJ4a0pCRUFQZnNTOWVuQVp6SHVXN253RGd4YU5mRUlFTWdmRnVFeUNUbW9rU0JkRlpCNVhYU3AwTldRQldlSnpRa085em81aWlObDIxZUh5RFVqa0pOTm8&fmt=jpeg&hei=500&qlt=90&wid=420"
+    ],
     "description": "AirPods 4 mang đến trải nghiệm âm thanh chất lượng cao với khả năng kết nối nhanh trong hệ sinh thái Apple. Thiết kế nhỏ gọn, đeo thoải mái trong thời gian dài và phù hợp cho học tập, làm việc cũng như giải trí hằng ngày. Thiết bị hỗ trợ điều khiển cảm ứng tiện lợi và thời lượng pin đủ đáp ứng nhu cầu sử dụng cả ngày.",
     "specifications": [
       {
@@ -14269,8 +14885,12 @@
     "price": 5490000,
     "stock": 60,
     "minStockLevel": 12,
-    "image": "",
-    "images": [],
+    "image": "https://www.apple.com/v/airpods-4/g/images/overview/stories/design_airpods_stem__ca26r79ta9f6_large.jpg",
+    "images": [
+      "https://www.apple.com/v/airpods-4/g/images/overview/stories/design_airpods_stem__ca26r79ta9f6_large.jpg",
+      "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/airpods-4-down-compare-202409?.v=ZXRUMUVvUDYrWGRPb1p5T2Q2TWV5c0s2Ym10NllyT1YxL1B0ck1mTlQyWmZoWEFrZzZyNzRKRU1rc296ejZTN3VUb3VPa2FUZVhQMFhDQnVBMWhwQStYMW5mVVZNSWRMTXRCT3QvUkZqa3c&fmt=jpeg&hei=500&qlt=90&wid=420",
+      "https://www.apple.com/v/airpods-4/g/images/overview/stories/airpods-connect_endframe__eyakc5xs2ei6_large.png"
+    ],
     "description": "AirPods 4 ANC được trang bị công nghệ chống ồn chủ động giúp tập trung hơn khi học tập và làm việc. Chất lượng âm thanh cân bằng, khả năng kết nối ổn định và tích hợp sâu với hệ sinh thái Apple mang lại trải nghiệm sử dụng thuận tiện.",
     "specifications": [
       {
@@ -14336,8 +14956,10 @@
     "price": 6290000,
     "stock": 45,
     "minStockLevel": 10,
-    "image": "",
-    "images": [],
+    "image": "https://www.apple.com/newsroom/images/2023/09/apple-introduces-new-airpods-pro-2nd-generation/article/Apple-AirPods-Pro-2nd-generation-USB-C-connection-demo-230912_big.jpg.large_2x.jpg",
+    "images": [
+      "https://www.apple.com/newsroom/images/2023/09/apple-introduces-new-airpods-pro-2nd-generation/article/Apple-AirPods-Pro-2nd-generation-USB-C-connection-demo-230912_big.jpg.large_2x.jpg"
+    ],
     "description": "AirPods Pro 2 là mẫu tai nghe cao cấp với khả năng chống ồn chủ động mạnh mẽ, chế độ xuyên âm thông minh và chất lượng âm thanh chi tiết. Đây là lựa chọn phù hợp cho người dùng iPhone muốn trải nghiệm âm thanh cao cấp và tiện lợi.",
     "specifications": [
       {
@@ -14403,8 +15025,10 @@
     "price": 2490000,
     "stock": 70,
     "minStockLevel": 15,
-    "image": "",
-    "images": [],
+    "image": "https://m.media-amazon.com/images/I/51h3H9qiIjL._AC_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/51h3H9qiIjL._AC_.jpg"
+    ],
     "description": "JBL Tune Beam là tai nghe true wireless phổ thông với âm bass mạnh, phù hợp nghe nhạc và gọi điện hằng ngày.",
     "specifications": [
       {
@@ -14461,8 +15085,10 @@
     "price": 3290000,
     "stock": 55,
     "minStockLevel": 12,
-    "image": "",
-    "images": [],
+    "image": "https://m.media-amazon.com/images/I/61o5nQ1a5wL._AC_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/61o5nQ1a5wL._AC_.jpg"
+    ],
     "description": "JBL Live Pro 2 mang lại âm thanh mạnh mẽ, đàm thoại tốt và chống ồn chủ động cho nhu cầu di chuyển.",
     "specifications": [
       {
@@ -14519,8 +15145,10 @@
     "price": 4990000,
     "stock": 35,
     "minStockLevel": 8,
-    "image": "",
-    "images": [],
+    "image": "https://m.media-amazon.com/images/I/71YCRaYon4L._AC_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/71YCRaYon4L._AC_.jpg"
+    ],
     "description": "JBL Tour Pro 2 là mẫu tai nghe cao cấp với hộp sạc màn hình cảm ứng và nhiều tính năng thông minh.",
     "specifications": [
       {
@@ -14577,8 +15205,10 @@
     "price": 1490000,
     "stock": 90,
     "minStockLevel": 20,
-    "image": "",
-    "images": [],
+    "image": "https://image-us.samsung.com/SamsungUS/home/mobile/audio/all-audio/galaxy-buds-fe-sm-r400nzaaxar/white/2-Gallery-1600x1200.jpg?$product-details-jpg$",
+    "images": [
+      "https://image-us.samsung.com/SamsungUS/home/mobile/audio/all-audio/galaxy-buds-fe-sm-r400nzaaxar/white/2-Gallery-1600x1200.jpg?$product-details-jpg$"
+    ],
     "description": "Galaxy Buds FE là mẫu tai nghe không dây phù hợp cho người dùng Android cần chất lượng âm thanh tốt với mức giá dễ tiếp cận. Thiết bị hỗ trợ chống ồn chủ động và thời lượng pin dài.",
     "specifications": [
       {
@@ -14644,8 +15274,10 @@
     "price": 3490000,
     "stock": 60,
     "minStockLevel": 12,
-    "image": "",
-    "images": [],
+    "image": "https://m.media-amazon.com/images/I/61Mv3cWzZeL._AC_SL1500_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/61Mv3cWzZeL._AC_SL1500_.jpg"
+    ],
     "description": "Galaxy Buds 3 mang đến thiết kế hiện đại cùng chất lượng âm thanh được tối ưu cho hệ sinh thái Galaxy. Thiết bị phù hợp cho học tập, làm việc và giải trí hằng ngày.",
     "specifications": [
       {
@@ -14711,8 +15343,12 @@
     "price": 5490000,
     "stock": 40,
     "minStockLevel": 10,
-    "image": "",
-    "images": [],
+    "image": "https://images.samsung.com/is/image/samsung/assets/us/galaxy-buds3-pro/images/galaxy-buds3-pro-highlight-slide03-startframe-pc_0710.jpg",
+    "images": [
+      "https://images.samsung.com/is/image/samsung/assets/us/galaxy-buds3-pro/images/galaxy-buds3-pro-highlight-slide03-startframe-pc_0710.jpg",
+      "https://images.samsung.com/is/image/samsung/assets/us/galaxy-buds3-pro/images/galaxy-buds3-pro-highlight-slide03-endframe-pc_0710.jpg",
+      "https://image-us.samsung.com/us/galaxy-buds3-pro/images/galaxy-buds3-pro-sound-optimization-pc.jpg"
+    ],
     "description": "Galaxy Buds 3 Pro là dòng tai nghe cao cấp với khả năng chống ồn nâng cao, âm thanh chi tiết và hỗ trợ nhiều tính năng AI trong hệ sinh thái Samsung.",
     "specifications": [
       {
@@ -14778,8 +15414,10 @@
     "price": 2490000,
     "stock": 70,
     "minStockLevel": 15,
-    "image": "",
-    "images": [],
+    "image": "https://m.media-amazon.com/images/S/aplus-media-library-service-media/b6421743-8af3-4bc4-9591-d436c75f3df3.__CR0,0,800,600_PT0_SX800_V1___.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/S/aplus-media-library-service-media/b6421743-8af3-4bc4-9591-d436c75f3df3.__CR0,0,800,600_PT0_SX800_V1___.jpg"
+    ],
     "description": "Sony WF-C700N là tai nghe không dây chống ồn phù hợp cho học tập, làm việc và giải trí. Thiết kế nhỏ gọn, âm thanh cân bằng và thời lượng pin tốt.",
     "specifications": [
       {
@@ -14845,8 +15483,10 @@
     "price": 3990000,
     "stock": 50,
     "minStockLevel": 12,
-    "image": "",
-    "images": [],
+    "image": "https://m.media-amazon.com/images/I/51yRkCCx40L.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/51yRkCCx40L.jpg"
+    ],
     "description": "Sony LinkBuds S sở hữu thiết kế nhẹ, chống ồn hiệu quả và chất lượng âm thanh cao, phù hợp cho người dùng cần đeo trong thời gian dài.",
     "specifications": [
       {
@@ -14912,8 +15552,12 @@
     "price": 6990000,
     "stock": 30,
     "minStockLevel": 8,
-    "image": "",
-    "images": [],
+    "image": "https://d1ncau8tqf99kp.cloudfront.net/converted/115577_original_local_1200x1050_v3_converted.webp",
+    "images": [
+      "https://d1ncau8tqf99kp.cloudfront.net/converted/115577_original_local_1200x1050_v3_converted.webp",
+      "https://d1ncau8tqf99kp.cloudfront.net/converted/115577_original_local_504x441_v3_converted.webp",
+      "https://d1ncau8tqf99kp.cloudfront.net/converted/115577_original_local_256x224_v3_converted.webp"
+    ],
     "description": "WF-1000XM5 là mẫu tai nghe flagship của Sony với khả năng chống ồn hàng đầu, âm thanh chất lượng cao và nhiều tính năng thông minh.",
     "specifications": [
       {
@@ -14979,8 +15623,10 @@
     "price": 590000,
     "stock": 10,
     "minStockLevel": 10,
-    "image": "",
-    "images": [],
+    "image": "https://m.media-amazon.com/images/I/61b5cOjm2eL._AC_SL1500_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/61b5cOjm2eL._AC_SL1500_.jpg"
+    ],
     "description": "Sản phẩm Soundcore R50i thuộc nhóm Headphones.",
     "specifications": [],
     "specs": [],
@@ -14999,8 +15645,10 @@
     "price": 1990000,
     "stock": 10,
     "minStockLevel": 10,
-    "image": "",
-    "images": [],
+    "image": "https://cdn.shopify.com/s/files/1/0520/7192/3885/files/3947-Normal_Product.png?v=1688038274",
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0520/7192/3885/files/3947-Normal_Product.png?v=1688038274"
+    ],
     "description": "Sản phẩm Soundcore Liberty 4 NC thuộc nhóm Headphones.",
     "specifications": [],
     "specs": [],
@@ -15019,8 +15667,10 @@
     "price": 3490000,
     "stock": 10,
     "minStockLevel": 10,
-    "image": "",
-    "images": [],
+    "image": "https://m.media-amazon.com/images/I/51iZKAb6FuL._AC_SL1500_.jpg",
+    "images": [
+      "https://m.media-amazon.com/images/I/51iZKAb6FuL._AC_SL1500_.jpg"
+    ],
     "description": "Sản phẩm Soundcore Liberty 4 Pro thuộc nhóm Headphones.",
     "specifications": [],
     "specs": [],

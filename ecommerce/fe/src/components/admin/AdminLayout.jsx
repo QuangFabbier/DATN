@@ -18,6 +18,7 @@ const adminMenuItems = [
     ],
   },
   { type: 'link', path: '/admin/products', label: 'Quản lý sản phẩm', superAdminOnly: false },
+  { type: 'link', path: '/admin/product-catalog', label: 'Danh sách sản phẩm', superAdminOnly: false },
   { type: 'link', path: '/admin/reviews', label: 'Quản lý review', superAdminOnly: false },
   { type: 'link', path: '/admin/orders', label: 'Quản lý đơn hàng', superAdminOnly: false },
   { type: 'link', path: '/admin/payment', label: 'Quản lý thanh toán', superAdminOnly: true },
@@ -34,8 +35,7 @@ function AdminLayout() {
   const inventoryMenuOpen = isInventoryRoute || inventoryMenuManualOpen
 
   const visibleMenuItems = useMemo(
-    () =>
-      adminMenuItems.filter((item) => !item.superAdminOnly || canManageAdmins),
+    () => adminMenuItems.filter((item) => !item.superAdminOnly || canManageAdmins),
     [canManageAdmins],
   )
 
@@ -92,7 +92,9 @@ function AdminLayout() {
                         type="button"
                         className="admin-sidebar-group-toggle"
                         onClick={() => setInventoryMenuManualOpen((current) => !current)}
-                        aria-label={inventoryMenuOpen ? 'Thu gọn nhóm quản lý kho' : 'Mở rộng nhóm quản lý kho'}
+                        aria-label={
+                          inventoryMenuOpen ? 'Thu gọn nhóm quản lý kho' : 'Mở rộng nhóm quản lý kho'
+                        }
                         aria-expanded={inventoryMenuOpen}
                       >
                         <i

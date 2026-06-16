@@ -6,7 +6,9 @@
     "price": 890000,
     "stock": 120,
     "minStockLevel": 25,
-    "images": [],
+    "images": [
+      "https://images.tcdn.com.br/img/img_prod/1165337/memoria_ram_desktop_16gb_kingston_fury_beast_3200mhz_1_35v_ddr4_kf432c16bb1_16_26129_3_d0c1e1b8ba9c68693ebb90879c8b1eb2.jpg"
+    ],
     "description": "Kingston Fury Beast DDR4 16GB 3200MHz là bộ nhớ RAM phổ biến dành cho máy tính văn phòng, gaming và học tập. Sản phẩm mang lại hiệu năng ổn định, tương thích với nhiều nền tảng và dễ dàng nâng cấp cho hệ thống hiện có.",
     "specifications": {
       "capacity": "16GB",
@@ -14,7 +16,8 @@
       "speed": "3200MHz",
       "latency": "CL16",
       "voltage": "1.35V"
-    }
+    },
+    "image": "https://images.tcdn.com.br/img/img_prod/1165337/memoria_ram_desktop_16gb_kingston_fury_beast_3200mhz_1_35v_ddr4_kf432c16bb1_16_26129_3_d0c1e1b8ba9c68693ebb90879c8b1eb2.jpg"
   },
   {
     "name": "Kingston Fury Beast DDR4 32GB 3200MHz",
@@ -23,7 +26,9 @@
     "price": 1790000,
     "stock": 90,
     "minStockLevel": 20,
-    "images": [],
+    "images": [
+      "https://m.media-amazon.com/images/I/71+clMT-q-L._AC_SL1500_.jpg"
+    ],
     "description": "Phiên bản 32GB phù hợp cho người dùng đa nhiệm, lập trình, thiết kế và gaming hiện đại cần dung lượng RAM lớn hơn.",
     "specifications": {
       "capacity": "32GB",
@@ -31,7 +36,8 @@
       "speed": "3200MHz",
       "latency": "CL16",
       "voltage": "1.35V"
-    }
+    },
+    "image": "https://m.media-amazon.com/images/I/71+clMT-q-L._AC_SL1500_.jpg"
   },
   {
     "name": "Kingston Fury Beast DDR5 16GB 5600MHz",
@@ -40,7 +46,9 @@
     "price": 1490000,
     "stock": 95,
     "minStockLevel": 20,
-    "images": [],
+    "images": [
+      "https://m.media-amazon.com/images/I/71EKUjsKQYL._AC_SL1500_.jpg"
+    ],
     "description": "Kingston Fury Beast DDR5 16GB mang đến băng thông cao hơn thế hệ DDR4, phù hợp cho PC gaming và workstation đời mới.",
     "specifications": {
       "capacity": "16GB",
@@ -48,7 +56,8 @@
       "speed": "5600MHz",
       "latency": "CL40",
       "voltage": "1.25V"
-    }
+    },
+    "image": "https://m.media-amazon.com/images/I/71EKUjsKQYL._AC_SL1500_.jpg"
   },
   {
     "name": "Kingston Fury Beast DDR5 32GB 6000MHz",
@@ -57,7 +66,9 @@
     "price": 2990000,
     "stock": 60,
     "minStockLevel": 12,
-    "images": [],
+    "images": [
+      "https://m.media-amazon.com/images/I/71yiC8EpVCL._AC_.jpg"
+    ],
     "description": "Bộ nhớ DDR5 dung lượng lớn dành cho gaming cao cấp, chỉnh sửa video và xử lý dữ liệu chuyên nghiệp.",
     "specifications": {
       "capacity": "32GB",
@@ -65,7 +76,8 @@
       "speed": "6000MHz",
       "latency": "CL36",
       "voltage": "1.35V"
-    }
+    },
+    "image": "https://m.media-amazon.com/images/I/71yiC8EpVCL._AC_.jpg"
   },
   {
     "name": "Corsair Vengeance DDR5 32GB 6000MHz",
@@ -74,7 +86,9 @@
     "price": 3190000,
     "stock": 55,
     "minStockLevel": 12,
-    "images": [],
+    "images": [
+      "https://m.media-amazon.com/images/I/71m9-93iPBL._AC_.jpg"
+    ],
     "description": "Corsair Vengeance DDR5 là dòng RAM nổi tiếng với độ ổn định cao và khả năng tương thích tốt cho PC gaming hiện đại.",
     "specifications": {
       "capacity": "32GB",
@@ -82,7 +96,8 @@
       "speed": "6000MHz",
       "latency": "CL36",
       "voltage": "1.35V"
-    }
+    },
+    "image": "https://m.media-amazon.com/images/I/71m9-93iPBL._AC_.jpg"
   },
   {
     "name": "Corsair Dominator Titanium DDR5 32GB 6400MHz",
@@ -91,7 +106,9 @@
     "price": 4990000,
     "stock": 30,
     "minStockLevel": 8,
-    "images": [],
+    "images": [
+      "https://m.media-amazon.com/images/I/61FvCy+l77L._AC_SL1500_.jpg"
+    ],
     "description": "Corsair Dominator Titanium là dòng RAM cao cấp dành cho hệ thống gaming và workstation hiệu năng cao.",
     "specifications": {
       "capacity": "32GB",
@@ -99,7 +116,8 @@
       "speed": "6400MHz",
       "latency": "CL32",
       "voltage": "1.40V"
-    }
+    },
+    "image": "https://m.media-amazon.com/images/I/61FvCy+l77L._AC_SL1500_.jpg"
   },
   {
     "name": "G.Skill Trident Z5 RGB DDR5 32GB 6400MHz",
@@ -108,7 +126,9 @@
     "price": 4590000,
     "stock": 35,
     "minStockLevel": 8,
-    "images": [],
+    "images": [
+      "https://m.media-amazon.com/images/I/71DiVTefKBL._AC_.jpg"
+    ],
     "description": "G.Skill Trident Z5 RGB là dòng RAM cao cấp được nhiều game thủ và người ép xung lựa chọn nhờ hiệu năng mạnh mẽ.",
     "specifications": {
       "capacity": "32GB",
@@ -116,7 +136,8 @@
       "speed": "6400MHz",
       "latency": "CL32",
       "voltage": "1.40V"
-    }
+    },
+    "image": "https://m.media-amazon.com/images/I/71DiVTefKBL._AC_.jpg"
   },
   {
     "name": "ADATA XPG Lancer DDR5 32GB 6000MHz",
@@ -125,7 +146,9 @@
     "price": 2890000,
     "stock": 60,
     "minStockLevel": 12,
-    "images": [],
+    "images": [
+      "https://files.pccasegear.com/UserFiles/AX5U6000C4016G-DCLARWH-adata-xpg-lancer-rgb-32gb-2x16gb-6000mhz-cl40-ddr5-white-product4.jpg"
+    ],
     "description": "ADATA XPG Lancer DDR5 mang đến hiệu năng tốt trong phân khúc tầm trung cho gaming và làm việc.",
     "specifications": {
       "capacity": "32GB",
@@ -133,7 +156,8 @@
       "speed": "6000MHz",
       "latency": "CL38",
       "voltage": "1.35V"
-    }
+    },
+    "image": "https://files.pccasegear.com/UserFiles/AX5U6000C4016G-DCLARWH-adata-xpg-lancer-rgb-32gb-2x16gb-6000mhz-cl40-ddr5-white-product4.jpg"
   },
   {
     "name": "Crucial DDR5 16GB 5600MHz",
@@ -142,7 +166,9 @@
     "price": 1390000,
     "stock": 80,
     "minStockLevel": 15,
-    "images": [],
+    "images": [
+      "https://m.media-amazon.com/images/I/819OdHGCicL.jpg"
+    ],
     "description": "Crucial DDR5 16GB là lựa chọn nâng cấp phù hợp cho người dùng phổ thông muốn chuyển sang nền tảng DDR5.",
     "specifications": {
       "capacity": "16GB",
@@ -150,7 +176,8 @@
       "speed": "5600MHz",
       "latency": "CL46",
       "voltage": "1.10V"
-    }
+    },
+    "image": "https://m.media-amazon.com/images/I/819OdHGCicL.jpg"
   },
   {
     "name": "Samsung DDR5 SODIMM 16GB 5600MHz",
@@ -159,7 +186,9 @@
     "price": 1490000,
     "stock": 75,
     "minStockLevel": 15,
-    "images": [],
+    "images": [
+      "https://m.media-amazon.com/images/I/61Mc6kTOz+L._AC_.jpg"
+    ],
     "description": "Samsung DDR5 SODIMM là RAM laptop phổ biến dành cho nâng cấp notebook và laptop gaming thế hệ mới.",
     "specifications": {
       "capacity": "16GB",
@@ -167,6 +196,7 @@
       "speed": "5600MHz",
       "latency": "CL46",
       "voltage": "1.10V"
-    }
+    },
+    "image": "https://m.media-amazon.com/images/I/61Mc6kTOz+L._AC_.jpg"
   }
 ]

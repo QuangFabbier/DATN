@@ -4,6 +4,8 @@ import { AdminOrdersSkeleton } from "../../components/Skeleton";
 import { ButtonSpinner } from "../../components/Spinner";
 import { useToast } from "../../hooks/useToast";
 import {
+  canDeleteOrder,
+  deleteOrder,
   getAvailableStatusTransitions,
   getOrders,
   getOrderStatusLabel,
@@ -68,6 +70,8 @@ function AdminOrders() {
   const [selectedOrder, setSelectedOrder] = useState(null);
   const [updatingOrderId, setUpdatingOrderId] = useState("");
   const [pendingStatusUpdate, setPendingStatusUpdate] = useState(null);
+  const [deletingOrderId, setDeletingOrderId] = useState("");
+  const [pendingOrderDelete, setPendingOrderDelete] = useState(null);
 
   useEffect(() => {
     let isMounted = true;
@@ -181,6 +185,22 @@ function AdminOrders() {
     setPendingStatusUpdate(null);
   }
 
+  function requestDeleteOrder(order) {
+    if (updatingOrderId || deletingOrderId) {
+      return;
+    }
+
+    setPendingOrderDelete(order);
+  }
+
+  function closePendingOrderDelete() {
+    if (updatingOrderId || deletingOrderId) {
+      return;
+    }
+
+    setPendingOrderDelete(null);
+  }
+
   async function confirmUpdateOrderStatus() {
     if (!pendingStatusUpdate || updatingOrderId) {
       return;
@@ -222,6 +242,52 @@ function AdminOrders() {
       });
     } finally {
       setUpdatingOrderId("");
+    }
+  }
+
+  async function confirmDeleteOrder() {
+    if (!pendingOrderDelete || deletingOrderId) {
+      return;
+    }
+
+    if (!canDeleteOrder(pendingOrderDelete)) {
+      showToast({
+        type: "error",
+        title: "Không thể xóa đơn hàng",
+        message: "Chỉ xóa được khi đơn đã hoàn thành và thanh toán hoàn tất.",
+      });
+      setPendingOrderDelete(null);
+      return;
+    }
+
+    try {
+      setDeletingOrderId(pendingOrderDelete.id);
+      const result = await withMinimumDelay(
+        Promise.resolve(deleteOrder(pendingOrderDelete.id)),
+        260,
+      );
+
+      setOrders(result.orders);
+
+      if (selectedOrder?.id === pendingOrderDelete.id) {
+        setSelectedOrder(null);
+      }
+
+      showToast({
+        type: "success",
+        title: "Đã xóa đơn hàng",
+        message: `Đơn ${pendingOrderDelete.id} đã được xóa khỏi hệ thống.`,
+      });
+
+      setPendingOrderDelete(null);
+    } catch (error) {
+      showToast({
+        type: "error",
+        title: "Không thể xóa đơn hàng",
+        message: error?.message || "Vui lòng thử lại sau.",
+      });
+    } finally {
+      setDeletingOrderId("");
     }
   }
 
@@ -501,6 +567,24 @@ function AdminOrders() {
                     )
                   )}
                 </div>
+
+                <div className="admin-order-delete-section">
+                  <p className="section-heading-meta">
+                    Chỉ có thể xóa khi đơn hàng đã hoàn thành và thanh toán hoàn tất.
+                  </p>
+                  <button
+                    type="button"
+                    className="button button-danger"
+                    onClick={() => requestDeleteOrder(selectedOrder)}
+                    disabled={
+                      !canDeleteOrder(selectedOrder) ||
+                      Boolean(updatingOrderId) ||
+                      Boolean(deletingOrderId)
+                    }
+                  >
+                    Xóa đơn hàng
+                  </button>
+                </div>
               </article>
             </div>
           </section>
@@ -567,6 +651,63 @@ function AdminOrders() {
                   </>
                 ) : (
                   statusActionLabelMap[pendingStatusUpdate.nextStatus]
+                )}
+              </button>
+            </div>
+          </section>
+        </div>
+      ) : null}
+
+      {pendingOrderDelete ? (
+        <div className="admin-modal-backdrop" onClick={closePendingOrderDelete}>
+          <section className="admin-modal admin-confirm-modal" onClick={(event) => event.stopPropagation()}>
+            <header className="admin-modal-header">
+              <div>
+                <p className="eyebrow">Xác nhận xóa</p>
+                <h2>{pendingOrderDelete.id}</h2>
+              </div>
+              <button
+                type="button"
+                className="icon-button"
+                onClick={closePendingOrderDelete}
+                aria-label="Đóng hộp xác nhận xóa"
+                disabled={Boolean(updatingOrderId || deletingOrderId)}
+              >
+                <i className="fa-solid fa-xmark" aria-hidden="true" />
+              </button>
+            </header>
+
+            <div className="admin-confirm-content">
+              <p>
+                Bạn có chắc muốn xóa đơn <strong>{pendingOrderDelete.id}</strong> không?
+              </p>
+              <p className="section-heading-meta">
+                Đơn này phải ở trạng thái hoàn thành và thanh toán hoàn tất thì mới được xóa.
+              </p>
+            </div>
+
+            <div className="admin-form-actions">
+              <button
+                type="button"
+                className="button button-light"
+                onClick={closePendingOrderDelete}
+                disabled={Boolean(updatingOrderId || deletingOrderId)}
+              >
+                Hủy
+              </button>
+              <button
+                type="button"
+                className="button button-danger"
+                onClick={confirmDeleteOrder}
+                disabled={Boolean(updatingOrderId || deletingOrderId)}
+              >
+                {deletingOrderId === pendingOrderDelete.id ? (
+                  <>
+                    <ButtonSpinner size="sm" />
+                    <span>Đang xóa...</span>
+                  </>
+                ) : (
+                  'Xóa đơn hàng'
                 )}
               </button>
             </div>

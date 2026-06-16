@@ -1,4 +1,3 @@
-
 [
   {
     "name": "vivo X300 256GB",
@@ -7,7 +6,11 @@
     "price": 22990000,
     "stock": 35,
     "minStockLevel": 10,
-    "images": [],
+    "images": [
+      "https://vivo-official.com/cdn/shop/files/EN-X300-poster-horizontal_82814dbb-d778-4a92-981e-ae4ba0395e59.jpg?v=1761815218&width=3000",
+      "https://vivo-official.com/cdn/shop/files/e079a75955e2792a2788cde442a5d7a3.jpg?v=1778585053&width=1440",
+      "https://vivo-official.com/cdn/shop/files/X300_Pink_ProductImage.png?v=1780761973&width=2000"
+    ],
     "description": "vivo X300 256GB là mẫu smartphone cao cấp hướng đến người dùng yêu thích nhiếp ảnh và trải nghiệm sử dụng toàn diện. Máy sở hữu thiết kế hiện đại, hoàn thiện cao cấp cùng cụm camera được tinh chỉnh nhằm mang lại chất lượng hình ảnh ấn tượng. Vi xử lý Dimensity 9500 kết hợp cùng 12GB RAM giúp thiết bị xử lý mượt mà các tác vụ đa nhiệm, chỉnh sửa ảnh và chơi game. Màn hình AMOLED 120Hz mang đến trải nghiệm hiển thị sắc nét, màu sắc chân thực và thao tác vuốt chạm mượt mà. Viên pin dung lượng lớn hỗ trợ sử dụng bền bỉ trong suốt ngày dài. Đây là lựa chọn phù hợp cho những người dùng đang tìm kiếm một chiếc flagship Android cân bằng giữa hiệu năng và khả năng chụp ảnh.",
     "specifications": {
       "screen": "6.67 inch AMOLED 120Hz",
@@ -25,7 +28,11 @@
     "price": 29990000,
     "stock": 25,
     "minStockLevel": 10,
-    "images": [],
+    "images": [
+      "https://vivo-official.com/cdn/shop/files/titled-front_back.png?v=1773065488&width=2000",
+      "https://vivo-official.com/cdn/shop/files/X300_Pro_1-_english.jpg?v=1761752875",
+      "https://vivo-official.com/cdn/shop/files/X300_Pro_4-English.jpg?v=1761752875"
+    ],
     "description": "vivo X300 Pro 512GB là phiên bản cao cấp nhất trong dòng X300, được thiết kế dành cho người dùng yêu cầu hiệu năng mạnh mẽ và hệ thống camera chất lượng cao. Thiết bị được trang bị vi xử lý Dimensity 9500 cùng 16GB RAM, đáp ứng xuất sắc các nhu cầu từ công việc chuyên sâu đến giải trí cao cấp. Màn hình LTPO AMOLED 120Hz mang lại trải nghiệm hiển thị mượt mà và tiết kiệm năng lượng. Hệ thống camera được hợp tác phát triển với ZEISS, hỗ trợ chụp ảnh chân dung và quay video chất lượng chuyên nghiệp. Bộ nhớ trong 512GB mang lại không gian lưu trữ rộng rãi cho hình ảnh, video và dữ liệu quan trọng.",
     "specifications": {
       "screen": "6.78 inch LTPO AMOLED 120Hz",
@@ -43,7 +50,11 @@
     "price": 11990000,
     "stock": 55,
     "minStockLevel": 15,
-    "images": [],
+    "images": [
+      "https://asia-exshopstatic-vivofs.vivo.com/KuCZNhz3cVxH4yrP/id/1741856861941/3011152031ec099553acdf4154aa6130.jpg",
+      "https://asia-exshopstatic-vivofs.vivo.com/KuCZNhz3cVxH4yrP/id/1741856861655/e29954542844df6f2b93edde8a23e4f9.jpg",
+      "https://asia-exshopstatic-vivofs.vivo.com/KuCZNhz3cVxH4yrP/id/1741856861692/85630dbd9f8efaf069fadb791e334066.jpg"
+    ],
     "description": "vivo V50 256GB là mẫu smartphone tầm trung nổi bật với thiết kế thời trang và khả năng chụp ảnh chân dung ấn tượng. Thiết bị hướng đến người dùng trẻ yêu thích sáng tạo nội dung trên mạng xã hội và mong muốn sở hữu một sản phẩm có ngoại hình hiện đại. Bộ vi xử lý Snapdragon 7 Gen 4 kết hợp cùng 8GB RAM giúp máy hoạt động ổn định trong các tác vụ hàng ngày và giải trí. Màn hình AMOLED 120Hz mang lại trải nghiệm hiển thị sống động và mượt mà. Viên pin dung lượng lớn cùng công nghệ sạc nhanh giúp nâng cao trải nghiệm sử dụng. Đây là lựa chọn phù hợp trong phân khúc tầm trung.",
     "specifications": {
       "screen": "6.77 inch AMOLED 120Hz",
@@ -61,7 +72,11 @@
     "price": 5990000,
     "stock": 85,
     "minStockLevel": 20,
-    "images": [],
+    "images": [
+      "https://in-exstatic-vivofs.vivo.com/gdHFRinHEMrj3yPG/Picture_library/1742294555694/zip/img/pc2.jpg",
+      "https://in-exstatic-vivofs.vivo.com/gdHFRinHEMrj3yPG/Picture_library/1742294555694/zip/img/pc3.jpg",
+      "https://in-exstatic-vivofs.vivo.com/gdHFRinHEMrj3yPG/Picture_library/1742294555694/zip/img/pc4.jpg"
+    ],
     "description": "vivo Y39 128GB là mẫu smartphone phổ thông được thiết kế nhằm đáp ứng tốt các nhu cầu sử dụng cơ bản của người dùng. Sản phẩm sở hữu thiết kế trẻ trung, dễ sử dụng và phù hợp với nhiều đối tượng khách hàng khác nhau. Vi xử lý Snapdragon kết hợp cùng 8GB RAM giúp máy hoạt động ổn định trong các tác vụ như lướt web, xem video, sử dụng mạng xã hội và liên lạc hàng ngày. Màn hình lớn mang lại không gian hiển thị thoải mái, trong khi viên pin dung lượng cao giúp kéo dài thời gian sử dụng. Đây là lựa chọn hợp lý dành cho những người dùng ưu tiên sự bền bỉ và tiết kiệm chi phí.",
     "specifications": {
       "screen": "6.68 inch IPS LCD 120Hz",
@@ -73,4 +88,3 @@
     }
   }
 ]
-

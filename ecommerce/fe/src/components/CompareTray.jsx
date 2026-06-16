@@ -215,9 +215,9 @@ function CompareTray() {
 
             <div className="consultant-card compare-ai-card">
               <div className="form-card-header">
-                <p className="eyebrow">AI Smart Compare</p>
-                <h3>AI phân tích giúp tôi</h3>
-                <p>Bạn có thể nhập ngắn nhu cầu chính để AI so sánh sát hơn.</p>
+                <p className="eyebrow">Nexora Smart Compare</p>
+                <h3>Nexora phân tích giúp bạn</h3>
+                <p>Bạn có thể nhập ngắn nhu cầu chính để Nexora so sánh sát hơn.</p>
               </div>
 
               <label>
@@ -233,7 +233,7 @@ function CompareTray() {
 
               <div className="summary-actions">
                 <button type="button" className="button" onClick={handleAiCompare} disabled={isAiAnalyzing}>
-                  {isAiAnalyzing ? 'AI đang phân tích...' : 'AI phân tích giúp tôi'}
+                  {isAiAnalyzing ? 'Nexora đang phân tích...' : 'Nexora phân tích giúp tôi'}
                 </button>
               </div>
 

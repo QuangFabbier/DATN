@@ -6,7 +6,9 @@
     "price": 890000,
     "stock": 120,
     "minStockLevel": 25,
-    "images": [],
+    "images": [
+      "https://philong.com.vn/media/product/28633-ssd-kingston-500gb-nv2-1.jpg"
+    ],
     "description": "Kingston NV2 500GB là ổ SSD NVMe phổ thông giúp nâng cấp tốc độ khởi động hệ điều hành, mở ứng dụng và sao chép dữ liệu nhanh hơn đáng kể so với ổ cứng truyền thống.",
     "specifications": {
       "capacity": "500GB",
@@ -14,7 +16,8 @@
       "formFactor": "M.2 2280",
       "readSpeed": "3500 MB/s",
       "writeSpeed": "2100 MB/s"
-    }
+    },
+    "image": "https://philong.com.vn/media/product/28633-ssd-kingston-500gb-nv2-1.jpg"
   },
   {
     "name": "Kingston NV2 1TB NVMe SSD",
@@ -23,7 +26,9 @@
     "price": 1490000,
     "stock": 100,
     "minStockLevel": 20,
-    "images": [],
+    "images": [
+      "https://m.media-amazon.com/images/I/71NfMZKkpQL._SL1500_.jpg"
+    ],
     "description": "Kingston NV2 1TB cung cấp dung lượng lớn và hiệu năng ổn định cho laptop, PC văn phòng và gaming.",
     "specifications": {
       "capacity": "1TB",
@@ -31,7 +36,8 @@
       "formFactor": "M.2 2280",
       "readSpeed": "3500 MB/s",
       "writeSpeed": "2800 MB/s"
-    }
+    },
+    "image": "https://m.media-amazon.com/images/I/71NfMZKkpQL._SL1500_.jpg"
   },
   {
     "name": "WD Blue SN580 1TB",
@@ -40,7 +46,9 @@
     "price": 1690000,
     "stock": 90,
     "minStockLevel": 20,
-    "images": [],
+    "images": [
+      "https://m.media-amazon.com/images/I/61SGBRxwq0L._AC_SL1500_.jpg"
+    ],
     "description": "WD Blue SN580 là SSD NVMe dành cho người dùng cần tốc độ cao khi làm việc, học tập và giải trí.",
     "specifications": {
       "capacity": "1TB",
@@ -48,7 +56,8 @@
       "formFactor": "M.2 2280",
       "readSpeed": "4150 MB/s",
       "writeSpeed": "4150 MB/s"
-    }
+    },
+    "image": "https://m.media-amazon.com/images/I/61SGBRxwq0L._AC_SL1500_.jpg"
   },
   {
     "name": "WD Black SN850X 1TB",
@@ -57,7 +66,9 @@
     "price": 2890000,
     "stock": 50,
     "minStockLevel": 10,
-    "images": [],
+    "images": [
+      "https://m.media-amazon.com/images/I/51Qk09tA3oL._AC_.jpg"
+    ],
     "description": "WD Black SN850X là SSD gaming hiệu năng cao dành cho game thủ và người dùng chuyên nghiệp.",
     "specifications": {
       "capacity": "1TB",
@@ -65,7 +76,8 @@
       "formFactor": "M.2 2280",
       "readSpeed": "7300 MB/s",
       "writeSpeed": "6300 MB/s"
-    }
+    },
+    "image": "https://m.media-amazon.com/images/I/51Qk09tA3oL._AC_.jpg"
   },
   {
     "name": "Samsung 990 EVO 1TB",
@@ -74,7 +86,9 @@
     "price": 2490000,
     "stock": 55,
     "minStockLevel": 12,
-    "images": [],
+    "images": [
+      "https://m.media-amazon.com/images/I/71H3OVkHOGL._AC_.jpg"
+    ],
     "description": "Samsung 990 EVO mang lại hiệu năng ổn định và độ bền cao cho người dùng laptop và PC hiện đại.",
     "specifications": {
       "capacity": "1TB",
@@ -82,7 +96,8 @@
       "formFactor": "M.2 2280",
       "readSpeed": "5000 MB/s",
       "writeSpeed": "4200 MB/s"
-    }
+    },
+    "image": "https://m.media-amazon.com/images/I/71H3OVkHOGL._AC_.jpg"
   },
   {
     "name": "Samsung 990 Pro 2TB",
@@ -91,7 +106,9 @@
     "price": 4590000,
     "stock": 30,
     "minStockLevel": 8,
-    "images": [],
+    "images": [
+      "https://img.global.news.samsung.com/ca/wp-content/uploads/2022/08/SamsungSSD990PRO_dl_1.jpg"
+    ],
     "description": "Samsung 990 Pro là SSD cao cấp dành cho workstation, gaming và sáng tạo nội dung chuyên nghiệp.",
     "specifications": {
       "capacity": "2TB",
@@ -99,7 +116,8 @@
       "formFactor": "M.2 2280",
       "readSpeed": "7450 MB/s",
       "writeSpeed": "6900 MB/s"
-    }
+    },
+    "image": "https://img.global.news.samsung.com/ca/wp-content/uploads/2022/08/SamsungSSD990PRO_dl_1.jpg"
   },
   {
     "name": "Crucial P3 Plus 1TB",
@@ -108,7 +126,9 @@
     "price": 1590000,
     "stock": 80,
     "minStockLevel": 18,
-    "images": [],
+    "images": [
+      "https://robu.in/wp-content/uploads/2024/07/R150035-1.jpg"
+    ],
     "description": "Crucial P3 Plus là SSD PCIe Gen4 có hiệu năng tốt trong phân khúc phổ thông.",
     "specifications": {
       "capacity": "1TB",
@@ -116,7 +136,8 @@
       "formFactor": "M.2 2280",
       "readSpeed": "5000 MB/s",
       "writeSpeed": "4200 MB/s"
-    }
+    },
+    "image": "https://robu.in/wp-content/uploads/2024/07/R150035-1.jpg"
   },
   {
     "name": "Crucial T500 1TB",
@@ -125,7 +146,9 @@
     "price": 2690000,
     "stock": 45,
     "minStockLevel": 10,
-    "images": [],
+    "images": [
+      "https://m.media-amazon.com/images/I/51W5aZlKQeL.jpg"
+    ],
     "description": "Crucial T500 mang đến tốc độ đọc ghi cao dành cho game thủ và người làm việc với dữ liệu lớn.",
     "specifications": {
       "capacity": "1TB",
@@ -133,7 +156,8 @@
       "formFactor": "M.2 2280",
       "readSpeed": "7400 MB/s",
       "writeSpeed": "7000 MB/s"
-    }
+    },
+    "image": "https://m.media-amazon.com/images/I/51W5aZlKQeL.jpg"
   },
   {
     "name": "Lexar NM790 1TB",
@@ -142,7 +166,9 @@
     "price": 1990000,
     "stock": 70,
     "minStockLevel": 15,
-    "images": [],
+    "images": [
+      "https://m.media-amazon.com/images/I/61Q4zdzkh4L._AC_.jpg"
+    ],
     "description": "Lexar NM790 là SSD hiệu năng cao với mức giá cạnh tranh, phù hợp cho gaming và nâng cấp laptop.",
     "specifications": {
       "capacity": "1TB",
@@ -150,7 +176,8 @@
       "formFactor": "M.2 2280",
       "readSpeed": "7400 MB/s",
       "writeSpeed": "6500 MB/s"
-    }
+    },
+    "image": "https://m.media-amazon.com/images/I/61Q4zdzkh4L._AC_.jpg"
   },
   {
     "name": "Lexar NM790 2TB",
@@ -159,7 +186,9 @@
     "price": 3490000,
     "stock": 40,
     "minStockLevel": 10,
-    "images": [],
+    "images": [
+      "https://m.media-amazon.com/images/I/61Q4zdzkh4L._AC_.jpg"
+    ],
     "description": "Phiên bản 2TB cung cấp dung lượng lớn cho game thủ, editor và người dùng chuyên nghiệp.",
     "specifications": {
       "capacity": "2TB",
@@ -167,7 +196,8 @@
       "formFactor": "M.2 2280",
       "readSpeed": "7400 MB/s",
       "writeSpeed": "6500 MB/s"
-    }
+    },
+    "image": "https://m.media-amazon.com/images/I/61Q4zdzkh4L._AC_.jpg"
   },
   {
     "name": "Kingston KC3000 2TB",
@@ -176,7 +206,9 @@
     "price": 4290000,
     "stock": 35,
     "minStockLevel": 8,
-    "images": [],
+    "images": [
+      "https://songphuong.vn/Content/uploads/2023/04/SSD-Kingston-KC3000-2TB-M2-songphuong.vn-02.jpg"
+    ],
     "description": "Kingston KC3000 là SSD cao cấp hướng đến người dùng workstation và gaming hiệu năng cao.",
     "specifications": {
       "capacity": "2TB",
@@ -184,7 +216,8 @@
       "formFactor": "M.2 2280",
       "readSpeed": "7000 MB/s",
       "writeSpeed": "7000 MB/s"
-    }
+    },
+    "image": "https://songphuong.vn/Content/uploads/2023/04/SSD-Kingston-KC3000-2TB-M2-songphuong.vn-02.jpg"
   },
   {
     "name": "Samsung T7 Shield 1TB",
@@ -193,7 +226,9 @@
     "price": 2590000,
     "stock": 50,
     "minStockLevel": 10,
-    "images": [],
+    "images": [
+      "https://m.media-amazon.com/images/I/71EESd1deTL._AC_.jpg"
+    ],
     "description": "Samsung T7 Shield là SSD di động chống va đập phù hợp cho người dùng thường xuyên di chuyển.",
     "specifications": {
       "capacity": "1TB",
@@ -201,6 +236,7 @@
       "formFactor": "Portable SSD",
       "readSpeed": "1050 MB/s",
       "writeSpeed": "1000 MB/s"
-    }
+    },
+    "image": "https://m.media-amazon.com/images/I/71EESd1deTL._AC_.jpg"
   }
 ]

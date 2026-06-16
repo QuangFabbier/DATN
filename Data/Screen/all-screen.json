@@ -6,7 +6,9 @@
     "price": 2590000,
     "stock": 60,
     "minStockLevel": 15,
-    "images": [],
+    "images": [
+      "https://m.media-amazon.com/images/I/81xrHN1BYFL._AC_.jpg"
+    ],
     "description": "Dell E2225H là màn hình văn phòng phù hợp cho học tập, làm việc và sử dụng hằng ngày. Thiết kế đơn giản, độ bền cao và chất lượng hiển thị ổn định giúp đáp ứng tốt nhu cầu cơ bản.",
     "specifications": {
       "size": "22 inch",
@@ -15,7 +17,8 @@
       "refreshRate": "75Hz",
       "responseTime": "5ms",
       "ports": "HDMI, VGA"
-    }
+    },
+    "image": "https://m.media-amazon.com/images/I/81xrHN1BYFL._AC_.jpg"
   },
   {
     "name": "Dell P2425H 24 Inch FHD 100Hz",
@@ -24,7 +27,11 @@
     "price": 4590000,
     "stock": 45,
     "minStockLevel": 10,
-    "images": [],
+    "images": [
+      "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/peripherals/monitors/p-series/p2425h/mg/monitor-p2425h-black-gallery-1.psd?chrss=full&fmt=png-alpha&hei=804&pscan=auto&qlt=100%2C1&resMode=sharp2&scl=1&size=913%2C804&wid=913",
+      "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/peripherals/monitors/p-series/p2425h/mg/monitor-p2425h-black-gallery-2.psd?chrss=full&fmt=png-alpha&hei=804&pscan=auto&qlt=100%2C1&resMode=sharp2&scl=1&size=913%2C804&wid=913",
+      "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/peripherals/monitors/p-series/p2425h/mg/monitor-p2425h-black-gallery-3.psd?chrss=full&fmt=png-alpha&hei=804&pscan=auto&qlt=100%2C1&resMode=sharp2&scl=1&size=913%2C804&wid=913"
+    ],
     "description": "Dell P2425H là màn hình văn phòng cao cấp với chân đế công thái học và khả năng hiển thị màu sắc ổn định. Phù hợp cho nhân viên văn phòng và lập trình viên.",
     "specifications": {
       "size": "24 inch",
@@ -33,7 +40,8 @@
       "refreshRate": "100Hz",
       "responseTime": "5ms",
       "ports": "HDMI, DisplayPort, USB Hub"
-    }
+    },
+    "image": "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/peripherals/monitors/p-series/p2425h/mg/monitor-p2425h-black-gallery-1.psd?chrss=full&fmt=png-alpha&hei=804&pscan=auto&qlt=100%2C1&resMode=sharp2&scl=1&size=913%2C804&wid=913"
   },
   {
     "name": "Dell UltraSharp U2724D 27 Inch QHD",
@@ -42,7 +50,11 @@
     "price": 9990000,
     "stock": 25,
     "minStockLevel": 6,
-    "images": [],
+    "images": [
+      "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/peripherals/monitors/u-series/u2724d/media-gallery/monitor-ultrasharp-u2724d-qhd-gy-gallery-1.psd?chrss=full&fmt=png-alpha&hei=804&pscan=auto&qlt=100%2C1&resMode=sharp2&scl=1&size=914%2C804&wid=914",
+      "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/peripherals/monitors/u-series/u2724d/media-gallery/monitor-ultrasharp-u2724d-qhd-gy-gallery-2.psd?chrss=full&fmt=png-alpha&hei=804&pscan=auto&qlt=100%2C1&resMode=sharp2&scl=1&size=914%2C804&wid=914",
+      "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/peripherals/monitors/u-series/u2724d/media-gallery/monitor-ultrasharp-u2724d-qhd-gy-gallery-3.psd?chrss=full&fmt=png-alpha&hei=804&pscan=auto&qlt=100%2C1&resMode=sharp2&scl=1&size=914%2C804&wid=914"
+    ],
     "description": "Dell UltraSharp U2724D là màn hình chuyên nghiệp dành cho designer, lập trình viên và người dùng văn phòng cao cấp cần chất lượng hiển thị tốt.",
     "specifications": {
       "size": "27 inch",
@@ -51,7 +63,8 @@
       "refreshRate": "120Hz",
       "responseTime": "5ms",
       "ports": "HDMI, DisplayPort, USB-C"
-    }
+    },
+    "image": "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/peripherals/monitors/u-series/u2724d/media-gallery/monitor-ultrasharp-u2724d-qhd-gy-gallery-1.psd?chrss=full&fmt=png-alpha&hei=804&pscan=auto&qlt=100%2C1&resMode=sharp2&scl=1&size=914%2C804&wid=914"
   },
   {
     "name": "LG 24MR400-B 24 Inch FHD 100Hz",
@@ -60,7 +73,11 @@
     "price": 2890000,
     "stock": 70,
     "minStockLevel": 15,
-    "images": [],
+    "images": [
+      "https://media.us.lg.com/transform/ecomm-PDPGallery-1100x730/767390fa-2041-4842-91d9-647f245d5f78/24MR400-B_gallery_01_3000x3000?io=transform:fill,width:1200",
+      "https://media.us.lg.com/transform/ecomm-PDPGallery-1100x730/267d5446-0487-4bc6-9611-89c91d3cb786/24MR400-B_gallery_03_3000x3000?io=transform:fill,width:1200",
+      "https://media.us.lg.com/transform/ecomm-PDPGallery-1100x730/767390fa-2041-4842-91d9-647f245d5f78/24MR400-B_gallery_01_3000x3000?io=transform:fill,width:1200"
+    ],
     "description": "LG 24MR400-B là màn hình phổ thông phù hợp cho học tập, làm việc văn phòng và giải trí hằng ngày.",
     "specifications": {
       "size": "24 inch",
@@ -69,7 +86,8 @@
       "refreshRate": "100Hz",
       "responseTime": "5ms",
       "ports": "HDMI, VGA"
-    }
+    },
+    "image": "https://media.us.lg.com/transform/ecomm-PDPGallery-1100x730/767390fa-2041-4842-91d9-647f245d5f78/24MR400-B_gallery_01_3000x3000?io=transform:fill,width:1200"
   },
   {
     "name": "LG 27UP850-W 27 Inch 4K USB-C",
@@ -78,7 +96,9 @@
     "price": 11990000,
     "stock": 20,
     "minStockLevel": 5,
-    "images": [],
+    "images": [
+      "https://m.media-amazon.com/images/I/71Svha9Q81L.jpg"
+    ],
     "description": "LG 27UP850-W là màn hình 4K dành cho designer, editor và người dùng MacBook cần hiển thị sắc nét và hỗ trợ USB-C.",
     "specifications": {
       "size": "27 inch",
@@ -87,7 +107,8 @@
       "refreshRate": "60Hz",
       "responseTime": "5ms",
       "ports": "HDMI, DisplayPort, USB-C"
-    }
+    },
+    "image": "https://m.media-amazon.com/images/I/71Svha9Q81L.jpg"
   },
   {
     "name": "LG UltraGear 27GP850-B 27 Inch QHD 180Hz",
@@ -96,7 +117,9 @@
     "price": 8990000,
     "stock": 30,
     "minStockLevel": 8,
-    "images": [],
+    "images": [
+      "https://m.media-amazon.com/images/I/71g9q4saOcL._AC_.jpg"
+    ],
     "description": "LG UltraGear 27GP850-B là màn hình gaming QHD tốc độ cao dành cho game thủ cần hình ảnh mượt mà và độ chính xác cao.",
     "specifications": {
       "size": "27 inch",
@@ -105,7 +128,8 @@
       "refreshRate": "180Hz",
       "responseTime": "1ms",
       "ports": "HDMI, DisplayPort"
-    }
+    },
+    "image": "https://m.media-amazon.com/images/I/71g9q4saOcL._AC_.jpg"
   },
   {
     "name": "ASUS TUF Gaming VG249Q3A",
@@ -114,7 +138,9 @@
     "price": 3990000,
     "stock": 55,
     "minStockLevel": 12,
-    "images": [],
+    "images": [
+      "https://m.media-amazon.com/images/I/71v6eqZJt2L._AC_.jpg"
+    ],
     "description": "ASUS TUF Gaming VG249Q3A là màn hình gaming phổ biến với tần số quét cao và mức giá dễ tiếp cận.",
     "specifications": {
       "size": "24 inch",
@@ -123,7 +149,8 @@
       "refreshRate": "180Hz",
       "responseTime": "1ms",
       "ports": "HDMI, DisplayPort"
-    }
+    },
+    "image": "https://m.media-amazon.com/images/I/71v6eqZJt2L._AC_.jpg"
   },
   {
     "name": "ASUS ProArt PA279CRV",
@@ -132,7 +159,9 @@
     "price": 14990000,
     "stock": 15,
     "minStockLevel": 5,
-    "images": [],
+    "images": [
+      "https://m.media-amazon.com/images/I/81H2NFld9ZL._AC_.jpg"
+    ],
     "description": "ASUS ProArt PA279CRV là màn hình chuyên nghiệp dành cho thiết kế đồ họa, chỉnh sửa ảnh và dựng video.",
     "specifications": {
       "size": "27 inch",
@@ -141,7 +170,8 @@
       "refreshRate": "60Hz",
       "responseTime": "5ms",
       "ports": "HDMI, DisplayPort, USB-C"
-    }
+    },
+    "image": "https://m.media-amazon.com/images/I/81H2NFld9ZL._AC_.jpg"
   },
   {
     "name": "Samsung Odyssey G4 25 Inch 240Hz",
@@ -150,7 +180,9 @@
     "price": 6490000,
     "stock": 40,
     "minStockLevel": 10,
-    "images": [],
+    "images": [
+      "https://m.media-amazon.com/images/I/817Oy0Qw60L._AC_SL1500_.jpg"
+    ],
     "description": "Samsung Odyssey G4 là màn hình gaming tốc độ cao dành cho game thủ FPS và eSports.",
     "specifications": {
       "size": "25 inch",
@@ -159,7 +191,8 @@
       "refreshRate": "240Hz",
       "responseTime": "1ms",
       "ports": "HDMI, DisplayPort"
-    }
+    },
+    "image": "https://m.media-amazon.com/images/I/817Oy0Qw60L._AC_SL1500_.jpg"
   },
   {
     "name": "Samsung Odyssey G6 27 Inch QHD 240Hz",
@@ -168,7 +201,9 @@
     "price": 12990000,
     "stock": 20,
     "minStockLevel": 5,
-    "images": [],
+    "images": [
+      "https://m.media-amazon.com/images/I/81fwJfCNVJL._AC_.jpg"
+    ],
     "description": "Samsung Odyssey G6 là màn hình gaming cao cấp với độ phân giải QHD và tần số quét 240Hz.",
     "specifications": {
       "size": "27 inch",
@@ -177,7 +212,8 @@
       "refreshRate": "240Hz",
       "responseTime": "1ms",
       "ports": "HDMI, DisplayPort"
-    }
+    },
+    "image": "https://m.media-amazon.com/images/I/81fwJfCNVJL._AC_.jpg"
   },
   {
     "name": "AOC 24G4E",
@@ -186,7 +222,9 @@
     "price": 3790000,
     "stock": 65,
     "minStockLevel": 15,
-    "images": [],
+    "images": [
+      "https://m.media-amazon.com/images/I/81eMGYK-ugL._AC_.jpg"
+    ],
     "description": "AOC 24G4E là màn hình gaming phổ thông với hiệu năng tốt trong phân khúc giá dễ tiếp cận.",
     "specifications": {
       "size": "24 inch",
@@ -195,7 +233,8 @@
       "refreshRate": "180Hz",
       "responseTime": "1ms",
       "ports": "HDMI, DisplayPort"
-    }
+    },
+    "image": "https://m.media-amazon.com/images/I/81eMGYK-ugL._AC_.jpg"
   },
   {
     "name": "MSI MAG 274QRF-QD E2",
@@ -204,7 +243,9 @@
     "price": 9990000,
     "stock": 25,
     "minStockLevel": 6,
-    "images": [],
+    "images": [
+      "https://m.media-amazon.com/images/I/71cShFafLEL._AC_.jpg"
+    ],
     "description": "MSI MAG 274QRF-QD E2 là màn hình gaming QHD dành cho game thủ và streamer cần chất lượng hiển thị cao.",
     "specifications": {
       "size": "27 inch",
@@ -213,7 +254,8 @@
       "refreshRate": "180Hz",
       "responseTime": "1ms",
       "ports": "HDMI, DisplayPort, USB-C"
-    }
+    },
+    "image": "https://m.media-amazon.com/images/I/71cShFafLEL._AC_.jpg"
   },
   {
     "name": "Gigabyte M27Q Rev 2.0",
@@ -222,7 +264,9 @@
     "price": 7990000,
     "stock": 30,
     "minStockLevel": 8,
-    "images": [],
+    "images": [
+      "https://ecommerce.datablitz.com.ph/cdn/shop/files/0889523026908-ECOM-MAIN-IMAGE_800x.jpg?v=1724231881"
+    ],
     "description": "Gigabyte M27Q là màn hình gaming QHD nổi tiếng với tính năng KVM và chất lượng hiển thị tốt.",
     "specifications": {
       "size": "27 inch",
@@ -231,7 +275,8 @@
       "refreshRate": "170Hz",
       "responseTime": "1ms",
       "ports": "HDMI, DisplayPort, USB-C"
-    }
+    },
+    "image": "https://ecommerce.datablitz.com.ph/cdn/shop/files/0889523026908-ECOM-MAIN-IMAGE_800x.jpg?v=1724231881"
   },
   {
     "name": "ViewSonic VX2479-HD-PRO",
@@ -240,7 +285,9 @@
     "price": 3590000,
     "stock": 55,
     "minStockLevel": 12,
-    "images": [],
+    "images": [
+      "https://www.viewsonic.com/vsAssetFile/global/img/slides/_lcd_display_(new)/VX2479-HD-PRO/GPG-23-MON-VX2479-HD-PRO-PRDP_RF01 1_pc.jpg"
+    ],
     "description": "ViewSonic VX2479-HD-PRO là màn hình gaming giá tốt dành cho học sinh, sinh viên và game thủ phổ thông.",
     "specifications": {
       "size": "24 inch",
@@ -249,7 +296,8 @@
       "refreshRate": "180Hz",
       "responseTime": "1ms",
       "ports": "HDMI, DisplayPort"
-    }
+    },
+    "image": "https://www.viewsonic.com/vsAssetFile/global/img/slides/_lcd_display_(new)/VX2479-HD-PRO/GPG-23-MON-VX2479-HD-PRO-PRDP_RF01 1_pc.jpg"
   },
   {
     "name": "BenQ PD2705U 27 Inch 4K Designer",
@@ -258,7 +306,9 @@
     "price": 13990000,
     "stock": 18,
     "minStockLevel": 5,
-    "images": [],
+    "images": [
+      "https://m.media-amazon.com/images/I/91bybwaMLfL._AC_.jpg"
+    ],
     "description": "BenQ PD2705U là màn hình 4K chuyên nghiệp dành cho thiết kế đồ họa, dựng phim và sáng tạo nội dung.",
     "specifications": {
       "size": "27 inch",
@@ -267,6 +317,7 @@
       "refreshRate": "60Hz",
       "responseTime": "5ms",
       "ports": "HDMI, DisplayPort, USB-C"
-    }
+    },
+    "image": "https://m.media-amazon.com/images/I/91bybwaMLfL._AC_.jpg"
   }
 ]

@@ -719,12 +719,12 @@ function ProductDetail() {
 
           <div className="consultant-card detail-ai-card">
             <div className="form-card-header">
-              <p className="eyebrow">AI Product Explainer</p>
-              <h3>Hỏi AI về sản phẩm này</h3>
+              <p className="eyebrow">Nexora Product Guide</p>
+              <h3>Hỏi Nexora về sản phẩm này</h3>
             </div>
 
             <label htmlFor="detail-ai-question">
-              Câu hỏi cho AI
+              Câu hỏi cho Nexora
               <textarea
                 id="detail-ai-question"
                 rows={3}
@@ -737,7 +737,7 @@ function ProductDetail() {
 
             <div className="summary-actions">
               <button type="button" className="button" onClick={handleAskAiAboutProduct} disabled={isAiAnalyzing}>
-                {isAiAnalyzing ? 'AI đang phân tích...' : 'Hỏi AI về sản phẩm này'}
+                {isAiAnalyzing ? 'Nexora đang xem giúp bạn...' : 'Hỏi Nexora về sản phẩm này'}
               </button>
             </div>
 
@@ -748,12 +748,12 @@ function ProductDetail() {
                 {aiExplainResult.answer.summary ? <p>{aiExplainResult.answer.summary}</p> : null}
                 {aiExplainResult.answer.suitableFor ? (
                   <p>
-                    <strong>Phù hợp với:</strong> {aiExplainResult.answer.suitableFor}
+                    <strong>Phù hợp nếu bạn cần:</strong> {aiExplainResult.answer.suitableFor}
                   </p>
                 ) : null}
                 {aiExplainResult.answer.isWorthBuying ? (
                   <p>
-                    <strong>Đáng mua không:</strong> {aiExplainResult.answer.isWorthBuying}
+                    <strong>Có nên mua không:</strong> {aiExplainResult.answer.isWorthBuying}
                   </p>
                 ) : null}
                 {aiExplainResult.answer.fitForStudy ? (
@@ -773,7 +773,7 @@ function ProductDetail() {
                 ) : null}
                 {aiExplainResult.answer.strengths?.length ? (
                   <div className="ai-list-group">
-                    <strong>Điểm mạnh</strong>
+                    <strong>Điểm đáng chú ý</strong>
                     <ul>
                       {aiExplainResult.answer.strengths.map((item) => (
                         <li key={`strength-${item}`}>{item}</li>
@@ -783,7 +783,7 @@ function ProductDetail() {
                 ) : null}
                 {aiExplainResult.answer.weaknesses?.length ? (
                   <div className="ai-list-group">
-                    <strong>Điểm cần cân nhắc</strong>
+                    <strong>Điều cần cân nhắc</strong>
                     <ul>
                       {aiExplainResult.answer.weaknesses.map((item) => (
                         <li key={`weakness-${item}`}>{item}</li>
@@ -793,7 +793,7 @@ function ProductDetail() {
                 ) : null}
                 {aiExplainResult.answer.betterAlternatives?.length ? (
                   <div className="ai-list-group">
-                    <strong>Gợi ý thay thế</strong>
+                    <strong>Gợi ý thay thế thân thiện hơn</strong>
                     <ul>
                       {aiExplainResult.answer.betterAlternatives.map((item, index) => (
                         <li key={`${item.productId || 'alternative'}-${index}`}>
@@ -848,7 +848,7 @@ function ProductDetail() {
             </div>
 
             <div className="product-review-ai-summary">
-              <h3>AI review summary</h3>
+              <h3>Nexora tóm tắt đánh giá</h3>
               {reviewSummary.text ? (
                 <>
                   <p>{reviewSummary.text}</p>
@@ -863,7 +863,7 @@ function ProductDetail() {
                   ) : null}
                 </>
               ) : (
-                <p>AI sẽ tổng hợp nhận xét sau khi sản phẩm có đủ review để phân tích.</p>
+                <p>Nexora sẽ tóm tắt nhận xét sau khi sản phẩm có đủ đánh giá để phân tích.</p>
               )}
             </div>
           </div>

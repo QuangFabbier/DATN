@@ -1,6 +1,11 @@
 ﻿import mongoose from 'mongoose'
 import Product from '../models/Product.js'
 import { generateGeminiJson } from './geminiService.js'
+import {
+  buildUseCaseFitTexts,
+  resolveBestUseCaseProfile,
+  scoreUseCaseFit,
+} from './aiUseCaseCriteriaService.js'
 import { mapProductForResponse } from './productMatchingService.js'
 import { normalizeTextFold } from './aiJsonUtils.js'
 
@@ -90,6 +95,8 @@ function sanitizeAlternativeItems(items = [], validIdSet = new Set()) {
 function buildProductExplainPrompt({ product, question, alternatives }) {
   const briefProduct = toGeminiProductBrief(product)
   const briefAlternatives = Array.isArray(alternatives) ? alternatives.slice(0, 5).map(toGeminiProductBrief) : []
+  const fitTexts = buildUseCaseFitTexts(product)
+  const useCaseProfile = resolveBestUseCaseProfile(product, { useCase: question }, question)
 
   return `
 Bạn là AI Product Explainer cho ecommerce Nexora.
@@ -97,9 +104,15 @@ Chỉ được dùng dữ liệu sản phẩm được cung cấp. Không bịa 
 
 Yêu cầu:
 - Trả lời tiếng Việt tự nhiên, ngắn gọn, dễ hiểu.
+- Giá là tiêu chí số 1, sau đó mới đến tiêu chí phù hợp theo nhu cầu.
 - Đánh giá: phù hợp với ai, điểm mạnh, điểm yếu, có đáng mua không.
-- Đánh giá riêng cho 3 nhu cầu: học tập, gaming, văn phòng.
+- Đánh giá riêng cho nhiều nhu cầu: học tập, gaming, chụp ảnh, pin/di động, văn phòng, gọn nhẹ.
 - Nếu có phương án tốt hơn thì chỉ chọn từ "Danh sách lựa chọn thay thế hợp lệ".
+- Khi đánh giá học tập, ưu tiên laptop/tablet phù hợp, RAM đủ dùng, SSD ổn định, pin tốt, máy gọn nhẹ.
+- Khi đánh giá gaming, ưu tiên GPU/hiệu năng, màn hình mượt, tản nhiệt, RAM.
+- Khi đánh giá chụp ảnh, ưu tiên camera, OIS, zoom, night mode, màu sắc, quay video.
+- Khi đánh giá pin/di động, ưu tiên pin, sạc nhanh, trọng lượng và tính linh hoạt.
+- Khung đánh giá chính cho câu hỏi hiện tại: ${useCaseProfile}
 
 Trả về JSON đúng schema:
 {
@@ -110,7 +123,10 @@ Trả về JSON đúng schema:
   "isWorthBuying": "string",
   "fitForStudy": "string",
   "fitForGaming": "string",
+  "fitForPhotography": "string",
+  "fitForBattery": "string",
   "fitForOffice": "string",
+  "fitForCompact": "string",
   "betterAlternatives": [
     { "productId": "string", "reason": "string" }
   ],
@@ -125,15 +141,20 @@ ${normalizeText(question || 'Sản phẩm này có đáng mua không?')}
 
 Danh sách lựa chọn thay thế hợp lệ:
 ${JSON.stringify(briefAlternatives, null, 2)}
+
+Tiêu chí theo nhiều khung của Nexora:
+${JSON.stringify(fitTexts, null, 2)}
   `.trim()
 }
 
 function fallbackProductExplain({ product, alternatives }) {
   const alternativeItems = alternatives.slice(0, 2)
+  const fitTexts = buildUseCaseFitTexts(product)
+  const bestProfile = resolveBestUseCaseProfile(product)
 
   return {
     summary: `${product.name} thuộc nhóm ${product.category} với mức giá ${product.price.toLocaleString('vi-VN')} VND.`,
-    suitableFor: `Phù hợp người dùng cần ${product.category.toLowerCase()} trong tầm giá hiện tại.`,
+    suitableFor: fitTexts[bestProfile] || `Phù hợp người dùng cần ${product.category.toLowerCase()} trong tầm giá hiện tại.`,
     strengths: [
       'Mức giá và thông tin cấu hình khá rõ để so sánh.',
       product.stock > 0 ? 'Sản phẩm đang còn hàng.' : 'Thông tin vẫn hữu ích để tham chiếu.',
@@ -142,9 +163,12 @@ function fallbackProductExplain({ product, alternatives }) {
       product.stock > 0 ? 'Cần đối chiếu thêm theo nhu cầu cụ thể của bạn.' : 'Hiện đang tạm hết hàng.',
     ],
     isWorthBuying: product.stock > 0 ? 'Đáng cân nhắc nếu đúng nhu cầu chính.' : 'Nên cân nhắc mẫu khác do đang hết hàng.',
-    fitForStudy: 'Phù hợp cho học tập cơ bản nếu bạn ưu tiên cân bằng giá/nhu cầu.',
-    fitForGaming: 'Nên kiểm tra kỹ CPU/GPU/RAM trước khi chốt cho gaming.',
-    fitForOffice: 'Phù hợp cho văn phòng nếu ưu tiên ổn định và chi phí hợp lý.',
+    fitForStudy: fitTexts.study,
+    fitForGaming: fitTexts.gaming,
+    fitForPhotography: fitTexts.photography,
+    fitForBattery: fitTexts.battery,
+    fitForOffice: fitTexts.office,
+    fitForCompact: fitTexts.compact,
     betterAlternatives: alternativeItems.map((item) => ({
       productId: item.id,
       reason: `Bạn có thể so sánh thêm ${item.name} để đối chiếu giá trị sử dụng.`,
@@ -156,6 +180,7 @@ function fallbackProductExplain({ product, alternatives }) {
 export async function explainProductWithAi({ productId, question }) {
   const productDoc = await getProductByIdOrThrow(productId)
   const product = toCompactProduct(productDoc)
+  const useCaseProfile = resolveBestUseCaseProfile(product, { useCase: question }, question)
 
   const alternativeDocs = await Product.find({
     _id: { $ne: productDoc._id },
@@ -169,9 +194,12 @@ export async function explainProductWithAi({ productId, question }) {
   const alternatives = alternativeDocs.map(toCompactProduct)
   const validAlternativeIdSet = new Set(alternatives.map((item) => item.id))
   const fallback = fallbackProductExplain({ product, alternatives })
+  const useCaseSortedAlternatives = [...alternatives].sort(
+    (first, second) => scoreUseCaseFit(second, useCaseProfile).score - scoreUseCaseFit(first, useCaseProfile).score,
+  )
 
   try {
-    const prompt = buildProductExplainPrompt({ product, question, alternatives })
+    const prompt = buildProductExplainPrompt({ product, question, alternatives: useCaseSortedAlternatives })
     const aiJson = await generateGeminiJson(prompt, { temperature: 0.1, route: 'product.explain' })
     const betterAlternatives = sanitizeAlternativeItems(aiJson?.betterAlternatives, validAlternativeIdSet)
 
@@ -189,17 +217,20 @@ export async function explainProductWithAi({ productId, question }) {
         isWorthBuying: normalizeText(aiJson?.isWorthBuying || fallback.isWorthBuying),
         fitForStudy: normalizeText(aiJson?.fitForStudy || fallback.fitForStudy),
         fitForGaming: normalizeText(aiJson?.fitForGaming || fallback.fitForGaming),
+        fitForPhotography: normalizeText(aiJson?.fitForPhotography || fallback.fitForPhotography),
+        fitForBattery: normalizeText(aiJson?.fitForBattery || fallback.fitForBattery),
         fitForOffice: normalizeText(aiJson?.fitForOffice || fallback.fitForOffice),
+        fitForCompact: normalizeText(aiJson?.fitForCompact || fallback.fitForCompact),
         betterAlternatives,
         finalRecommendation: normalizeText(aiJson?.finalRecommendation || fallback.finalRecommendation),
       },
-      alternativeProducts: alternatives,
+      alternativeProducts: useCaseSortedAlternatives,
     }
   } catch {
     return {
       product,
       answer: fallback,
-      alternativeProducts: alternatives,
+      alternativeProducts: useCaseSortedAlternatives,
     }
   }
 }
